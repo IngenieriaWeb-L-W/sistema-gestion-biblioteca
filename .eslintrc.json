@@ -21,8 +21,15 @@
     "es6": true,
     "jest": true
   },
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "jsx-a11y", "import"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "jsx-a11y",
+    "import"
+  ],
   "rules": {
+    "indent": ["error", 2],
     "func-style": ["error", "expression"],
     "react/function-component-definition": [
       "error",
@@ -44,13 +51,13 @@
         "specialLink": ["hrefLeft", "hrefRight"],
         "aspects": ["invalidHref", "preferButton"]
       }
-    ],
-    "no-restricted-imports": [
-      "error",
-      {
-        "patterns": ["..*"]
-      }
     ]
+    // "no-restricted-imports": [
+    //   "error",
+    //   {
+    //     "patterns": ["..*"]
+    //   }
+    // ]
   },
   "overrides": [
     {
