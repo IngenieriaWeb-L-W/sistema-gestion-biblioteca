@@ -1,5 +1,7 @@
 import React from "react";
 
+import Image from "next/image";
+
 export const DashboardNavbar = () => {
   return (
     <React.Fragment>
@@ -41,10 +43,12 @@ export const DashboardNavbar = () => {
                 </svg>
               </button>
               <a href="/test" className="flex ml-2 md:mr-24">
-                <img
+                <Image
                   src="/images/logo.svg"
                   className="h-8 mr-3"
                   alt="FlowBite Logo"
+                  width={32}
+                  height={32}
                 />
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                   Flowbite
@@ -132,7 +136,7 @@ export const DashboardNavbar = () => {
                 </svg>
               </button>
               <div
-                className="z-20 z-50 hidden max-w-sm my-4 overflow-hidden text-base list-none bg-white divide-y divide-gray-100 rounded shadow-lg dark:divide-gray-600 dark:bg-gray-700"
+                className="z-20 hidden max-w-sm my-4 overflow-hidden text-base list-none bg-white divide-y divide-gray-100 rounded shadow-lg dark:divide-gray-600 dark:bg-gray-700"
                 id="notification-dropdown"
               >
                 <div className="block px-4 py-2 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

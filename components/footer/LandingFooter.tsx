@@ -37,14 +37,6 @@ export const LandingFooter = () => {
               Cookie Policy
             </a>
           </li>
-          <li>
-            <a
-              href="/test"
-              className="text-sm font-normal text-gray-500 hover:underline dark:text-gray-400"
-            >
-              Contact
-            </a>
-          </li>
         </ul>
         <div className="flex space-x-6 sm:justify-center">
           <a

@@ -1,9 +1,10 @@
-import { Layout } from "@/components/layout/DashboardLayout";
 import React from "react";
+
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
 
 const Index = () => {
   return (
-    <Layout>
+    <DashboardLayout>
       <div className="px-4 pt-6">
         <div className="grid gap-4 xl:grid-cols-2 2xl:grid-cols-3">
           <div className="p-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
@@ -3296,7 +3297,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </DashboardLayout>
   );
 };
 

@@ -2,26 +2,44 @@ import Link from "next/link";
 
 const Home = () => {
   return (
-    <main className="h-screen w-full flex items-center justify-center">
-      <Link className="p-3 m-2 bg-blue-500" href="/dashboard">
-        Dashboard
-      </Link>
+    <main className="h-screen w-full ">
+      <section className="flex items-center justify-center">
+        <Link className="p-3 m-2 bg-blue-500" href="/landing">
+          Landing
+        </Link>
+      </section>
 
-      <Link className="p-3 m-2 bg-blue-500" href="/admin/books">
-        Books
-      </Link>
+      <section className="flex items-center justify-center">
+        <Link className="p-3 m-2 bg-blue-500" href="/dashboard">
+          Dashboard
+        </Link>
 
-      <Link className="p-3 m-2 bg-blue-500" href="/admin/users">
-        Users
-      </Link>
+        <Link className="p-3 m-2 bg-blue-500" href="/dashboard/books">
+          Books
+        </Link>
 
-      <Link className="p-3 m-2 bg-blue-500" href="/admin/users/1">
-        User Detail
-      </Link>
+        <Link className="p-3 m-2 bg-blue-500" href="/dashboard/transactions">
+          Transactions
+        </Link>
+      </section>
 
-      <Link className="p-3 m-2 bg-blue-500" href="/admin/transactions">
-        Transactions
-      </Link>
+      <section className="flex items-center justify-center">
+        <Link className="p-3 m-2 bg-blue-500" href="/admin/books">
+          Admin/Books
+        </Link>
+
+        <Link className="p-3 m-2 bg-blue-500" href="/admin/users">
+          Admin/Users
+        </Link>
+
+        <Link className="p-3 m-2 bg-blue-500" href="/admin/users/1">
+          Admin/User Detail
+        </Link>
+
+        <Link className="p-3 m-2 bg-blue-500" href="/admin/transactions">
+          Admin/Transactions
+        </Link>
+      </section>
     </main>
   );
 };

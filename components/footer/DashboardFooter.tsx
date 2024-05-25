@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Footer = () => {
+export const DashboardFooter = () => {
   return (
     <React.Fragment>
       <footer className="p-4 my-6 mx-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 xl:p-8 dark:bg-gray-800">

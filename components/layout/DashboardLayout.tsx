@@ -1,17 +1,20 @@
-import { LandingNavbar } from "@/components/navbar/LandingNavbar";
 import React from "react";
-import { LandingFooter } from "../footer/LandingFooter";
+
+import { DashboardFooter } from "../footer/DashboardFooter";
+import { AdminNavbar } from "../navbar/AdminNavbar";
 
 type DashboardLayoutProps = {
   children: React.ReactNode;
 };
 
-export const Layout: React.FC<DashboardLayoutProps> = ({ children }) => {
+export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
+  children,
+}) => {
   return (
     <React.Fragment>
-      <LandingNavbar />
+      <AdminNavbar />
       {children}
-      <LandingFooter />
+      <DashboardFooter />
     </React.Fragment>
   );
 };
