@@ -1,42 +1,45 @@
+import { Fragment } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import React, { Fragment } from "react";
+import { Resource } from "@/interfaces/resource/Resource";
 
-export type BookDetailHeroProps = {};
+type BookDetailHeroProps = {
+  resource: Resource;
+};
 
-export const BookDetailHero: React.FC<BookDetailHeroProps> = ({ id }) => {
+export const BookDetailHero: React.FC<BookDetailHeroProps> = ({ resource }) => {
+  if (!resource.detail) return <></>;
+  const { detail } = resource;
+
   return (
     <Fragment>
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-7 lg:gap-x-8 xl:gap-x-12 lg:items-center">
-          <div className="lg:col-span-3">
-            <h1 className="block text-3xl font-bold text-gray-800 sm:text-4xl md:text-5xl lg:text-6xl dark:text-white">
-              Build Better Products
+      <div className="mx-auto bg-gray-900 px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-12 lg:gap-x-8 xl:gap-x-12 lg:items-center">
+          <div className="lg:col-span-7">
+            <h1 className="block text-3xl font-bold text-gray-200 sm:text-4xl md:text-5xl lg:text-6xl ">
+              {resource.name}
             </h1>
             <p className="mt-3 text-lg text-gray-800 dark:text-neutral-400">
-              Introducing a new way for your brand to reach the creative
-              community.
+              {resource.shortDescription}
             </p>
 
-            <div className="mt-5 lg:mt-8 flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
-              <div className="w-full sm:w-auto">
-                <label htmlFor="hero-input" className="sr-only">
-                  Search
-                </label>
-                <input
-                  type="text"
-                  id="hero-input"
-                  name="hero-input"
-                  className="py-3 px-4 block w-full xl:min-w-72 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                  placeholder="Enter work email"
-                />
-              </div>
-              <Link
-                className="w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                href="/test"
-              >
-                Request demo
-              </Link>
+            <hr className="mt-3" />
+            <p className="mt-3 text-lg text-gray-800 dark:text-neutral-400">
+              {detail.authors.length > 1 ? "Authors" : "Author"}:{" "}
+              {detail.authors.map((author) => author).join(", ")}
+            </p>
+
+            <div className="mt-4 text-white flex items-center flex-wrap gap-2">
+              {resource.categories.length > 1 ? "Categories" : "Category"}:{" "}
+              {resource.categories.map((category) => (
+                <span
+                  key={category.id}
+                  className="py-1.5 px-2 bg-white text-gray-600 border border-gray-200 sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400"
+                >
+                  {category.name}
+                </span>
+              ))}
             </div>
 
             <div className="mt-6 lg:mt-12">
@@ -186,10 +189,10 @@ export const BookDetailHero: React.FC<BookDetailHeroProps> = ({ id }) => {
             </div>
           </div>
 
-          <div className="lg:col-span-4 mt-10 lg:mt-0">
+          <div className="lg:col-span-5 flex h-screen my-auto justify-end items-center  mt-10 lg:mt-0">
             <Image
-              className="w-full rounded-xl"
-              src="/images/logos/logo.png"
+              className="w-auto h-[90vh] rounded-xl"
+              src="/images/books/test-book-img.jpg"
               alt="Image Description"
               width={500}
               height={500}

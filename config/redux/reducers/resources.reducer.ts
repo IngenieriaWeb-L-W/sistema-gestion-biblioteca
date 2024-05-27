@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store.config";
 import { Resource } from "@/interfaces/resource/Resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
+import { ResourceDetail } from "@/interfaces/resource/Detail";
 
 export interface ResourceFilters {
   search?: string;
@@ -67,6 +68,16 @@ export const resourcesSlice = createSlice({
       state.records.push(action.payload);
       state.total = state.total + 1;
     },
+    setResourceDetail: (
+      state,
+      action: PayloadAction<{ id: string; detail: ResourceDetail }>
+    ) => {
+      state.records = state.records.map((resource) =>
+        resource.id === action.payload.id
+          ? { ...resource, detail: action.payload.detail }
+          : resource
+      );
+    },
     updateResource: (state, action: PayloadAction<Resource>) => {
       state.records = state.records.map((resource) =>
         resource.id === action.payload.id ? action.payload : resource
@@ -86,6 +97,7 @@ export const selectResources = (state: RootState) => state.resources;
 export const {
   setResources,
   addResource,
+  setResourceDetail,
   updateResource,
   removeResource,
   setResourceFilters,

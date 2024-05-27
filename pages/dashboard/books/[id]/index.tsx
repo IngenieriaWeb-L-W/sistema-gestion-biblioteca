@@ -1,16 +1,27 @@
+import { BookDetail } from "@/components/content/BookDetail";
 import { BookDetailHero } from "@/components/hero/book/BookDetail";
+import { useResourceDetail } from "@/hooks/use-resource-detail";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { Fragment } from "react";
 
 const Index = () => {
-  // TODO: Read the param nameUrl from the URL and fetch the book detail data
+  const router = useRouter();
+  const { id } = router.query;
+  const { resource } = useResourceDetail(id as string);
+
+  if (!resource?.detail) return <></>;
+
   return (
     <Fragment>
       <Head>
         <title>Book Detail Page</title>
         <meta name="description" content="" />
       </Head>
-      <BookDetailHero />
+
+      <BookDetailHero resource={resource} />
+
+      <BookDetail detail={resource.detail} />
     </Fragment>
   );
 };

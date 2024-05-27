@@ -13,7 +13,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   return (
     <React.Fragment>
       <AdminNavbar />
-      <main className="mt-5">{children}</main>
+      <main className="mt-5 bg-gray-800">{children}</main>
 
       <DashboardFooter />
     </React.Fragment>

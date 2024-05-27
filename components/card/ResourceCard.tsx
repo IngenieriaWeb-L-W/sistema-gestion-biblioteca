@@ -10,39 +10,60 @@ type BookCardProps = {
 };
 
 export const ResourceCard: React.FC<BookCardProps> = ({ resource }) => {
+  const wordToHexColor = (word: string) => {
+    let hash = 0;
+    for (let i = 0; i < word.length; i++) {
+      hash = word.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const color = (hash & 0x00ffffff).toString(16).toUpperCase();
+    return "#" + "0".repeat(6 - color.length) + color;
+  };
+
   return (
     <Fragment>
-      <Link className="block" href="/test">
-        <div className="aspect-w-16 aspect-h-12 overflow-hidden bg-gray-100 rounded-2xl dark:bg-neutral-800">
+      <Link className="block relative" href={`books/${resource.id}`}>
+        <div>
           <Image
-            className="group-hover:scale-105 transition-transform duration-500 ease-in-out object-cover rounded-2xl"
+            className="object-cover w-full h-full rounded-ss-lg rounded-se-lg"
             src={resource.imageUrl}
             alt={resource.shortDescription}
-            width={10}
-            height={10}
+            width={200}
+            height={500}
           />
         </div>
-
-        <div className="pt-4">
-          <h3 className="relative inline-block font-medium text-lg text-black before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-lime-400 before:transition before:origin-left before:scale-x-0 group-hover:before:scale-x-100 dark:text-white">
+        <div
+          title={resource.shortDescription}
+          className="px-3 py-2 text-xs bg-gray-900 rounded-ee-sm rounded-es-sm shadow-2xl"
+        >
+          <h3 className="h-3 text-sm text-justify inline-block font-normal text-black before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 before:bg-lime-400 before:transition before:origin-left before:scale-x-0 group-hover:before:scale-x-100 dark:text-white">
             {resource.name}
           </h3>
-          <p className="mt-1 text-gray-600 dark:text-neutral-400">
-            {resource.shortDescription}
-          </p>
 
-          <div className="mt-3 flex flex-wrap gap-2">
+          <span
+            className={`text-white absolute right-1 top-1 opacity-[0.8]  px-3 py-2 rounded-lg`}
+            style={{ backgroundColor: `${wordToHexColor(resource.type)}` }}
+          >
+            {resource.type}
+          </span>
+
+          <div className="mt-4 flex flex-wrap gap-2">
             {resource.categories.map((category) => (
               <span
                 key={category.id}
-                className="py-1.5 px-3 bg-white text-gray-600 border border-gray-200 text-xs sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400"
+                className="py-1.5 px-2 bg-white text-gray-600 border border-gray-200 sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400"
               >
                 {category.name}
               </span>
             ))}
           </div>
 
-          <Link href={`books/${resource.id}`}>Ver detalle</Link>
+          <div className="mt-1 grid grid-cols-12 items-end gap-2 text-white">
+            <span className="col-span-8 text-start">{resource.edition}</span>
+            <div className="col-span-4 w-full text-end">
+              <h2 className="text-2xl">5</h2>
+              <p>Available</p>
+            </div>
+          </div>
         </div>
       </Link>
     </Fragment>
