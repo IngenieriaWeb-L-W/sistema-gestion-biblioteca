@@ -1,10 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export const AdminNavbar = () => {
   return (
     <React.Fragment>
-      <nav className="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-0 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
@@ -41,7 +42,7 @@ export const AdminNavbar = () => {
                   ></path>
                 </svg>
               </button>
-              <a href="/test" className="flex ml-2 md:mr-24">
+              <Link href="/" className="flex ml-2 md:mr-24">
                 <Image
                   src="/images/logos/logo.png"
                   alt="BookHub logo"
@@ -51,7 +52,7 @@ export const AdminNavbar = () => {
                 <span className="self-center ml-1 text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                   BookHub
                 </span>
-              </a>
+              </Link>
               <form className="hidden lg:block mb-1">
                 <label htmlFor="topbar-search" className="sr-only">
                   Search
@@ -121,40 +122,40 @@ export const AdminNavbar = () => {
                   </div>
                   <ul className="py-1" role="none">
                     <li>
-                      <a
+                      <Link
                         href="/test"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Dashboard
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/test"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Settings
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/test"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Earnings
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/test"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Sign out
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>

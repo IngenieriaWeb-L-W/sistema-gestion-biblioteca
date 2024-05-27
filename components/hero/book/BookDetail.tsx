@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { Fragment } from "react";
 
 export type BookDetailHeroProps = {};
@@ -30,12 +31,12 @@ export const BookDetailHero: React.FC<BookDetailHeroProps> = ({ id }) => {
                   placeholder="Enter work email"
                 />
               </div>
-              <a
+              <Link
                 className="w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                 href="/test"
               >
                 Request demo
-              </a>
+              </Link>
             </div>
 
             <div className="mt-6 lg:mt-12">

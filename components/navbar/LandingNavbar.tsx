@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export const LandingNavbar = () => {
@@ -8,7 +9,7 @@ export const LandingNavbar = () => {
         <div className="container  mx-auto">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
-              <a href="/test" className="flex mr-4 ml-2">
+              <Link href="/" className="flex mr-4 ml-2">
                 <Image
                   src="/images/logos/logo.png"
                   alt="BookHub logo"
@@ -18,51 +19,51 @@ export const LandingNavbar = () => {
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                   BookHub
                 </span>
-              </a>
+              </Link>
               <div className="hidden sm:flex sm:ml-6">
                 <ul className="flex space-x-8">
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
                       Team
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
                       Pricing
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
                       Contact
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
             </div>
 
             <div>
-              <a
+              <Link
                 href="/test"
                 className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
@@ -81,7 +82,7 @@ export const LandingNavbar = () => {
                   ></path>
                 </svg>
                 Login/Register
-              </a>
+              </Link>
               <button
                 data-collapse-toggle="mobile-menu"
                 type="button"
@@ -121,39 +122,39 @@ export const LandingNavbar = () => {
         <div className="hidden sm:hidden" id="mobile-menu">
           <ul className="pt-2">
             <li>
-              <a
+              <Link
                 href="/test"
                 className="block py-2 pl-3 pr-4 text-base font-normal text-gray-900 bg-gray-100 dark:bg-gray-700 dark:text-white"
               >
                 Dashboard
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/test"
                 className="block px-3 py-2 text-base font-normal text-gray-600 border-b border-gray-100 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-white"
               >
                 Team
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/test"
                 className="block px-3 py-2 text-base font-normal text-gray-600 border-b border-gray-100 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-white"
               >
                 Projects
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/test"
                 className="block px-3 py-2 text-base font-normal text-gray-600 border-b border-gray-100 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-white"
               >
                 Calendar
-              </a>
+              </Link>
             </li>
             <li className="block">
-              <a
+              <Link
                 href="/test"
                 className="inline-flex items-center w-full px-3 py-2 text-base font-normal text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900 dark:border-gray-700 dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-white"
               >
@@ -172,7 +173,7 @@ export const LandingNavbar = () => {
                   ></path>
                 </svg>
                 Login/Register
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

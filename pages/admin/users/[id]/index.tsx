@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Index = () => {
@@ -9,7 +10,7 @@ const Index = () => {
           <nav className="flex mb-5" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
               <li className="inline-flex items-center">
-                <a
+                <Link
                   href="/test"
                   className="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white"
                 >
@@ -22,7 +23,7 @@ const Index = () => {
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                   </svg>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <div className="flex items-center">
@@ -38,12 +39,12 @@ const Index = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <a
+                  <Link
                     href="/test"
                     className="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
                   >
                     Users
-                  </a>
+                  </Link>
                 </div>
               </li>
               <li>
@@ -199,20 +200,20 @@ const Index = () => {
                       <span className="block text-base font-semibold text-gray-900 truncate dark:text-white">
                         Facebook account
                       </span>
-                      <a
+                      <Link
                         href="/test"
                         className="block text-sm font-normal truncate text-primary-700 hover:underline dark:text-primary-500"
                       >
                         www.facebook.com/themesberg
-                      </a>
+                      </Link>
                     </div>
                     <div className="inline-flex items-center">
-                      <a
+                      <Link
                         href="/test"
                         className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                       >
                         Disconnect
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -239,20 +240,20 @@ const Index = () => {
                       <span className="block text-base font-semibold text-gray-900 truncate dark:text-white">
                         Twitter account
                       </span>
-                      <a
+                      <Link
                         href="/test"
                         className="block text-sm font-normal truncate text-primary-700 hover:underline dark:text-primary-500"
                       >
                         www.twitter.com/themesberg
-                      </a>
+                      </Link>
                     </div>
                     <div className="inline-flex items-center">
-                      <a
+                      <Link
                         href="/test"
                         className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                       >
                         Disconnect
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -284,12 +285,12 @@ const Index = () => {
                       </span>
                     </div>
                     <div className="inline-flex items-center">
-                      <a
+                      <Link
                         href="/test"
                         className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                       >
                         Connect
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -321,12 +322,12 @@ const Index = () => {
                       </span>
                     </div>
                     <div className="inline-flex items-center">
-                      <a
+                      <Link
                         href="/test"
                         className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                       >
                         Connect
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -369,12 +370,12 @@ const Index = () => {
                       </div>
                     </div>
                     <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                      <a
+                      <Link
                         href="/test"
                         className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                       >
                         Disconnect
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -403,12 +404,12 @@ const Index = () => {
                       </div>
                     </div>
                     <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                      <a
+                      <Link
                         href="/test"
                         className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                       >
                         Disconnect
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -437,12 +438,12 @@ const Index = () => {
                       </div>
                     </div>
                     <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                      <a
+                      <Link
                         href="/test"
                         className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                       >
                         Disconnect
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -471,12 +472,12 @@ const Index = () => {
                       </div>
                     </div>
                     <div className="inline-flex items-center w-auto xl:w-full 2xl:w-auto">
-                      <a
+                      <Link
                         href="/test"
                         className="w-full px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                       >
                         Disconnect
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -868,12 +869,12 @@ const Index = () => {
                       </p>
                     </div>
                     <div className="inline-flex items-center">
-                      <a
+                      <Link
                         href="/test"
                         className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                       >
                         Revoke
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>
@@ -904,12 +905,12 @@ const Index = () => {
                       </p>
                     </div>
                     <div className="inline-flex items-center">
-                      <a
+                      <Link
                         href="/test"
                         className="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                       >
                         Revoke
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </li>

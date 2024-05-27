@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Index = () => {
@@ -8,7 +9,7 @@ const Index = () => {
           <nav className="flex mb-5" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
               <li className="inline-flex items-center">
-                <a
+                <Link
                   href="/test"
                   className="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white"
                 >
@@ -21,7 +22,7 @@ const Index = () => {
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                   </svg>
                   Home
-                </a>
+                </Link>
               </li>
               <li>
                 <div className="flex items-center">
@@ -37,12 +38,12 @@ const Index = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                  <a
+                  <Link
                     href="/test"
                     className="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
                   >
                     Users
-                  </a>
+                  </Link>
                 </div>
               </li>
               <li>
@@ -979,66 +980,66 @@ const Index = () => {
                 </div>
                 <ul className="py-1" role="none">
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                       role="menuitem"
                     >
                       Yesterday
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                       role="menuitem"
                     >
                       Today
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                       role="menuitem"
                     >
                       Last 7 days
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                       role="menuitem"
                     >
                       Last 30 days
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       href="/test"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                       role="menuitem"
                     >
                       Last 90 days
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <div className="py-1" role="none">
-                  <a
+                  <Link
                     href="/test"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                     role="menuitem"
                   >
                     Custom...
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
 
             <div className="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between dark:bg-gray-800 dark:border-gray-700">
               <div className="flex items-center mb-4 sm:mb-0">
-                <a
+                <Link
                   href="/test"
                   className="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
@@ -1054,8 +1055,8 @@ const Index = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/test"
                   className="inline-flex justify-center p-1 mr-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
@@ -1071,7 +1072,7 @@ const Index = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                </a>
+                </Link>
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                   Showing{" "}
                   <span className="font-semibold text-gray-900 dark:text-white">
@@ -1084,7 +1085,7 @@ const Index = () => {
                 </span>
               </div>
               <div className="flex items-center space-x-3">
-                <a
+                <Link
                   href="/test"
                   className="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
@@ -1100,8 +1101,8 @@ const Index = () => {
                     ></path>
                   </svg>
                   Previous
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/test"
                   className="inline-flex items-center justify-center flex-1 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
@@ -1118,7 +1119,7 @@ const Index = () => {
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

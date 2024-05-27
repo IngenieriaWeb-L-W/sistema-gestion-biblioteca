@@ -5,13 +5,16 @@ import {
   UserInterfaceState,
   userInterfaceReducer,
 } from "./reducers/user-interface.reducer";
+import { ResourceState, resourcesReducer } from "./reducers/resources.reducer";
 
 export interface GlobalState {
   userInterface: UserInterfaceState;
+  resources: ResourceState;
 }
 
 const reducer = combineReducers({
   userInterface: userInterfaceReducer,
+  resources: resourcesReducer,
 });
 
 export const store = configureStore({

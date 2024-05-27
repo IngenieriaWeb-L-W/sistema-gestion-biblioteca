@@ -1,4 +1,5 @@
 export enum ResourceTypes {
+  ALL = "ALL",
   BOOK = "BOOK",
   MAGAZINE = "MAGAZINE",
   DVD = "DVD",

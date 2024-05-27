@@ -1,6 +1,7 @@
 import React from "react";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export const DashboardNavbar = () => {
   return (
@@ -42,7 +43,7 @@ export const DashboardNavbar = () => {
                   ></path>
                 </svg>
               </button>
-              <a href="/test" className="flex ml-2 md:mr-24">
+              <Link href="/test" className="flex ml-2 md:mr-24">
                 <Image
                   src="/images/logo.svg"
                   className="h-8 mr-3"
@@ -53,7 +54,7 @@ export const DashboardNavbar = () => {
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
                   Flowbite
                 </span>
-              </a>
+              </Link>
               <form
                 action="#"
                 method="GET"
@@ -89,7 +90,7 @@ export const DashboardNavbar = () => {
             </div>
             <div className="flex items-center">
               <div className="hidden mr-3 -mb-1 sm:block">
-                <a
+                <Link
                   className="github-button"
                   href="https://github.com/themesberg/flowbite-admin-dashboard"
                   data-color-scheme="no-preference: dark; light: light; dark: light;"
@@ -99,7 +100,7 @@ export const DashboardNavbar = () => {
                   aria-label="Star themesberg/flowbite-admin-dashboard on GitHub"
                 >
                   Star
-                </a>
+                </Link>
               </div>
               <button
                 id="toggleSidebarMobileSearch"
@@ -143,7 +144,7 @@ export const DashboardNavbar = () => {
                   Notifications
                 </div>
                 <div>
-                  <a
+                  <Link
                     href="/test"
                     className="flex px-4 py-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                   >
@@ -176,8 +177,8 @@ export const DashboardNavbar = () => {
                         a few moments ago
                       </div>
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="flex px-4 py-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                   >
@@ -212,8 +213,8 @@ export const DashboardNavbar = () => {
                         10 minutes ago
                       </div>
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="flex px-4 py-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                   >
@@ -252,8 +253,8 @@ export const DashboardNavbar = () => {
                         44 minutes ago
                       </div>
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="flex px-4 py-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600 dark:border-gray-600"
                   >
@@ -292,8 +293,8 @@ export const DashboardNavbar = () => {
                         1 hour ago
                       </div>
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -325,9 +326,9 @@ export const DashboardNavbar = () => {
                         3 hours ago
                       </div>
                     </div>
-                  </a>
+                  </Link>
                 </div>
-                <a
+                <Link
                   href="/test"
                   className="block py-2 text-base font-normal text-center text-gray-900 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:underline"
                 >
@@ -347,7 +348,7 @@ export const DashboardNavbar = () => {
                     </svg>
                     View all
                   </div>
-                </a>
+                </Link>
               </div>
               <button
                 type="button"
@@ -372,7 +373,7 @@ export const DashboardNavbar = () => {
                   Apps
                 </div>
                 <div className="grid grid-cols-3 gap-4 p-4">
-                  <a
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -391,8 +392,8 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Sales
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -407,8 +408,8 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Users
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -427,8 +428,8 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Inbox
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -447,8 +448,8 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Profile
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -467,8 +468,8 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Settings
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -488,8 +489,8 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Products
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -509,8 +510,8 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Pricing
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -529,8 +530,8 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Billing
                     </div>
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href="/test"
                     className="block p-4 text-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
@@ -551,7 +552,7 @@ export const DashboardNavbar = () => {
                     <div className="text-sm font-medium text-gray-900 dark:text-white">
                       Logout
                     </div>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <button
@@ -627,40 +628,40 @@ export const DashboardNavbar = () => {
                   </div>
                   <ul className="py-1" role="none">
                     <li>
-                      <a
+                      <Link
                         href="/test"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Dashboard
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/test"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Settings
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/test"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Earnings
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
+                      <Link
                         href="/test"
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                         role="menuitem"
                       >
                         Sign out
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
