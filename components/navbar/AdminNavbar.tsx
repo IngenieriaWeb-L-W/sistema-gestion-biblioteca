@@ -1,12 +1,27 @@
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
+import Image from "next/image";
+import Link from "next/link";
+
+import { useSelector } from "react-redux";
+
+import { selectAuthentication } from "@/config/redux/reducers/authentication.reducer";
+import { signOut } from "next-auth/react";
+
 export const AdminNavbar = () => {
+  const { email, image, name } = useSelector(selectAuthentication);
+
+  const handleSignOut = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    signOut({ redirect: false, callbackUrl: "/landing" });
+  };
+
   return (
     <React.Fragment>
       <nav className="fixed top-0 z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-        <div className="px-3 py-0 lg:px-5 lg:pl-3">
+        <div className="px-3 py-2 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
               <button
@@ -65,9 +80,17 @@ export const AdminNavbar = () => {
                     data-dropdown-toggle="dropdown-2"
                   >
                     <span className="sr-only">Open user menu</span>
+                    {image}
+                    <button
+                      type="button"
+                      onClick={handleSignOut}
+                      className="p-3 bg-blue-500 mx-3 rounded-md"
+                    >
+                      Logout
+                    </button>
                     <Image
                       className="w-8 h-8 rounded-full"
-                      src="/images/logos/logo.png"
+                      src={image}
                       width={50}
                       height={50}
                       alt="User profile picture"

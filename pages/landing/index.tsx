@@ -1,16 +1,13 @@
-import { LandingFooter } from "@/components/footer/LandingFooter";
-import { LandingHero } from "@/components/hero/landing/LandingHero";
-import { LandingNavbar } from "@/components/navbar/LandingNavbar";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
+import { LandingHero } from "@/components/hero/landing/LandingHero";
+import { LandingLayout } from "@/components/layout/LandingLayout";
 
 const Index = () => {
   return (
-    <React.Fragment>
-      <LandingNavbar />
+    <LandingLayout>
       <LandingHero />
-
       <main className="overflow-hidden">
         <section>
           <div className="pt-36">
@@ -1762,9 +1759,7 @@ const Index = () => {
           </div>
         </section>
       </main>
-
-      <LandingFooter />
-    </React.Fragment>
+    </LandingLayout>
   );
 };
 

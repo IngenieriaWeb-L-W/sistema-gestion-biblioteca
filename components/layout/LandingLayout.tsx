@@ -1,6 +1,7 @@
 import React from "react";
-import { LandingNavbar } from "../navbar/LandingNavbar";
+
 import { LandingFooter } from "../footer/LandingFooter";
+import { LandingNavbar } from "../navbar/LandingNavbar";
 
 type LandingLayoutProps = {
   children: React.ReactNode;

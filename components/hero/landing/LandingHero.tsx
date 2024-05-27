@@ -1,6 +1,8 @@
-import { facts } from "@/data/landing/facts/facts";
-import Image from "next/image";
 import React from "react";
+
+import Image from "next/image";
+
+import { facts } from "@/data/landing/facts/facts";
 
 export const LandingHero = () => {
   return (

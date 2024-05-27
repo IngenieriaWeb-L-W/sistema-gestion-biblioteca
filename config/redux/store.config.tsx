@@ -11,14 +11,20 @@ import {
   UserInterfaceState,
   userInterfaceReducer,
 } from "./reducers/user-interface.reducer";
+import {
+  AuthenticationState,
+  authenticationReducer,
+} from "./reducers/authentication.reducer";
 
 export interface GlobalState {
+  authentication: AuthenticationState;
   userInterface: UserInterfaceState;
   resources: ResourceState;
   resourceCategories: ResourceCategoriesState;
 }
 
 const reducer = combineReducers({
+  authentication: authenticationReducer,
   userInterface: userInterfaceReducer,
   resources: resourcesReducer,
   resourceCategories: resourceCategoriesReducer,
