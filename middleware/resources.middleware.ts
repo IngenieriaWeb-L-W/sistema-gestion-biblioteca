@@ -17,6 +17,11 @@ import {
 import { booksData } from "@/data/books/book-list";
 import { ResourceDetail } from "@/interfaces/resource/Detail";
 import { Resource } from "@/interfaces/resource/Resource";
+import { ResourceCategory } from "@/interfaces/resource/Category";
+import {
+  ResourceCategoryFilters,
+  setResourceCategories,
+} from "@/config/redux/reducers/resource-categories.reducer";
 
 export interface ResourcesResponse {
   records: Resource[];
@@ -97,6 +102,40 @@ export const fetchResourceDetailMiddleware = (id: string) => {
         dispatch(
           setGlobalAlert({
             message: "Resource detail could not be fetched ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const fetchResourceCategoriesMiddleware = (
+  filters: ResourceCategoryFilters,
+  pagination: Pagination
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch(
+      startGlobalLoading({ message: "Fetching resource categories..." })
+    );
+    return axios
+      .get<{ total: number; records: ResourceCategory[] }>(
+        `http://localhost:3000/api/resources/categories`,
+        {
+          params: { ...filters, ...pagination },
+        }
+      )
+      .then(({ data }) => data)
+      .then(({ records, total }) => {
+        dispatch(setResourceCategories({ records, total }));
+      })
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Resource categories could not be fetched ⛔",
             timeout: 5000,
             severity: SeverityLevel.ERROR,
           })

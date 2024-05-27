@@ -1,25 +1,49 @@
-import Link from "next/link";
 import React, { Fragment } from "react";
 
+import { useResourceCategories } from "@/hooks/use-resource-categories";
+import { ResourceTypes } from "@/interfaces/resource/Type";
+
 export const ResourcesFilter = () => {
+  const { records: categories, total } = useResourceCategories();
+
   return (
     <Fragment>
-      <div className="bg-red-500 py-5 px-3 top-10 z-50 lg:mt-8 flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
-        <div className="w-full sm:w-auto">
+      <div className="bg-gray-900 py-5 px-3 lg:mt-8 grid grid-cols-12 items-center gap-2 sm:gap-3">
+        <div className="col-span-6">
           <input
             type="text"
             id="hero-input"
             name="hero-input"
-            className="py-3 px-4 block w-full xl:min-w-72 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+            className="py-3 w-full px-4 block xl:min-w-72 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
             placeholder="Search for resources"
           />
         </div>
-        <Link
-          className="text-xl text-white sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 font-semibold rounded-lg border border-transparent bg-blue-600  hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-          href="/test"
-        >
-          <i className="bx bx-filter"></i>
-        </Link>
+        <div className="col-span-3 bg-blue-200 h-full">
+          <select
+            className="w-full bg-gray-950 text-white h-full p-1"
+            name=""
+            id=""
+          >
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="col-span-3 bg-blue-200 h-full">
+          <select
+            className="w-full bg-gray-950 text-white h-full p-2"
+            name=""
+            id=""
+          >
+            {Object.keys(ResourceTypes).map((resourceType) => (
+              <option key={resourceType} value={resourceType}>
+                <div>{resourceType} </div>
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </Fragment>
   );
