@@ -4,7 +4,7 @@ import { useResourceCategory } from "@/hooks/use-resource-category";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 
 export const ResourcesFilter = () => {
-  const { records: categories, total } = useResourceCategory();
+  const { records: categories } = useResourceCategory();
 
   return (
     <Fragment>

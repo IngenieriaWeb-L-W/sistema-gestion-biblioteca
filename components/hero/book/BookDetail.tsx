@@ -1,8 +1,7 @@
 import { Fragment } from "react";
 
-import Image from "next/image";
-import Link from "next/link";
 import { Resource } from "@/interfaces/resource/Resource";
+import Image from "next/image";
 
 type BookDetailHeroProps = {
   resource: Resource;

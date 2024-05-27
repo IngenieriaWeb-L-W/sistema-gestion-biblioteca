@@ -1,8 +1,10 @@
+import React from "react";
+
+import Link from "next/link";
+
 import { ResourceTypeChip } from "@/components/chip/TransactionTypeChip";
 import { useTransaction } from "@/hooks/use-loan-transaction";
 import { TransactionType } from "@/interfaces/loan/Transaction";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
 
 import { v4 as uuidV4 } from "uuid";
 
@@ -18,7 +20,7 @@ const Index = () => {
     }).format(date);
   };
 
-  const { records: transactions, total } = useTransaction();
+  const { records: transactions } = useTransaction();
   return (
     <React.Fragment>
       <div className="p-4 bg-white  shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
