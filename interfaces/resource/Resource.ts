@@ -14,3 +14,10 @@ export interface Resource {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface ResourcePreview {
+  id: string;
+  name: string;
+  type: ResourceTypes;
+  imageUrl: string;
+}

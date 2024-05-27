@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 
-import { useResourceCategories } from "@/hooks/use-resource-categories";
+import { useResourceCategory } from "@/hooks/use-resource-category";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 
 export const ResourcesFilter = () => {
-  const { records: categories, total } = useResourceCategories();
+  const { records: categories, total } = useResourceCategory();
 
   return (
     <Fragment>

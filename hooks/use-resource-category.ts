@@ -6,7 +6,7 @@ import { selectResourceCategories } from "@/config/redux/reducers/resource-categ
 import { useAppDispatch } from "@/config/redux/store.config";
 import { fetchResourceCategoriesMiddleware } from "@/middleware/resources.middleware";
 
-export const useResourceCategories = () => {
+export const useResourceCategory = () => {
   const { filters, pagination, records, total } = useSelector(
     selectResourceCategories
   );

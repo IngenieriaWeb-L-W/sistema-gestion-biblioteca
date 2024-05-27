@@ -5,12 +5,12 @@ import Head from "next/head";
 import { ResourceCard } from "@/components/card/ResourceCard";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { FullPagination } from "@/components/pagination/FullPagination";
-import { useResources } from "@/hooks/use-resources";
+import { useResource } from "@/hooks/use-resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 import { ResourcesFilter } from "@/components/filters/resources/ResourcesFilter";
 
 const Index = () => {
-  const { records } = useResources();
+  const { records } = useResource();
 
   return (
     <Fragment>

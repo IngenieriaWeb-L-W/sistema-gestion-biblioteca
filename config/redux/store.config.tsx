@@ -1,15 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-import {
-  UserInterfaceState,
-  userInterfaceReducer,
-} from "./reducers/user-interface.reducer";
-import { ResourceState, resourcesReducer } from "./reducers/resources.reducer";
+import { loanTransactionsReducer } from "./reducers/loan-transactions.reducer";
 import {
   ResourceCategoriesState,
   resourceCategoriesReducer,
 } from "./reducers/resource-categories.reducer";
+import { ResourceState, resourcesReducer } from "./reducers/resources.reducer";
+import {
+  UserInterfaceState,
+  userInterfaceReducer,
+} from "./reducers/user-interface.reducer";
 
 export interface GlobalState {
   userInterface: UserInterfaceState;
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   userInterface: userInterfaceReducer,
   resources: resourcesReducer,
   resourceCategories: resourceCategoriesReducer,
+  loanTransactions: loanTransactionsReducer,
 });
 
 export const store = configureStore({

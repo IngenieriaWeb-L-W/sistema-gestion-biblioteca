@@ -21,6 +21,9 @@ const Home = () => {
         <Link className="p-3 m-2 bg-blue-500" href="/dashboard/transactions">
           Transactions
         </Link>
+        <Link className="p-3 m-2 bg-blue-500" href="/dashboard/transactions">
+          My Loans (pending)
+        </Link>
 
         <Link className="p-3 m-2 bg-blue-500" href="/dashboard/profile">
           User Profile
