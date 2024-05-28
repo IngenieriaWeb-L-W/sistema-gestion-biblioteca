@@ -5,10 +5,10 @@ import { ToastAlert } from "@/components/toast/ToastAlert";
 import { AuthProvider } from "@/config/auth/AuthProvider";
 import { StateProvider } from "@/config/redux/StateProvider";
 
+import { AuthWrapper } from "@/config/auth/AuthWrapper";
 import "boxicons/css/boxicons.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-import { AuthWrapper } from "@/config/auth/AuthWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
