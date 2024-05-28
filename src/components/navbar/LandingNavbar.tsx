@@ -38,38 +38,38 @@ export const LandingNavbar = () => {
                 <ul className="flex space-x-8">
                   <li>
                     <Link
-                      href="/test"
+                      href="landing/books"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
-                      Home
+                      Books
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/test"
+                      href="landing/testimonials"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
-                      Team
+                      Testimonials
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/test"
+                      href="landing/contributors"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
-                      Pricing
+                      Technologies
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/test"
+                      href="landing/contributors"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
-                      Contact
+                      Contributors
                     </Link>
                   </li>
                 </ul>

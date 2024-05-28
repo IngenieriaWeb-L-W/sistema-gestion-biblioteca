@@ -11,7 +11,7 @@ type LandingLayoutProps = {
 const LandingLayout = ({ children }: LandingLayoutProps) => {
   return (
     <Fragment>
-      <AuthLayout unauthenticated allowedRoles={[]} fallbackUrl="/not-found">
+      <AuthLayout unauthenticated>
         <main className="mt-5 bg-gray-800">
           <LandingNavbar />
           {children}
