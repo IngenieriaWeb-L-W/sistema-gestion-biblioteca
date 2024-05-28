@@ -1,10 +1,6 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 
-import {
-  LoanTransactionFilters,
-  setLoanTransactions,
-} from "@/config/redux/reducers/loan-transactions.reducer";
-import { Pagination } from "@/config/redux/reducers/resource-categories.reducer";
+import { setLoanTransactions } from "@/config/redux/reducers/loan-transactions.reducer";
 import {
   SeverityLevel,
   finishGlobalLoading,
@@ -13,11 +9,9 @@ import {
 } from "@/config/redux/reducers/user-interface.reducer";
 import { transactions } from "@/data/transactions/transactionsData";
 
-export const fetchLoanTransactionsByUserMiddleware = (
-  filters: LoanTransactionFilters,
-  pagination: Pagination
-) => {
-  console.log({ filters, pagination });
+// filters: LoanTransactionFilters,
+// pagination: Pagination
+export const fetchLoanTransactionsByUserMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(
       startGlobalLoading({ message: "Fetching your loan transactions..." })

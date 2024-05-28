@@ -13,7 +13,7 @@ export const useResource = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchResourcesMiddleware(filters, pagination));
+    dispatch(fetchResourcesMiddleware(/* filters, pagination */));
   }, [filters, pagination, dispatch]);
 
   return { records, total };

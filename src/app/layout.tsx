@@ -8,7 +8,7 @@ import { StateProvider } from "@/config/redux/StateProvider";
 import "boxicons/css/boxicons.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
-import AuthWrapper from "@/config/auth/AuthWrapper";
+import { AuthWrapper } from "@/config/auth/AuthWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,7 @@ type RootLayoutProps = Readonly<{
   children: React.ReactNode;
 }>;
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -33,4 +33,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

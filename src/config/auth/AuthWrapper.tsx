@@ -18,7 +18,7 @@ type AuthWrapperProps = {
   children: React.ReactNode;
 };
 
-const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
+export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -60,5 +60,3 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
 
   return <Fragment>{children}</Fragment>;
 };
-
-export default AuthWrapper;

@@ -2,8 +2,11 @@ import { Action, Dispatch } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import {
+  ResourceCategoryFilters,
+  setResourceCategories,
+} from "@/config/redux/reducers/resource-categories.reducer";
+import {
   Pagination,
-  ResourceFilters,
   addResource,
   setResourceDetail,
   setResources,
@@ -15,23 +18,18 @@ import {
   startGlobalLoading,
 } from "@/config/redux/reducers/user-interface.reducer";
 import { booksData } from "@/data/books/book-list";
+import { ResourceCategory } from "@/interfaces/resource/Category";
 import { ResourceDetail } from "@/interfaces/resource/Detail";
 import { Resource } from "@/interfaces/resource/Resource";
-import { ResourceCategory } from "@/interfaces/resource/Category";
-import {
-  ResourceCategoryFilters,
-  setResourceCategories,
-} from "@/config/redux/reducers/resource-categories.reducer";
 
 export interface ResourcesResponse {
   records: Resource[];
   total: number;
 }
 
-export const fetchResourcesMiddleware = (
-  filters: ResourceFilters,
-  pagination: Pagination
-) => {
+// filters: ResourceFilters,
+// pagination: Pagination
+export const fetchResourcesMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {
     // return (
     //   axios

@@ -15,7 +15,7 @@ export const useTransaction = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchLoanTransactionsByUserMiddleware(filters, pagination));
+    dispatch(fetchLoanTransactionsByUserMiddleware(/* filters, pagination */));
   }, [filters, pagination, dispatch]);
 
   return { records, total };

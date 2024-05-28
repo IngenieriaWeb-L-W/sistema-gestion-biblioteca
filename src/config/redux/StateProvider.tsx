@@ -9,6 +9,6 @@ type StateProviderProps = {
   children: React.ReactNode;
 };
 
-export function StateProvider({ children }: StateProviderProps) {
+export const StateProvider = ({ children }: StateProviderProps) => {
   return <Provider store={store}>{children}</Provider>;
-}
+};

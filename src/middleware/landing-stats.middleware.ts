@@ -2,9 +2,7 @@ import { Action, Dispatch } from "@reduxjs/toolkit";
 
 import {
   SeverityLevel,
-  finishGlobalLoading,
   setGlobalAlert,
-  startGlobalLoading,
 } from "@/config/redux/reducers/user-interface.reducer";
 
 export const fetchActiveUsers = () => {
