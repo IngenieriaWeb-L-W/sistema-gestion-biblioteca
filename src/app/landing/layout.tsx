@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 
 import { DashboardFooter } from "@/components/footer/DashboardFooter";
-import { AdminNavbar } from "@/components/navbar/AdminNavbar";
 import { LandingNavbar } from "@/components/navbar/LandingNavbar";
+import { AuthLayout } from "@/components/layout/AuthLayout";
 
 type LandingLayoutProps = {
   children: React.ReactNode;
@@ -11,11 +11,13 @@ type LandingLayoutProps = {
 const LandingLayout = ({ children }: LandingLayoutProps) => {
   return (
     <Fragment>
-      <main className="mt-5 bg-gray-800">
-        <LandingNavbar />
-        {children}
-        <DashboardFooter />
-      </main>
+      <AuthLayout unauthenticated allowedRoles={[]} fallbackUrl="/not-found">
+        <main className="mt-5 bg-gray-800">
+          <LandingNavbar />
+          {children}
+          <DashboardFooter />
+        </main>
+      </AuthLayout>
     </Fragment>
   );
 };

@@ -27,17 +27,15 @@ export const LandingHero = () => {
               library experience. Join Booky today and take your library to the
               next level!
             </p>
-            {/* <ButtonPrimary>Get Started</ButtonPrimary> */}
           </div>
           <div className="flex w-full">
             <div className="h-full w-full">
               <Image
                 src="/images/landing/hero/hero-image-1.svg"
-                alt="VPN Illustrasi"
+                alt="Landing hero"
                 quality={100}
                 width={612}
                 height={383}
-                layout="responsive"
               />
             </div>
           </div>

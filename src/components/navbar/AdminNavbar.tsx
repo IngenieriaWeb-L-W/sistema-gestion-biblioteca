@@ -2,22 +2,23 @@
 
 import React, { Fragment } from "react";
 
-import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { useSelector } from "react-redux";
 
 import { selectAuthentication } from "@/config/redux/reducers/authentication.reducer";
+import { useAuth } from "@/hooks/use-auth";
 
 export const AdminNavbar = () => {
   const { email, image, name } = useSelector(selectAuthentication);
+  const { logout } = useAuth();
 
   const handleSignOut = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void => {
+  ) => {
     event.preventDefault();
-    signOut({ redirect: false, callbackUrl: "/landing" });
+    logout(true, "/landing");
   };
 
   return (
@@ -40,9 +41,9 @@ export const AdminNavbar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
                 <svg
@@ -53,9 +54,9 @@ export const AdminNavbar = () => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
               </button>
@@ -74,14 +75,24 @@ export const AdminNavbar = () => {
             <div className="flex items-center">
               <div className="flex items-center ml-3">
                 <div>
-                  <button
-                    type="button"
+                  <div
                     className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     id="user-menu-button-2"
                     aria-expanded="false"
                     data-dropdown-toggle="dropdown-2"
                   >
-                    <span className="sr-only">Open user menu</span>
+                    {email && (
+                      <Fragment>
+                        <p className="my-auto text-md text-white">{name}</p>
+                        <Image
+                          className="mx-3 mt-1 w-10 h-10 rounded-full"
+                          src={image}
+                          width={50}
+                          height={50}
+                          alt="User profile picture"
+                        />
+                      </Fragment>
+                    )}
                     <button
                       type="button"
                       onClick={handleSignOut}
@@ -89,14 +100,7 @@ export const AdminNavbar = () => {
                     >
                       Logout
                     </button>
-                    <Image
-                      className=" mt-1 w-10 h-10 rounded-full"
-                      src={image}
-                      width={50}
-                      height={50}
-                      alt="User profile picture"
-                    />
-                  </button>
+                  </div>
                 </div>
                 <div
                   className="z-50 hidden my-4 text-base list-none divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"

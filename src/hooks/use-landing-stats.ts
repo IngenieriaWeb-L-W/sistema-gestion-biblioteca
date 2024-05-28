@@ -30,7 +30,7 @@ export const useLandingStats = (): LandingStats => {
     ]).then(([totalUsers, totalResources, dailyLoans]) => {
       setLandingStats({ totalUsers, totalResources, dailyLoans });
     });
-  }, []);
+  }, [dispatch]);
 
   return landingStats;
 };

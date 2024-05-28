@@ -8,5 +8,11 @@ type LandingLayoutProps = {
 };
 
 export const LandingLayout = ({ children }: LandingLayoutProps) => {
-  return <React.Fragment></React.Fragment>;
+  return (
+    <React.Fragment>
+      <LandingNavbar />
+      <main className="mt-5 bg-gray-800">{children}</main>
+      <LandingFooter />
+    </React.Fragment>
+  );
 };

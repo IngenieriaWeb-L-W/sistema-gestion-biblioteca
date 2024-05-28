@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import Link from "next/link";
@@ -8,7 +10,7 @@ import { TransactionType } from "@/interfaces/loan/Transaction";
 
 import { v4 as uuidV4 } from "uuid";
 
-const Index = () => {
+const TransactionsPage = () => {
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat("en-US", {
       year: "numeric",
@@ -49,7 +51,7 @@ const Index = () => {
                 </select>
               </div>
             </div>
-            <div date-rangepicker className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4">
               <div className="relative">
                 <input
                   name="start"
@@ -148,9 +150,9 @@ const Index = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M19 9l-7 7-7-7"
                 ></path>
               </svg>
@@ -238,9 +240,9 @@ const Index = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M9 5l7 7-7 7"
                 ></path>
               </svg>
@@ -252,4 +254,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default TransactionsPage;
