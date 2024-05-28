@@ -11,7 +11,7 @@ type DashboardLayoutProps = {
 
 const AdminLayout = ({ children }: DashboardLayoutProps) => {
   return (
-    <AuthLayout allowedRoles={[UserRole.ROLE_ADMIN]} fallbackUrl="/not-found">
+    <AuthLayout allowedRoles={[UserRole.ROLE_ADMIN]}>
       <AdminNavbar />
       <main className="mt-5 bg-gray-800">{children}</main>
       <DashboardFooter />
