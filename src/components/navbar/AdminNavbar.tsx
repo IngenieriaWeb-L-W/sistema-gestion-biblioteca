@@ -60,7 +60,7 @@ export const AdminNavbar = () => {
                   ></path>
                 </svg>
               </button>
-              <Link href="/" className="flex ml-2 md:mr-24">
+              <Link href="/dashboard" className="flex ml-2 md:mr-24">
                 <Image
                   src="/images/logos/logo.png"
                   alt="BookHub logo"
