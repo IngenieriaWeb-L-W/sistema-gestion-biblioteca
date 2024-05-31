@@ -19,7 +19,7 @@ export const logInUserMiddleware = (idToken: string) => {
     };
     return axios
       .post<{ user: AuthCredentials; accessToken: string }>(
-        `${process.env.NEXTAUTH_URL}/api/login`,
+        `${location.protocol}//${location.host}/api/login`,
         {
           idToken,
         },
