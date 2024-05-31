@@ -49,7 +49,6 @@ const authenticateUser = async (idToken: string): Promise<AuthCredentials> => {
     });
   }
   return {
-    ...userDB,
     firstName: userDB.first_name,
     lastName: userDB.last_name,
     email: userDB.email,
@@ -57,6 +56,7 @@ const authenticateUser = async (idToken: string): Promise<AuthCredentials> => {
     imageUrl: userDB.image_url || "",
     roles: [UserRole.ROLE_USER],
     createdAt: userDB.created_at,
+    id: userDB.id,
   };
 };
 
