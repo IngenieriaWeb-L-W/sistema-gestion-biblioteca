@@ -5,8 +5,8 @@ import { Fragment } from "react";
 import { ResourceCard } from "@/components/card/ResourceCard";
 import { ResourcesFilter } from "@/components/filters/resources/ResourcesFilter";
 import { FullPagination } from "@/components/pagination/FullPagination";
-import { ResourceTypes } from "@/interfaces/resource/Type";
 import { useResource } from "@/hooks/use-resource";
+import { ResourceTypes } from "@/interfaces/resource/Type";
 
 const BooksPage = () => {
   const { records } = useResource();
