@@ -25,6 +25,9 @@
     "react-toastify": "^10.0.5",
     "uuid": "^9.0.1"
   },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
