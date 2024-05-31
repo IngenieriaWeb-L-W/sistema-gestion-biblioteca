@@ -1,13 +1,13 @@
 // /app/api/route.ts
 import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
 import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
 import { NextRequest, NextResponse } from "next/server";
 
 import { GoogleTokenPayload } from "@/interfaces/auth/GoogleTokenPayload";
 import UserRole from "@/interfaces/user/Role";
 import { decode, sign } from "jsonwebtoken";
-
-const prisma = new PrismaClient();
 
 const POST = async (req: NextRequest) => {
   try {
