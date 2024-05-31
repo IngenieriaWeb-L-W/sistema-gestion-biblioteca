@@ -1,0 +1,164 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @default(cuid())
+  email      String     @unique
+  first_name String
+  image_url  String?
+  last_name  String
+  address    String?
+  active     Boolean    @default(true)
+  phone      String?
+  roles      Role[]     @relation("UserRoles")
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  UserRole   UserRole[]
+  Loan       Loan[]
+}
+
+model Role {
+  id         Int        @id @default(autoincrement())
+  role_name  RoleEnum   @unique @default(ROLE_USER)
+  users      User[]     @relation("UserRoles")
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  UserRole   UserRole[]
+}
+
+model UserRole {
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+  role    Role   @relation(fields: [role_id], references: [id])
+  role_id Int
+
+  @@id([user_id, role_id])
+}
+
+// --------------------------------------------------------------
+
+enum RoleEnum {
+  ROLE_ADMIN
+  ROLE_SECRETARY
+  ROLE_USER
+}
+
+// --------------------------------------------------------------
+
+model Loan {
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  // resources
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Resource {
+  id               String             @id @default(cuid())
+  isbn             String?            @unique
+  authors          String[]
+  pub_year         Int
+  edition          String
+  instances        ResourceInstance[]
+  categories       Category[]         @relation("ResourceCategory")
+  ResourceCategory ResourceCategory[]
+  type             ResourceType       @relation(fields: [type_id], references: [id])
+  publisher        Publisher          @relation(fields: [publisher_id], references: [id])
+  publisher_id     String
+  categoryId       Int
+  type_id          Int
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+}
+
+model ResourceInstance {
+  id          String                 @id @default(cuid())
+  resource    Resource               @relation(fields: [resource_id], references: [id])
+  resource_id String
+  lang        ResourceLang           @default(LANG_EN)
+  // loan Loan[]
+  status      ResourceInstanceStatus @default(STATUS_GOOD)
+  created_at  DateTime               @default(now())
+  updated_at  DateTime               @updatedAt
+}
+
+model ResourceType {
+  id                 Int            @id @default(autoincrement())
+  resource_type_name ResourcesTypes @unique @default(TYPE_BOOK)
+  max_loan_days      Int            @default(7)
+  max_units_per_loan Int            @default(3)
+  Resource           Resource[]
+}
+
+enum ResourcesTypes {
+  TYPE_BOOK
+  TYPE_MAGAZINE
+  TYPE_DVD
+  TYPE_COMICS
+  TYPE_ENCYCLOPEDIA
+  TYPE_DICTIONARY
+  TYPE_ARTICLE
+  TYPE_REPORT
+  TYPE_RESEARCH_PAPER
+  TYPE_EDUCATIONAL
+}
+
+enum ResourceInstanceStatus {
+  STATUS_GOOD
+  STATUS_POOR
+  STATUS_DAMAGED
+  STATUS_LOST
+  STATUS_ARCHIVED
+}
+
+// --------------------------------------------------------------
+
+model Publisher {
+  id             String     @id @default(cuid())
+  publisher_name String     @unique
+  resources      Resource[]
+  image_url      String?
+  url            String?
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+}
+
+model Category {
+  id               Int                @id @default(autoincrement())
+  category_name    String             @unique
+  resources        Resource[]         @relation("ResourceCategory")
+  ResourceCategory ResourceCategory[]
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+}
+
+model ResourceCategory {
+  resource    Resource @relation(fields: [resource_id], references: [id])
+  resource_id String
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id Int
+
+  @@id([resource_id, category_id])
+}
+
+enum ResourceLang {
+  LANG_EN
+  LANG_ES
+  LANG_FR
+  LANG_DE
+  LANG_OTHER
+}

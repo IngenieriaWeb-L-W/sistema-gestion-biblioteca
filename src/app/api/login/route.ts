@@ -1,6 +1,9 @@
 // /app/api/route.ts
 import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
-import prismaClient from "../../../../prisma/prisma.client";
+
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -25,7 +28,7 @@ const POST = async (req: NextRequest) => {
 
 const authenticateUser = async (idToken: string): Promise<AuthCredentials> => {
   const tokenInfo = decode(idToken) as GoogleTokenPayload;
-  const userDB = await prismaClient.user.findFirst({
+  const userDB = await prisma.user.findFirst({
     where: {
       email: tokenInfo.email,
     },
@@ -58,7 +61,7 @@ const authenticateUser = async (idToken: string): Promise<AuthCredentials> => {
 };
 
 const createUser = async (tokenInfo: GoogleTokenPayload) => {
-  const userCreated = await prismaClient.user.create({
+  const userCreated = await prisma.user.create({
     data: {
       first_name: tokenInfo.given_name,
       last_name: tokenInfo.family_name,
