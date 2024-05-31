@@ -1,7 +1,7 @@
 // /app/api/route.ts
 import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../../../prisma/generated/client";
 
 const prisma = new PrismaClient();
 
