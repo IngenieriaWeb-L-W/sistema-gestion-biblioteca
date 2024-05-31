@@ -3,7 +3,7 @@ import { UserContact } from "./Contact";
 import UserRole from "./Role";
 
 export interface User {
-  id: number;
+  id?: string;
   firstName: string;
   lastName: string;
   username: string;

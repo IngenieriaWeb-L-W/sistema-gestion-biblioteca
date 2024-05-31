@@ -5,7 +5,7 @@ import { Fragment, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-import { loginUser } from "../redux/reducers/authentication.reducer";
+import { logInUserMiddleware } from "@/middleware/auth.middleware";
 import {
   SeverityLevel,
   finishGlobalLoading,
@@ -19,7 +19,8 @@ type AuthWrapperProps = {
 };
 
 export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
-  const { data: session, status } = useSession();
+  const GOOGLE = useSession();
+  const { status, data: session } = GOOGLE;
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -31,19 +32,27 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
         timeout: 5000,
       })
     );
-    if (status === "authenticated" && session?.user) {
-      const { user } = session;
-
-      dispatch(
-        loginUser({
-          name: user.name || "",
-          email: user.email || "",
-          image: user.image || "",
-          roles: [],
-        })
-      );
+    if (!session?.id_token) {
       dispatch(finishGlobalLoading());
-      router.replace("/dashboard");
+      return;
+    }
+    if (status === "authenticated" && session?.user) {
+      dispatch(logInUserMiddleware(session.id_token))
+        .then(() => {
+          // router.replace("/dashboard");
+        })
+        .catch(() => {
+          dispatch(
+            setGlobalAlert({
+              message: "Authentication failed, try again...⛔",
+              severity: SeverityLevel.ERROR,
+              timeout: 5000,
+            })
+          );
+        })
+        .finally(() => {
+          dispatch(finishGlobalLoading());
+        });
     }
   }, [router, status, dispatch, session]);
 

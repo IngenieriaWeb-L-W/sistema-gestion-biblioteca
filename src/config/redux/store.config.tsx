@@ -11,13 +11,11 @@ import {
   UserInterfaceState,
   userInterfaceReducer,
 } from "./reducers/user-interface.reducer";
-import {
-  AuthenticationState,
-  authenticationReducer,
-} from "./reducers/authentication.reducer";
+import { authenticationReducer } from "./reducers/authentication.reducer";
+import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
 
 export interface GlobalState {
-  authentication: AuthenticationState;
+  authentication: AuthCredentials;
   userInterface: UserInterfaceState;
   resources: ResourceState;
   resourceCategories: ResourceCategoriesState;

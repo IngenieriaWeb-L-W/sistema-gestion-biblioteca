@@ -1,20 +1,17 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
 import { RootState } from "../store.config";
-import UserRole from "@/interfaces/user/Role";
 
-export interface AuthenticationState {
-  name: string;
-  email: string;
-  roles: UserRole[];
-  image: string;
-}
-
-const initialState: AuthenticationState = {
-  name: "",
+const initialState: AuthCredentials = {
+  id: "",
+  firstName: "",
+  lastName: "",
   email: "",
-  image: "",
+  imageUrl: "",
+  active: false,
   roles: [],
+  createdAt: new Date(),
 };
 
 // Freeze the initial state to prevent accidental changes
@@ -24,11 +21,15 @@ export const authenticationSlice = createSlice({
   name: "authentication",
   initialState,
   reducers: {
-    loginUser: (state, action: PayloadAction<AuthenticationState>) => {
+    loginUser: (state, action: PayloadAction<AuthCredentials>) => {
+      state.id = action.payload.id;
+      state.firstName = action.payload.firstName;
+      state.lastName = action.payload.lastName;
       state.email = action.payload.email;
-      state.name = action.payload.name;
-      state.image = action.payload.image;
+      state.imageUrl = action.payload.imageUrl;
+      state.active = action.payload.active;
       state.roles = action.payload.roles;
+      state.createdAt = action.payload.createdAt;
     },
     logoutUser: () => {
       return initialState;

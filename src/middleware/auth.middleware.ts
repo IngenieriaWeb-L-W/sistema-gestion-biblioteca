@@ -1,26 +1,46 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 
+import axios from "axios";
+
+import { loginUser } from "@/config/redux/reducers/authentication.reducer";
 import {
   SeverityLevel,
   finishGlobalLoading,
   setGlobalAlert,
   startGlobalLoading,
 } from "@/config/redux/reducers/user-interface.reducer";
-import axios from "axios";
+import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
 
-export const logInUserMiddleware = () => {
+export const logInUserMiddleware = (idToken: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(startGlobalLoading({ message: "Checking authentication..." }));
     const headers = {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
     };
     return axios
-      .get<LoginCredentials>(`http://localhost:3000/api/loans/transactions`, {
-        params: { ...filters, ...pagination },
-        headers,
-      })
+      .post<{ user: AuthCredentials; accessToken: string }>(
+        `http://localhost:3000/api/login`,
+        {
+          idToken,
+        },
+        { headers }
+      )
       .then(({ data }) => data)
-      .then(({ users }) => users)
+      .then(({ user, accessToken }) => {
+        localStorage.setItem("access_token", accessToken);
+        dispatch(
+          loginUser({
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            imageUrl: user.imageUrl,
+            active: user.active,
+            roles: user.roles,
+            createdAt: user.createdAt,
+          })
+        );
+      })
       .catch((/* error */) => {
         dispatch(
           setGlobalAlert({

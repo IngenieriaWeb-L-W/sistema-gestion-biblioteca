@@ -11,7 +11,8 @@ import { selectAuthentication } from "@/config/redux/reducers/authentication.red
 import { useAuth } from "@/hooks/use-auth";
 
 export const AdminNavbar = () => {
-  const { email, image, name } = useSelector(selectAuthentication);
+  const { email, imageUrl, firstName, lastName } =
+    useSelector(selectAuthentication);
   const { logout } = useAuth();
 
   const handleSignOut = (
@@ -83,10 +84,12 @@ export const AdminNavbar = () => {
                   >
                     {email && (
                       <Fragment>
-                        <p className="my-auto text-md text-white">{name}</p>
+                        <p className="my-auto text-md text-white">
+                          {firstName} {lastName}
+                        </p>
                         <Image
                           className="mx-3 mt-1 w-10 h-10 rounded-full"
-                          src={image}
+                          src={imageUrl}
                           width={50}
                           height={50}
                           alt="User profile picture"

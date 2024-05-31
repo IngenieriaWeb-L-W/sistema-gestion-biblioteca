@@ -14,35 +14,37 @@ datasource db {
 }
 
 model User {
-  id        String     @id @default(cuid())
-  email     String     @unique
-  name      String
-  address   String?
-  active    Boolean    @default(true)
-  phone     String?
-  roles     Role[]     @relation("UserRoles")
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  UserRole  UserRole[]
-  Loan      Loan[]
+  id         String     @id @default(cuid())
+  email      String     @unique
+  first_name String
+  image_url  String?
+  last_name  String
+  address    String?
+  active     Boolean    @default(true)
+  phone      String?
+  roles      Role[]     @relation("UserRoles")
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  UserRole   UserRole[]
+  Loan       Loan[]
 }
 
 model Role {
-  id        Int        @id @default(autoincrement())
-  name      RoleEnum   @unique @default(ROLE_USER)
-  users     User[]     @relation("UserRoles")
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  UserRole  UserRole[]
+  id         Int        @id @default(autoincrement())
+  role_name       RoleEnum   @unique @default(ROLE_USER)
+  users      User[]     @relation("UserRoles")
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  UserRole   UserRole[]
 }
 
 model UserRole {
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
-  role   Role   @relation(fields: [roleId], references: [id])
-  roleId Int
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+  role    Role   @relation(fields: [role_id], references: [id])
+  role_id Int
 
-  @@id([userId, roleId])
+  @@id([user_id, role_id])
 }
 
 // --------------------------------------------------------------
@@ -56,12 +58,12 @@ enum RoleEnum {
 // --------------------------------------------------------------
 
 model Loan {
-  id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
   // resources
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
 model Resource {
@@ -73,30 +75,29 @@ model Resource {
   instances        ResourceInstance[]
   categories       Category[]         @relation("ResourceCategory")
   ResourceCategory ResourceCategory[]
-  type             ResourceType       @relation(fields: [typeId], references: [id])
-  publisher        Publisher          @relation(fields: [publisherId], references: [id])
-  publisherId      String
+  type             ResourceType       @relation(fields: [type_id], references: [id])
+  publisher        Publisher          @relation(fields: [publisher_id], references: [id])
+  publisher_id     String
   categoryId       Int
-  typeId           Int
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
+  type_id          Int
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
 }
 
 model ResourceInstance {
-  id         String                 @id @default(cuid())
-  resource   Resource               @relation(fields: [resourceId], references: [id])
-  resourceId String
-  lang       ResourceLang           @default(LANG_EN)
+  id          String                 @id @default(cuid())
+  resource    Resource               @relation(fields: [resource_id], references: [id])
+  resource_id String
+  lang        ResourceLang           @default(LANG_EN)
   // loan Loan[]
-  status     ResourceInstanceStatus @default(STATUS_GOOD)
-  createdAt  DateTime               @default(now())
-  updatedAt  DateTime               @updatedAt
+  status      ResourceInstanceStatus @default(STATUS_GOOD)
+  created_at  DateTime               @default(now())
+  updated_at  DateTime               @updatedAt
 }
 
 model ResourceType {
   id                 Int            @id @default(autoincrement())
-  name               ResourcesTypes @unique @default(TYPE_BOOK)
-  // resources Resource[]
+  resource_type_name               ResourcesTypes @unique @default(TYPE_BOOK)
   max_loan_days      Int            @default(7)
   max_units_per_loan Int            @default(3)
   Resource           Resource[]
@@ -126,31 +127,31 @@ enum ResourceInstanceStatus {
 // --------------------------------------------------------------
 
 model Publisher {
-  id        String     @id @default(cuid())
-  name      String     @unique
-  resources Resource[]
-  image_url String?
-  url       String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id         String     @id @default(cuid())
+  publisher_name       String     @unique
+  resources  Resource[]
+  image_url  String?
+  url        String?
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
 }
 
 model Category {
   id               Int                @id @default(autoincrement())
-  name             String             @unique
+  category_name             String             @unique
   resources        Resource[]         @relation("ResourceCategory")
   ResourceCategory ResourceCategory[]
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
 }
 
 model ResourceCategory {
-  resource   Resource @relation(fields: [resourceId], references: [id])
-  resourceId String
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int
+  resource    Resource @relation(fields: [resource_id], references: [id])
+  resource_id String
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id Int
 
-  @@id([resourceId, categoryId])
+  @@id([resource_id, category_id])
 }
 
 enum ResourceLang {

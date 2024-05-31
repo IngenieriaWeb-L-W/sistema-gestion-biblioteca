@@ -23,6 +23,7 @@ export const useAuth = () => {
       callbackUrl,
     }).then(() => {
       dispatch(logoutUser());
+      localStorage.removeItem("access_token");
     });
   };
 
