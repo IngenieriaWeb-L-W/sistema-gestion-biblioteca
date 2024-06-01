@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { UserPublicInfo } from "@/hooks/use-user-public-info";
-import { PrismaClient } from "../../../../../../prisma/generated/client";
-
-const prisma = new PrismaClient();
+import prisma from "@/config/prisma/prisma.config";
 
 const GET = async (
   req: NextRequest,

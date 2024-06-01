@@ -5,12 +5,9 @@ import { sign } from "jsonwebtoken";
 
 import { GoogleTokenPayload } from "@/interfaces/auth/GoogleTokenPayload";
 import UserRole from "@/interfaces/user/Role";
-import { PrismaClient } from "../../../../prisma/generated/client";
+import prisma from "@/config/prisma/prisma.config";
 
 const oauth2 = new OAuth2Client();
-const prisma = new PrismaClient({
-  datasources: { db: { url: process.env.DATABASE_URL } },
-});
 
 export interface GoogleCertsResponse {
   keys: Key[];
