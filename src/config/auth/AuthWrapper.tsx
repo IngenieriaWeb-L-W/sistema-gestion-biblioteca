@@ -38,9 +38,7 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
     }
     if (status === "authenticated" && session?.user) {
       dispatch(logInUserMiddleware(session.id_token))
-        .then(() => {
-          // router.replace("/dashboard");
-        })
+        .then(() => {})
         .catch(() => {
           dispatch(
             setGlobalAlert({

@@ -5,8 +5,11 @@ import UserRole from "./Role";
 export interface User {
   id?: string;
   firstName: string;
+  email: string;
   lastName: string;
   username: string;
+  address?: string;
+  phone?: string;
   active: boolean;
   imageUrl: string;
   contact?: UserContact;

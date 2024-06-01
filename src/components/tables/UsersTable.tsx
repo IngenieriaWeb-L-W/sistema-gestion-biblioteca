@@ -34,19 +34,19 @@ const UsersTable = () => {
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                     >
-                      Biography
+                      Email
                     </th>
                     <th
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                     >
-                      Position
+                      Address
                     </th>
                     <th
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                     >
-                      Country
+                      Phone number
                     </th>
                     <th
                       scope="col"
@@ -78,52 +78,48 @@ const UsersTable = () => {
                         />
                         <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
                           <div className="text-base font-semibold text-gray-900 dark:text-white">
-                            Name
-                          </div>
-                          <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                            Email
+                            {user.firstName} {user.lastName}
                           </div>
                         </div>
                       </td>
                       <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-                        Biography
+                        {user.email}
                       </td>
                       <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Position
+                        {user.address}
                       </td>
                       <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Country
+                        {user.phone}
                       </td>
                       <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                         <div className="flex items-center">
-                          Active{" "}
-                          <div className="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>{" "}
-                          Else{" "}
-                          <div className="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div>{" "}
-                          End status
+                          {user.active ? (
+                            <span className="inline-flex items-center justify-center h-6 px-2 text-xs font-semibold text-white bg-green-500 rounded-full">
+                              Active
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center justify-center h-6 px-2 text-xs font-semibold text-white bg-red-500 rounded-full">
+                              Inactive
+                            </span>
+                          )}
                         </div>
                       </td>
                       <td className="p-4 space-x-2 whitespace-nowrap">
-                        <button
-                          type="button"
-                          data-modal-target="delete-user-modal"
-                          data-modal-toggle="delete-user-modal"
-                          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
-                        >
-                          <svg
-                            className="w-4 h-4 mr-2"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
+                        {user.active ? (
+                          <button
+                            type="button"
+                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
                           >
-                            <path
-                              fillRule="evenodd"
-                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                              clipRule="evenodd"
-                            ></path>
-                          </svg>
-                          Delete user
-                        </button>
+                            Delete user
+                          </button>
+                        ) : (
+                          <button
+                            type="button"
+                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
+                          >
+                            Restore User
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
