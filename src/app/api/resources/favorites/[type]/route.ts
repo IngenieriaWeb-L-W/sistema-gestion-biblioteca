@@ -1,5 +1,5 @@
 import { Resource } from "@/interfaces/resource/Resource";
-import { ResourceType, ResourceTypes } from "@/interfaces/resource/Type";
+import { ResourceTypes } from "@/interfaces/resource/Type";
 import { NextRequest, NextResponse } from "next/server";
 
 const GET = async (

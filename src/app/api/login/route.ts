@@ -8,8 +8,10 @@ import { PrismaClient } from "../../../../prisma/generated/client";
 import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
 import UserRole from "@/interfaces/user/Role";
 
-const client = new OAuth2Client();
-const prisma = new PrismaClient();
+const oauth2 = new OAuth2Client();
+const prisma = new PrismaClient({
+  datasources: { db: { url: process.env.DATABASE_URL } },
+});
 
 export interface GoogleCertsResponse {
   keys: Key[];
@@ -29,8 +31,13 @@ const POST = async (req: NextRequest) => {
     const body = await req.json();
     const { idToken } = body;
     const verifiedTokenPayload = await validateTokenAuthenticity(idToken);
-    if (!verifiedTokenPayload) return NextResponse.error();
+    if (!verifiedTokenPayload) {
+      return NextResponse.error();
+    }
     const user = await authenticateUser(verifiedTokenPayload);
+    if (!user) {
+      throw new Error("Error asserting user in DB");
+    }
     const accessToken = sign({ id: user.id }, process.env.JWT_SECRET!, {
       expiresIn: "1d",
     });
@@ -46,72 +53,78 @@ const POST = async (req: NextRequest) => {
  * @returns GoogleTokenPayload
  */
 const validateTokenAuthenticity = async (idToken: string) => {
-  const ticket = await client.verifyIdToken({
+  const ticket = await oauth2.verifyIdToken({
     idToken,
     audience: process.env.GOOGLE_CLIENT_ID!,
   });
   return ticket.getPayload() as GoogleTokenPayload;
 };
 
-const authenticateUser = async (
-  verifiedTokenPayload: GoogleTokenPayload
-): Promise<AuthCredentials> => {
-  const userDB = await prisma.user.findFirst({
-    where: {
-      email: verifiedTokenPayload.email,
-    },
-  });
-
-  if (!userDB) {
-    return createUser(verifiedTokenPayload).then((savedUser) => {
+const authenticateUser = async (verifiedTokenPayload: GoogleTokenPayload) => {
+  return prisma.user
+    .findFirst({
+      where: {
+        email: verifiedTokenPayload.email,
+      },
+    })
+    .then((userDB) => {
+      if (!userDB) {
+        return createUser(verifiedTokenPayload).then((savedUser) => {
+          return prisma.role
+            .findMany({
+              where: {
+                users: {
+                  some: {
+                    id: savedUser.id,
+                  },
+                },
+              },
+            })
+            .then((roles) => {
+              return {
+                id: savedUser.id,
+                firstName: savedUser.first_name,
+                lastName: savedUser.last_name,
+                email: savedUser.email,
+                active: savedUser.active,
+                address: savedUser.address || "",
+                phone: savedUser.phone || "",
+                imageUrl: savedUser.image_url || "",
+                roles: roles.map((role) => role.role_name as UserRole),
+                createdAt: savedUser.created_at,
+              };
+            });
+        });
+      }
       return prisma.role
         .findMany({
           where: {
             users: {
               some: {
-                id: savedUser.id,
+                id: userDB.id,
               },
             },
           },
         })
         .then((roles) => {
           return {
-            id: savedUser.id,
-            firstName: savedUser.first_name,
-            lastName: savedUser.last_name,
-            email: savedUser.email,
-            active: savedUser.active,
-            address: savedUser.address || "",
-            phone: savedUser.phone || "",
-            imageUrl: savedUser.image_url || "",
+            firstName: userDB.first_name,
+            lastName: userDB.last_name,
+            email: userDB.email,
+            active: userDB.active,
+            imageUrl: userDB.image_url || "",
+            address: userDB.address || "",
+            phone: userDB.phone || "",
             roles: roles.map((role) => role.role_name as UserRole),
-            createdAt: savedUser.created_at,
+            createdAt: userDB.created_at,
+            id: userDB.id,
           };
         });
+    })
+    .catch((error) => {
+      console.log(error);
+      return null;
     });
-  }
-
-  const roles = await prisma.role.findMany({
-    where: {
-      users: {
-        some: {
-          id: userDB.id,
-        },
-      },
-    },
-  });
-  return {
-    firstName: userDB.first_name,
-    lastName: userDB.last_name,
-    email: userDB.email,
-    active: userDB.active,
-    imageUrl: userDB.image_url || "",
-    address: userDB.address || "",
-    phone: userDB.phone || "",
-    roles: roles.map((role) => role.role_name as UserRole),
-    createdAt: userDB.created_at,
-    id: userDB.id,
-  };
 };
 
 const createUser = async (tokenInfo: GoogleTokenPayload) => {

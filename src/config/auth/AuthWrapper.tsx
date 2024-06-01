@@ -49,6 +49,7 @@ export const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
               timeout: 5000,
             })
           );
+          router.replace("/landing");
         })
         .finally(() => {
           dispatch(finishGlobalLoading());
