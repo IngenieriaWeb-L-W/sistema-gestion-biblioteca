@@ -1,19 +1,19 @@
 "use client";
 
+import useUsersTable, { Election, UsersFilter } from "@/hooks/use-users-table";
+import Image from "next/image";
 import { Fragment, useState } from "react";
 import UserTablePagination from "../pagination/UserTablePagination";
-import Image from "next/image";
-import useUsersTable, { Election, UsersFilter } from "@/hooks/use-users-table";
 
 const UsersTable = () => {
-  const [usersFilter, setUsersFilter] = useState<UsersFilter>({
+  const [usersFilter /*, setUsersFilter */] = useState<UsersFilter>({
     role: "",
     search: "",
     status: Election.BOTH,
     pagination: { page: 0, limit: 25 },
   });
 
-  const { records, total } = useUsersTable(usersFilter);
+  const { records /*, total */ } = useUsersTable(usersFilter);
 
   return (
     <Fragment>

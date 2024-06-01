@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export enum ResourceTypes {
   ALL = "ALL",
   BOOK = "BOOK",

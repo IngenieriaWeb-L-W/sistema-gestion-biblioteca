@@ -1,10 +1,10 @@
 import Link from "next/link";
 import React from "react";
 
-const Index = () => {
+const TransactionsPage = () => {
   return (
     <React.Fragment>
-      <div className="grid grid-cols-12 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
+      <div className="grid grid-cols-12 px-4 pt-14 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
         <div className="mb-4 col-span-full xl:mb-2">
           <nav className="flex mb-5" aria-label="Breadcrumb">
             <ol className="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
@@ -1129,4 +1129,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default TransactionsPage;

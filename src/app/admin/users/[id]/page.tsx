@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Index = () => {
+const UserDetailPage = () => {
   return (
     <React.Fragment>
       <div className="grid grid-cols-1 px-4 pt-6 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
@@ -928,4 +928,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default UserDetailPage;
