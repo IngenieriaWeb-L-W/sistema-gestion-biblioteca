@@ -20,11 +20,6 @@ const navbarItems: NavbarLayout[] = [
         link: "/admin/users",
       },
       {
-        id: 2,
-        title: "Resources Management",
-        link: "/admin/resources",
-      },
-      {
         id: 3,
         title: "Transactions",
         link: "/admin/transactions",
