@@ -21,7 +21,7 @@ export const fetchLoanTransactionsByUserMiddleware = () => {
     // };
     // return axios
     //   .get<{ total: number; records: LoanTransaction[] }>(
-    //     `http://localhost:3000/api/loans/transactions`,
+    //     `${location.protocol}//${location.host}/api/loans/transactions`,
     //     {
     //       params: { ...filters, ...pagination },
     //       headers,

@@ -12,7 +12,7 @@ export const fetchActiveUsers = () => {
     // };
     // return axios
     //   .get<{ total: number; records: LoanTransaction[] }>(
-    //     `http://localhost:3000/api/loans/transactions`,
+    //     `${location.protocol}//${location.host}/api/loans/transactions`,
     //     {
     //       params: { ...filters, ...pagination },
     //       headers,
@@ -43,7 +43,7 @@ export const fetchActiveResources = () => {
     // };
     // return axios
     //   .get<{ total: number; records: LoanTransaction[] }>(
-    //     `http://localhost:3000/api/loans/transactions`,
+    //     `${location.protocol}//${location.host}/api/loans/transactions`,
     //     {
     //       params: { ...filters, ...pagination },
     //       headers,
@@ -74,7 +74,7 @@ export const fetchDailyLoans = () => {
     // };
     // return axios
     //   .get<{ total: number; records: LoanTransaction[] }>(
-    //     `http://localhost:3000/api/loans/transactions`,
+    //     `${location.protocol}//${location.host}/api/loans/transactions`,
     //     {
     //       params: { ...filters, ...pagination },
     //       headers,

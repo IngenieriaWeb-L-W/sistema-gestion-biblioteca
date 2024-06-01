@@ -35,7 +35,7 @@ export const fetchResourcesMiddleware = () => {
     // return (
     //   axios
     //     // TODO: Usar variable de entorno
-    //     .get<ResourcesResponse>(`http://localhost:3000/api`, {
+    //     .get<ResourcesResponse>(`${location.protocol}//${location.host}/api`, {
     //       params: {
     //         ...filters,
     //         ...pagination,
@@ -68,7 +68,9 @@ export const fetchFullResourceMiddleware = (id: string) => {
       startGlobalLoading({ message: "Fetching resource information..." })
     );
     return axios
-      .get<Resource>(`http://localhost:3000/api/resources/${id}`)
+      .get<Resource>(
+        `${location.protocol}//${location.host}/api/resources/${id}`
+      )
       .then(({ data }) => data)
       .then((resource) => {
         dispatch(addResource(resource));
@@ -92,7 +94,9 @@ export const fetchResourceDetailMiddleware = (id: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(startGlobalLoading({ message: "Fetching resource detail..." }));
     return axios
-      .get<ResourceDetail>(`http://localhost:3000/api/resources/${id}/detail`)
+      .get<ResourceDetail>(
+        `${location.protocol}//${location.host}/api/resources/${id}/detail`
+      )
       .then(({ data }) => data)
       .then((detail) => {
         dispatch(setResourceDetail({ id, detail }));
@@ -122,7 +126,7 @@ export const fetchResourceCategoriesMiddleware = (
     );
     return axios
       .get<{ total: number; records: ResourceCategory[] }>(
-        `http://localhost:3000/api/resources/categories`,
+        `${location.protocol}//${location.host}/api/resources/categories`,
         {
           params: { ...filters, ...pagination },
         }
@@ -149,7 +153,9 @@ export const fetchResourceCategoriesMiddleware = (
 export const fetchFavoriteResourcesMiddleware = (type: ResourceTypes) => {
   return async (dispatch: Dispatch<Action>) => {
     return axios
-      .get<Resource[]>(`http://localhost:3000/api/resources/favorites/${type}`)
+      .get<Resource[]>(
+        `${location.protocol}//${location.host}/api/resources/favorites/${type}`
+      )
       .then(({ data }) => data)
       .catch((/* error */) => {
         dispatch(

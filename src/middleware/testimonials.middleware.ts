@@ -21,13 +21,16 @@ export const fetchTestimonialsMiddleware = (
     dispatch(startGlobalLoading({ message: "Fetching testimonials..." }));
 
     return axios
-      .get<TestimonialsResponse>(`http://localhost:3000/api/testimonials`, {
-        params: {
-          page,
-          size,
-          sortBy,
-        },
-      })
+      .get<TestimonialsResponse>(
+        `${location.protocol}//${location.host}/api/testimonials`,
+        {
+          params: {
+            page,
+            size,
+            sortBy,
+          },
+        }
+      )
       .then(({ data }) => data)
       .catch((/* error */) => {
         dispatch(

@@ -19,7 +19,7 @@ export const fetchActiveUsers = () => {
     // };
     // return axios
     //   .get<{ total: number; records: LoanTransaction[] }>(
-    //     `http://localhost:3000/api/loans/transactions`,
+    //     `${location.protocol}//${location.host}/api/loans/transactions`,
     //     {
     //       params: { ...filters, ...pagination },
     //       headers,
@@ -49,7 +49,9 @@ export const fetchActiveUsers = () => {
 export const fetchUserPublicInfoMiddleware = (id: string) => {
   return async (dispatch: Dispatch<Action>) => {
     return axios
-      .get<UserPublicInfo>(`http://localhost:3000/api/users/${id}/public-info`)
+      .get<UserPublicInfo>(
+        `${location.protocol}//${location.host}/api/users/${id}/public-info`
+      )
       .then(({ data }) => data)
       .catch((/* error */) => {
         dispatch(
@@ -77,7 +79,7 @@ export const fetchUsersMiddleware = (filters: UsersFilter) => {
       limit: filters.pagination.limit,
     };
     return axios
-      .get<UsersResponse>(`http://localhost:3000/api/users`, {
+      .get<UsersResponse>(`${location.protocol}//${location.host}/api/users`, {
         headers,
         params,
       })
