@@ -26,7 +26,13 @@ const GET = async (req: NextRequest) => {
 };
 
 const getUsersByFilter = async (usersFilter: UsersFilter) => {
-  const usersByFilter = await prisma.user.findMany({});
+  const usersByFilter = await prisma.user.findMany({
+    where: {
+      email: {
+        contains: usersFilter.search,
+      },
+    },
+  });
   return Promise.all(
     usersByFilter.map((userDB) => {
       return prisma.role
@@ -57,7 +63,13 @@ const getUsersByFilter = async (usersFilter: UsersFilter) => {
 const countUsersByFilter = async (
   usersFilter: UsersFilter
 ): Promise<number> => {
-  return prisma.user.count({});
+  return prisma.user.count({
+    where: {
+      email: {
+        contains: usersFilter.search,
+      },
+    },
+  });
 };
 
 export { GET };

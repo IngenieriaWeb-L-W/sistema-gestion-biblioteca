@@ -4,9 +4,8 @@ import { OAuth2Client } from "google-auth-library";
 import { sign } from "jsonwebtoken";
 
 import { GoogleTokenPayload } from "@/interfaces/auth/GoogleTokenPayload";
-import { PrismaClient } from "../../../../prisma/generated/client";
-import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
 import UserRole from "@/interfaces/user/Role";
+import { PrismaClient } from "../../../../prisma/generated/client";
 
 const oauth2 = new OAuth2Client();
 const prisma = new PrismaClient({
@@ -121,8 +120,8 @@ const authenticateUser = async (verifiedTokenPayload: GoogleTokenPayload) => {
           };
         });
     })
-    .catch((error) => {
-      console.log(error);
+    .catch((/*error*/) => {
+      // console.log(error);
       return null;
     });
 };

@@ -4,7 +4,7 @@ import { TestimonialsFilter, useTestimonials } from "@/hooks/use-testimonials";
 import { Fragment, useState } from "react";
 
 const TestimonialsPage = () => {
-  const [testimonialsFilter, setTestimonialsFilter] =
+  const [testimonialsFilter /*, setTestimonialsFilter*/] =
     useState<TestimonialsFilter>({
       page: 0,
       size: 30,
@@ -12,7 +12,7 @@ const TestimonialsPage = () => {
     });
 
   const { page, size, sortBy } = testimonialsFilter;
-  const { records, total } = useTestimonials({ page, size, sortBy });
+  const { records /*total*/ } = useTestimonials({ page, size, sortBy });
 
   // const getRandomText = (minLength: number, maxLength: number): string => {
   //   const characters =
