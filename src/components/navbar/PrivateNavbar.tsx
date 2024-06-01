@@ -94,7 +94,7 @@ export const PrivateNavbar = () => {
 
               <div className="hidden sm:flex sm:ml-6">
                 <ul className="flex space-x-8">
-                  {activeNavbar.items.map(({ id, title, link, icon }) => (
+                  {activeNavbar.items.map(({ id, title, link /*, icon */ }) => (
                     <li key={id}>
                       <Link
                         href={link}

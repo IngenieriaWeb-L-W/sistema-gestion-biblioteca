@@ -84,7 +84,7 @@ const authenticateUser = async (
             address: savedUser.address || "",
             phone: savedUser.phone || "",
             imageUrl: savedUser.image_url || "",
-            roles: roles.map((role) => role.role_name),
+            roles: roles.map((role) => role.role_name as UserRole),
             createdAt: savedUser.created_at,
           };
         });
@@ -108,7 +108,7 @@ const authenticateUser = async (
     imageUrl: userDB.image_url || "",
     address: userDB.address || "",
     phone: userDB.phone || "",
-    roles: roles.map((role) => role.role_name),
+    roles: roles.map((role) => role.role_name as UserRole),
     createdAt: userDB.created_at,
     id: userDB.id,
   };

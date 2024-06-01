@@ -1,6 +1,5 @@
 "use client";
 
-import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import { selectAuthentication } from "@/config/redux/reducers/authentication.reducer";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,9 +12,9 @@ const Index = () => {
     email,
     imageUrl,
     roles,
-    address,
-    birthDate,
-    phone,
+    // address,
+    // birthDate,
+    // phone,
   } = useSelector(selectAuthentication);
 
   return (
