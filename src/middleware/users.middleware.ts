@@ -4,7 +4,9 @@ import {
   setGlobalAlert,
   startGlobalLoading,
 } from "@/config/redux/reducers/user-interface.reducer";
+import { UserPublicInfo } from "@/hooks/use-user-public-info";
 import { Action, Dispatch } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const fetchActiveUsers = () => {
   return async (dispatch: Dispatch<Action>) => {
@@ -39,6 +41,23 @@ export const fetchActiveUsers = () => {
       })
       .finally(() => {
         dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const fetchUserPublicInfoMiddleware = (id: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    return axios
+      .get<UserPublicInfo>(`http://localhost:3000/api/users/${id}/public-info`)
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "User public info could not be fetched ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
       });
   };
 };

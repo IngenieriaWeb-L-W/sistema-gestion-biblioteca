@@ -12,15 +12,16 @@ import { useAppDispatch } from "@/config/redux/store.config";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 
 type FullPaginationProps = {
-  showTotalRecords?: boolean;
   resourceType: ResourceTypes;
+  showTotalRecords?: boolean;
+  showNoResultsAlert?: boolean;
 };
 
 export const FullPagination = (props: FullPaginationProps) => {
   const dispatch = useAppDispatch();
   const { pagination, total } = useSelector(selectResources);
   const { page, limit } = pagination;
-  const { showTotalRecords, resourceType } = props;
+  const { resourceType, showTotalRecords, showNoResultsAlert } = props;
   const [totalPages, setTotalPages] = useState(0);
 
   const handleGoToPage = (page: number) => {
@@ -46,7 +47,9 @@ export const FullPagination = (props: FullPaginationProps) => {
   if (total > limit) {
     return (
       <Fragment>
-        <p className="text-center my-2 text-white">No more results to show</p>
+        {showNoResultsAlert && (
+          <p className="text-center my-2 text-white">No more results to show</p>
+        )}
       </Fragment>
     );
   }

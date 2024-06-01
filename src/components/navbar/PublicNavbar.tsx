@@ -38,11 +38,11 @@ export const PublicNavbar = () => {
                 <ul className="flex space-x-8">
                   <li>
                     <Link
-                      href="/landing/books"
+                      href="/landing/resources"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >
-                      Books
+                      All Resources
                     </Link>
                   </li>
                   <li>
@@ -56,7 +56,7 @@ export const PublicNavbar = () => {
                   </li>
                   <li>
                     <Link
-                      href="/landing/contributors"
+                      href="/landing/technologies"
                       className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
                       aria-current="page"
                     >

@@ -7,9 +7,10 @@ import { Resource } from "@/interfaces/resource/Resource";
 
 type BookCardProps = {
   resource: Resource;
+  typeRibbon?: boolean;
 };
 
-export const ResourceCard = ({ resource }: BookCardProps) => {
+export const ResourceCard = ({ resource, typeRibbon }: BookCardProps) => {
   const wordToHexColor = (word: string) => {
     let hash = 0;
     for (let i = 0; i < word.length; i++) {
@@ -39,12 +40,14 @@ export const ResourceCard = ({ resource }: BookCardProps) => {
             {resource.name}
           </h3>
 
-          <span
-            className={`text-white absolute right-1 top-1 opacity-[0.8]  px-3 py-2 rounded-lg`}
-            style={{ backgroundColor: `${wordToHexColor(resource.type)}` }}
-          >
-            {resource.type}
-          </span>
+          {typeRibbon && (
+            <span
+              className={`text-white absolute right-1 top-1 opacity-[0.8]  px-3 py-2 rounded-lg`}
+              style={{ backgroundColor: `${wordToHexColor(resource.type)}` }}
+            >
+              {resource.type}
+            </span>
+          )}
 
           <div className="mt-4 flex flex-wrap gap-2">
             {resource.categories.map((category) => (

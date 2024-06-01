@@ -8,6 +8,7 @@ export interface User {
   lastName: string;
   username: string;
   active: boolean;
+  imageUrl: string;
   contact?: UserContact;
   auth?: UserAuth;
   roles: UserRole[];

@@ -21,6 +21,7 @@ import { booksData } from "@/data/books/book-list";
 import { ResourceCategory } from "@/interfaces/resource/Category";
 import { ResourceDetail } from "@/interfaces/resource/Detail";
 import { Resource } from "@/interfaces/resource/Resource";
+import { ResourceTypes } from "@/interfaces/resource/Type";
 
 export interface ResourcesResponse {
   records: Resource[];
@@ -141,6 +142,24 @@ export const fetchResourceCategoriesMiddleware = (
       })
       .finally(() => {
         dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const fetchFavoriteResourcesMiddleware = (type: ResourceTypes) => {
+  return async (dispatch: Dispatch<Action>) => {
+    return axios
+      .get<Resource[]>(`http://localhost:3000/api/resources/favorites/${type}`)
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Favorite resources could not be fetched ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return [] as Resource[];
       });
   };
 };
