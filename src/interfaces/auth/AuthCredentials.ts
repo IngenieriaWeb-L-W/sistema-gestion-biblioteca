@@ -1,3 +1,5 @@
+import UserRole from "../user/Role";
+
 export interface AuthCredentials {
   id: string;
   firstName: string;
@@ -7,6 +9,6 @@ export interface AuthCredentials {
   address?: string;
   phone?: string;
   active: boolean;
-  roles: string[];
+  roles: UserRole[];
   createdAt: Date;
 }

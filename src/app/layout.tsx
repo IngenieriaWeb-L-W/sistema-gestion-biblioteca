@@ -23,7 +23,7 @@ type RootLayoutProps = Readonly<{
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-gray-900`}>
         <StateProvider>
           <AuthProvider>
             <AuthWrapper>{children}</AuthWrapper>

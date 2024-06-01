@@ -1,5 +1,6 @@
 "use client";
 
+import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
 import { selectAuthentication } from "@/config/redux/reducers/authentication.reducer";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,9 +14,10 @@ const Index = () => {
     imageUrl,
     roles,
     address,
-    phoneNumber,
+    birthDate,
     phone,
   } = useSelector(selectAuthentication);
+
   return (
     <div className="grid grid-cols-1 px-4 pt-14 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
       <div className="mb-4 col-span-full xl:mb-2">
@@ -23,7 +25,7 @@ const Index = () => {
           <ol className="inline-flex items-center space-x-1 text-sm font-medium md:space-x-2">
             <li className="inline-flex items-center">
               <Link
-                href="/test"
+                href="/dashboard"
                 className="inline-flex items-center text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white"
               >
                 <svg
@@ -52,7 +54,7 @@ const Index = () => {
                   ></path>
                 </svg>
                 <Link
-                  href="/test"
+                  href="/dashboard/profile"
                   className="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white"
                 >
                   profile

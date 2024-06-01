@@ -1,7 +1,7 @@
 import React from "react";
 
 import { LandingFooter } from "../footer/LandingFooter";
-import { LandingNavbar } from "../navbar/LandingNavbar";
+import { PublicNavbar } from "../navbar/PublicNavbar";
 
 type LandingLayoutProps = {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ type LandingLayoutProps = {
 export const LandingLayout = ({ children }: LandingLayoutProps) => {
   return (
     <React.Fragment>
-      <LandingNavbar />
+      <PublicNavbar />
       <main className="mt-5 bg-gray-800">{children}</main>
       <LandingFooter />
     </React.Fragment>

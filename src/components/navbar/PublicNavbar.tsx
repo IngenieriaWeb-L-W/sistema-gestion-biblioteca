@@ -7,7 +7,7 @@ import Link from "next/link";
 
 import { useAuth } from "@/hooks/use-auth";
 
-export const LandingNavbar = () => {
+export const PublicNavbar = () => {
   const { login } = useAuth();
 
   const handleSignIn = (

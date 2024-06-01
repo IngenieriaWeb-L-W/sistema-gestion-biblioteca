@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import { DashboardFooter } from "@/components/footer/DashboardFooter";
-import { LandingNavbar } from "@/components/navbar/LandingNavbar";
+import { PublicNavbar } from "@/components/navbar/PublicNavbar";
 import { AuthLayout } from "@/components/layout/AuthLayout";
 
 type LandingLayoutProps = {
@@ -13,7 +13,7 @@ const LandingLayout = ({ children }: LandingLayoutProps) => {
     <Fragment>
       <AuthLayout unauthenticated>
         <main className="mt-5 bg-gray-800">
-          <LandingNavbar />
+          <PublicNavbar />
           {children}
           <DashboardFooter />
         </main>
