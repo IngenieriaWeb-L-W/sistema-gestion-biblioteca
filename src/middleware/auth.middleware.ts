@@ -20,10 +20,8 @@ export const logInUserMiddleware = (idToken: string) => {
     return axios
       .post<{ user: AuthCredentials; accessToken: string }>(
         `${location.protocol}//${location.host}/api/login`,
-        {
-          idToken,
-        },
-        { headers }
+        { idToken },
+        { headers, withCredentials: true }
       )
       .then(({ data }) => data)
       .then(({ user, accessToken }) => {

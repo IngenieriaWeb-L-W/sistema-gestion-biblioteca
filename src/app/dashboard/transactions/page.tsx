@@ -25,7 +25,7 @@ const TransactionsPage = () => {
   const { records: transactions } = useTransaction();
   return (
     <React.Fragment>
-      <div className="p-4 bg-white  shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+      <div className="p-4 mt-14 bg-white  shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
         <div className="items-center justify-between lg:flex">
           <div className="mb-4 lg:mb-0">
             <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">

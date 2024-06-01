@@ -72,7 +72,49 @@ export const AdminNavbar = () => {
                   BookHub
                 </span>
               </Link>
+
+              <div className="hidden sm:flex sm:ml-6">
+                <ul className="flex space-x-8">
+                  <li>
+                    <Link
+                      href="/dashboard/loans"
+                      className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
+                      aria-current="page"
+                    >
+                      Loans
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/dashboard/transactions"
+                      className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
+                      aria-current="page"
+                    >
+                      Transactions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/dashboard/statistics"
+                      className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
+                      aria-current="page"
+                    >
+                      Statistics
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/dashboard/profile"
+                      className="text-sm font-medium text-gray-700 hover:text-primary-700 dark:text-gray-400 dark:hover:text-primary-500"
+                      aria-current="page"
+                    >
+                      Profile
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
+
             <div className="flex items-center">
               <div className="flex items-center ml-3">
                 <div>

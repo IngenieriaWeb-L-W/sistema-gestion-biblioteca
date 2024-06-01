@@ -4,6 +4,8 @@ export interface AuthCredentials {
   lastName: string;
   email: string;
   imageUrl: string;
+  address?: string;
+  phone?: string;
   active: boolean;
   roles: string[];
   createdAt: Date;

@@ -149,6 +149,7 @@ export const LandingNavbar = () => {
             </div>
           </div>
         </div>
+
         <div className="hidden sm:hidden" id="mobile-menu">
           <ul className="pt-2">
             <li>
