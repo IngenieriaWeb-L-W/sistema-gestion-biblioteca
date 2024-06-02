@@ -11,7 +11,10 @@ type ManagementLayoutProps = {
 
 const ManagementLayout = ({ children }: ManagementLayoutProps) => {
   return (
-    <AuthLayout allowedRoles={[UserRole.ROLE_SECRETARY]}>
+    <AuthLayout
+      allowedRoles={[UserRole.ROLE_SECRETARY]}
+      fallbackUrl="/dashboard"
+    >
       <PrivateNavbar />
       <main className="mt-5 bg-gray-800">{children}</main>
       <DashboardFooter />

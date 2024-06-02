@@ -11,13 +11,14 @@ import { AppLoading } from "../loader/AppLoading";
 type AuthLayoutProps = {
   allowedRoles?: UserRole[];
   children: React.ReactNode;
-  // fallbackUrl: string;
+  fallbackUrl?: string;
   unauthenticated?: boolean;
 };
 
 export const AuthLayout = ({
   allowedRoles,
   children,
+  fallbackUrl,
   unauthenticated,
 }: AuthLayoutProps) => {
   const { roles, email } = useSelector(selectAuthentication);
@@ -36,5 +37,9 @@ export const AuthLayout = ({
     setIsAuthorized(allowedRoles!.some((role) => roles.includes(role)));
   }, [allowedRoles, roles, email, setIsAuthorized, unauthenticated]);
 
-  return isAuthorized ? <Fragment>{children}</Fragment> : <AppLoading />;
+  return isAuthorized ? (
+    <Fragment>{children}</Fragment>
+  ) : (
+    <AppLoading fallbackUrl={fallbackUrl} />
+  );
 };

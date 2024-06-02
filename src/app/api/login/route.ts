@@ -3,9 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { OAuth2Client } from "google-auth-library";
 import { sign } from "jsonwebtoken";
 
+import prisma from "@/config/prisma/prisma.config";
 import { GoogleTokenPayload } from "@/interfaces/auth/GoogleTokenPayload";
 import UserRole from "@/interfaces/user/Role";
-import prisma from "@/config/prisma/prisma.config";
+import { User } from "@/interfaces/user/User";
 
 const oauth2 = new OAuth2Client();
 
@@ -56,71 +57,43 @@ const validateTokenAuthenticity = async (idToken: string) => {
   return ticket.getPayload() as GoogleTokenPayload;
 };
 
-const authenticateUser = async (verifiedTokenPayload: GoogleTokenPayload) => {
-  return prisma.user
-    .findFirst({
-      where: {
-        email: verifiedTokenPayload.email,
-      },
-    })
-    .then((userDB) => {
-      if (!userDB) {
-        return createUser(verifiedTokenPayload).then((savedUser) => {
-          return prisma.role
-            .findMany({
-              where: {
-                users: {
-                  some: {
-                    id: savedUser.id,
-                  },
-                },
-              },
-            })
-            .then((roles) => {
-              return {
-                id: savedUser.id,
-                firstName: savedUser.first_name,
-                lastName: savedUser.last_name,
-                email: savedUser.email,
-                active: savedUser.active,
-                address: savedUser.address || "",
-                phone: savedUser.phone || "",
-                imageUrl: savedUser.image_url || "",
-                roles: roles.map((role) => role.role_name as UserRole),
-                createdAt: savedUser.created_at,
-              };
-            });
-        });
-      }
-      return prisma.role
-        .findMany({
-          where: {
-            users: {
-              some: {
-                id: userDB.id,
-              },
-            },
-          },
-        })
-        .then((roles) => {
-          return {
-            firstName: userDB.first_name,
-            lastName: userDB.last_name,
-            email: userDB.email,
-            active: userDB.active,
-            imageUrl: userDB.image_url || "",
-            address: userDB.address || "",
-            phone: userDB.phone || "",
-            roles: roles.map((role) => role.role_name as UserRole),
-            createdAt: userDB.created_at,
-            id: userDB.id,
-          };
-        });
-    })
-    .catch((/*error*/) => {
-      // console.log(error);
-      return null;
-    });
+const authenticateUser = async (
+  verifiedTokenPayload: GoogleTokenPayload
+): Promise<User> => {
+  return findByEmail(verifiedTokenPayload.email).then((userDB) => {
+    if (!userDB) {
+      return createUser(verifiedTokenPayload).then((id) =>
+        findByIdOrThrow(id).then((userDB) => ({
+          id: userDB.id,
+          firstName: userDB.first_name,
+          email: userDB.email,
+          lastName: userDB.last_name,
+          username: userDB.email,
+          address: userDB.address || "",
+          phone: userDB.phone || "",
+          active: userDB.active,
+          imageUrl: userDB.image_url || "",
+          roles: userDB.roles.map((role) => role.role_name as UserRole),
+          createdAt: userDB.created_at,
+          updatedAt: userDB.updated_at,
+        }))
+      );
+    }
+    return {
+      id: userDB.id,
+      firstName: userDB.first_name,
+      email: userDB.email,
+      lastName: userDB.last_name,
+      username: userDB.email,
+      address: userDB.address || "",
+      phone: userDB.phone || "",
+      active: userDB.active,
+      imageUrl: userDB.image_url || "",
+      roles: userDB.roles.map((role) => role.role_name as UserRole),
+      createdAt: userDB.created_at,
+      updatedAt: userDB.updated_at,
+    };
+  });
 };
 
 const createUser = async (tokenInfo: GoogleTokenPayload) => {
@@ -134,13 +107,37 @@ const createUser = async (tokenInfo: GoogleTokenPayload) => {
       created_at: new Date(),
       updated_at: new Date(),
       roles: {
-        connect: {
-          role_name: UserRole.ROLE_USER,
-        },
+        connect: [
+          {
+            role_name: UserRole.ROLE_USER,
+          },
+        ],
       },
     },
   });
-  return userCreated;
+  return userCreated.id;
+};
+
+const findByIdOrThrow = (id: string) => {
+  return prisma.user.findUniqueOrThrow({
+    where: {
+      id,
+    },
+    include: {
+      roles: true,
+    },
+  });
+};
+
+const findByEmail = (email: string) => {
+  return prisma.user.findUnique({
+    where: {
+      email,
+    },
+    include: {
+      roles: true,
+    },
+  });
 };
 
 export { POST };
