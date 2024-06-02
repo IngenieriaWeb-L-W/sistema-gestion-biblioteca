@@ -39,15 +39,14 @@ export const logInUserMiddleware = (idToken: string) => {
           })
         );
       })
-      .catch((error) => {
+      .catch(() => {
         dispatch(
           setGlobalAlert({
-            message: "Authentication failedd, try again...⛔",
+            message: "Authentication failed ⛔",
             timeout: 5000,
             severity: SeverityLevel.ERROR,
           })
         );
-        console.log({ error });
         return 0;
       })
       .finally(() => {
