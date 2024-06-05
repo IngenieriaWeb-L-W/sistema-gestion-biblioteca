@@ -23,6 +23,7 @@ const initialFormValues: Publisher = {
 const CreatePublisherForm = ({ open, setOpen }: CreatePublisherFormProps) => {
   const dispatch = useAppDispatch();
   const [imageSrc, setImageSrc] = useState("");
+  const [imageFile, setImageFile] = useState<File>();
 
   const { formValues, handleInputChange, resetForm } = useForm<Publisher>({
     ...initialFormValues,
@@ -46,8 +47,29 @@ const CreatePublisherForm = ({ open, setOpen }: CreatePublisherFormProps) => {
   };
 
   useEffect(() => {
-    setImageSrc(URL.createObjectURL(image));
-  }, [image]);
+    if (imageFile) {
+      setImageSrc(URL.createObjectURL(imageFile));
+    }
+  }, [imageFile]);
+
+  const handleToggleSelectFile = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    const fileInput = document.getElementById("imageFile");
+    if (fileInput) {
+      fileInput.click();
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files) {
+      return;
+    }
+    const file = event.target.files[0];
+    // Do something with the selected file
+    setImageFile(file);
+  };
 
   return (
     <Fragment>
@@ -136,18 +158,45 @@ const CreatePublisherForm = ({ open, setOpen }: CreatePublisherFormProps) => {
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
+                      <label htmlFor="imageFile">
+                        <button
+                          type="button"
+                          className="bg-blue-500 flex items-center gap-x-2 px-3 py-2 rounded-md hover:bg-blue-600 text-white font-medium text-sm dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:focus:ring-4 dark:focus:ring-primary-300 dark:text-white"
+                          onClick={handleToggleSelectFile}
+                        >
+                          <Image
+                            src="/icons/upload.svg"
+                            width={20}
+                            height={20}
+                            alt="Upload image"
+                          />
+                          {imageSrc ? "Change Image" : "Upload Image"}
+                        </button>
+                      </label>
+                      <input
+                        className="hidden"
+                        type="file"
+                        onChange={handleFileChange}
+                        name=""
+                        id="imageFile"
+                      />
+                    </div>
+
+                    <div className="col-span-12 sm:col-span-6">
                       <label
                         htmlFor="last-name"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Image
                       </label>
-                      <Image
-                        src={imageSrc}
-                        width={200}
-                        height={200}
-                        alt="Publisher image"
-                      />
+                      {imageSrc && (
+                        <Image
+                          src={imageSrc}
+                          width={200}
+                          height={200}
+                          alt="Publisher image"
+                        />
+                      )}
                     </div>
                   </div>
 
