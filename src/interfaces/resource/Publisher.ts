@@ -1,9 +1,10 @@
 import { Resource } from "./Resource";
 
 export interface Publisher {
-  id: string;
+  id?: string;
   imageUrl: string;
   name: string;
-  createdAt: string;
+  url: string;
+  createdAt?: string;
   resources: Resource[];
 }

@@ -17,15 +17,19 @@
     "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
     "boxicons": "^2.1.4",
+    "chart.js": "^4.4.3",
+    "cloudinary": "^2.2.0",
     "google-auth-library": "^9.10.0",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "react": "^18",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "react-redux": "^9.1.2",
     "react-toastify": "^10.0.5",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "yup": "^1.4.0"
   },
   "prisma": {
     "schema": "prisma/schema.prisma"

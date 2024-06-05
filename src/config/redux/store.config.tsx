@@ -13,17 +13,23 @@ import {
 } from "./reducers/user-interface.reducer";
 import { authenticationReducer } from "./reducers/authentication.reducer";
 import { AuthCredentials } from "@/interfaces/auth/AuthCredentials";
+import {
+  LoansCartState,
+  loansCartReducer,
+} from "./reducers/loans-cart.reducer";
 
 export interface GlobalState {
   authentication: AuthCredentials;
   userInterface: UserInterfaceState;
   resources: ResourceState;
+  loansCart: LoansCartState;
   resourceCategories: ResourceCategoriesState;
 }
 
 const reducer = combineReducers({
   authentication: authenticationReducer,
   userInterface: userInterfaceReducer,
+  loansCart: loansCartReducer,
   resources: resourcesReducer,
   resourceCategories: resourceCategoriesReducer,
   loanTransactions: loanTransactionsReducer,

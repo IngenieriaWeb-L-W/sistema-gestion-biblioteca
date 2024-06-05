@@ -15,12 +15,17 @@ import { useAppDispatch } from "@/config/redux/store.config";
 import navbarItems, { NavbarLayout } from "@/data/navbar/navbar-items";
 import { useAuth } from "@/hooks/use-auth";
 import UserRole from "@/interfaces/user/Role";
+import {
+  openCart,
+  selectLoansCart,
+} from "@/config/redux/reducers/loans-cart.reducer";
 
 export const PrivateNavbar = () => {
   const { logout } = useAuth();
   const dispatch = useAppDispatch();
   const { email, imageUrl, firstName, lastName, activeRole, roles } =
     useSelector(selectAuthentication);
+  const { records } = useSelector(selectLoansCart);
 
   const [activeNavbar, setActiveNavbar] = useState<NavbarLayout>(
     navbarItems.find((item) => item.role === activeRole) || navbarItems[0]
@@ -43,6 +48,13 @@ export const PrivateNavbar = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ): void => {
     dispatch(changeActiveRole(event.target.value as UserRole));
+  };
+
+  const handleOpenLoansCart = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    dispatch(openCart());
   };
 
   return (
@@ -111,6 +123,26 @@ export const PrivateNavbar = () => {
             <div className="flex items-center">
               <div className="flex items-center ml-3">
                 <div className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                  {activeRole === UserRole.ROLE_USER && (
+                    <button
+                      onClick={handleOpenLoansCart}
+                      className="bg-gray-700 relative rounded-sm mr-5 flex justify-center items-center"
+                    >
+                      <Image
+                        className="p-1"
+                        src="/icons/basket.svg"
+                        width={40}
+                        height={40}
+                        alt="Basket icon"
+                        title="Basket icon"
+                      />
+                      <span
+                        className={`absolute px-2 py-0 rounded-lg ${records.length === 0 ? "bg-red-500" : "bg-green-500"} top-[-0px] right-[-15px]`}
+                      >
+                        {records.length}
+                      </span>
+                    </button>
+                  )}
                   {email && (
                     <Fragment>
                       <div className="my-auto relative text-white">
