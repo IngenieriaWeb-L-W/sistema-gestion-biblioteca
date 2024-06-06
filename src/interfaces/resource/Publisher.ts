@@ -8,3 +8,9 @@ export interface Publisher {
   createdAt?: string;
   resources: Resource[];
 }
+
+export interface PublisherCreate {
+  image: File | null;
+  name: string;
+  url: string;
+}

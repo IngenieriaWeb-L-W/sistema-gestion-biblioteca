@@ -1,56 +1,86 @@
 "use client";
 
+import publisherCreateSchema from "@/common/schemas/Publisher.schema";
+import {
+  SeverityLevel,
+  setGlobalAlert,
+} from "@/config/redux/reducers/user-interface.reducer";
 import { useAppDispatch } from "@/config/redux/store.config";
 import { useForm } from "@/hooks/use-form";
-import { Publisher } from "@/interfaces/resource/Publisher";
+import { Publisher, PublisherCreate } from "@/interfaces/resource/Publisher";
 import { createPublisherMiddleware } from "@/middleware/publishers.middleware";
 import Image from "next/image";
 import React, { Fragment, useEffect, useState } from "react";
+import * as Yup from "yup";
 
 export type CreatePublisherFormProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onSubmitCallback: () => void;
+  onSubmitCallback: (publisher: Publisher) => void;
 };
 
-const initialFormValues: Publisher = {
-  imageUrl: "",
+const initialFormValues: PublisherCreate = {
+  image: null,
   name: "",
   url: "",
-  resources: [],
 };
 
-const CreatePublisherForm = ({ open, setOpen }: CreatePublisherFormProps) => {
+const CreatePublisherForm = ({
+  open,
+  setOpen,
+  onSubmitCallback,
+}: CreatePublisherFormProps) => {
   const dispatch = useAppDispatch();
   const [imageSrc, setImageSrc] = useState("");
-  const [imageFile, setImageFile] = useState<File>();
 
-  const { formValues, handleInputChange, resetForm } = useForm<Publisher>({
-    ...initialFormValues,
-  });
+  const { formValues, handleInputChange, resetForm } = useForm<PublisherCreate>(
+    { ...initialFormValues }
+  );
 
-  const { imageUrl, url, name } = formValues;
+  const { image, url, name } = formValues;
 
   const toggleShowForm = () => {
     setOpen(!open);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(createPublisherMiddleware({ ...formValues })).then((publisher) => {
-      if (publisher) {
-        resetForm({ ...initialFormValues });
-        setOpen(false);
-      }
-    });
-    setOpen(false);
+    return publisherCreateSchema
+      .validate(formValues, { abortEarly: false })
+      .then((publisher) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(image!);
+        reader.onload = () => {
+          const imageUrl = reader.result as string;
+          dispatch(createPublisherMiddleware(publisher, imageUrl)).then(
+            (publisher) => {
+              if (!publisher) return;
+              resetForm({ ...initialFormValues });
+              onSubmitCallback(publisher);
+              setOpen(false);
+            }
+          );
+        };
+      })
+      .catch((errors: Yup.ValidationError) => {
+        errors.inner.forEach((error) => {
+          dispatch(
+            setGlobalAlert({
+              message: error.message,
+              timeout: 5000,
+              severity: SeverityLevel.ERROR,
+            })
+          );
+        });
+      });
   };
 
   useEffect(() => {
-    if (imageFile) {
-      setImageSrc(URL.createObjectURL(imageFile));
+    if (!image) return;
+    if (image.size > 0) {
+      setImageSrc(URL.createObjectURL(image));
     }
-  }, [imageFile]);
+  }, [image]);
 
   const handleToggleSelectFile = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -67,8 +97,12 @@ const CreatePublisherForm = ({ open, setOpen }: CreatePublisherFormProps) => {
       return;
     }
     const file = event.target.files[0];
-    // Do something with the selected file
-    setImageFile(file);
+    handleInputChange({
+      target: {
+        name: "image",
+        value: file,
+      },
+    });
   };
 
   return (
@@ -134,7 +168,6 @@ const CreatePublisherForm = ({ open, setOpen }: CreatePublisherFormProps) => {
                         onChange={handleInputChange}
                         className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Bonnie"
-                        required
                       />
                     </div>
 
@@ -153,7 +186,6 @@ const CreatePublisherForm = ({ open, setOpen }: CreatePublisherFormProps) => {
                         onChange={handleInputChange}
                         className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Green"
-                        required
                       />
                     </div>
 
@@ -174,21 +206,15 @@ const CreatePublisherForm = ({ open, setOpen }: CreatePublisherFormProps) => {
                         </button>
                       </label>
                       <input
-                        className="hidden"
                         type="file"
                         onChange={handleFileChange}
                         name=""
+                        className="hidden"
                         id="imageFile"
                       />
                     </div>
 
                     <div className="col-span-12 sm:col-span-6">
-                      <label
-                        htmlFor="last-name"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Image
-                      </label>
                       {imageSrc && (
                         <Image
                           src={imageSrc}
