@@ -69,8 +69,9 @@ model Loan {
 
 model Resource {
   id               String             @id @default(cuid())
+  resource_name    String             @default("Unknown")
   isbn             String?            @unique
-  authors          String[]
+  author           String
   pub_year         Int
   edition          String
   instances        ResourceInstance[]
@@ -78,8 +79,7 @@ model Resource {
   ResourceCategory ResourceCategory[]
   type             ResourceType       @relation(fields: [type_id], references: [id])
   publisher        Publisher          @relation(fields: [publisher_id], references: [id])
-  publisher_id     String
-  categoryId       Int
+  publisher_id     Int
   type_id          Int
   created_at       DateTime           @default(now())
   updated_at       DateTime           @updatedAt
@@ -98,23 +98,23 @@ model ResourceInstance {
 
 model ResourceType {
   id                 Int            @id @default(autoincrement())
-  resource_type_name               ResourcesTypes @unique @default(TYPE_BOOK)
+  resource_type_name                ResourcesTypes @unique 
   max_loan_days      Int            @default(7)
   max_units_per_loan Int            @default(3)
   Resource           Resource[]
 }
 
 enum ResourcesTypes {
-  TYPE_BOOK
-  TYPE_MAGAZINE
-  TYPE_DVD
-  TYPE_COMICS
-  TYPE_ENCYCLOPEDIA
-  TYPE_DICTIONARY
-  TYPE_ARTICLE
-  TYPE_REPORT
-  TYPE_RESEARCH_PAPER
-  TYPE_EDUCATIONAL
+  BOOK
+  MAGAZINE
+  DVD
+  COMICS
+  ENCYCLOPEDIA
+  DICTIONARY
+  ARTICLE
+  REPORT
+  RESEARCH_PAPER
+  EDUCATIONAL
 }
 
 enum ResourceInstanceStatus {
@@ -128,7 +128,7 @@ enum ResourceInstanceStatus {
 // --------------------------------------------------------------
 
 model Publisher {
-  id         String     @id @default(cuid())
+  id         Int     @id @default(autoincrement())
   publisher_name       String     @unique
   resources  Resource[]
   image_url  String?

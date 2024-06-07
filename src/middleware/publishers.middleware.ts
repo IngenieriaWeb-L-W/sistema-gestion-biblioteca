@@ -80,7 +80,7 @@ export const fetchPublishersMiddleware = (pagination: Pagination) => {
   };
 };
 
-export const removePublisherMiddleware = (id: string) => {
+export const removePublisherMiddleware = (id: number) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(startGlobalLoading({ message: "Deleting publisher..." }));
     const headers = {

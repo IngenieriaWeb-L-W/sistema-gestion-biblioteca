@@ -8,7 +8,7 @@ import { removePublisherMiddleware } from "@/middleware/publishers.middleware";
 
 type PublisherCardProps = {
   publisher: Publisher;
-  onDeleteCallback: (id: string) => void;
+  onDeleteCallback: (id: number) => void;
 };
 
 export const PublisherCard = ({
@@ -56,7 +56,7 @@ export const PublisherCard = ({
           <div className="mt-1 grid grid-cols-12 items-end gap-2 text-white">
             <span className="col-span-8 text-start">{publisher.url}</span>
             <div className="col-span-4 w-full text-end">
-              <h2 className="text-2xl">{publisher.resources.length}</h2>
+              <h2 className="text-2xl">{publisher.resources?.length}</h2>
               <p>Resources</p>
             </div>
           </div>

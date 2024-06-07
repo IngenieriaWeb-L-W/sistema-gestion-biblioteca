@@ -7,8 +7,9 @@ import {
 } from "@/config/redux/reducers/user-interface.reducer";
 import { useAppDispatch } from "@/config/redux/store.config";
 import { useForm } from "@/hooks/use-form";
+import { usePublisher } from "@/hooks/use-publisher";
 import { useResourceCategory } from "@/hooks/use-resource-category";
-import { Resource, ResourceCreate } from "@/interfaces/resource/Resource";
+import { ResourceCreate } from "@/interfaces/resource/Resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 import { createResourceMiddleware } from "@/middleware/resources.middleware";
 import Image from "next/image";
@@ -18,7 +19,6 @@ import * as Yup from "yup";
 export type CreateResourceFormProps = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onSubmitCallback: (resource: Resource) => void;
 };
 
 const initialFormValues: ResourceCreate = {
@@ -27,22 +27,19 @@ const initialFormValues: ResourceCreate = {
   image: null,
   edition: "",
   categories: [],
-  authors: [],
+  author: "",
+  publisher: 1,
   paragraphs: [],
   isbn: "",
-  publicationYear: new Date(),
+  publicationYear: new Date().getFullYear(),
   type: ResourceTypes.BOOK,
 };
 
-const CreateResourceForm = ({
-  open,
-  setOpen,
-  onSubmitCallback,
-}: CreateResourceFormProps) => {
+const CreateResourceForm = ({ open, setOpen }: CreateResourceFormProps) => {
   const dispatch = useAppDispatch();
   const { records: allCategories } = useResourceCategory();
+  const { records: allPublishers } = usePublisher({ page: 0, size: -1 });
   const [imageSrc, setImageSrc] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const { formValues, handleInputChange, handleSelectChange, resetForm } =
     useForm<ResourceCreate>({
       ...initialFormValues,
@@ -60,7 +57,9 @@ const CreateResourceForm = ({
     edition,
     type,
     publicationYear,
+    publisher,
     isbn,
+    author,
   } = formValues;
 
   const toggleShowForm = () => {
@@ -69,7 +68,12 @@ const CreateResourceForm = ({
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    handleInputChange({
+      target: {
+        name: "paragraphs",
+        value: [...synopsisParagraphs.all],
+      },
+    });
     return resourceCreateSchema
       .validate(formValues, { abortEarly: false })
       .then((resource) => {
@@ -81,7 +85,8 @@ const CreateResourceForm = ({
             (resource) => {
               if (!resource) return;
               resetForm({ ...initialFormValues });
-              onSubmitCallback(resource);
+              setSynopsisParagraphs({ all: [], current: "" });
+              setImageSrc("");
               setOpen(false);
             }
           );
@@ -134,17 +139,12 @@ const CreateResourceForm = ({
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
     const categoryId = parseInt(event.target.value);
-    if (selectedCategories.includes(categoryId)) {
-      setSelectedCategories(
-        selectedCategories.filter((id) => id !== categoryId)
-      );
-    } else {
-      setSelectedCategories([...selectedCategories, categoryId]);
-    }
     handleInputChange({
       target: {
         name: "categories",
-        value: selectedCategories,
+        value: formValues.categories.includes(categoryId)
+          ? formValues.categories.filter((id) => id !== categoryId)
+          : [...formValues.categories, categoryId],
       },
     });
   };
@@ -309,7 +309,9 @@ const CreateResourceForm = ({
                               name="categories"
                               value={category.id}
                               onChange={handleToggleCategory}
-                              checked={selectedCategories.includes(category.id)}
+                              checked={formValues.categories.includes(
+                                category.id
+                              )}
                               className="mr-1"
                             />
                             <label htmlFor={category.id.toString()}>
@@ -413,10 +415,52 @@ const CreateResourceForm = ({
                         Publication Year
                       </label>
                       <input
-                        type="date"
+                        type="number"
                         name="publicationYear"
                         id="publicationYear"
-                        value={publicationYear.toISOString().split("T")[0]}
+                        value={publicationYear}
+                        onChange={handleInputChange}
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-12 my-4 gap-6">
+                    <div className="col-span-6 sm:col-span-6">
+                      <label
+                        htmlFor="last-name"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Publisher
+                      </label>
+                      <select
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                        name="publisher"
+                        value={publisher}
+                        onChange={handleSelectChange}
+                      >
+                        {allPublishers
+                          .toSorted((a, b) => a.name.localeCompare(b.name))
+                          .map((publisher) => (
+                            <option key={publisher.id!} value={publisher.id!}>
+                              {publisher.name}
+                            </option>
+                          ))}
+                      </select>
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-6">
+                      <label
+                        htmlFor="last-name"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Author(s) comma separated
+                      </label>
+                      <input
+                        type="text"
+                        name="author"
+                        id="author"
+                        value={author}
                         onChange={handleInputChange}
                         className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       />
@@ -430,9 +474,6 @@ const CreateResourceForm = ({
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
                         Synopsis paragraphs
-                        <p className="text-red-700 text-3xl">
-                          Falta autores y editorial
-                        </p>
                       </label>
                       <textarea
                         name="synopsisParagraph"

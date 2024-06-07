@@ -31,6 +31,7 @@ export interface ResourceCreate {
   type: ResourceTypes;
   paragraphs: string[];
   isbn?: string;
-  authors: string[];
-  publicationYear: Date;
+  author: string;
+  publicationYear: number;
+  publisher: number;
 }

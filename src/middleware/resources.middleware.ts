@@ -169,7 +169,7 @@ export const fetchFavoriteResourcesMiddleware = (type: ResourceTypes) => {
 };
 
 export const createResourceMiddleware = (
-  publisher: ResourceCreate,
+  resource: ResourceCreate,
   imageUrl: string
 ) => {
   return async (dispatch: Dispatch<Action>) => {
@@ -179,20 +179,34 @@ export const createResourceMiddleware = (
       "Content-Type": "multipart/form-data",
     };
     const formData = new FormData();
-    formData.append("name", publisher.name);
-    formData.append("shortDescription", publisher.shortDescription);
-    formData.append("edition", publisher.edition);
-    formData.append("categories", JSON.stringify(publisher.categories));
-    formData.append("type", publisher.type);
+    formData.append("name", resource.name);
+    formData.append("shortDescription", resource.shortDescription);
+    formData.append("edition", resource.edition);
+    formData.append("categories", JSON.stringify(resource.categories));
+    formData.append("publisher", resource.publisher.toString());
+    formData.append("type", resource.type);
+    formData.append("paragraphs", JSON.stringify(resource.paragraphs));
+    formData.append("isbn", resource.isbn || "");
+    formData.append("author", resource.author);
+    formData.append("publicationYear", resource.publicationYear.toString());
     formData.append("imageUrl", imageUrl);
 
     return axios
-      .post<Resource>(
+      .post<{ message: string }>(
         `${location.protocol}//${location.host}/api/resources`,
         formData,
         { headers }
       )
       .then(({ data }) => data)
+      .then(({ message }) => {
+        dispatch(
+          setGlobalAlert({
+            message,
+            timeout: 5000,
+            severity: SeverityLevel.SUCCESS,
+          })
+        );
+      })
       .catch((/* error */) => {
         dispatch(
           setGlobalAlert({

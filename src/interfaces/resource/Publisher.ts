@@ -1,7 +1,7 @@
 import { Resource } from "./Resource";
 
 export interface Publisher {
-  id?: string;
+  id?: number;
   imageUrl: string;
   name: string;
   url: string;

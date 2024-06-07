@@ -153,12 +153,12 @@ exports.Prisma.LoanScalarFieldEnum = {
 
 exports.Prisma.ResourceScalarFieldEnum = {
   id: 'id',
+  resource_name: 'resource_name',
   isbn: 'isbn',
-  authors: 'authors',
+  author: 'author',
   pub_year: 'pub_year',
   edition: 'edition',
   publisher_id: 'publisher_id',
-  categoryId: 'categoryId',
   type_id: 'type_id',
   created_at: 'created_at',
   updated_at: 'updated_at'
@@ -238,16 +238,16 @@ exports.ResourceInstanceStatus = exports.$Enums.ResourceInstanceStatus = {
 };
 
 exports.ResourcesTypes = exports.$Enums.ResourcesTypes = {
-  TYPE_BOOK: 'TYPE_BOOK',
-  TYPE_MAGAZINE: 'TYPE_MAGAZINE',
-  TYPE_DVD: 'TYPE_DVD',
-  TYPE_COMICS: 'TYPE_COMICS',
-  TYPE_ENCYCLOPEDIA: 'TYPE_ENCYCLOPEDIA',
-  TYPE_DICTIONARY: 'TYPE_DICTIONARY',
-  TYPE_ARTICLE: 'TYPE_ARTICLE',
-  TYPE_REPORT: 'TYPE_REPORT',
-  TYPE_RESEARCH_PAPER: 'TYPE_RESEARCH_PAPER',
-  TYPE_EDUCATIONAL: 'TYPE_EDUCATIONAL'
+  BOOK: 'BOOK',
+  MAGAZINE: 'MAGAZINE',
+  DVD: 'DVD',
+  COMICS: 'COMICS',
+  ENCYCLOPEDIA: 'ENCYCLOPEDIA',
+  DICTIONARY: 'DICTIONARY',
+  ARTICLE: 'ARTICLE',
+  REPORT: 'REPORT',
+  RESEARCH_PAPER: 'RESEARCH_PAPER',
+  EDUCATIONAL: 'EDUCATIONAL'
 };
 
 exports.Prisma.ModelName = {

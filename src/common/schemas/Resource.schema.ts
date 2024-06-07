@@ -3,7 +3,7 @@ import * as Yup from "yup";
 
 const resourceCreateSchema = Yup.object().shape({
   name: Yup.string().required().min(3).max(50),
-  shortDescription: Yup.string().required().min(3).max(300),
+  shortDescription: Yup.string().required().min(3).max(500),
   image: Yup.mixed<File>()
     .required()
     .test("filePresence", "No file uploaded", (value) => {
@@ -32,10 +32,14 @@ const resourceCreateSchema = Yup.object().shape({
   edition: Yup.string().required().min(1).max(50),
   categories: Yup.array().required().min(1).of(Yup.number().required()),
   type: Yup.string().required().oneOf(Object.values(ResourceTypes)),
-  paragraphs: Yup.array().required().min(1).of(Yup.string().required().min(3)),
+  paragraphs: Yup.array().required().of(Yup.string().required().default("")),
   isbn: Yup.string().optional().min(10).max(13),
-  authors: Yup.array().required().min(1).of(Yup.string().required().min(3)),
-  publicationYear: Yup.date().required(),
+  publisher: Yup.number().required(),
+  author: Yup.string().required().min(3).max(100),
+  publicationYear: Yup.number()
+    .required()
+    .min(1000)
+    .max(new Date().getFullYear()),
 });
 
 export default resourceCreateSchema;
