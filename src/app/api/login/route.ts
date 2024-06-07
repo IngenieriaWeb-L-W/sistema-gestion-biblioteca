@@ -115,6 +115,7 @@ const createUser = async (tokenInfo: GoogleTokenPayload) => {
       },
     },
   });
+
   return userCreated.id;
 };
 

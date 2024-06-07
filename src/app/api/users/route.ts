@@ -33,6 +33,7 @@ const getUsersByFilter = async (usersFilter: UsersFilter) => {
       },
     },
   });
+
   return Promise.all(
     usersByFilter.map((userDB) => {
       return prisma.role

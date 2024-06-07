@@ -9,19 +9,9 @@ import { useTransaction } from "@/hooks/use-loan-transaction";
 import { TransactionType } from "@/interfaces/loan/Transaction";
 
 import { v4 as uuidV4 } from "uuid";
+import { formatDate } from "@/common/utils/date-transformers";
 
 const TransactionsPage = () => {
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-    }).format(date);
-  };
-
   const { records: transactions } = useTransaction();
   return (
     <React.Fragment>

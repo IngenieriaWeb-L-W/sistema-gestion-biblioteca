@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { RootState } from "../store.config";
-import { ResourceCategory } from "@/interfaces/resource/Category";
+import { Category } from "@/interfaces/resource/Category";
 
 export interface ResourceCategoryFilters {
   search?: string;
@@ -13,7 +13,7 @@ export interface Pagination {
 }
 
 export interface ResourceCategoriesState {
-  records: ResourceCategory[];
+  records: Category[];
   total: number;
   filters: ResourceCategoryFilters;
   pagination: Pagination;
@@ -60,24 +60,21 @@ export const resourcesCategoriesSlice = createSlice({
     },
     setResourceCategories: (
       state,
-      action: PayloadAction<{ records: ResourceCategory[]; total: number }>
+      action: PayloadAction<{ records: Category[]; total: number }>
     ) => {
       state.records = action.payload.records;
       state.total = action.payload.total;
     },
-    addResourceCategory: (state, action: PayloadAction<ResourceCategory>) => {
+    addResourceCategory: (state, action: PayloadAction<Category>) => {
       state.records.push(action.payload);
       state.total = state.total + 1;
     },
-    updateResourceCategory: (
-      state,
-      action: PayloadAction<ResourceCategory>
-    ) => {
+    updateResourceCategory: (state, action: PayloadAction<Category>) => {
       state.records = state.records.map((category) =>
         category.id === action.payload.id ? action.payload : category
       );
     },
-    removeResourceCategory: (state, action: PayloadAction<string>) => {
+    removeResourceCategory: (state, action: PayloadAction<number>) => {
       state.records = state.records.filter(
         (category) => category.id !== action.payload
       );

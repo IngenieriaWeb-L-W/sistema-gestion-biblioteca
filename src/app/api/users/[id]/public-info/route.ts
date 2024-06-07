@@ -12,6 +12,7 @@ const GET = async (
       id: params.id,
     },
   });
+
   if (!userDB) return NextResponse.error();
 
   return NextResponse.json({

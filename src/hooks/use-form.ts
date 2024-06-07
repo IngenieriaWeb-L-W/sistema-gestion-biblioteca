@@ -46,13 +46,6 @@ export const useForm = <T>(initialState: T): FormValue<T> => {
     });
   };
 
-  const handleCheckedChange = (event: SimpleCheckboxChangeEvent) => {
-    setFormValues({
-      ...formValues,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
   const resetForm = (state: T) => {
     setFormValues(state);
   };
@@ -61,7 +54,6 @@ export const useForm = <T>(initialState: T): FormValue<T> => {
     formValues,
     handleInputChange,
     handleSelectChange,
-    handleCheckedChange,
     resetForm,
   };
 };

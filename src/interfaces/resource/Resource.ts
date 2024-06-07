@@ -1,4 +1,4 @@
-import { ResourceCategory } from "./Category";
+import { Category } from "./Category";
 import { ResourceDetail } from "./Detail";
 import { ResourceTypes } from "./Type";
 
@@ -8,7 +8,7 @@ export interface Resource {
   shortDescription: string;
   imageUrl: string;
   edition: string;
-  categories: ResourceCategory[];
+  categories: Category[];
   detail?: ResourceDetail;
   type: ResourceTypes;
   createdAt: Date;
@@ -20,4 +20,13 @@ export interface ResourcePreview {
   name: string;
   type: ResourceTypes;
   imageUrl: string;
+}
+
+export interface ResourceCreate {
+  name: string;
+  shortDescription: string;
+  image: File | null;
+  edition: string;
+  categories: number[];
+  type: ResourceTypes;
 }

@@ -1,15 +1,18 @@
-import { Fragment } from "react";
+"use strict";
+
+import { useState } from "react";
+import CreateCategoryForm from "../form/CreateCategoryForm";
+import CategoriesTable from "../tables/CategoriesTable";
 
 const CategoriesManagement = () => {
+  const [showCreateForm, setShowCreateForm] = useState(false);
+
   return (
-    <Fragment>
-      <h1>CategoriesManagement</h1>
-      <h1>CategoriesManagement</h1>
-      <h1>CategoriesManagement</h1>
-      <h1>CategoriesManagement</h1>
-      <h1>CategoriesManagement</h1>
-      <h1>CategoriesManagement</h1>
-    </Fragment>
+    <section>
+      <CreateCategoryForm open={showCreateForm} setOpen={setShowCreateForm} />
+
+      <CategoriesTable />
+    </section>
   );
 };
 

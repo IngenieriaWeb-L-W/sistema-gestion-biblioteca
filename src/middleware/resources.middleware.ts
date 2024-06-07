@@ -9,7 +9,6 @@ import {
   Pagination,
   addResource,
   setResourceDetail,
-  setResources,
 } from "@/config/redux/reducers/resources.reducer";
 import {
   SeverityLevel,
@@ -17,10 +16,9 @@ import {
   setGlobalAlert,
   startGlobalLoading,
 } from "@/config/redux/reducers/user-interface.reducer";
-import { booksData } from "@/data/books/book-list";
-import { ResourceCategory } from "@/interfaces/resource/Category";
+import { Category } from "@/interfaces/resource/Category";
 import { ResourceDetail } from "@/interfaces/resource/Detail";
-import { Resource } from "@/interfaces/resource/Resource";
+import { Resource, ResourceCreate } from "@/interfaces/resource/Resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 
 export interface ResourcesResponse {
@@ -30,37 +28,37 @@ export interface ResourcesResponse {
 
 // filters: ResourceFilters,
 // pagination: Pagination
-export const fetchResourcesMiddleware = () => {
-  return async (dispatch: Dispatch<Action>) => {
-    // return (
-    //   axios
-    //     // TODO: Usar variable de entorno
-    //     .get<ResourcesResponse>(`${location.protocol}//${location.host}/api`, {
-    //       params: {
-    //         ...filters,
-    //         ...pagination,
-    //       },
-    //     })
-    //     .then(({ data }) => data)
-    dispatch(startGlobalLoading({ message: "Fetching resources..." }));
-    return Promise.resolve({ records: booksData, total: booksData.length })
-      .then(({ records, total }) => {
-        dispatch(setResources({ records, total }));
-      })
-      .catch((/* error */) => {
-        dispatch(
-          setGlobalAlert({
-            message: "Resources could not be fetched ⛔",
-            timeout: 5000,
-            severity: SeverityLevel.ERROR,
-          })
-        );
-      })
-      .finally(() => {
-        dispatch(finishGlobalLoading());
-      });
-  };
-};
+// export const fetchResourcesMiddleware = () => {
+//   return async (dispatch: Dispatch<Action>) => {
+//     // return (
+//     //   axios
+//     //     // TODO: Usar variable de entorno
+//     //     .get<ResourcesResponse>(`${location.protocol}//${location.host}/api`, {
+//     //       params: {
+//     //         ...filters,
+//     //         ...pagination,
+//     //       },
+//     //     })
+//     //     .then(({ data }) => data)
+//     dispatch(startGlobalLoading({ message: "Fetching resources..." }));
+//     return Promise.resolve({ records: booksData, total: booksData.length })
+//       .then(({ records, total }) => {
+//         dispatch(setResources({ records, total }));
+//       })
+//       .catch((/* error */) => {
+//         dispatch(
+//           setGlobalAlert({
+//             message: "Resources could not be fetched ⛔",
+//             timeout: 5000,
+//             severity: SeverityLevel.ERROR,
+//           })
+//         );
+//       })
+//       .finally(() => {
+//         dispatch(finishGlobalLoading());
+//       });
+//   };
+// };
 
 export const fetchFullResourceMiddleware = (id: string) => {
   return async (dispatch: Dispatch<Action>) => {
@@ -125,8 +123,8 @@ export const fetchResourceCategoriesMiddleware = (
       startGlobalLoading({ message: "Fetching resource categories..." })
     );
     return axios
-      .get<{ total: number; records: ResourceCategory[] }>(
-        `${location.protocol}//${location.host}/api/resources/categories`,
+      .get<{ total: number; records: Category[] }>(
+        `${location.protocol}//${location.host}/api/categories`,
         {
           params: { ...filters, ...pagination },
         }
@@ -166,6 +164,105 @@ export const fetchFavoriteResourcesMiddleware = (type: ResourceTypes) => {
           })
         );
         return [] as Resource[];
+      });
+  };
+};
+
+export const createResourceMiddleware = (
+  publisher: ResourceCreate,
+  imageUrl: string
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch(startGlobalLoading({ message: "Creating Resource..." }));
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "multipart/form-data",
+    };
+    const formData = new FormData();
+    formData.append("name", publisher.name);
+    formData.append("shortDescription", publisher.shortDescription);
+    formData.append("edition", publisher.edition);
+    formData.append("categories", JSON.stringify(publisher.categories));
+    formData.append("type", publisher.type);
+    formData.append("imageUrl", imageUrl);
+
+    return axios
+      .post<Resource>(
+        `${location.protocol}//${location.host}/api/resources`,
+        formData,
+        { headers }
+      )
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Resource could not be created. ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return null;
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const fetchResourcesMiddleware = (pagination: Pagination) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch(startGlobalLoading({ message: "Fetching resources..." }));
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+
+    return axios
+      .get<{ records: Resource[]; total: number }>(
+        `${location.protocol}//${location.host}/api/resources`,
+        { headers, params: pagination }
+      )
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Publishers could not be fetched. ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return null;
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const removeResourceMiddleware = (id: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch(startGlobalLoading({ message: "Deleting resource..." }));
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+
+    return axios
+      .delete<void>(
+        `${location.protocol}//${location.host}/api/resources/${id}`,
+        { headers }
+      )
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Resource could not be deleted. ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return null;
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
       });
   };
 };
