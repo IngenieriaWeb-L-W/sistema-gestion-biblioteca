@@ -32,6 +32,10 @@ const resourceCreateSchema = Yup.object().shape({
   edition: Yup.string().required().min(1).max(50),
   categories: Yup.array().required().min(1).of(Yup.number().required()),
   type: Yup.string().required().oneOf(Object.values(ResourceTypes)),
+  paragraphs: Yup.array().required().min(1).of(Yup.string().required().min(3)),
+  isbn: Yup.string().optional().min(10).max(13),
+  authors: Yup.array().required().min(1).of(Yup.string().required().min(3)),
+  publicationYear: Yup.date().required(),
 });
 
 export default resourceCreateSchema;

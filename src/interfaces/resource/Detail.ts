@@ -6,6 +6,5 @@ export interface ResourceDetail {
   paragraphs: string[];
   authors: string[];
   publicationYear: number;
-  edition: string;
   testimonials: LoanTestimonial[];
 }

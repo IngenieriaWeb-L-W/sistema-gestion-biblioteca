@@ -27,6 +27,10 @@ const initialFormValues: ResourceCreate = {
   image: null,
   edition: "",
   categories: [],
+  authors: [],
+  paragraphs: [],
+  isbn: "",
+  publicationYear: new Date(),
   type: ResourceTypes.BOOK,
 };
 
@@ -44,7 +48,20 @@ const CreateResourceForm = ({
       ...initialFormValues,
     });
 
-  const { name, shortDescription, image, edition, type } = formValues;
+  const [synopsisParagraphs, setSynopsisParagraphs] = useState<{
+    current: string;
+    all: string[];
+  }>({ all: [], current: "" });
+
+  const {
+    name,
+    shortDescription,
+    image,
+    edition,
+    type,
+    publicationYear,
+    isbn,
+  } = formValues;
 
   const toggleShowForm = () => {
     setOpen(!open);
@@ -129,6 +146,41 @@ const CreateResourceForm = ({
         name: "categories",
         value: selectedCategories,
       },
+    });
+  };
+
+  const handleParagraphKeyUp = (
+    event: React.KeyboardEvent<HTMLTextAreaElement>
+  ): void => {
+    dispatch(
+      setGlobalAlert({
+        message: event.key,
+        severity: SeverityLevel.INFO,
+        timeout: 5000,
+      })
+    );
+    if (event.key !== "Enter") return;
+
+    const paragraph = event.currentTarget.value;
+    setSynopsisParagraphs({
+      all: [...synopsisParagraphs.all, paragraph],
+      current: "",
+    });
+  };
+
+  const handleParagraphChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
+    setSynopsisParagraphs({
+      ...synopsisParagraphs,
+      current: event.target.value.trim(),
+    });
+  };
+
+  const handleDeleteParagraph = (index: number): void => {
+    setSynopsisParagraphs({
+      all: synopsisParagraphs.all.filter((_, i) => i !== index),
+      current: synopsisParagraphs.current,
     });
   };
 
@@ -248,7 +300,7 @@ const CreateResourceForm = ({
                       >
                         Categories
                       </label>
-                      <section className="max-h-72">
+                      <section className="max-h-32 flex flex-row justify-between flex-wrap overflow-y-auto">
                         {allCategories.map((category) => (
                           <div key={category.id} className="flex items-center">
                             <input
@@ -258,7 +310,7 @@ const CreateResourceForm = ({
                               value={category.id}
                               onChange={handleToggleCategory}
                               checked={selectedCategories.includes(category.id)}
-                              className="mr-2"
+                              className="mr-1"
                             />
                             <label htmlFor={category.id.toString()}>
                               {category.name}
@@ -311,8 +363,7 @@ const CreateResourceForm = ({
                             height={20}
                             alt="Upload image"
                           />
-                          {imageSrc ? "Change Image" : "Upload Image"} 500 x 800
-                          px
+                          {imageSrc ? "Change Image" : "Upload Image"} 500x800px
                         </button>
                       </label>
                       <input
@@ -334,6 +385,83 @@ const CreateResourceForm = ({
                         />
                       )}
                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-12 my-4 gap-6">
+                    <div className="col-span-6 sm:col-span-6">
+                      <label
+                        htmlFor="first-name"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        ISBN
+                      </label>
+                      <input
+                        type="text"
+                        name="isbn"
+                        id="isbn"
+                        value={isbn}
+                        onChange={handleInputChange}
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-6">
+                      <label
+                        htmlFor="last-name"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Publication Year
+                      </label>
+                      <input
+                        type="date"
+                        name="publicationYear"
+                        id="publicationYear"
+                        value={publicationYear.toISOString().split("T")[0]}
+                        onChange={handleInputChange}
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-12 my-4 gap-6">
+                    <div className="col-span-12 ">
+                      <label
+                        htmlFor="last-name"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Synopsis paragraphs
+                        <p className="text-red-700 text-3xl">
+                          Falta autores y editorial
+                        </p>
+                      </label>
+                      <textarea
+                        name="synopsisParagraph"
+                        id="synopsisParagraph"
+                        value={synopsisParagraphs.current}
+                        onChange={handleParagraphChange}
+                        onKeyUp={handleParagraphKeyUp}
+                        className="shadow-sm resize-y max-h-52 min-h-20 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      ></textarea>
+                    </div>
+
+                    {synopsisParagraphs.all.map((paragraph, index) => (
+                      <div key={index} className="col-span-12 mb-3">
+                        <p className="text-justify">
+                          {paragraph.trim().length > 0
+                            ? paragraph
+                            : "(Line break)"}
+                        </p>
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteParagraph(index)}
+                            className="bg-red-500 px-3 py-2 rounded-md"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
                   <div className="items-center flex justify-center space-x-3 py-5 border-gray-200 rounded-b dark:border-gray-700">

@@ -29,4 +29,8 @@ export interface ResourceCreate {
   edition: string;
   categories: number[];
   type: ResourceTypes;
+  paragraphs: string[];
+  isbn?: string;
+  authors: string[];
+  publicationYear: Date;
 }
