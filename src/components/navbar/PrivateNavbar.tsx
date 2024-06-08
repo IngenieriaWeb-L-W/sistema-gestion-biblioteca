@@ -11,14 +11,11 @@ import {
   changeActiveRole,
   selectAuthentication,
 } from "@/config/redux/reducers/authentication.reducer";
+import { selectLoansCart } from "@/config/redux/reducers/loans-cart.reducer";
 import { useAppDispatch } from "@/config/redux/store.config";
 import navbarItems, { NavbarLayout } from "@/data/navbar/navbar-items";
 import { useAuth } from "@/hooks/use-auth";
 import UserRole from "@/interfaces/user/Role";
-import {
-  openCart,
-  selectLoansCart,
-} from "@/config/redux/reducers/loans-cart.reducer";
 
 export const PrivateNavbar = () => {
   const { logout } = useAuth();
@@ -48,13 +45,6 @@ export const PrivateNavbar = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ): void => {
     dispatch(changeActiveRole(event.target.value as UserRole));
-  };
-
-  const handleOpenLoansCart = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void => {
-    event.preventDefault();
-    dispatch(openCart());
   };
 
   return (
@@ -124,8 +114,8 @@ export const PrivateNavbar = () => {
               <div className="flex items-center ml-3">
                 <div className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                   {activeRole === UserRole.ROLE_USER && (
-                    <button
-                      onClick={handleOpenLoansCart}
+                    <Link
+                      href="/dashboard/cart"
                       className="bg-gray-700 relative rounded-sm mr-5 flex justify-center items-center"
                     >
                       <Image
@@ -141,7 +131,7 @@ export const PrivateNavbar = () => {
                       >
                         {records.length}
                       </span>
-                    </button>
+                    </Link>
                   )}
                   {email && (
                     <Fragment>

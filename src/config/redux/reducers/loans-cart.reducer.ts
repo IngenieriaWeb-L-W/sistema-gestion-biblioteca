@@ -5,12 +5,12 @@ import { RootState } from "../store.config";
 
 export interface LoansCartState {
   records: Resource[];
-  open: boolean;
+  // open: boolean; // Por si se llega a usar un modal
 }
 
 const initialState: LoansCartState = {
   records: [],
-  open: false,
+  // open: false,
 };
 
 // Freeze the initial state to prevent accidental changes
@@ -23,12 +23,12 @@ export const loansCartSlice = createSlice({
     addResource: (state, action: PayloadAction<Resource>) => {
       state.records.push(action.payload);
     },
-    openCart: (state) => {
-      state.open = true;
-    },
-    closeCart: (state) => {
-      state.open = false;
-    },
+    // openCart: (state) => {
+    //   state.open = true;
+    // },
+    // closeCart: (state) => {
+    //   state.open = false;
+    // },
     removeResource: (state, action: PayloadAction<string>) => {
       state.records = state.records.filter(
         (resource) => resource.id !== action.payload
@@ -39,7 +39,7 @@ export const loansCartSlice = createSlice({
 
 export const selectLoansCart = (state: RootState) => state.loansCart;
 
-export const { addResource, removeResource, openCart, closeCart } =
+export const { addResource, removeResource /* openCart, closeCart */ } =
   loansCartSlice.actions;
 
 export const { reducer: loansCartReducer } = loansCartSlice;
