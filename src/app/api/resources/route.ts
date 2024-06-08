@@ -1,8 +1,11 @@
+/* eslint-disable indent */
 import cloudinary from "@/config/cloudinary/cloudinary.config";
-import prisma from "@/config/prisma/prisma.config";
+import DBClient from "@/config/prisma/prisma.config";
 import { ResourceTypes } from "@/interfaces/resource/Type";
+import { ResourceType, ResourcesTypes } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { ResourcesTypes } from "../../../../prisma/generated/client";
+
+const { prisma } = DBClient.getInstance();
 
 interface Data {
   name: string;
@@ -67,18 +70,26 @@ const getFilteredResources = (filters: Filters) => {
   return prisma.resource
     .findMany({
       where: {
-        resource_name: filters.search,
-
-        categories: {
-          some: {
-            id: {
-              in: filters.categories,
-            },
-          },
-        },
-        type: {
-          resource_type_name: filters.type as ResourcesTypes,
-        },
+        resource_name: filters.search
+          ? {
+              contains: filters.search,
+            }
+          : undefined,
+        categories:
+          filters.categories.length > 0
+            ? {
+                some: {
+                  id: {
+                    in: filters.categories,
+                  },
+                },
+              }
+            : undefined,
+        type: filters.type
+          ? {
+              resource_type_name: filters.type as ResourcesTypes,
+            }
+          : undefined,
       },
       include: {
         categories: true,
@@ -109,19 +120,26 @@ const countFilteredResources = (filters: Filters) => {
   return prisma.resource
     .count({
       where: {
-        resource_name: {
-          contains: filters.search,
-        },
-        categories: {
-          some: {
-            id: {
-              in: filters.categories,
-            },
-          },
-        },
-        type: {
-          resource_type_name: filters.type as ResourcesTypes,
-        },
+        resource_name: filters.search
+          ? {
+              contains: filters.search,
+            }
+          : undefined,
+        categories:
+          filters.categories.length > 0
+            ? {
+                some: {
+                  id: {
+                    in: filters.categories,
+                  },
+                },
+              }
+            : undefined,
+        type: filters.type
+          ? {
+              resource_type_name: filters.type as ResourcesTypes,
+            }
+          : undefined,
       },
     })
     .then((count) => count);

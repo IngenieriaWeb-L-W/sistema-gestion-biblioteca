@@ -1,15 +1,18 @@
 "use client";
 
 import { formatDate } from "@/common/utils/date-transformers";
-import { useResource } from "@/hooks/use-resource";
-import Image from "next/image";
+import useResourceInstances from "@/hooks/use-resource-instances";
+import { ResourceInstance } from "@/interfaces/resource/Instance";
 import React, { Fragment, useState } from "react";
 import TableResourcesFilter from "../filters/resources/TableResourcesFilter";
-import { Resource } from "@/interfaces/resource/Resource";
 import ResourceManagementTabs from "../tabs/ResourceManagementTabs";
 
-const ResourcesTable = () => {
-  const { records: resources } = useResource();
+type ResourceInstancesTableProps = {
+  id: string;
+};
+
+const ResourceInstancesTable = ({ id }: ResourceInstancesTableProps) => {
+  const { records: instances } = useResourceInstances({ id });
   return (
     <React.Fragment>
       <TableResourcesFilter />
@@ -25,26 +28,21 @@ const ResourcesTable = () => {
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                     >
-                      Image & Name
+                      Name
                     </th>
                     <th
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                     >
-                      Type
+                      Lang
                     </th>
                     <th
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                     >
-                      Edition
+                      status
                     </th>
-                    <th
-                      scope="col"
-                      className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
-                    >
-                      Categories
-                    </th>
+
                     <th
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
@@ -67,8 +65,8 @@ const ResourcesTable = () => {
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                  {resources.map((resource) => (
-                    <ResourceRow key={resource.id} {...resource} />
+                  {instances.map((instance) => (
+                    <ResourceInstanceRow key={instance.id} {...instance} />
                   ))}
                 </tbody>
               </table>
@@ -80,7 +78,7 @@ const ResourcesTable = () => {
   );
 };
 
-const ResourceRow = (resource: Resource) => {
+const ResourceInstanceRow = (instance: ResourceInstance) => {
   const [showEditPanel, setShowEditPanel] = useState(false);
 
   const handleToggleEdit = (
@@ -92,50 +90,27 @@ const ResourceRow = (resource: Resource) => {
 
   return (
     <Fragment>
-      <tr
-        key={resource.id}
-        className="hover:bg-gray-100 dark:hover:bg-gray-700"
-      >
-        <td className="flex items-center p-2 mr-12 space-x-6 whitespace-nowrap">
-          <Image
-            width={500}
-            height={800}
-            className="w-32 h-52"
-            src={
-              resource.imageUrl || "/images/default/default-resource-img.png"
-            }
-            alt={"User avatar"}
-          />
-          <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-            <div className="text-base font-semibold text-gray-900 dark:text-white">
-              {resource.name}
-            </div>
-          </div>
-        </td>
+      <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
         <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-          {resource.type}
+          {instance.name}
         </td>
+
         <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          {resource.edition}
+          {instance.lang}
         </td>
-        <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          <div className="mt-4 flex flex-wrap gap-2">
-            {resource.categories.map((category) => (
-              <span
-                key={category.id}
-                className="py-1.5 px-2 bg-white text-gray-600 border border-gray-200 sm:text-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400"
-              >
-                {category.name}
-              </span>
-            ))}
-          </div>
+
+        <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+          {instance.status}
         </td>
+
         <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
-          {formatDate(resource.createdAt, false)}
+          {formatDate(instance.createdAt, false)}
         </td>
+
         <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
-          {formatDate(resource.createdAt, false)}
+          {formatDate(instance.updatedAt, false)}
         </td>
+
         <td className="p-4 space-x-2 whitespace-nowrap">
           <button
             type="button"
@@ -152,10 +127,11 @@ const ResourceRow = (resource: Resource) => {
           </button>
         </td>
       </tr>
+
       {showEditPanel && (
         <tr>
           <td colSpan={7}>
-            <ResourceManagementTabs id={resource.id} />
+            <ResourceManagementTabs id={instance.id} />
           </td>
         </tr>
       )}
@@ -163,4 +139,4 @@ const ResourceRow = (resource: Resource) => {
   );
 };
 
-export default ResourcesTable;
+export default ResourceInstancesTable;

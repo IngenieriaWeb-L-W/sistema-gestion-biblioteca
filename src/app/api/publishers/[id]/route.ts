@@ -1,5 +1,7 @@
-import prisma from "@/config/prisma/prisma.config";
+import DBClient from "@/config/prisma/prisma.config";
 import { NextRequest, NextResponse } from "next/server";
+
+const { prisma } = DBClient.getInstance();
 
 const DELETE = async (
   req: NextRequest,

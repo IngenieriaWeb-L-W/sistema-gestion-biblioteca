@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import prisma from "@/config/prisma/prisma.config";
+import DBClient from "@/config/prisma/prisma.config";
 import { Election, UsersFilter } from "@/hooks/use-users-table";
 import UserRole from "@/interfaces/user/Role";
 // import { PrismaClient } from "../../../../../../prisma/generated/client";
+
+const { prisma } = DBClient.getInstance();
 
 const GET = async (req: NextRequest) => {
   // todo: Usar el query para filtrar los usuarios

@@ -3,10 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { OAuth2Client } from "google-auth-library";
 import { sign } from "jsonwebtoken";
 
-import prisma from "@/config/prisma/prisma.config";
+import DBClient from "@/config/prisma/prisma.config";
 import { GoogleTokenPayload } from "@/interfaces/auth/GoogleTokenPayload";
 import UserRole from "@/interfaces/user/Role";
 import { User } from "@/interfaces/user/User";
+
+const { prisma } = DBClient.getInstance();
 
 const oauth2 = new OAuth2Client();
 

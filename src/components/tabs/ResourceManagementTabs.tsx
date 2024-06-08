@@ -4,6 +4,7 @@ import { Fragment, useState } from "react";
 import AllUsersStatistics from "../content/AllUsersStatistics";
 import ResourceStatistics from "../content/ResourceStatistics";
 import CreateResourceForm from "../form/CreateResourceForm";
+import ResourceInstancesTable from "../tables/ResourceInstancesTable";
 
 enum ResourceManagementTab {
   DETAILS = "DETAILS",
@@ -67,7 +68,7 @@ const ResourceManagementTabs = ({ id }: ResourceManagementTabsProps) => {
           )}
           {activeTab === ResourceManagementTab.ITEMS && (
             <Fragment>
-              <AllUsersStatistics />
+              <ResourceInstancesTable id={id} />
             </Fragment>
           )}
           {activeTab === ResourceManagementTab.STATS && (

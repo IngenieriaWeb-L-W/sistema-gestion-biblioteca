@@ -111,13 +111,13 @@ model ResourceInstance {
 
 model ResourceType {
   id                 Int            @id @default(autoincrement())
-  resource_type_name ResourcesTypes @unique @default(BOOK)
+  resource_type_name ResourceTypes  @unique @default(BOOK)
   max_loan_days      Int            @default(7)
   max_units_per_loan Int            @default(3)
   Resource           Resource[]
 }
 
-enum ResourcesTypes {
+enum ResourceTypes {
   BOOK
   MAGAZINE
   DVD
