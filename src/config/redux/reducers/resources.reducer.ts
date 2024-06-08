@@ -7,13 +7,13 @@ import { RootState } from "../store.config";
 
 export interface ResourceFilters {
   search?: string;
-  categoryId?: number;
+  categories?: number[];
   type?: ResourceTypes;
 }
 
 export interface Pagination {
   page: number;
-  limit: number;
+  size: number;
 }
 
 export interface ResourceState {
@@ -34,7 +34,7 @@ const initialState: ResourceState = {
   },
   pagination: {
     page: 1,
-    limit: 25,
+    size: 25,
   },
 };
 

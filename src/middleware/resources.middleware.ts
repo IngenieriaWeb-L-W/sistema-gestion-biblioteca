@@ -7,6 +7,7 @@ import {
 } from "@/config/redux/reducers/resource-categories.reducer";
 import {
   Pagination,
+  ResourceFilters,
   addResource,
   setResourceDetail,
 } from "@/config/redux/reducers/resources.reducer";
@@ -223,7 +224,10 @@ export const createResourceMiddleware = (
   };
 };
 
-export const fetchResourcesMiddleware = (pagination: Pagination) => {
+export const fetchResourcesMiddleware = (
+  resourceFilter: ResourceFilters,
+  pagination: Pagination
+) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(startGlobalLoading({ message: "Fetching resources..." }));
     const headers = {
@@ -231,9 +235,9 @@ export const fetchResourcesMiddleware = (pagination: Pagination) => {
     };
 
     return axios
-      .get<{ records: Resource[]; total: number }>(
+      .get<ResourcesResponse>(
         `${location.protocol}//${location.host}/api/resources`,
-        { headers, params: pagination }
+        { headers, params: { ...resourceFilter, ...pagination } }
       )
       .then(({ data }) => data)
       .catch((/* error */) => {

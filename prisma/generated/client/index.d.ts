@@ -5980,6 +5980,8 @@ export namespace Prisma {
     resource_name: string | null
     isbn: string | null
     author: string | null
+    image_url: string | null
+    short_description: string | null
     pub_year: number | null
     edition: string | null
     publisher_id: number | null
@@ -5993,6 +5995,8 @@ export namespace Prisma {
     resource_name: string | null
     isbn: string | null
     author: string | null
+    image_url: string | null
+    short_description: string | null
     pub_year: number | null
     edition: string | null
     publisher_id: number | null
@@ -6006,6 +6010,8 @@ export namespace Prisma {
     resource_name: number
     isbn: number
     author: number
+    image_url: number
+    short_description: number
     pub_year: number
     edition: number
     publisher_id: number
@@ -6033,6 +6039,8 @@ export namespace Prisma {
     resource_name?: true
     isbn?: true
     author?: true
+    image_url?: true
+    short_description?: true
     pub_year?: true
     edition?: true
     publisher_id?: true
@@ -6046,6 +6054,8 @@ export namespace Prisma {
     resource_name?: true
     isbn?: true
     author?: true
+    image_url?: true
+    short_description?: true
     pub_year?: true
     edition?: true
     publisher_id?: true
@@ -6059,6 +6069,8 @@ export namespace Prisma {
     resource_name?: true
     isbn?: true
     author?: true
+    image_url?: true
+    short_description?: true
     pub_year?: true
     edition?: true
     publisher_id?: true
@@ -6159,6 +6171,8 @@ export namespace Prisma {
     resource_name: string
     isbn: string | null
     author: string
+    image_url: string | null
+    short_description: string | null
     pub_year: number
     edition: string
     publisher_id: number
@@ -6191,6 +6205,8 @@ export namespace Prisma {
     resource_name?: boolean
     isbn?: boolean
     author?: boolean
+    image_url?: boolean
+    short_description?: boolean
     pub_year?: boolean
     edition?: boolean
     publisher_id?: boolean
@@ -6210,6 +6226,8 @@ export namespace Prisma {
     resource_name?: boolean
     isbn?: boolean
     author?: boolean
+    image_url?: boolean
+    short_description?: boolean
     pub_year?: boolean
     edition?: boolean
     publisher_id?: boolean
@@ -6243,6 +6261,8 @@ export namespace Prisma {
       resource_name: string
       isbn: string | null
       author: string
+      image_url: string | null
+      short_description: string | null
       pub_year: number
       edition: string
       publisher_id: number
@@ -6682,6 +6702,8 @@ export namespace Prisma {
     readonly resource_name: FieldRef<"Resource", 'String'>
     readonly isbn: FieldRef<"Resource", 'String'>
     readonly author: FieldRef<"Resource", 'String'>
+    readonly image_url: FieldRef<"Resource", 'String'>
+    readonly short_description: FieldRef<"Resource", 'String'>
     readonly pub_year: FieldRef<"Resource", 'Int'>
     readonly edition: FieldRef<"Resource", 'String'>
     readonly publisher_id: FieldRef<"Resource", 'Int'>
@@ -8886,7 +8908,7 @@ export namespace Prisma {
     /**
      * The data needed to create a ResourceType.
      */
-    data: XOR<ResourceTypeCreateInput, ResourceTypeUncheckedCreateInput>
+    data?: XOR<ResourceTypeCreateInput, ResourceTypeUncheckedCreateInput>
   }
 
   /**
@@ -12100,6 +12122,8 @@ export namespace Prisma {
     resource_name: 'resource_name',
     isbn: 'isbn',
     author: 'author',
+    image_url: 'image_url',
+    short_description: 'short_description',
     pub_year: 'pub_year',
     edition: 'edition',
     publisher_id: 'publisher_id',
@@ -12559,6 +12583,8 @@ export namespace Prisma {
     resource_name?: StringFilter<"Resource"> | string
     isbn?: StringNullableFilter<"Resource"> | string | null
     author?: StringFilter<"Resource"> | string
+    image_url?: StringNullableFilter<"Resource"> | string | null
+    short_description?: StringNullableFilter<"Resource"> | string | null
     pub_year?: IntFilter<"Resource"> | number
     edition?: StringFilter<"Resource"> | string
     publisher_id?: IntFilter<"Resource"> | number
@@ -12577,6 +12603,8 @@ export namespace Prisma {
     resource_name?: SortOrder
     isbn?: SortOrderInput | SortOrder
     author?: SortOrder
+    image_url?: SortOrderInput | SortOrder
+    short_description?: SortOrderInput | SortOrder
     pub_year?: SortOrder
     edition?: SortOrder
     publisher_id?: SortOrder
@@ -12598,6 +12626,8 @@ export namespace Prisma {
     NOT?: ResourceWhereInput | ResourceWhereInput[]
     resource_name?: StringFilter<"Resource"> | string
     author?: StringFilter<"Resource"> | string
+    image_url?: StringNullableFilter<"Resource"> | string | null
+    short_description?: StringNullableFilter<"Resource"> | string | null
     pub_year?: IntFilter<"Resource"> | number
     edition?: StringFilter<"Resource"> | string
     publisher_id?: IntFilter<"Resource"> | number
@@ -12616,6 +12646,8 @@ export namespace Prisma {
     resource_name?: SortOrder
     isbn?: SortOrderInput | SortOrder
     author?: SortOrder
+    image_url?: SortOrderInput | SortOrder
+    short_description?: SortOrderInput | SortOrder
     pub_year?: SortOrder
     edition?: SortOrder
     publisher_id?: SortOrder
@@ -12637,6 +12669,8 @@ export namespace Prisma {
     resource_name?: StringWithAggregatesFilter<"Resource"> | string
     isbn?: StringNullableWithAggregatesFilter<"Resource"> | string | null
     author?: StringWithAggregatesFilter<"Resource"> | string
+    image_url?: StringNullableWithAggregatesFilter<"Resource"> | string | null
+    short_description?: StringNullableWithAggregatesFilter<"Resource"> | string | null
     pub_year?: IntWithAggregatesFilter<"Resource"> | number
     edition?: StringWithAggregatesFilter<"Resource"> | string
     publisher_id?: IntWithAggregatesFilter<"Resource"> | number
@@ -13164,6 +13198,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     created_at?: Date | string
@@ -13180,6 +13216,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     publisher_id: number
@@ -13196,6 +13234,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13212,6 +13252,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     publisher_id?: IntFieldUpdateOperationsInput | number
@@ -13228,6 +13270,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     publisher_id: number
@@ -13241,6 +13285,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13252,6 +13298,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     publisher_id?: IntFieldUpdateOperationsInput | number
@@ -13323,7 +13371,7 @@ export namespace Prisma {
   }
 
   export type ResourceTypeCreateInput = {
-    resource_type_name: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourcesTypes
     max_loan_days?: number
     max_units_per_loan?: number
     Resource?: ResourceCreateNestedManyWithoutTypeInput
@@ -13331,7 +13379,7 @@ export namespace Prisma {
 
   export type ResourceTypeUncheckedCreateInput = {
     id?: number
-    resource_type_name: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourcesTypes
     max_loan_days?: number
     max_units_per_loan?: number
     Resource?: ResourceUncheckedCreateNestedManyWithoutTypeInput
@@ -13354,7 +13402,7 @@ export namespace Prisma {
 
   export type ResourceTypeCreateManyInput = {
     id?: number
-    resource_type_name: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourcesTypes
     max_loan_days?: number
     max_units_per_loan?: number
   }
@@ -13889,6 +13937,8 @@ export namespace Prisma {
     resource_name?: SortOrder
     isbn?: SortOrder
     author?: SortOrder
+    image_url?: SortOrder
+    short_description?: SortOrder
     pub_year?: SortOrder
     edition?: SortOrder
     publisher_id?: SortOrder
@@ -13908,6 +13958,8 @@ export namespace Prisma {
     resource_name?: SortOrder
     isbn?: SortOrder
     author?: SortOrder
+    image_url?: SortOrder
+    short_description?: SortOrder
     pub_year?: SortOrder
     edition?: SortOrder
     publisher_id?: SortOrder
@@ -13921,6 +13973,8 @@ export namespace Prisma {
     resource_name?: SortOrder
     isbn?: SortOrder
     author?: SortOrder
+    image_url?: SortOrder
+    short_description?: SortOrder
     pub_year?: SortOrder
     edition?: SortOrder
     publisher_id?: SortOrder
@@ -15515,14 +15569,14 @@ export namespace Prisma {
   }
 
   export type ResourceTypeCreateWithoutResourceInput = {
-    resource_type_name: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourcesTypes
     max_loan_days?: number
     max_units_per_loan?: number
   }
 
   export type ResourceTypeUncheckedCreateWithoutResourceInput = {
     id?: number
-    resource_type_name: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourcesTypes
     max_loan_days?: number
     max_units_per_loan?: number
   }
@@ -15689,6 +15743,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     created_at?: Date | string
@@ -15704,6 +15760,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     publisher_id: number
@@ -15735,6 +15793,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15750,6 +15810,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     publisher_id?: IntFieldUpdateOperationsInput | number
@@ -15765,6 +15827,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     created_at?: Date | string
@@ -15780,6 +15844,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     publisher_id: number
@@ -15824,6 +15890,8 @@ export namespace Prisma {
     resource_name?: StringFilter<"Resource"> | string
     isbn?: StringNullableFilter<"Resource"> | string | null
     author?: StringFilter<"Resource"> | string
+    image_url?: StringNullableFilter<"Resource"> | string | null
+    short_description?: StringNullableFilter<"Resource"> | string | null
     pub_year?: IntFilter<"Resource"> | number
     edition?: StringFilter<"Resource"> | string
     publisher_id?: IntFilter<"Resource"> | number
@@ -15837,6 +15905,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     created_at?: Date | string
@@ -15852,6 +15922,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     type_id: number
@@ -15893,6 +15965,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     created_at?: Date | string
@@ -15908,6 +15982,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     publisher_id: number
@@ -15978,6 +16054,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     created_at?: Date | string
@@ -15993,6 +16071,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     publisher_id: number
@@ -16044,6 +16124,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16059,6 +16141,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     publisher_id?: IntFieldUpdateOperationsInput | number
@@ -16291,6 +16375,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     publisher_id: number
@@ -16303,6 +16389,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16318,6 +16406,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     publisher_id?: IntFieldUpdateOperationsInput | number
@@ -16333,6 +16423,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     publisher_id?: IntFieldUpdateOperationsInput | number
@@ -16345,6 +16437,8 @@ export namespace Prisma {
     resource_name?: string
     isbn?: string | null
     author: string
+    image_url?: string | null
+    short_description?: string | null
     pub_year: number
     edition: string
     type_id: number
@@ -16357,6 +16451,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16372,6 +16468,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     type_id?: IntFieldUpdateOperationsInput | number
@@ -16387,6 +16485,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     type_id?: IntFieldUpdateOperationsInput | number
@@ -16403,6 +16503,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16418,6 +16520,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     publisher_id?: IntFieldUpdateOperationsInput | number
@@ -16433,6 +16537,8 @@ export namespace Prisma {
     resource_name?: StringFieldUpdateOperationsInput | string
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     author?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
     pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     publisher_id?: IntFieldUpdateOperationsInput | number

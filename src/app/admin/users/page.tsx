@@ -55,6 +55,7 @@ const UsersPage = () => {
               All users
             </h1>
           </div>
+
           <div className="sm:flex ">
             <div className="items-center  hidden lg:w-1/2 mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
               <form className="lg:pr-3  w-full">

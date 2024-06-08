@@ -20,24 +20,24 @@ type FullPaginationProps = {
 export const FullPagination = (props: FullPaginationProps) => {
   const dispatch = useAppDispatch();
   const { pagination, total } = useSelector(selectResources);
-  const { page, limit } = pagination;
+  const { page, size: limit } = pagination;
   const { resourceType, showTotalRecords, showNoResultsAlert } = props;
   const [totalPages, setTotalPages] = useState(0);
 
   const handleGoToPage = (page: number) => {
     if (page < 1 || page > totalPages) return;
     if (page === page) return;
-    dispatch(setResourcePagination({ page, limit }));
+    dispatch(setResourcePagination({ page, size: limit }));
   };
 
   const handleNextPage = () => {
     if (page + 1 >= totalPages) return;
-    dispatch(setResourcePagination({ page: page + 1, limit }));
+    dispatch(setResourcePagination({ page: page + 1, size: limit }));
   };
 
   const handlePreviousPage = () => {
     if (page - 1 <= 1) return;
-    dispatch(setResourcePagination({ page: page - 1, limit }));
+    dispatch(setResourcePagination({ page: page - 1, size: limit }));
   };
 
   useEffect(() => {

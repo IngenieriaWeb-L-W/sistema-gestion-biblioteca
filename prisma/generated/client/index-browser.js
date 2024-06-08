@@ -156,6 +156,8 @@ exports.Prisma.ResourceScalarFieldEnum = {
   resource_name: 'resource_name',
   isbn: 'isbn',
   author: 'author',
+  image_url: 'image_url',
+  short_description: 'short_description',
   pub_year: 'pub_year',
   edition: 'edition',
   publisher_id: 'publisher_id',

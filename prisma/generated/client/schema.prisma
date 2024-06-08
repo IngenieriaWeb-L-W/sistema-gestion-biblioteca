@@ -68,21 +68,23 @@ model Loan {
 }
 
 model Resource {
-  id               String             @id @default(cuid())
-  resource_name    String             @default("Unknown")
-  isbn             String?            @unique
-  author           String
-  pub_year         Int
-  edition          String
-  instances        ResourceInstance[]
-  categories       Category[]         @relation("ResourceCategory")
-  ResourceCategory ResourceCategory[]
-  type             ResourceType       @relation(fields: [type_id], references: [id])
-  publisher        Publisher          @relation(fields: [publisher_id], references: [id])
-  publisher_id     Int
-  type_id          Int
-  created_at       DateTime           @default(now())
-  updated_at       DateTime           @updatedAt
+  id                String             @id @default(cuid())
+  resource_name     String             @default("Unknown")
+  isbn              String?            @unique
+  author            String
+  image_url         String?
+  short_description String?
+  pub_year          Int
+  edition           String
+  instances         ResourceInstance[]
+  categories        Category[]         @relation("ResourceCategory")
+  ResourceCategory  ResourceCategory[]
+  type              ResourceType       @relation(fields: [type_id], references: [id])
+  publisher         Publisher          @relation(fields: [publisher_id], references: [id])
+  publisher_id      Int
+  type_id           Int
+  created_at        DateTime           @default(now())
+  updated_at        DateTime           @updatedAt
 }
 
 model ResourceInstance {
@@ -98,7 +100,7 @@ model ResourceInstance {
 
 model ResourceType {
   id                 Int            @id @default(autoincrement())
-  resource_type_name ResourcesTypes @unique
+  resource_type_name ResourcesTypes @unique @default(BOOK)
   max_loan_days      Int            @default(7)
   max_units_per_loan Int            @default(3)
   Resource           Resource[]
