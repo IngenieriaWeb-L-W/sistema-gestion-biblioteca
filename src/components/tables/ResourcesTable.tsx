@@ -7,6 +7,7 @@ import React, { Fragment, useState } from "react";
 import TableResourcesFilter from "../filters/resources/TableResourcesFilter";
 import { Resource } from "@/interfaces/resource/Resource";
 import ResourceManagementTabs from "../tabs/ResourceManagementTabs";
+import { resourceCategoriesReducer } from "@/config/redux/reducers/resource-categories.reducer";
 
 const ResourcesTable = () => {
   const { records: resources } = useResource();
@@ -152,7 +153,13 @@ const ResourceRow = (resource: Resource) => {
           </button>
         </td>
       </tr>
-      {showEditPanel && <ResourceManagementTabs />}
+      {showEditPanel && (
+        <tr>
+          <td colSpan={7}>
+            <ResourceManagementTabs id={resource.id} />
+          </td>
+        </tr>
+      )}
     </Fragment>
   );
 };

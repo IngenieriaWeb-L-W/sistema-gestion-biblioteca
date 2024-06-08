@@ -26,7 +26,9 @@ export const ResourceCard = ({ resource, typeRibbon }: BookCardProps) => {
         <div>
           <Image
             className="object-cover w-full h-full rounded-ss-lg rounded-se-lg"
-            src={resource.imageUrl}
+            src={
+              resource.imageUrl || "/images/default/default-resource-img.png"
+            }
             alt={resource.shortDescription}
             width={200}
             height={500}

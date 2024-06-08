@@ -1,6 +1,7 @@
 "use client";
 
 import resourceCreateSchema from "@/common/schemas/Resource.schema";
+import { selectResources } from "@/config/redux/reducers/resources.reducer";
 import {
   SeverityLevel,
   setGlobalAlert,
@@ -11,14 +12,20 @@ import { usePublisher } from "@/hooks/use-publisher";
 import { useResourceCategory } from "@/hooks/use-resource-category";
 import { ResourceCreate } from "@/interfaces/resource/Resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
-import { createResourceMiddleware } from "@/middleware/resources.middleware";
+import {
+  createResourceMiddleware,
+  fetchResourceDetailMiddleware,
+} from "@/middleware/resources.middleware";
 import Image from "next/image";
 import React, { Fragment, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import * as Yup from "yup";
 
 export type CreateResourceFormProps = {
   open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  showHeader?: boolean;
+  editId?: string;
 };
 
 const initialFormValues: ResourceCreate = {
@@ -35,9 +42,16 @@ const initialFormValues: ResourceCreate = {
   type: ResourceTypes.BOOK,
 };
 
-const CreateResourceForm = ({ open, setOpen }: CreateResourceFormProps) => {
+const CreateResourceForm = ({
+  open,
+  setOpen,
+  showHeader = true,
+  editId,
+}: CreateResourceFormProps) => {
   const dispatch = useAppDispatch();
+
   const { records: allCategories } = useResourceCategory();
+  const { records: resources } = useSelector(selectResources);
   const { records: allPublishers } = usePublisher({ page: 0, size: -1 });
   const [imageSrc, setImageSrc] = useState("");
   const { formValues, handleInputChange, handleSelectChange, resetForm } =
@@ -63,7 +77,7 @@ const CreateResourceForm = ({ open, setOpen }: CreateResourceFormProps) => {
   } = formValues;
 
   const toggleShowForm = () => {
-    setOpen(!open);
+    if (setOpen) setOpen(!open);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -87,7 +101,7 @@ const CreateResourceForm = ({ open, setOpen }: CreateResourceFormProps) => {
               resetForm({ ...initialFormValues });
               setSynopsisParagraphs({ all: [], current: "" });
               setImageSrc("");
-              setOpen(false);
+              if (setOpen) setOpen(false);
             }
           );
         };
@@ -104,13 +118,6 @@ const CreateResourceForm = ({ open, setOpen }: CreateResourceFormProps) => {
         });
       });
   };
-
-  useEffect(() => {
-    if (!image) return;
-    if (image.size > 0) {
-      setImageSrc(URL.createObjectURL(image));
-    }
-  }, [image]);
 
   const handleToggleSelectFile = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -184,49 +191,81 @@ const CreateResourceForm = ({ open, setOpen }: CreateResourceFormProps) => {
     });
   };
 
+  useEffect(() => {
+    if (!image) return;
+    if (image.size > 0) {
+      setImageSrc(URL.createObjectURL(image));
+    }
+  }, [image]);
+
+  useEffect(() => {
+    if (!editId) return;
+    const resourceToEdit = resources.find((resource) => resource.id === editId);
+    if (!resourceToEdit) return;
+    dispatch(fetchResourceDetailMiddleware(editId)).then((detail) => {
+      if (!detail) return;
+      resetForm({
+        name: resourceToEdit.name,
+        shortDescription: resourceToEdit.shortDescription,
+        image: null,
+        edition: resourceToEdit.edition,
+        categories: resourceToEdit.categories.map((category) => category.id),
+        author: detail.author,
+        // publisher: resource.publisher.id,
+        publisher: 1,
+        paragraphs: detail.paragraphs,
+        isbn: detail.isbn,
+        publicationYear: detail.publicationYear,
+        type: resourceToEdit.type,
+      });
+    });
+  }, [dispatch, editId, resources, resetForm]);
+
   return (
     <Fragment>
       <div className="items-center  justify-center" id="add-user-modal">
         <div className="relative w-full h-full md:h-auto">
           <div className="relative bg-white dark:bg-gray-800">
-            <div className="flex items-start bg-gray-900 justify-between p-5 dark:border-gray-700">
-              <h3 className="text-xl font-semibold dark:text-white">
-                Add Resource
-              </h3>
-              <button
-                type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white"
-                onClick={toggleShowForm}
-              >
-                {open ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill="white"
-                      fill-rule="evenodd"
-                      d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1em"
-                    height="1em"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill="white"
-                      fill-rule="evenodd"
-                      d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
-                    />
-                  </svg>
-                )}
-              </button>
-            </div>
+            {showHeader && (
+              <div className="flex items-start bg-gray-900 justify-between p-5 dark:border-gray-700">
+                <h3 className="text-xl font-semibold dark:text-white">
+                  Add Resource
+                </h3>
+                <button
+                  type="button"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white"
+                  onClick={toggleShowForm}
+                >
+                  {open ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill="white"
+                        fill-rule="evenodd"
+                        d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill="white"
+                        fill-rule="evenodd"
+                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+                      />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            )}
 
             {open && (
               <div className="p-6 space-y-6">

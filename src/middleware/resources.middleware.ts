@@ -92,26 +92,29 @@ export const fetchFullResourceMiddleware = (id: string) => {
 export const fetchResourceDetailMiddleware = (id: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(startGlobalLoading({ message: "Fetching resource detail..." }));
-    return axios
-      .get<ResourceDetail>(
-        `${location.protocol}//${location.host}/api/resources/${id}/detail`
-      )
-      .then(({ data }) => data)
-      .then((detail) => {
-        dispatch(setResourceDetail({ id, detail }));
-      })
-      .catch((/* error */) => {
-        dispatch(
-          setGlobalAlert({
-            message: "Resource detail could not be fetched ⛔",
-            timeout: 5000,
-            severity: SeverityLevel.ERROR,
-          })
-        );
-      })
-      .finally(() => {
-        dispatch(finishGlobalLoading());
-      });
+    return (
+      axios
+        .get<ResourceDetail>(
+          `${location.protocol}//${location.host}/api/resources/${id}/detail`
+        )
+        .then(({ data }) => data)
+        // .then((detail) => {
+        //   dispatch(setResourceDetail({ id, detail }));
+        // })
+        .catch((/* error */) => {
+          dispatch(
+            setGlobalAlert({
+              message: "Resource detail could not be fetched ⛔",
+              timeout: 5000,
+              severity: SeverityLevel.ERROR,
+            })
+          );
+          return null;
+        })
+        .finally(() => {
+          dispatch(finishGlobalLoading());
+        })
+    );
   };
 };
 
