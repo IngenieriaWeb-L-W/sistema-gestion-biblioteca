@@ -110,7 +110,7 @@ export const ResourceInstanceStatus: {
 export type ResourceInstanceStatus = (typeof ResourceInstanceStatus)[keyof typeof ResourceInstanceStatus]
 
 
-export const ResourcesTypes: {
+export const ResourceTypes: {
   BOOK: 'BOOK',
   MAGAZINE: 'MAGAZINE',
   DVD: 'DVD',
@@ -123,7 +123,7 @@ export const ResourcesTypes: {
   EDUCATIONAL: 'EDUCATIONAL'
 };
 
-export type ResourcesTypes = (typeof ResourcesTypes)[keyof typeof ResourcesTypes]
+export type ResourceTypes = (typeof ResourceTypes)[keyof typeof ResourceTypes]
 
 }
 
@@ -139,9 +139,9 @@ export type ResourceInstanceStatus = $Enums.ResourceInstanceStatus
 
 export const ResourceInstanceStatus: typeof $Enums.ResourceInstanceStatus
 
-export type ResourcesTypes = $Enums.ResourcesTypes
+export type ResourceTypes = $Enums.ResourceTypes
 
-export const ResourcesTypes: typeof $Enums.ResourcesTypes
+export const ResourceTypes: typeof $Enums.ResourceTypes
 
 /**
  * ##  Prisma Client ʲˢ
@@ -9215,14 +9215,14 @@ export namespace Prisma {
 
   export type ResourceTypeMinAggregateOutputType = {
     id: number | null
-    resource_type_name: $Enums.ResourcesTypes | null
+    resource_type_name: $Enums.ResourceTypes | null
     max_loan_days: number | null
     max_units_per_loan: number | null
   }
 
   export type ResourceTypeMaxAggregateOutputType = {
     id: number | null
-    resource_type_name: $Enums.ResourcesTypes | null
+    resource_type_name: $Enums.ResourceTypes | null
     max_loan_days: number | null
     max_units_per_loan: number | null
   }
@@ -9358,7 +9358,7 @@ export namespace Prisma {
 
   export type ResourceTypeGroupByOutputType = {
     id: number
-    resource_type_name: $Enums.ResourcesTypes
+    resource_type_name: $Enums.ResourceTypes
     max_loan_days: number
     max_units_per_loan: number
     _count: ResourceTypeCountAggregateOutputType | null
@@ -9412,7 +9412,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      resource_type_name: $Enums.ResourcesTypes
+      resource_type_name: $Enums.ResourceTypes
       max_loan_days: number
       max_units_per_loan: number
     }, ExtArgs["result"]["resourceType"]>
@@ -9837,7 +9837,7 @@ export namespace Prisma {
    */ 
   interface ResourceTypeFieldRefs {
     readonly id: FieldRef<"ResourceType", 'Int'>
-    readonly resource_type_name: FieldRef<"ResourceType", 'ResourcesTypes'>
+    readonly resource_type_name: FieldRef<"ResourceType", 'ResourceTypes'>
     readonly max_loan_days: FieldRef<"ResourceType", 'Int'>
     readonly max_units_per_loan: FieldRef<"ResourceType", 'Int'>
   }
@@ -13446,16 +13446,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'ResourcesTypes'
+   * Reference to a field of type 'ResourceTypes'
    */
-  export type EnumResourcesTypesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResourcesTypes'>
+  export type EnumResourceTypesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResourceTypes'>
     
 
 
   /**
-   * Reference to a field of type 'ResourcesTypes[]'
+   * Reference to a field of type 'ResourceTypes[]'
    */
-  export type ListEnumResourcesTypesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResourcesTypes[]'>
+  export type ListEnumResourceTypesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResourceTypes[]'>
     
 
 
@@ -13947,7 +13947,7 @@ export namespace Prisma {
     OR?: ResourceTypeWhereInput[]
     NOT?: ResourceTypeWhereInput | ResourceTypeWhereInput[]
     id?: IntFilter<"ResourceType"> | number
-    resource_type_name?: EnumResourcesTypesFilter<"ResourceType"> | $Enums.ResourcesTypes
+    resource_type_name?: EnumResourceTypesFilter<"ResourceType"> | $Enums.ResourceTypes
     max_loan_days?: IntFilter<"ResourceType"> | number
     max_units_per_loan?: IntFilter<"ResourceType"> | number
     Resource?: ResourceListRelationFilter
@@ -13963,7 +13963,7 @@ export namespace Prisma {
 
   export type ResourceTypeWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    resource_type_name?: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourceTypes
     AND?: ResourceTypeWhereInput | ResourceTypeWhereInput[]
     OR?: ResourceTypeWhereInput[]
     NOT?: ResourceTypeWhereInput | ResourceTypeWhereInput[]
@@ -13989,7 +13989,7 @@ export namespace Prisma {
     OR?: ResourceTypeScalarWhereWithAggregatesInput[]
     NOT?: ResourceTypeScalarWhereWithAggregatesInput | ResourceTypeScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"ResourceType"> | number
-    resource_type_name?: EnumResourcesTypesWithAggregatesFilter<"ResourceType"> | $Enums.ResourcesTypes
+    resource_type_name?: EnumResourceTypesWithAggregatesFilter<"ResourceType"> | $Enums.ResourceTypes
     max_loan_days?: IntWithAggregatesFilter<"ResourceType"> | number
     max_units_per_loan?: IntWithAggregatesFilter<"ResourceType"> | number
   }
@@ -14637,7 +14637,7 @@ export namespace Prisma {
   }
 
   export type ResourceTypeCreateInput = {
-    resource_type_name?: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourceTypes
     max_loan_days?: number
     max_units_per_loan?: number
     Resource?: ResourceCreateNestedManyWithoutTypeInput
@@ -14645,14 +14645,14 @@ export namespace Prisma {
 
   export type ResourceTypeUncheckedCreateInput = {
     id?: number
-    resource_type_name?: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourceTypes
     max_loan_days?: number
     max_units_per_loan?: number
     Resource?: ResourceUncheckedCreateNestedManyWithoutTypeInput
   }
 
   export type ResourceTypeUpdateInput = {
-    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
+    resource_type_name?: EnumResourceTypesFieldUpdateOperationsInput | $Enums.ResourceTypes
     max_loan_days?: IntFieldUpdateOperationsInput | number
     max_units_per_loan?: IntFieldUpdateOperationsInput | number
     Resource?: ResourceUpdateManyWithoutTypeNestedInput
@@ -14660,7 +14660,7 @@ export namespace Prisma {
 
   export type ResourceTypeUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
+    resource_type_name?: EnumResourceTypesFieldUpdateOperationsInput | $Enums.ResourceTypes
     max_loan_days?: IntFieldUpdateOperationsInput | number
     max_units_per_loan?: IntFieldUpdateOperationsInput | number
     Resource?: ResourceUncheckedUpdateManyWithoutTypeNestedInput
@@ -14668,20 +14668,20 @@ export namespace Prisma {
 
   export type ResourceTypeCreateManyInput = {
     id?: number
-    resource_type_name?: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourceTypes
     max_loan_days?: number
     max_units_per_loan?: number
   }
 
   export type ResourceTypeUpdateManyMutationInput = {
-    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
+    resource_type_name?: EnumResourceTypesFieldUpdateOperationsInput | $Enums.ResourceTypes
     max_loan_days?: IntFieldUpdateOperationsInput | number
     max_units_per_loan?: IntFieldUpdateOperationsInput | number
   }
 
   export type ResourceTypeUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
+    resource_type_name?: EnumResourceTypesFieldUpdateOperationsInput | $Enums.ResourceTypes
     max_loan_days?: IntFieldUpdateOperationsInput | number
     max_units_per_loan?: IntFieldUpdateOperationsInput | number
   }
@@ -15395,11 +15395,11 @@ export namespace Prisma {
     _max?: NestedEnumResourceInstanceStatusFilter<$PrismaModel>
   }
 
-  export type EnumResourcesTypesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ResourcesTypes | EnumResourcesTypesFieldRefInput<$PrismaModel>
-    in?: $Enums.ResourcesTypes[] | ListEnumResourcesTypesFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ResourcesTypes[] | ListEnumResourcesTypesFieldRefInput<$PrismaModel>
-    not?: NestedEnumResourcesTypesFilter<$PrismaModel> | $Enums.ResourcesTypes
+  export type EnumResourceTypesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResourceTypes | EnumResourceTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.ResourceTypes[] | ListEnumResourceTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResourceTypes[] | ListEnumResourceTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumResourceTypesFilter<$PrismaModel> | $Enums.ResourceTypes
   }
 
   export type ResourceListRelationFilter = {
@@ -15445,14 +15445,14 @@ export namespace Prisma {
     max_units_per_loan?: SortOrder
   }
 
-  export type EnumResourcesTypesWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ResourcesTypes | EnumResourcesTypesFieldRefInput<$PrismaModel>
-    in?: $Enums.ResourcesTypes[] | ListEnumResourcesTypesFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ResourcesTypes[] | ListEnumResourcesTypesFieldRefInput<$PrismaModel>
-    not?: NestedEnumResourcesTypesWithAggregatesFilter<$PrismaModel> | $Enums.ResourcesTypes
+  export type EnumResourceTypesWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResourceTypes | EnumResourceTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.ResourceTypes[] | ListEnumResourceTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResourceTypes[] | ListEnumResourceTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumResourceTypesWithAggregatesFilter<$PrismaModel> | $Enums.ResourceTypes
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumResourcesTypesFilter<$PrismaModel>
-    _max?: NestedEnumResourcesTypesFilter<$PrismaModel>
+    _min?: NestedEnumResourceTypesFilter<$PrismaModel>
+    _max?: NestedEnumResourceTypesFilter<$PrismaModel>
   }
 
   export type PublisherCountOrderByAggregateInput = {
@@ -16066,8 +16066,8 @@ export namespace Prisma {
     connect?: ResourceWhereUniqueInput | ResourceWhereUniqueInput[]
   }
 
-  export type EnumResourcesTypesFieldUpdateOperationsInput = {
-    set?: $Enums.ResourcesTypes
+  export type EnumResourceTypesFieldUpdateOperationsInput = {
+    set?: $Enums.ResourceTypes
   }
 
   export type ResourceUpdateManyWithoutTypeNestedInput = {
@@ -16475,21 +16475,21 @@ export namespace Prisma {
     _max?: NestedEnumResourceInstanceStatusFilter<$PrismaModel>
   }
 
-  export type NestedEnumResourcesTypesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ResourcesTypes | EnumResourcesTypesFieldRefInput<$PrismaModel>
-    in?: $Enums.ResourcesTypes[] | ListEnumResourcesTypesFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ResourcesTypes[] | ListEnumResourcesTypesFieldRefInput<$PrismaModel>
-    not?: NestedEnumResourcesTypesFilter<$PrismaModel> | $Enums.ResourcesTypes
+  export type NestedEnumResourceTypesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResourceTypes | EnumResourceTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.ResourceTypes[] | ListEnumResourceTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResourceTypes[] | ListEnumResourceTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumResourceTypesFilter<$PrismaModel> | $Enums.ResourceTypes
   }
 
-  export type NestedEnumResourcesTypesWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ResourcesTypes | EnumResourcesTypesFieldRefInput<$PrismaModel>
-    in?: $Enums.ResourcesTypes[] | ListEnumResourcesTypesFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ResourcesTypes[] | ListEnumResourcesTypesFieldRefInput<$PrismaModel>
-    not?: NestedEnumResourcesTypesWithAggregatesFilter<$PrismaModel> | $Enums.ResourcesTypes
+  export type NestedEnumResourceTypesWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResourceTypes | EnumResourceTypesFieldRefInput<$PrismaModel>
+    in?: $Enums.ResourceTypes[] | ListEnumResourceTypesFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResourceTypes[] | ListEnumResourceTypesFieldRefInput<$PrismaModel>
+    not?: NestedEnumResourceTypesWithAggregatesFilter<$PrismaModel> | $Enums.ResourceTypes
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumResourcesTypesFilter<$PrismaModel>
-    _max?: NestedEnumResourcesTypesFilter<$PrismaModel>
+    _min?: NestedEnumResourceTypesFilter<$PrismaModel>
+    _max?: NestedEnumResourceTypesFilter<$PrismaModel>
   }
 
   export type RoleCreateWithoutUsersInput = {
@@ -16928,14 +16928,14 @@ export namespace Prisma {
   }
 
   export type ResourceTypeCreateWithoutResourceInput = {
-    resource_type_name?: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourceTypes
     max_loan_days?: number
     max_units_per_loan?: number
   }
 
   export type ResourceTypeUncheckedCreateWithoutResourceInput = {
     id?: number
-    resource_type_name?: $Enums.ResourcesTypes
+    resource_type_name?: $Enums.ResourceTypes
     max_loan_days?: number
     max_units_per_loan?: number
   }
@@ -17065,14 +17065,14 @@ export namespace Prisma {
   }
 
   export type ResourceTypeUpdateWithoutResourceInput = {
-    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
+    resource_type_name?: EnumResourceTypesFieldUpdateOperationsInput | $Enums.ResourceTypes
     max_loan_days?: IntFieldUpdateOperationsInput | number
     max_units_per_loan?: IntFieldUpdateOperationsInput | number
   }
 
   export type ResourceTypeUncheckedUpdateWithoutResourceInput = {
     id?: IntFieldUpdateOperationsInput | number
-    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
+    resource_type_name?: EnumResourceTypesFieldUpdateOperationsInput | $Enums.ResourceTypes
     max_loan_days?: IntFieldUpdateOperationsInput | number
     max_units_per_loan?: IntFieldUpdateOperationsInput | number
   }

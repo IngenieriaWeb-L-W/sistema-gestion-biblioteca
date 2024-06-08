@@ -254,7 +254,7 @@ exports.ResourceInstanceStatus = exports.$Enums.ResourceInstanceStatus = {
   ARCHIVED: 'ARCHIVED'
 };
 
-exports.ResourcesTypes = exports.$Enums.ResourcesTypes = {
+exports.ResourceTypes = exports.$Enums.ResourceTypes = {
   BOOK: 'BOOK',
   MAGAZINE: 'MAGAZINE',
   DVD: 'DVD',
