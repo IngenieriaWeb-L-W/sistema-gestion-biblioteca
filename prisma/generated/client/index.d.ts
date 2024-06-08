@@ -39,6 +39,11 @@ export type Loan = $Result.DefaultSelection<Prisma.$LoanPayload>
  */
 export type Resource = $Result.DefaultSelection<Prisma.$ResourcePayload>
 /**
+ * Model ResourceDetail
+ * 
+ */
+export type ResourceDetail = $Result.DefaultSelection<Prisma.$ResourceDetailPayload>
+/**
  * Model ResourceInstance
  * 
  */
@@ -82,6 +87,12 @@ export const ResourceLang: {
   LANG_ES: 'LANG_ES',
   LANG_FR: 'LANG_FR',
   LANG_DE: 'LANG_DE',
+  LANG_HI: 'LANG_HI',
+  LANG_RU: 'LANG_RU',
+  LANG_JA: 'LANG_JA',
+  LANG_ZH: 'LANG_ZH',
+  LANG_PT: 'LANG_PT',
+  LANG_AR: 'LANG_AR',
   LANG_OTHER: 'LANG_OTHER'
 };
 
@@ -89,11 +100,11 @@ export type ResourceLang = (typeof ResourceLang)[keyof typeof ResourceLang]
 
 
 export const ResourceInstanceStatus: {
-  STATUS_GOOD: 'STATUS_GOOD',
-  STATUS_POOR: 'STATUS_POOR',
-  STATUS_DAMAGED: 'STATUS_DAMAGED',
-  STATUS_LOST: 'STATUS_LOST',
-  STATUS_ARCHIVED: 'STATUS_ARCHIVED'
+  GOOD: 'GOOD',
+  POOR: 'POOR',
+  DAMAGED: 'DAMAGED',
+  LOST: 'LOST',
+  ARCHIVED: 'ARCHIVED'
 };
 
 export type ResourceInstanceStatus = (typeof ResourceInstanceStatus)[keyof typeof ResourceInstanceStatus]
@@ -303,6 +314,16 @@ export class PrismaClient<
     * ```
     */
   get resource(): Prisma.ResourceDelegate<ExtArgs>;
+
+  /**
+   * `prisma.resourceDetail`: Exposes CRUD operations for the **ResourceDetail** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ResourceDetails
+    * const resourceDetails = await prisma.resourceDetail.findMany()
+    * ```
+    */
+  get resourceDetail(): Prisma.ResourceDetailDelegate<ExtArgs>;
 
   /**
    * `prisma.resourceInstance`: Exposes CRUD operations for the **ResourceInstance** model.
@@ -835,6 +856,7 @@ export namespace Prisma {
     UserRole: 'UserRole',
     Loan: 'Loan',
     Resource: 'Resource',
+    ResourceDetail: 'ResourceDetail',
     ResourceInstance: 'ResourceInstance',
     ResourceType: 'ResourceType',
     Publisher: 'Publisher',
@@ -856,7 +878,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'role' | 'userRole' | 'loan' | 'resource' | 'resourceInstance' | 'resourceType' | 'publisher' | 'category' | 'resourceCategory'
+      modelProps: 'user' | 'role' | 'userRole' | 'loan' | 'resource' | 'resourceDetail' | 'resourceInstance' | 'resourceType' | 'publisher' | 'category' | 'resourceCategory'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1207,6 +1229,76 @@ export namespace Prisma {
           count: {
             args: Prisma.ResourceCountArgs<ExtArgs>,
             result: $Utils.Optional<ResourceCountAggregateOutputType> | number
+          }
+        }
+      }
+      ResourceDetail: {
+        payload: Prisma.$ResourceDetailPayload<ExtArgs>
+        fields: Prisma.ResourceDetailFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResourceDetailFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResourceDetailFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload>
+          }
+          findFirst: {
+            args: Prisma.ResourceDetailFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResourceDetailFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload>
+          }
+          findMany: {
+            args: Prisma.ResourceDetailFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload>[]
+          }
+          create: {
+            args: Prisma.ResourceDetailCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload>
+          }
+          createMany: {
+            args: Prisma.ResourceDetailCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ResourceDetailCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload>[]
+          }
+          delete: {
+            args: Prisma.ResourceDetailDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload>
+          }
+          update: {
+            args: Prisma.ResourceDetailUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload>
+          }
+          deleteMany: {
+            args: Prisma.ResourceDetailDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResourceDetailUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ResourceDetailUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceDetailPayload>
+          }
+          aggregate: {
+            args: Prisma.ResourceDetailAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateResourceDetail>
+          }
+          groupBy: {
+            args: Prisma.ResourceDetailGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ResourceDetailGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ResourceDetailCountArgs<ExtArgs>,
+            result: $Utils.Optional<ResourceDetailCountAggregateOutputType> | number
           }
         }
       }
@@ -5964,119 +6056,119 @@ export namespace Prisma {
   }
 
   export type ResourceAvgAggregateOutputType = {
-    pub_year: number | null
-    publisher_id: number | null
     type_id: number | null
+    publisher_id: number | null
+    detail_id: number | null
   }
 
   export type ResourceSumAggregateOutputType = {
-    pub_year: number | null
-    publisher_id: number | null
     type_id: number | null
+    publisher_id: number | null
+    detail_id: number | null
   }
 
   export type ResourceMinAggregateOutputType = {
     id: string | null
     resource_name: string | null
-    isbn: string | null
-    author: string | null
+    slug_name: string | null
     image_url: string | null
+    author: string | null
     short_description: string | null
-    pub_year: number | null
     edition: string | null
-    publisher_id: number | null
-    type_id: number | null
     created_at: Date | null
     updated_at: Date | null
+    type_id: number | null
+    publisher_id: number | null
+    detail_id: number | null
   }
 
   export type ResourceMaxAggregateOutputType = {
     id: string | null
     resource_name: string | null
-    isbn: string | null
-    author: string | null
+    slug_name: string | null
     image_url: string | null
+    author: string | null
     short_description: string | null
-    pub_year: number | null
     edition: string | null
-    publisher_id: number | null
-    type_id: number | null
     created_at: Date | null
     updated_at: Date | null
+    type_id: number | null
+    publisher_id: number | null
+    detail_id: number | null
   }
 
   export type ResourceCountAggregateOutputType = {
     id: number
     resource_name: number
-    isbn: number
-    author: number
+    slug_name: number
     image_url: number
+    author: number
     short_description: number
-    pub_year: number
     edition: number
-    publisher_id: number
-    type_id: number
     created_at: number
     updated_at: number
+    type_id: number
+    publisher_id: number
+    detail_id: number
     _all: number
   }
 
 
   export type ResourceAvgAggregateInputType = {
-    pub_year?: true
-    publisher_id?: true
     type_id?: true
+    publisher_id?: true
+    detail_id?: true
   }
 
   export type ResourceSumAggregateInputType = {
-    pub_year?: true
-    publisher_id?: true
     type_id?: true
+    publisher_id?: true
+    detail_id?: true
   }
 
   export type ResourceMinAggregateInputType = {
     id?: true
     resource_name?: true
-    isbn?: true
-    author?: true
+    slug_name?: true
     image_url?: true
+    author?: true
     short_description?: true
-    pub_year?: true
     edition?: true
-    publisher_id?: true
-    type_id?: true
     created_at?: true
     updated_at?: true
+    type_id?: true
+    publisher_id?: true
+    detail_id?: true
   }
 
   export type ResourceMaxAggregateInputType = {
     id?: true
     resource_name?: true
-    isbn?: true
-    author?: true
+    slug_name?: true
     image_url?: true
+    author?: true
     short_description?: true
-    pub_year?: true
     edition?: true
-    publisher_id?: true
-    type_id?: true
     created_at?: true
     updated_at?: true
+    type_id?: true
+    publisher_id?: true
+    detail_id?: true
   }
 
   export type ResourceCountAggregateInputType = {
     id?: true
     resource_name?: true
-    isbn?: true
-    author?: true
+    slug_name?: true
     image_url?: true
+    author?: true
     short_description?: true
-    pub_year?: true
     edition?: true
-    publisher_id?: true
-    type_id?: true
     created_at?: true
     updated_at?: true
+    type_id?: true
+    publisher_id?: true
+    detail_id?: true
     _all?: true
   }
 
@@ -6169,16 +6261,16 @@ export namespace Prisma {
   export type ResourceGroupByOutputType = {
     id: string
     resource_name: string
-    isbn: string | null
-    author: string
+    slug_name: string | null
     image_url: string | null
+    author: string
     short_description: string | null
-    pub_year: number
     edition: string
-    publisher_id: number
-    type_id: number
     created_at: Date
     updated_at: Date
+    type_id: number
+    publisher_id: number
+    detail_id: number | null
     _count: ResourceCountAggregateOutputType | null
     _avg: ResourceAvgAggregateOutputType | null
     _sum: ResourceSumAggregateOutputType | null
@@ -6203,46 +6295,48 @@ export namespace Prisma {
   export type ResourceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     resource_name?: boolean
-    isbn?: boolean
-    author?: boolean
+    slug_name?: boolean
     image_url?: boolean
+    author?: boolean
     short_description?: boolean
-    pub_year?: boolean
     edition?: boolean
-    publisher_id?: boolean
-    type_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    type_id?: boolean
+    publisher_id?: boolean
+    detail_id?: boolean
+    type?: boolean | ResourceTypeDefaultArgs<ExtArgs>
     instances?: boolean | Resource$instancesArgs<ExtArgs>
     categories?: boolean | Resource$categoriesArgs<ExtArgs>
     ResourceCategory?: boolean | Resource$ResourceCategoryArgs<ExtArgs>
-    type?: boolean | ResourceTypeDefaultArgs<ExtArgs>
     publisher?: boolean | PublisherDefaultArgs<ExtArgs>
+    detail?: boolean | Resource$detailArgs<ExtArgs>
     _count?: boolean | ResourceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resource"]>
 
   export type ResourceSelectScalar = {
     id?: boolean
     resource_name?: boolean
-    isbn?: boolean
-    author?: boolean
+    slug_name?: boolean
     image_url?: boolean
+    author?: boolean
     short_description?: boolean
-    pub_year?: boolean
     edition?: boolean
-    publisher_id?: boolean
-    type_id?: boolean
     created_at?: boolean
     updated_at?: boolean
+    type_id?: boolean
+    publisher_id?: boolean
+    detail_id?: boolean
   }
 
 
   export type ResourceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    type?: boolean | ResourceTypeDefaultArgs<ExtArgs>
     instances?: boolean | Resource$instancesArgs<ExtArgs>
     categories?: boolean | Resource$categoriesArgs<ExtArgs>
     ResourceCategory?: boolean | Resource$ResourceCategoryArgs<ExtArgs>
-    type?: boolean | ResourceTypeDefaultArgs<ExtArgs>
     publisher?: boolean | PublisherDefaultArgs<ExtArgs>
+    detail?: boolean | Resource$detailArgs<ExtArgs>
     _count?: boolean | ResourceCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6250,25 +6344,26 @@ export namespace Prisma {
   export type $ResourcePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Resource"
     objects: {
+      type: Prisma.$ResourceTypePayload<ExtArgs>
       instances: Prisma.$ResourceInstancePayload<ExtArgs>[]
       categories: Prisma.$CategoryPayload<ExtArgs>[]
       ResourceCategory: Prisma.$ResourceCategoryPayload<ExtArgs>[]
-      type: Prisma.$ResourceTypePayload<ExtArgs>
       publisher: Prisma.$PublisherPayload<ExtArgs>
+      detail: Prisma.$ResourceDetailPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       resource_name: string
-      isbn: string | null
-      author: string
+      slug_name: string | null
       image_url: string | null
+      author: string
       short_description: string | null
-      pub_year: number
       edition: string
-      publisher_id: number
-      type_id: number
       created_at: Date
       updated_at: Date
+      type_id: number
+      publisher_id: number
+      detail_id: number | null
     }, ExtArgs["result"]["resource"]>
     composites: {}
   }
@@ -6660,15 +6755,17 @@ export namespace Prisma {
   export interface Prisma__ResourceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    type<T extends ResourceTypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResourceTypeDefaultArgs<ExtArgs>>): Prisma__ResourceTypeClient<$Result.GetResult<Prisma.$ResourceTypePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
     instances<T extends Resource$instancesArgs<ExtArgs> = {}>(args?: Subset<T, Resource$instancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceInstancePayload<ExtArgs>, T, 'findMany'> | Null>;
 
     categories<T extends Resource$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Resource$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     ResourceCategory<T extends Resource$ResourceCategoryArgs<ExtArgs> = {}>(args?: Subset<T, Resource$ResourceCategoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceCategoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    type<T extends ResourceTypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResourceTypeDefaultArgs<ExtArgs>>): Prisma__ResourceTypeClient<$Result.GetResult<Prisma.$ResourceTypePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
     publisher<T extends PublisherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PublisherDefaultArgs<ExtArgs>>): Prisma__PublisherClient<$Result.GetResult<Prisma.$PublisherPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    detail<T extends Resource$detailArgs<ExtArgs> = {}>(args?: Subset<T, Resource$detailArgs<ExtArgs>>): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6700,16 +6797,16 @@ export namespace Prisma {
   interface ResourceFieldRefs {
     readonly id: FieldRef<"Resource", 'String'>
     readonly resource_name: FieldRef<"Resource", 'String'>
-    readonly isbn: FieldRef<"Resource", 'String'>
-    readonly author: FieldRef<"Resource", 'String'>
+    readonly slug_name: FieldRef<"Resource", 'String'>
     readonly image_url: FieldRef<"Resource", 'String'>
+    readonly author: FieldRef<"Resource", 'String'>
     readonly short_description: FieldRef<"Resource", 'String'>
-    readonly pub_year: FieldRef<"Resource", 'Int'>
     readonly edition: FieldRef<"Resource", 'String'>
-    readonly publisher_id: FieldRef<"Resource", 'Int'>
-    readonly type_id: FieldRef<"Resource", 'Int'>
     readonly created_at: FieldRef<"Resource", 'DateTime'>
     readonly updated_at: FieldRef<"Resource", 'DateTime'>
+    readonly type_id: FieldRef<"Resource", 'Int'>
+    readonly publisher_id: FieldRef<"Resource", 'Int'>
+    readonly detail_id: FieldRef<"Resource", 'Int'>
   }
     
 
@@ -7088,6 +7185,21 @@ export namespace Prisma {
   }
 
   /**
+   * Resource.detail
+   */
+  export type Resource$detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    where?: ResourceDetailWhereInput
+  }
+
+  /**
    * Resource without action
    */
   export type ResourceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7103,6 +7215,1009 @@ export namespace Prisma {
 
 
   /**
+   * Model ResourceDetail
+   */
+
+  export type AggregateResourceDetail = {
+    _count: ResourceDetailCountAggregateOutputType | null
+    _avg: ResourceDetailAvgAggregateOutputType | null
+    _sum: ResourceDetailSumAggregateOutputType | null
+    _min: ResourceDetailMinAggregateOutputType | null
+    _max: ResourceDetailMaxAggregateOutputType | null
+  }
+
+  export type ResourceDetailAvgAggregateOutputType = {
+    id: number | null
+    pub_year: number | null
+  }
+
+  export type ResourceDetailSumAggregateOutputType = {
+    id: number | null
+    pub_year: number | null
+  }
+
+  export type ResourceDetailMinAggregateOutputType = {
+    id: number | null
+    pub_year: number | null
+    description: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type ResourceDetailMaxAggregateOutputType = {
+    id: number | null
+    pub_year: number | null
+    description: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type ResourceDetailCountAggregateOutputType = {
+    id: number
+    pub_year: number
+    description: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type ResourceDetailAvgAggregateInputType = {
+    id?: true
+    pub_year?: true
+  }
+
+  export type ResourceDetailSumAggregateInputType = {
+    id?: true
+    pub_year?: true
+  }
+
+  export type ResourceDetailMinAggregateInputType = {
+    id?: true
+    pub_year?: true
+    description?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type ResourceDetailMaxAggregateInputType = {
+    id?: true
+    pub_year?: true
+    description?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type ResourceDetailCountAggregateInputType = {
+    id?: true
+    pub_year?: true
+    description?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type ResourceDetailAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResourceDetail to aggregate.
+     */
+    where?: ResourceDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceDetails to fetch.
+     */
+    orderBy?: ResourceDetailOrderByWithRelationInput | ResourceDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResourceDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ResourceDetails
+    **/
+    _count?: true | ResourceDetailCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ResourceDetailAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ResourceDetailSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResourceDetailMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResourceDetailMaxAggregateInputType
+  }
+
+  export type GetResourceDetailAggregateType<T extends ResourceDetailAggregateArgs> = {
+        [P in keyof T & keyof AggregateResourceDetail]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResourceDetail[P]>
+      : GetScalarType<T[P], AggregateResourceDetail[P]>
+  }
+
+
+
+
+  export type ResourceDetailGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResourceDetailWhereInput
+    orderBy?: ResourceDetailOrderByWithAggregationInput | ResourceDetailOrderByWithAggregationInput[]
+    by: ResourceDetailScalarFieldEnum[] | ResourceDetailScalarFieldEnum
+    having?: ResourceDetailScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResourceDetailCountAggregateInputType | true
+    _avg?: ResourceDetailAvgAggregateInputType
+    _sum?: ResourceDetailSumAggregateInputType
+    _min?: ResourceDetailMinAggregateInputType
+    _max?: ResourceDetailMaxAggregateInputType
+  }
+
+  export type ResourceDetailGroupByOutputType = {
+    id: number
+    pub_year: number
+    description: string
+    created_at: Date
+    updated_at: Date
+    _count: ResourceDetailCountAggregateOutputType | null
+    _avg: ResourceDetailAvgAggregateOutputType | null
+    _sum: ResourceDetailSumAggregateOutputType | null
+    _min: ResourceDetailMinAggregateOutputType | null
+    _max: ResourceDetailMaxAggregateOutputType | null
+  }
+
+  type GetResourceDetailGroupByPayload<T extends ResourceDetailGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResourceDetailGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResourceDetailGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResourceDetailGroupByOutputType[P]>
+            : GetScalarType<T[P], ResourceDetailGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResourceDetailSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    pub_year?: boolean
+    description?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    resource?: boolean | ResourceDetail$resourceArgs<ExtArgs>
+  }, ExtArgs["result"]["resourceDetail"]>
+
+  export type ResourceDetailSelectScalar = {
+    id?: boolean
+    pub_year?: boolean
+    description?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+
+  export type ResourceDetailInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    resource?: boolean | ResourceDetail$resourceArgs<ExtArgs>
+  }
+
+
+  export type $ResourceDetailPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ResourceDetail"
+    objects: {
+      resource: Prisma.$ResourcePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      pub_year: number
+      description: string
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["resourceDetail"]>
+    composites: {}
+  }
+
+
+  type ResourceDetailGetPayload<S extends boolean | null | undefined | ResourceDetailDefaultArgs> = $Result.GetResult<Prisma.$ResourceDetailPayload, S>
+
+  type ResourceDetailCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ResourceDetailFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ResourceDetailCountAggregateInputType | true
+    }
+
+  export interface ResourceDetailDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ResourceDetail'], meta: { name: 'ResourceDetail' } }
+    /**
+     * Find zero or one ResourceDetail that matches the filter.
+     * @param {ResourceDetailFindUniqueArgs} args - Arguments to find a ResourceDetail
+     * @example
+     * // Get one ResourceDetail
+     * const resourceDetail = await prisma.resourceDetail.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ResourceDetailFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceDetailFindUniqueArgs<ExtArgs>>
+    ): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one ResourceDetail that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ResourceDetailFindUniqueOrThrowArgs} args - Arguments to find a ResourceDetail
+     * @example
+     * // Get one ResourceDetail
+     * const resourceDetail = await prisma.resourceDetail.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ResourceDetailFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceDetailFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first ResourceDetail that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceDetailFindFirstArgs} args - Arguments to find a ResourceDetail
+     * @example
+     * // Get one ResourceDetail
+     * const resourceDetail = await prisma.resourceDetail.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ResourceDetailFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceDetailFindFirstArgs<ExtArgs>>
+    ): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first ResourceDetail that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceDetailFindFirstOrThrowArgs} args - Arguments to find a ResourceDetail
+     * @example
+     * // Get one ResourceDetail
+     * const resourceDetail = await prisma.resourceDetail.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ResourceDetailFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceDetailFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more ResourceDetails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceDetailFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ResourceDetails
+     * const resourceDetails = await prisma.resourceDetail.findMany()
+     * 
+     * // Get first 10 ResourceDetails
+     * const resourceDetails = await prisma.resourceDetail.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const resourceDetailWithIdOnly = await prisma.resourceDetail.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ResourceDetailFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceDetailFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a ResourceDetail.
+     * @param {ResourceDetailCreateArgs} args - Arguments to create a ResourceDetail.
+     * @example
+     * // Create one ResourceDetail
+     * const ResourceDetail = await prisma.resourceDetail.create({
+     *   data: {
+     *     // ... data to create a ResourceDetail
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ResourceDetailCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceDetailCreateArgs<ExtArgs>>
+    ): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many ResourceDetails.
+     * @param {ResourceDetailCreateManyArgs} args - Arguments to create many ResourceDetails.
+     * @example
+     * // Create many ResourceDetails
+     * const resourceDetail = await prisma.resourceDetail.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends ResourceDetailCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceDetailCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ResourceDetails and returns the data saved in the database.
+     * @param {ResourceDetailCreateManyAndReturnArgs} args - Arguments to create many ResourceDetails.
+     * @example
+     * // Create many ResourceDetails
+     * const resourceDetail = await prisma.resourceDetail.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ResourceDetails and only return the `id`
+     * const resourceDetailWithIdOnly = await prisma.resourceDetail.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends ResourceDetailCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceDetailCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'createManyAndReturn'>>
+
+    /**
+     * Delete a ResourceDetail.
+     * @param {ResourceDetailDeleteArgs} args - Arguments to delete one ResourceDetail.
+     * @example
+     * // Delete one ResourceDetail
+     * const ResourceDetail = await prisma.resourceDetail.delete({
+     *   where: {
+     *     // ... filter to delete one ResourceDetail
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ResourceDetailDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceDetailDeleteArgs<ExtArgs>>
+    ): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one ResourceDetail.
+     * @param {ResourceDetailUpdateArgs} args - Arguments to update one ResourceDetail.
+     * @example
+     * // Update one ResourceDetail
+     * const resourceDetail = await prisma.resourceDetail.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ResourceDetailUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceDetailUpdateArgs<ExtArgs>>
+    ): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ResourceDetails.
+     * @param {ResourceDetailDeleteManyArgs} args - Arguments to filter ResourceDetails to delete.
+     * @example
+     * // Delete a few ResourceDetails
+     * const { count } = await prisma.resourceDetail.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ResourceDetailDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceDetailDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResourceDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceDetailUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ResourceDetails
+     * const resourceDetail = await prisma.resourceDetail.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ResourceDetailUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceDetailUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ResourceDetail.
+     * @param {ResourceDetailUpsertArgs} args - Arguments to update or create a ResourceDetail.
+     * @example
+     * // Update or create a ResourceDetail
+     * const resourceDetail = await prisma.resourceDetail.upsert({
+     *   create: {
+     *     // ... data to create a ResourceDetail
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ResourceDetail we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ResourceDetailUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceDetailUpsertArgs<ExtArgs>>
+    ): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of ResourceDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceDetailCountArgs} args - Arguments to filter ResourceDetails to count.
+     * @example
+     * // Count the number of ResourceDetails
+     * const count = await prisma.resourceDetail.count({
+     *   where: {
+     *     // ... the filter for the ResourceDetails we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResourceDetailCountArgs>(
+      args?: Subset<T, ResourceDetailCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResourceDetailCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ResourceDetail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceDetailAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResourceDetailAggregateArgs>(args: Subset<T, ResourceDetailAggregateArgs>): Prisma.PrismaPromise<GetResourceDetailAggregateType<T>>
+
+    /**
+     * Group by ResourceDetail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceDetailGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResourceDetailGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResourceDetailGroupByArgs['orderBy'] }
+        : { orderBy?: ResourceDetailGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResourceDetailGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResourceDetailGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ResourceDetail model
+   */
+  readonly fields: ResourceDetailFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ResourceDetail.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResourceDetailClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    resource<T extends ResourceDetail$resourceArgs<ExtArgs> = {}>(args?: Subset<T, ResourceDetail$resourceArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the ResourceDetail model
+   */ 
+  interface ResourceDetailFieldRefs {
+    readonly id: FieldRef<"ResourceDetail", 'Int'>
+    readonly pub_year: FieldRef<"ResourceDetail", 'Int'>
+    readonly description: FieldRef<"ResourceDetail", 'String'>
+    readonly created_at: FieldRef<"ResourceDetail", 'DateTime'>
+    readonly updated_at: FieldRef<"ResourceDetail", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ResourceDetail findUnique
+   */
+  export type ResourceDetailFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceDetail to fetch.
+     */
+    where: ResourceDetailWhereUniqueInput
+  }
+
+  /**
+   * ResourceDetail findUniqueOrThrow
+   */
+  export type ResourceDetailFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceDetail to fetch.
+     */
+    where: ResourceDetailWhereUniqueInput
+  }
+
+  /**
+   * ResourceDetail findFirst
+   */
+  export type ResourceDetailFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceDetail to fetch.
+     */
+    where?: ResourceDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceDetails to fetch.
+     */
+    orderBy?: ResourceDetailOrderByWithRelationInput | ResourceDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResourceDetails.
+     */
+    cursor?: ResourceDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResourceDetails.
+     */
+    distinct?: ResourceDetailScalarFieldEnum | ResourceDetailScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceDetail findFirstOrThrow
+   */
+  export type ResourceDetailFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceDetail to fetch.
+     */
+    where?: ResourceDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceDetails to fetch.
+     */
+    orderBy?: ResourceDetailOrderByWithRelationInput | ResourceDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResourceDetails.
+     */
+    cursor?: ResourceDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResourceDetails.
+     */
+    distinct?: ResourceDetailScalarFieldEnum | ResourceDetailScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceDetail findMany
+   */
+  export type ResourceDetailFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceDetails to fetch.
+     */
+    where?: ResourceDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceDetails to fetch.
+     */
+    orderBy?: ResourceDetailOrderByWithRelationInput | ResourceDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ResourceDetails.
+     */
+    cursor?: ResourceDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceDetails.
+     */
+    skip?: number
+    distinct?: ResourceDetailScalarFieldEnum | ResourceDetailScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceDetail create
+   */
+  export type ResourceDetailCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ResourceDetail.
+     */
+    data: XOR<ResourceDetailCreateInput, ResourceDetailUncheckedCreateInput>
+  }
+
+  /**
+   * ResourceDetail createMany
+   */
+  export type ResourceDetailCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ResourceDetails.
+     */
+    data: ResourceDetailCreateManyInput | ResourceDetailCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResourceDetail createManyAndReturn
+   */
+  export type ResourceDetailCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * The data used to create many ResourceDetails.
+     */
+    data: ResourceDetailCreateManyInput | ResourceDetailCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResourceDetail update
+   */
+  export type ResourceDetailUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ResourceDetail.
+     */
+    data: XOR<ResourceDetailUpdateInput, ResourceDetailUncheckedUpdateInput>
+    /**
+     * Choose, which ResourceDetail to update.
+     */
+    where: ResourceDetailWhereUniqueInput
+  }
+
+  /**
+   * ResourceDetail updateMany
+   */
+  export type ResourceDetailUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ResourceDetails.
+     */
+    data: XOR<ResourceDetailUpdateManyMutationInput, ResourceDetailUncheckedUpdateManyInput>
+    /**
+     * Filter which ResourceDetails to update
+     */
+    where?: ResourceDetailWhereInput
+  }
+
+  /**
+   * ResourceDetail upsert
+   */
+  export type ResourceDetailUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ResourceDetail to update in case it exists.
+     */
+    where: ResourceDetailWhereUniqueInput
+    /**
+     * In case the ResourceDetail found by the `where` argument doesn't exist, create a new ResourceDetail with this data.
+     */
+    create: XOR<ResourceDetailCreateInput, ResourceDetailUncheckedCreateInput>
+    /**
+     * In case the ResourceDetail was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResourceDetailUpdateInput, ResourceDetailUncheckedUpdateInput>
+  }
+
+  /**
+   * ResourceDetail delete
+   */
+  export type ResourceDetailDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+    /**
+     * Filter which ResourceDetail to delete.
+     */
+    where: ResourceDetailWhereUniqueInput
+  }
+
+  /**
+   * ResourceDetail deleteMany
+   */
+  export type ResourceDetailDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResourceDetails to delete
+     */
+    where?: ResourceDetailWhereInput
+  }
+
+  /**
+   * ResourceDetail.resource
+   */
+  export type ResourceDetail$resourceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Resource
+     */
+    select?: ResourceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceInclude<ExtArgs> | null
+    where?: ResourceWhereInput
+  }
+
+  /**
+   * ResourceDetail without action
+   */
+  export type ResourceDetailDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceDetail
+     */
+    select?: ResourceDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceDetailInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model ResourceInstance
    */
 
@@ -7114,6 +8229,7 @@ export namespace Prisma {
 
   export type ResourceInstanceMinAggregateOutputType = {
     id: string | null
+    instance_name: string | null
     resource_id: string | null
     lang: $Enums.ResourceLang | null
     status: $Enums.ResourceInstanceStatus | null
@@ -7123,6 +8239,7 @@ export namespace Prisma {
 
   export type ResourceInstanceMaxAggregateOutputType = {
     id: string | null
+    instance_name: string | null
     resource_id: string | null
     lang: $Enums.ResourceLang | null
     status: $Enums.ResourceInstanceStatus | null
@@ -7132,6 +8249,7 @@ export namespace Prisma {
 
   export type ResourceInstanceCountAggregateOutputType = {
     id: number
+    instance_name: number
     resource_id: number
     lang: number
     status: number
@@ -7143,6 +8261,7 @@ export namespace Prisma {
 
   export type ResourceInstanceMinAggregateInputType = {
     id?: true
+    instance_name?: true
     resource_id?: true
     lang?: true
     status?: true
@@ -7152,6 +8271,7 @@ export namespace Prisma {
 
   export type ResourceInstanceMaxAggregateInputType = {
     id?: true
+    instance_name?: true
     resource_id?: true
     lang?: true
     status?: true
@@ -7161,6 +8281,7 @@ export namespace Prisma {
 
   export type ResourceInstanceCountAggregateInputType = {
     id?: true
+    instance_name?: true
     resource_id?: true
     lang?: true
     status?: true
@@ -7243,6 +8364,7 @@ export namespace Prisma {
 
   export type ResourceInstanceGroupByOutputType = {
     id: string
+    instance_name: string
     resource_id: string
     lang: $Enums.ResourceLang
     status: $Enums.ResourceInstanceStatus
@@ -7269,6 +8391,7 @@ export namespace Prisma {
 
   export type ResourceInstanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    instance_name?: boolean
     resource_id?: boolean
     lang?: boolean
     status?: boolean
@@ -7279,6 +8402,7 @@ export namespace Prisma {
 
   export type ResourceInstanceSelectScalar = {
     id?: boolean
+    instance_name?: boolean
     resource_id?: boolean
     lang?: boolean
     status?: boolean
@@ -7299,6 +8423,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      instance_name: string
       resource_id: string
       lang: $Enums.ResourceLang
       status: $Enums.ResourceInstanceStatus
@@ -7726,6 +8851,7 @@ export namespace Prisma {
    */ 
   interface ResourceInstanceFieldRefs {
     readonly id: FieldRef<"ResourceInstance", 'String'>
+    readonly instance_name: FieldRef<"ResourceInstance", 'String'>
     readonly resource_id: FieldRef<"ResourceInstance", 'String'>
     readonly lang: FieldRef<"ResourceInstance", 'ResourceLang'>
     readonly status: FieldRef<"ResourceInstance", 'ResourceInstanceStatus'>
@@ -12120,23 +13246,35 @@ export namespace Prisma {
   export const ResourceScalarFieldEnum: {
     id: 'id',
     resource_name: 'resource_name',
-    isbn: 'isbn',
-    author: 'author',
+    slug_name: 'slug_name',
     image_url: 'image_url',
+    author: 'author',
     short_description: 'short_description',
-    pub_year: 'pub_year',
     edition: 'edition',
-    publisher_id: 'publisher_id',
-    type_id: 'type_id',
     created_at: 'created_at',
-    updated_at: 'updated_at'
+    updated_at: 'updated_at',
+    type_id: 'type_id',
+    publisher_id: 'publisher_id',
+    detail_id: 'detail_id'
   };
 
   export type ResourceScalarFieldEnum = (typeof ResourceScalarFieldEnum)[keyof typeof ResourceScalarFieldEnum]
 
 
+  export const ResourceDetailScalarFieldEnum: {
+    id: 'id',
+    pub_year: 'pub_year',
+    description: 'description',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type ResourceDetailScalarFieldEnum = (typeof ResourceDetailScalarFieldEnum)[keyof typeof ResourceDetailScalarFieldEnum]
+
+
   export const ResourceInstanceScalarFieldEnum: {
     id: 'id',
+    instance_name: 'instance_name',
     resource_id: 'resource_id',
     lang: 'lang',
     status: 'status',
@@ -12581,79 +13719,82 @@ export namespace Prisma {
     NOT?: ResourceWhereInput | ResourceWhereInput[]
     id?: StringFilter<"Resource"> | string
     resource_name?: StringFilter<"Resource"> | string
-    isbn?: StringNullableFilter<"Resource"> | string | null
-    author?: StringFilter<"Resource"> | string
+    slug_name?: StringNullableFilter<"Resource"> | string | null
     image_url?: StringNullableFilter<"Resource"> | string | null
+    author?: StringFilter<"Resource"> | string
     short_description?: StringNullableFilter<"Resource"> | string | null
-    pub_year?: IntFilter<"Resource"> | number
     edition?: StringFilter<"Resource"> | string
-    publisher_id?: IntFilter<"Resource"> | number
-    type_id?: IntFilter<"Resource"> | number
     created_at?: DateTimeFilter<"Resource"> | Date | string
     updated_at?: DateTimeFilter<"Resource"> | Date | string
+    type_id?: IntFilter<"Resource"> | number
+    publisher_id?: IntFilter<"Resource"> | number
+    detail_id?: IntNullableFilter<"Resource"> | number | null
+    type?: XOR<ResourceTypeRelationFilter, ResourceTypeWhereInput>
     instances?: ResourceInstanceListRelationFilter
     categories?: CategoryListRelationFilter
     ResourceCategory?: ResourceCategoryListRelationFilter
-    type?: XOR<ResourceTypeRelationFilter, ResourceTypeWhereInput>
     publisher?: XOR<PublisherRelationFilter, PublisherWhereInput>
+    detail?: XOR<ResourceDetailNullableRelationFilter, ResourceDetailWhereInput> | null
   }
 
   export type ResourceOrderByWithRelationInput = {
     id?: SortOrder
     resource_name?: SortOrder
-    isbn?: SortOrderInput | SortOrder
-    author?: SortOrder
+    slug_name?: SortOrderInput | SortOrder
     image_url?: SortOrderInput | SortOrder
+    author?: SortOrder
     short_description?: SortOrderInput | SortOrder
-    pub_year?: SortOrder
     edition?: SortOrder
-    publisher_id?: SortOrder
-    type_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    type_id?: SortOrder
+    publisher_id?: SortOrder
+    detail_id?: SortOrderInput | SortOrder
+    type?: ResourceTypeOrderByWithRelationInput
     instances?: ResourceInstanceOrderByRelationAggregateInput
     categories?: CategoryOrderByRelationAggregateInput
     ResourceCategory?: ResourceCategoryOrderByRelationAggregateInput
-    type?: ResourceTypeOrderByWithRelationInput
     publisher?: PublisherOrderByWithRelationInput
+    detail?: ResourceDetailOrderByWithRelationInput
   }
 
   export type ResourceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    isbn?: string
+    slug_name?: string
+    detail_id?: number
     AND?: ResourceWhereInput | ResourceWhereInput[]
     OR?: ResourceWhereInput[]
     NOT?: ResourceWhereInput | ResourceWhereInput[]
     resource_name?: StringFilter<"Resource"> | string
-    author?: StringFilter<"Resource"> | string
     image_url?: StringNullableFilter<"Resource"> | string | null
+    author?: StringFilter<"Resource"> | string
     short_description?: StringNullableFilter<"Resource"> | string | null
-    pub_year?: IntFilter<"Resource"> | number
     edition?: StringFilter<"Resource"> | string
-    publisher_id?: IntFilter<"Resource"> | number
-    type_id?: IntFilter<"Resource"> | number
     created_at?: DateTimeFilter<"Resource"> | Date | string
     updated_at?: DateTimeFilter<"Resource"> | Date | string
+    type_id?: IntFilter<"Resource"> | number
+    publisher_id?: IntFilter<"Resource"> | number
+    type?: XOR<ResourceTypeRelationFilter, ResourceTypeWhereInput>
     instances?: ResourceInstanceListRelationFilter
     categories?: CategoryListRelationFilter
     ResourceCategory?: ResourceCategoryListRelationFilter
-    type?: XOR<ResourceTypeRelationFilter, ResourceTypeWhereInput>
     publisher?: XOR<PublisherRelationFilter, PublisherWhereInput>
-  }, "id" | "isbn">
+    detail?: XOR<ResourceDetailNullableRelationFilter, ResourceDetailWhereInput> | null
+  }, "id" | "slug_name" | "detail_id">
 
   export type ResourceOrderByWithAggregationInput = {
     id?: SortOrder
     resource_name?: SortOrder
-    isbn?: SortOrderInput | SortOrder
-    author?: SortOrder
+    slug_name?: SortOrderInput | SortOrder
     image_url?: SortOrderInput | SortOrder
+    author?: SortOrder
     short_description?: SortOrderInput | SortOrder
-    pub_year?: SortOrder
     edition?: SortOrder
-    publisher_id?: SortOrder
-    type_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    type_id?: SortOrder
+    publisher_id?: SortOrder
+    detail_id?: SortOrderInput | SortOrder
     _count?: ResourceCountOrderByAggregateInput
     _avg?: ResourceAvgOrderByAggregateInput
     _max?: ResourceMaxOrderByAggregateInput
@@ -12667,16 +13808,73 @@ export namespace Prisma {
     NOT?: ResourceScalarWhereWithAggregatesInput | ResourceScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Resource"> | string
     resource_name?: StringWithAggregatesFilter<"Resource"> | string
-    isbn?: StringNullableWithAggregatesFilter<"Resource"> | string | null
-    author?: StringWithAggregatesFilter<"Resource"> | string
+    slug_name?: StringNullableWithAggregatesFilter<"Resource"> | string | null
     image_url?: StringNullableWithAggregatesFilter<"Resource"> | string | null
+    author?: StringWithAggregatesFilter<"Resource"> | string
     short_description?: StringNullableWithAggregatesFilter<"Resource"> | string | null
-    pub_year?: IntWithAggregatesFilter<"Resource"> | number
     edition?: StringWithAggregatesFilter<"Resource"> | string
-    publisher_id?: IntWithAggregatesFilter<"Resource"> | number
-    type_id?: IntWithAggregatesFilter<"Resource"> | number
     created_at?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
+    type_id?: IntWithAggregatesFilter<"Resource"> | number
+    publisher_id?: IntWithAggregatesFilter<"Resource"> | number
+    detail_id?: IntNullableWithAggregatesFilter<"Resource"> | number | null
+  }
+
+  export type ResourceDetailWhereInput = {
+    AND?: ResourceDetailWhereInput | ResourceDetailWhereInput[]
+    OR?: ResourceDetailWhereInput[]
+    NOT?: ResourceDetailWhereInput | ResourceDetailWhereInput[]
+    id?: IntFilter<"ResourceDetail"> | number
+    pub_year?: IntFilter<"ResourceDetail"> | number
+    description?: StringFilter<"ResourceDetail"> | string
+    created_at?: DateTimeFilter<"ResourceDetail"> | Date | string
+    updated_at?: DateTimeFilter<"ResourceDetail"> | Date | string
+    resource?: XOR<ResourceNullableRelationFilter, ResourceWhereInput> | null
+  }
+
+  export type ResourceDetailOrderByWithRelationInput = {
+    id?: SortOrder
+    pub_year?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    resource?: ResourceOrderByWithRelationInput
+  }
+
+  export type ResourceDetailWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ResourceDetailWhereInput | ResourceDetailWhereInput[]
+    OR?: ResourceDetailWhereInput[]
+    NOT?: ResourceDetailWhereInput | ResourceDetailWhereInput[]
+    pub_year?: IntFilter<"ResourceDetail"> | number
+    description?: StringFilter<"ResourceDetail"> | string
+    created_at?: DateTimeFilter<"ResourceDetail"> | Date | string
+    updated_at?: DateTimeFilter<"ResourceDetail"> | Date | string
+    resource?: XOR<ResourceNullableRelationFilter, ResourceWhereInput> | null
+  }, "id">
+
+  export type ResourceDetailOrderByWithAggregationInput = {
+    id?: SortOrder
+    pub_year?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: ResourceDetailCountOrderByAggregateInput
+    _avg?: ResourceDetailAvgOrderByAggregateInput
+    _max?: ResourceDetailMaxOrderByAggregateInput
+    _min?: ResourceDetailMinOrderByAggregateInput
+    _sum?: ResourceDetailSumOrderByAggregateInput
+  }
+
+  export type ResourceDetailScalarWhereWithAggregatesInput = {
+    AND?: ResourceDetailScalarWhereWithAggregatesInput | ResourceDetailScalarWhereWithAggregatesInput[]
+    OR?: ResourceDetailScalarWhereWithAggregatesInput[]
+    NOT?: ResourceDetailScalarWhereWithAggregatesInput | ResourceDetailScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ResourceDetail"> | number
+    pub_year?: IntWithAggregatesFilter<"ResourceDetail"> | number
+    description?: StringWithAggregatesFilter<"ResourceDetail"> | string
+    created_at?: DateTimeWithAggregatesFilter<"ResourceDetail"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"ResourceDetail"> | Date | string
   }
 
   export type ResourceInstanceWhereInput = {
@@ -12684,6 +13882,7 @@ export namespace Prisma {
     OR?: ResourceInstanceWhereInput[]
     NOT?: ResourceInstanceWhereInput | ResourceInstanceWhereInput[]
     id?: StringFilter<"ResourceInstance"> | string
+    instance_name?: StringFilter<"ResourceInstance"> | string
     resource_id?: StringFilter<"ResourceInstance"> | string
     lang?: EnumResourceLangFilter<"ResourceInstance"> | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFilter<"ResourceInstance"> | $Enums.ResourceInstanceStatus
@@ -12694,6 +13893,7 @@ export namespace Prisma {
 
   export type ResourceInstanceOrderByWithRelationInput = {
     id?: SortOrder
+    instance_name?: SortOrder
     resource_id?: SortOrder
     lang?: SortOrder
     status?: SortOrder
@@ -12707,6 +13907,7 @@ export namespace Prisma {
     AND?: ResourceInstanceWhereInput | ResourceInstanceWhereInput[]
     OR?: ResourceInstanceWhereInput[]
     NOT?: ResourceInstanceWhereInput | ResourceInstanceWhereInput[]
+    instance_name?: StringFilter<"ResourceInstance"> | string
     resource_id?: StringFilter<"ResourceInstance"> | string
     lang?: EnumResourceLangFilter<"ResourceInstance"> | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFilter<"ResourceInstance"> | $Enums.ResourceInstanceStatus
@@ -12717,6 +13918,7 @@ export namespace Prisma {
 
   export type ResourceInstanceOrderByWithAggregationInput = {
     id?: SortOrder
+    instance_name?: SortOrder
     resource_id?: SortOrder
     lang?: SortOrder
     status?: SortOrder
@@ -12732,6 +13934,7 @@ export namespace Prisma {
     OR?: ResourceInstanceScalarWhereWithAggregatesInput[]
     NOT?: ResourceInstanceScalarWhereWithAggregatesInput | ResourceInstanceScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ResourceInstance"> | string
+    instance_name?: StringWithAggregatesFilter<"ResourceInstance"> | string
     resource_id?: StringWithAggregatesFilter<"ResourceInstance"> | string
     lang?: EnumResourceLangWithAggregatesFilter<"ResourceInstance"> | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusWithAggregatesFilter<"ResourceInstance"> | $Enums.ResourceInstanceStatus
@@ -13196,34 +14399,34 @@ export namespace Prisma {
   export type ResourceCreateInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
     created_at?: Date | string
     updated_at?: Date | string
+    type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
-    type: ResourceTypeCreateNestedOneWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
+    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    publisher_id: number
-    type_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    type_id: number
+    publisher_id: number
+    detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
@@ -13232,34 +14435,34 @@ export namespace Prisma {
   export type ResourceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
-    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
+    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    publisher_id?: IntFieldUpdateOperationsInput | number
-    type_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
@@ -13268,26 +14471,25 @@ export namespace Prisma {
   export type ResourceCreateManyInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    publisher_id: number
-    type_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    type_id: number
+    publisher_id: number
+    detail_id?: number | null
   }
 
   export type ResourceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13296,20 +14498,78 @@ export namespace Prisma {
   export type ResourceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    publisher_id?: IntFieldUpdateOperationsInput | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ResourceDetailCreateInput = {
+    pub_year: number
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    resource?: ResourceCreateNestedOneWithoutDetailInput
+  }
+
+  export type ResourceDetailUncheckedCreateInput = {
+    id?: number
+    pub_year: number
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    resource?: ResourceUncheckedCreateNestedOneWithoutDetailInput
+  }
+
+  export type ResourceDetailUpdateInput = {
+    pub_year?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    resource?: ResourceUpdateOneWithoutDetailNestedInput
+  }
+
+  export type ResourceDetailUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    pub_year?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    resource?: ResourceUncheckedUpdateOneWithoutDetailNestedInput
+  }
+
+  export type ResourceDetailCreateManyInput = {
+    id?: number
+    pub_year: number
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ResourceDetailUpdateManyMutationInput = {
+    pub_year?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceDetailUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    pub_year?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResourceInstanceCreateInput = {
     id?: string
+    instance_name?: string
     lang?: $Enums.ResourceLang
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
@@ -13319,6 +14579,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUncheckedCreateInput = {
     id?: string
+    instance_name?: string
     resource_id: string
     lang?: $Enums.ResourceLang
     status?: $Enums.ResourceInstanceStatus
@@ -13328,6 +14589,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
     lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13337,6 +14599,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
     resource_id?: StringFieldUpdateOperationsInput | string
     lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
@@ -13346,6 +14609,7 @@ export namespace Prisma {
 
   export type ResourceInstanceCreateManyInput = {
     id?: string
+    instance_name?: string
     resource_id: string
     lang?: $Enums.ResourceLang
     status?: $Enums.ResourceInstanceStatus
@@ -13355,6 +14619,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
     lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13363,6 +14628,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
     resource_id?: StringFieldUpdateOperationsInput | string
     lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
@@ -13892,6 +15158,22 @@ export namespace Prisma {
     updated_at?: SortOrder
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type ResourceTypeRelationFilter = {
+    is?: ResourceTypeWhereInput
+    isNot?: ResourceTypeWhereInput
+  }
+
   export type ResourceInstanceListRelationFilter = {
     every?: ResourceInstanceWhereInput
     some?: ResourceInstanceWhereInput
@@ -13910,14 +15192,14 @@ export namespace Prisma {
     none?: ResourceCategoryWhereInput
   }
 
-  export type ResourceTypeRelationFilter = {
-    is?: ResourceTypeWhereInput
-    isNot?: ResourceTypeWhereInput
-  }
-
   export type PublisherRelationFilter = {
     is?: PublisherWhereInput
     isNot?: PublisherWhereInput
+  }
+
+  export type ResourceDetailNullableRelationFilter = {
+    is?: ResourceDetailWhereInput | null
+    isNot?: ResourceDetailWhereInput | null
   }
 
   export type ResourceInstanceOrderByRelationAggregateInput = {
@@ -13935,58 +15217,113 @@ export namespace Prisma {
   export type ResourceCountOrderByAggregateInput = {
     id?: SortOrder
     resource_name?: SortOrder
-    isbn?: SortOrder
-    author?: SortOrder
+    slug_name?: SortOrder
     image_url?: SortOrder
+    author?: SortOrder
     short_description?: SortOrder
-    pub_year?: SortOrder
     edition?: SortOrder
-    publisher_id?: SortOrder
-    type_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    type_id?: SortOrder
+    publisher_id?: SortOrder
+    detail_id?: SortOrder
   }
 
   export type ResourceAvgOrderByAggregateInput = {
-    pub_year?: SortOrder
-    publisher_id?: SortOrder
     type_id?: SortOrder
+    publisher_id?: SortOrder
+    detail_id?: SortOrder
   }
 
   export type ResourceMaxOrderByAggregateInput = {
     id?: SortOrder
     resource_name?: SortOrder
-    isbn?: SortOrder
-    author?: SortOrder
+    slug_name?: SortOrder
     image_url?: SortOrder
+    author?: SortOrder
     short_description?: SortOrder
-    pub_year?: SortOrder
     edition?: SortOrder
-    publisher_id?: SortOrder
-    type_id?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    type_id?: SortOrder
+    publisher_id?: SortOrder
+    detail_id?: SortOrder
   }
 
   export type ResourceMinOrderByAggregateInput = {
     id?: SortOrder
     resource_name?: SortOrder
-    isbn?: SortOrder
-    author?: SortOrder
+    slug_name?: SortOrder
     image_url?: SortOrder
+    author?: SortOrder
     short_description?: SortOrder
-    pub_year?: SortOrder
     edition?: SortOrder
-    publisher_id?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
     type_id?: SortOrder
+    publisher_id?: SortOrder
+    detail_id?: SortOrder
+  }
+
+  export type ResourceSumOrderByAggregateInput = {
+    type_id?: SortOrder
+    publisher_id?: SortOrder
+    detail_id?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type ResourceNullableRelationFilter = {
+    is?: ResourceWhereInput | null
+    isNot?: ResourceWhereInput | null
+  }
+
+  export type ResourceDetailCountOrderByAggregateInput = {
+    id?: SortOrder
+    pub_year?: SortOrder
+    description?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
 
-  export type ResourceSumOrderByAggregateInput = {
+  export type ResourceDetailAvgOrderByAggregateInput = {
+    id?: SortOrder
     pub_year?: SortOrder
-    publisher_id?: SortOrder
-    type_id?: SortOrder
+  }
+
+  export type ResourceDetailMaxOrderByAggregateInput = {
+    id?: SortOrder
+    pub_year?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ResourceDetailMinOrderByAggregateInput = {
+    id?: SortOrder
+    pub_year?: SortOrder
+    description?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ResourceDetailSumOrderByAggregateInput = {
+    id?: SortOrder
+    pub_year?: SortOrder
   }
 
   export type EnumResourceLangFilter<$PrismaModel = never> = {
@@ -14010,6 +15347,7 @@ export namespace Prisma {
 
   export type ResourceInstanceCountOrderByAggregateInput = {
     id?: SortOrder
+    instance_name?: SortOrder
     resource_id?: SortOrder
     lang?: SortOrder
     status?: SortOrder
@@ -14019,6 +15357,7 @@ export namespace Prisma {
 
   export type ResourceInstanceMaxOrderByAggregateInput = {
     id?: SortOrder
+    instance_name?: SortOrder
     resource_id?: SortOrder
     lang?: SortOrder
     status?: SortOrder
@@ -14028,6 +15367,7 @@ export namespace Prisma {
 
   export type ResourceInstanceMinOrderByAggregateInput = {
     id?: SortOrder
+    instance_name?: SortOrder
     resource_id?: SortOrder
     lang?: SortOrder
     status?: SortOrder
@@ -14484,6 +15824,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLoanInput, UserUpdateWithoutLoanInput>, UserUncheckedUpdateWithoutLoanInput>
   }
 
+  export type ResourceTypeCreateNestedOneWithoutResourceInput = {
+    create?: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
+    connectOrCreate?: ResourceTypeCreateOrConnectWithoutResourceInput
+    connect?: ResourceTypeWhereUniqueInput
+  }
+
   export type ResourceInstanceCreateNestedManyWithoutResourceInput = {
     create?: XOR<ResourceInstanceCreateWithoutResourceInput, ResourceInstanceUncheckedCreateWithoutResourceInput> | ResourceInstanceCreateWithoutResourceInput[] | ResourceInstanceUncheckedCreateWithoutResourceInput[]
     connectOrCreate?: ResourceInstanceCreateOrConnectWithoutResourceInput | ResourceInstanceCreateOrConnectWithoutResourceInput[]
@@ -14504,16 +15850,16 @@ export namespace Prisma {
     connect?: ResourceCategoryWhereUniqueInput | ResourceCategoryWhereUniqueInput[]
   }
 
-  export type ResourceTypeCreateNestedOneWithoutResourceInput = {
-    create?: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
-    connectOrCreate?: ResourceTypeCreateOrConnectWithoutResourceInput
-    connect?: ResourceTypeWhereUniqueInput
-  }
-
   export type PublisherCreateNestedOneWithoutResourcesInput = {
     create?: XOR<PublisherCreateWithoutResourcesInput, PublisherUncheckedCreateWithoutResourcesInput>
     connectOrCreate?: PublisherCreateOrConnectWithoutResourcesInput
     connect?: PublisherWhereUniqueInput
+  }
+
+  export type ResourceDetailCreateNestedOneWithoutResourceInput = {
+    create?: XOR<ResourceDetailCreateWithoutResourceInput, ResourceDetailUncheckedCreateWithoutResourceInput>
+    connectOrCreate?: ResourceDetailCreateOrConnectWithoutResourceInput
+    connect?: ResourceDetailWhereUniqueInput
   }
 
   export type ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput = {
@@ -14534,6 +15880,14 @@ export namespace Prisma {
     connectOrCreate?: ResourceCategoryCreateOrConnectWithoutResourceInput | ResourceCategoryCreateOrConnectWithoutResourceInput[]
     createMany?: ResourceCategoryCreateManyResourceInputEnvelope
     connect?: ResourceCategoryWhereUniqueInput | ResourceCategoryWhereUniqueInput[]
+  }
+
+  export type ResourceTypeUpdateOneRequiredWithoutResourceNestedInput = {
+    create?: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
+    connectOrCreate?: ResourceTypeCreateOrConnectWithoutResourceInput
+    upsert?: ResourceTypeUpsertWithoutResourceInput
+    connect?: ResourceTypeWhereUniqueInput
+    update?: XOR<XOR<ResourceTypeUpdateToOneWithWhereWithoutResourceInput, ResourceTypeUpdateWithoutResourceInput>, ResourceTypeUncheckedUpdateWithoutResourceInput>
   }
 
   export type ResourceInstanceUpdateManyWithoutResourceNestedInput = {
@@ -14577,20 +15931,30 @@ export namespace Prisma {
     deleteMany?: ResourceCategoryScalarWhereInput | ResourceCategoryScalarWhereInput[]
   }
 
-  export type ResourceTypeUpdateOneRequiredWithoutResourceNestedInput = {
-    create?: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
-    connectOrCreate?: ResourceTypeCreateOrConnectWithoutResourceInput
-    upsert?: ResourceTypeUpsertWithoutResourceInput
-    connect?: ResourceTypeWhereUniqueInput
-    update?: XOR<XOR<ResourceTypeUpdateToOneWithWhereWithoutResourceInput, ResourceTypeUpdateWithoutResourceInput>, ResourceTypeUncheckedUpdateWithoutResourceInput>
-  }
-
   export type PublisherUpdateOneRequiredWithoutResourcesNestedInput = {
     create?: XOR<PublisherCreateWithoutResourcesInput, PublisherUncheckedCreateWithoutResourcesInput>
     connectOrCreate?: PublisherCreateOrConnectWithoutResourcesInput
     upsert?: PublisherUpsertWithoutResourcesInput
     connect?: PublisherWhereUniqueInput
     update?: XOR<XOR<PublisherUpdateToOneWithWhereWithoutResourcesInput, PublisherUpdateWithoutResourcesInput>, PublisherUncheckedUpdateWithoutResourcesInput>
+  }
+
+  export type ResourceDetailUpdateOneWithoutResourceNestedInput = {
+    create?: XOR<ResourceDetailCreateWithoutResourceInput, ResourceDetailUncheckedCreateWithoutResourceInput>
+    connectOrCreate?: ResourceDetailCreateOrConnectWithoutResourceInput
+    upsert?: ResourceDetailUpsertWithoutResourceInput
+    disconnect?: ResourceDetailWhereInput | boolean
+    delete?: ResourceDetailWhereInput | boolean
+    connect?: ResourceDetailWhereUniqueInput
+    update?: XOR<XOR<ResourceDetailUpdateToOneWithWhereWithoutResourceInput, ResourceDetailUpdateWithoutResourceInput>, ResourceDetailUncheckedUpdateWithoutResourceInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput = {
@@ -14632,6 +15996,38 @@ export namespace Prisma {
     update?: ResourceCategoryUpdateWithWhereUniqueWithoutResourceInput | ResourceCategoryUpdateWithWhereUniqueWithoutResourceInput[]
     updateMany?: ResourceCategoryUpdateManyWithWhereWithoutResourceInput | ResourceCategoryUpdateManyWithWhereWithoutResourceInput[]
     deleteMany?: ResourceCategoryScalarWhereInput | ResourceCategoryScalarWhereInput[]
+  }
+
+  export type ResourceCreateNestedOneWithoutDetailInput = {
+    create?: XOR<ResourceCreateWithoutDetailInput, ResourceUncheckedCreateWithoutDetailInput>
+    connectOrCreate?: ResourceCreateOrConnectWithoutDetailInput
+    connect?: ResourceWhereUniqueInput
+  }
+
+  export type ResourceUncheckedCreateNestedOneWithoutDetailInput = {
+    create?: XOR<ResourceCreateWithoutDetailInput, ResourceUncheckedCreateWithoutDetailInput>
+    connectOrCreate?: ResourceCreateOrConnectWithoutDetailInput
+    connect?: ResourceWhereUniqueInput
+  }
+
+  export type ResourceUpdateOneWithoutDetailNestedInput = {
+    create?: XOR<ResourceCreateWithoutDetailInput, ResourceUncheckedCreateWithoutDetailInput>
+    connectOrCreate?: ResourceCreateOrConnectWithoutDetailInput
+    upsert?: ResourceUpsertWithoutDetailInput
+    disconnect?: ResourceWhereInput | boolean
+    delete?: ResourceWhereInput | boolean
+    connect?: ResourceWhereUniqueInput
+    update?: XOR<XOR<ResourceUpdateToOneWithWhereWithoutDetailInput, ResourceUpdateWithoutDetailInput>, ResourceUncheckedUpdateWithoutDetailInput>
+  }
+
+  export type ResourceUncheckedUpdateOneWithoutDetailNestedInput = {
+    create?: XOR<ResourceCreateWithoutDetailInput, ResourceUncheckedCreateWithoutDetailInput>
+    connectOrCreate?: ResourceCreateOrConnectWithoutDetailInput
+    upsert?: ResourceUpsertWithoutDetailInput
+    disconnect?: ResourceWhereInput | boolean
+    delete?: ResourceWhereInput | boolean
+    connect?: ResourceWhereUniqueInput
+    update?: XOR<XOR<ResourceUpdateToOneWithWhereWithoutDetailInput, ResourceUpdateWithoutDetailInput>, ResourceUncheckedUpdateWithoutDetailInput>
   }
 
   export type ResourceCreateNestedOneWithoutInstancesInput = {
@@ -15016,6 +16412,33 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleEnumFilter<$PrismaModel>
     _max?: NestedEnumRoleEnumFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumResourceLangFilter<$PrismaModel = never> = {
@@ -15504,8 +16927,27 @@ export namespace Prisma {
     UserRole?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type ResourceTypeCreateWithoutResourceInput = {
+    resource_type_name?: $Enums.ResourcesTypes
+    max_loan_days?: number
+    max_units_per_loan?: number
+  }
+
+  export type ResourceTypeUncheckedCreateWithoutResourceInput = {
+    id?: number
+    resource_type_name?: $Enums.ResourcesTypes
+    max_loan_days?: number
+    max_units_per_loan?: number
+  }
+
+  export type ResourceTypeCreateOrConnectWithoutResourceInput = {
+    where: ResourceTypeWhereUniqueInput
+    create: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
+  }
+
   export type ResourceInstanceCreateWithoutResourceInput = {
     id?: string
+    instance_name?: string
     lang?: $Enums.ResourceLang
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
@@ -15514,6 +16956,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUncheckedCreateWithoutResourceInput = {
     id?: string
+    instance_name?: string
     lang?: $Enums.ResourceLang
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
@@ -15568,24 +17011,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ResourceTypeCreateWithoutResourceInput = {
-    resource_type_name?: $Enums.ResourcesTypes
-    max_loan_days?: number
-    max_units_per_loan?: number
-  }
-
-  export type ResourceTypeUncheckedCreateWithoutResourceInput = {
-    id?: number
-    resource_type_name?: $Enums.ResourcesTypes
-    max_loan_days?: number
-    max_units_per_loan?: number
-  }
-
-  export type ResourceTypeCreateOrConnectWithoutResourceInput = {
-    where: ResourceTypeWhereUniqueInput
-    create: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
-  }
-
   export type PublisherCreateWithoutResourcesInput = {
     publisher_name: string
     image_url?: string | null
@@ -15606,6 +17031,50 @@ export namespace Prisma {
   export type PublisherCreateOrConnectWithoutResourcesInput = {
     where: PublisherWhereUniqueInput
     create: XOR<PublisherCreateWithoutResourcesInput, PublisherUncheckedCreateWithoutResourcesInput>
+  }
+
+  export type ResourceDetailCreateWithoutResourceInput = {
+    pub_year: number
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ResourceDetailUncheckedCreateWithoutResourceInput = {
+    id?: number
+    pub_year: number
+    description: string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ResourceDetailCreateOrConnectWithoutResourceInput = {
+    where: ResourceDetailWhereUniqueInput
+    create: XOR<ResourceDetailCreateWithoutResourceInput, ResourceDetailUncheckedCreateWithoutResourceInput>
+  }
+
+  export type ResourceTypeUpsertWithoutResourceInput = {
+    update: XOR<ResourceTypeUpdateWithoutResourceInput, ResourceTypeUncheckedUpdateWithoutResourceInput>
+    create: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
+    where?: ResourceTypeWhereInput
+  }
+
+  export type ResourceTypeUpdateToOneWithWhereWithoutResourceInput = {
+    where?: ResourceTypeWhereInput
+    data: XOR<ResourceTypeUpdateWithoutResourceInput, ResourceTypeUncheckedUpdateWithoutResourceInput>
+  }
+
+  export type ResourceTypeUpdateWithoutResourceInput = {
+    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
+    max_loan_days?: IntFieldUpdateOperationsInput | number
+    max_units_per_loan?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ResourceTypeUncheckedUpdateWithoutResourceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
+    max_loan_days?: IntFieldUpdateOperationsInput | number
+    max_units_per_loan?: IntFieldUpdateOperationsInput | number
   }
 
   export type ResourceInstanceUpsertWithWhereUniqueWithoutResourceInput = {
@@ -15629,6 +17098,7 @@ export namespace Prisma {
     OR?: ResourceInstanceScalarWhereInput[]
     NOT?: ResourceInstanceScalarWhereInput | ResourceInstanceScalarWhereInput[]
     id?: StringFilter<"ResourceInstance"> | string
+    instance_name?: StringFilter<"ResourceInstance"> | string
     resource_id?: StringFilter<"ResourceInstance"> | string
     lang?: EnumResourceLangFilter<"ResourceInstance"> | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFilter<"ResourceInstance"> | $Enums.ResourceInstanceStatus
@@ -15686,30 +17156,6 @@ export namespace Prisma {
     category_id?: IntFilter<"ResourceCategory"> | number
   }
 
-  export type ResourceTypeUpsertWithoutResourceInput = {
-    update: XOR<ResourceTypeUpdateWithoutResourceInput, ResourceTypeUncheckedUpdateWithoutResourceInput>
-    create: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
-    where?: ResourceTypeWhereInput
-  }
-
-  export type ResourceTypeUpdateToOneWithWhereWithoutResourceInput = {
-    where?: ResourceTypeWhereInput
-    data: XOR<ResourceTypeUpdateWithoutResourceInput, ResourceTypeUncheckedUpdateWithoutResourceInput>
-  }
-
-  export type ResourceTypeUpdateWithoutResourceInput = {
-    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
-    max_loan_days?: IntFieldUpdateOperationsInput | number
-    max_units_per_loan?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type ResourceTypeUncheckedUpdateWithoutResourceInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    resource_type_name?: EnumResourcesTypesFieldUpdateOperationsInput | $Enums.ResourcesTypes
-    max_loan_days?: IntFieldUpdateOperationsInput | number
-    max_units_per_loan?: IntFieldUpdateOperationsInput | number
-  }
-
   export type PublisherUpsertWithoutResourcesInput = {
     update: XOR<PublisherUpdateWithoutResourcesInput, PublisherUncheckedUpdateWithoutResourcesInput>
     create: XOR<PublisherCreateWithoutResourcesInput, PublisherUncheckedCreateWithoutResourcesInput>
@@ -15738,36 +17184,146 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ResourceCreateWithoutInstancesInput = {
+  export type ResourceDetailUpsertWithoutResourceInput = {
+    update: XOR<ResourceDetailUpdateWithoutResourceInput, ResourceDetailUncheckedUpdateWithoutResourceInput>
+    create: XOR<ResourceDetailCreateWithoutResourceInput, ResourceDetailUncheckedCreateWithoutResourceInput>
+    where?: ResourceDetailWhereInput
+  }
+
+  export type ResourceDetailUpdateToOneWithWhereWithoutResourceInput = {
+    where?: ResourceDetailWhereInput
+    data: XOR<ResourceDetailUpdateWithoutResourceInput, ResourceDetailUncheckedUpdateWithoutResourceInput>
+  }
+
+  export type ResourceDetailUpdateWithoutResourceInput = {
+    pub_year?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceDetailUncheckedUpdateWithoutResourceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    pub_year?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceCreateWithoutDetailInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
     created_at?: Date | string
     updated_at?: Date | string
+    type: ResourceTypeCreateNestedOneWithoutResourceInput
+    instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
-    type: ResourceTypeCreateNestedOneWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
+  }
+
+  export type ResourceUncheckedCreateWithoutDetailInput = {
+    id?: string
+    resource_name?: string
+    slug_name?: string | null
+    image_url?: string | null
+    author: string
+    short_description?: string | null
+    edition: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    type_id: number
+    publisher_id: number
+    instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
+    ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
+  }
+
+  export type ResourceCreateOrConnectWithoutDetailInput = {
+    where: ResourceWhereUniqueInput
+    create: XOR<ResourceCreateWithoutDetailInput, ResourceUncheckedCreateWithoutDetailInput>
+  }
+
+  export type ResourceUpsertWithoutDetailInput = {
+    update: XOR<ResourceUpdateWithoutDetailInput, ResourceUncheckedUpdateWithoutDetailInput>
+    create: XOR<ResourceCreateWithoutDetailInput, ResourceUncheckedCreateWithoutDetailInput>
+    where?: ResourceWhereInput
+  }
+
+  export type ResourceUpdateToOneWithWhereWithoutDetailInput = {
+    where?: ResourceWhereInput
+    data: XOR<ResourceUpdateWithoutDetailInput, ResourceUncheckedUpdateWithoutDetailInput>
+  }
+
+  export type ResourceUpdateWithoutDetailInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resource_name?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
+    edition?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
+    instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
+    categories?: CategoryUpdateManyWithoutResourcesNestedInput
+    ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
+    publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
+  }
+
+  export type ResourceUncheckedUpdateWithoutDetailInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resource_name?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
+    edition?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
+    ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
+  }
+
+  export type ResourceCreateWithoutInstancesInput = {
+    id?: string
+    resource_name?: string
+    slug_name?: string | null
+    image_url?: string | null
+    author: string
+    short_description?: string | null
+    edition: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    type: ResourceTypeCreateNestedOneWithoutResourceInput
+    categories?: CategoryCreateNestedManyWithoutResourcesInput
+    ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
+    publisher: PublisherCreateNestedOneWithoutResourcesInput
+    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutInstancesInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    publisher_id: number
-    type_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    type_id: number
+    publisher_id: number
+    detail_id?: number | null
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
   }
@@ -15791,33 +17347,33 @@ export namespace Prisma {
   export type ResourceUpdateWithoutInstancesInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
-    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
+    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutInstancesInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    publisher_id?: IntFieldUpdateOperationsInput | number
-    type_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
@@ -15825,11 +17381,10 @@ export namespace Prisma {
   export type ResourceCreateWithoutTypeInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
     created_at?: Date | string
     updated_at?: Date | string
@@ -15837,20 +17392,21 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
+    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutTypeInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    publisher_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    publisher_id: number
+    detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
@@ -15888,47 +17444,47 @@ export namespace Prisma {
     NOT?: ResourceScalarWhereInput | ResourceScalarWhereInput[]
     id?: StringFilter<"Resource"> | string
     resource_name?: StringFilter<"Resource"> | string
-    isbn?: StringNullableFilter<"Resource"> | string | null
-    author?: StringFilter<"Resource"> | string
+    slug_name?: StringNullableFilter<"Resource"> | string | null
     image_url?: StringNullableFilter<"Resource"> | string | null
+    author?: StringFilter<"Resource"> | string
     short_description?: StringNullableFilter<"Resource"> | string | null
-    pub_year?: IntFilter<"Resource"> | number
     edition?: StringFilter<"Resource"> | string
-    publisher_id?: IntFilter<"Resource"> | number
-    type_id?: IntFilter<"Resource"> | number
     created_at?: DateTimeFilter<"Resource"> | Date | string
     updated_at?: DateTimeFilter<"Resource"> | Date | string
+    type_id?: IntFilter<"Resource"> | number
+    publisher_id?: IntFilter<"Resource"> | number
+    detail_id?: IntNullableFilter<"Resource"> | number | null
   }
 
   export type ResourceCreateWithoutPublisherInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
     created_at?: Date | string
     updated_at?: Date | string
+    type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
-    type: ResourceTypeCreateNestedOneWithoutResourceInput
+    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutPublisherInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    type_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    type_id: number
+    detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
@@ -15963,33 +17519,33 @@ export namespace Prisma {
   export type ResourceCreateWithoutCategoriesInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
     created_at?: Date | string
     updated_at?: Date | string
+    type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
-    type: ResourceTypeCreateNestedOneWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
+    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutCategoriesInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    publisher_id: number
-    type_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    type_id: number
+    publisher_id: number
+    detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
   }
@@ -16052,33 +17608,33 @@ export namespace Prisma {
   export type ResourceCreateWithoutResourceCategoryInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
     created_at?: Date | string
     updated_at?: Date | string
+    type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
-    type: ResourceTypeCreateNestedOneWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
+    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutResourceCategoryInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    publisher_id: number
-    type_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    type_id: number
+    publisher_id: number
+    detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
   }
@@ -16122,33 +17678,33 @@ export namespace Prisma {
   export type ResourceUpdateWithoutResourceCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
-    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
+    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutResourceCategoryInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    publisher_id?: IntFieldUpdateOperationsInput | number
-    type_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
   }
@@ -16302,6 +17858,7 @@ export namespace Prisma {
 
   export type ResourceInstanceCreateManyResourceInput = {
     id?: string
+    instance_name?: string
     lang?: $Enums.ResourceLang
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
@@ -16314,6 +17871,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUpdateWithoutResourceInput = {
     id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
     lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16322,6 +17880,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUncheckedUpdateWithoutResourceInput = {
     id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
     lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16330,6 +17889,7 @@ export namespace Prisma {
 
   export type ResourceInstanceUncheckedUpdateManyWithoutResourceInput = {
     id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
     lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16373,25 +17933,24 @@ export namespace Prisma {
   export type ResourceCreateManyTypeInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    publisher_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    publisher_id: number
+    detail_id?: number | null
   }
 
   export type ResourceUpdateWithoutTypeInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16399,20 +17958,21 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
+    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutTypeInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    publisher_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
@@ -16421,60 +17981,60 @@ export namespace Prisma {
   export type ResourceUncheckedUpdateManyWithoutTypeInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    publisher_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ResourceCreateManyPublisherInput = {
     id?: string
     resource_name?: string
-    isbn?: string | null
-    author: string
+    slug_name?: string | null
     image_url?: string | null
+    author: string
     short_description?: string | null
-    pub_year: number
     edition: string
-    type_id: number
     created_at?: Date | string
     updated_at?: Date | string
+    type_id: number
+    detail_id?: number | null
   }
 
   export type ResourceUpdateWithoutPublisherInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
-    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
+    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutPublisherInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    type_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
@@ -16483,15 +18043,15 @@ export namespace Prisma {
   export type ResourceUncheckedUpdateManyWithoutPublisherInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    type_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ResourceCategoryCreateManyCategoryInput = {
@@ -16501,33 +18061,33 @@ export namespace Prisma {
   export type ResourceUpdateWithoutCategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
-    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
+    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutCategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    publisher_id?: IntFieldUpdateOperationsInput | number
-    type_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
@@ -16535,16 +18095,16 @@ export namespace Prisma {
   export type ResourceUncheckedUpdateManyWithoutCategoriesInput = {
     id?: StringFieldUpdateOperationsInput | string
     resource_name?: StringFieldUpdateOperationsInput | string
-    isbn?: NullableStringFieldUpdateOperationsInput | string | null
-    author?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
     short_description?: NullableStringFieldUpdateOperationsInput | string | null
-    pub_year?: IntFieldUpdateOperationsInput | number
     edition?: StringFieldUpdateOperationsInput | string
-    publisher_id?: IntFieldUpdateOperationsInput | number
-    type_id?: IntFieldUpdateOperationsInput | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ResourceCategoryUpdateWithoutCategoryInput = {
@@ -16608,6 +18168,10 @@ export namespace Prisma {
      * @deprecated Use ResourceDefaultArgs instead
      */
     export type ResourceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ResourceDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ResourceDetailDefaultArgs instead
+     */
+    export type ResourceDetailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ResourceDetailDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ResourceInstanceDefaultArgs instead
      */

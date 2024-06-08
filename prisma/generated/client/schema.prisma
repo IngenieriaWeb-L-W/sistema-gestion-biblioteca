@@ -70,32 +70,44 @@ model Loan {
 model Resource {
   id                String             @id @default(cuid())
   resource_name     String             @default("Unknown")
-  isbn              String?            @unique
-  author            String
+  slug_name         String?            @unique @default(cuid())
   image_url         String?
+  author            String
   short_description String?
-  pub_year          Int
   edition           String
+  created_at        DateTime           @default(now())
+  updated_at        DateTime           @updatedAt
+  // Relations
+  type              ResourceType       @relation(fields: [type_id], references: [id])
+  type_id           Int
   instances         ResourceInstance[]
   categories        Category[]         @relation("ResourceCategory")
   ResourceCategory  ResourceCategory[]
-  type              ResourceType       @relation(fields: [type_id], references: [id])
   publisher         Publisher          @relation(fields: [publisher_id], references: [id])
   publisher_id      Int
-  type_id           Int
-  created_at        DateTime           @default(now())
-  updated_at        DateTime           @updatedAt
+  detail            ResourceDetail?    @relation(fields: [detail_id], references: [id])
+  detail_id         Int?               @unique
+}
+
+model ResourceDetail {
+  id          Int       @id @default(autoincrement())
+  pub_year    Int
+  resource    Resource?
+  description String
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
 }
 
 model ResourceInstance {
-  id          String                 @id @default(cuid())
-  resource    Resource               @relation(fields: [resource_id], references: [id])
-  resource_id String
-  lang        ResourceLang           @default(LANG_EN)
+  id            String                 @id @default(cuid())
+  instance_name String                 @default("Unknown")
+  resource      Resource               @relation(fields: [resource_id], references: [id])
+  resource_id   String
+  lang          ResourceLang           @default(LANG_EN)
   // loan Loan[]
-  status      ResourceInstanceStatus @default(STATUS_GOOD)
-  created_at  DateTime               @default(now())
-  updated_at  DateTime               @updatedAt
+  status        ResourceInstanceStatus @default(GOOD)
+  created_at    DateTime               @default(now())
+  updated_at    DateTime               @updatedAt
 }
 
 model ResourceType {
@@ -120,11 +132,11 @@ enum ResourcesTypes {
 }
 
 enum ResourceInstanceStatus {
-  STATUS_GOOD
-  STATUS_POOR
-  STATUS_DAMAGED
-  STATUS_LOST
-  STATUS_ARCHIVED
+  GOOD
+  POOR
+  DAMAGED
+  LOST
+  ARCHIVED
 }
 
 // --------------------------------------------------------------
@@ -158,9 +170,15 @@ model ResourceCategory {
 }
 
 enum ResourceLang {
-  LANG_EN
-  LANG_ES
-  LANG_FR
-  LANG_DE
-  LANG_OTHER
+  LANG_EN // English
+  LANG_ES // Spanish
+  LANG_FR // French
+  LANG_DE // German
+  LANG_HI // Hindi
+  LANG_RU // Russian
+  LANG_JA // Japanese
+  LANG_ZH // Chinese
+  LANG_PT // Portuguese
+  LANG_AR // Arabic
+  LANG_OTHER // Other
 }

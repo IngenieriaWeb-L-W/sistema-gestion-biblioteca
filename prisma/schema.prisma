@@ -70,7 +70,7 @@ model Loan {
 model Resource {
   id                String             @id @default(cuid())
   resource_name     String             @default("Unknown")
-  slug_name         String             @unique
+  slug_name         String?             @unique @default(cuid())
   image_url         String?
   author            String
   short_description String?
@@ -85,9 +85,10 @@ model Resource {
   ResourceCategory  ResourceCategory[]
   publisher         Publisher          @relation(fields: [publisher_id], references: [id])
   publisher_id      Int
-  detail            ResourceDetail     @relation(fields: [detail_id], references: [id])
-  detail_id         Int                @unique
+  detail            ResourceDetail?     @relation(fields: [detail_id], references: [id])  
+  detail_id         Int?                @unique  
 }
+
 model ResourceDetail {
   id          Int          @id @default(autoincrement())
   pub_year    Int

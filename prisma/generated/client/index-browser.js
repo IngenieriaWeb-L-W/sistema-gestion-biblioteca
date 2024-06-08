@@ -154,20 +154,29 @@ exports.Prisma.LoanScalarFieldEnum = {
 exports.Prisma.ResourceScalarFieldEnum = {
   id: 'id',
   resource_name: 'resource_name',
-  isbn: 'isbn',
-  author: 'author',
+  slug_name: 'slug_name',
   image_url: 'image_url',
+  author: 'author',
   short_description: 'short_description',
-  pub_year: 'pub_year',
   edition: 'edition',
-  publisher_id: 'publisher_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
   type_id: 'type_id',
+  publisher_id: 'publisher_id',
+  detail_id: 'detail_id'
+};
+
+exports.Prisma.ResourceDetailScalarFieldEnum = {
+  id: 'id',
+  pub_year: 'pub_year',
+  description: 'description',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
 
 exports.Prisma.ResourceInstanceScalarFieldEnum = {
   id: 'id',
+  instance_name: 'instance_name',
   resource_id: 'resource_id',
   lang: 'lang',
   status: 'status',
@@ -228,15 +237,21 @@ exports.ResourceLang = exports.$Enums.ResourceLang = {
   LANG_ES: 'LANG_ES',
   LANG_FR: 'LANG_FR',
   LANG_DE: 'LANG_DE',
+  LANG_HI: 'LANG_HI',
+  LANG_RU: 'LANG_RU',
+  LANG_JA: 'LANG_JA',
+  LANG_ZH: 'LANG_ZH',
+  LANG_PT: 'LANG_PT',
+  LANG_AR: 'LANG_AR',
   LANG_OTHER: 'LANG_OTHER'
 };
 
 exports.ResourceInstanceStatus = exports.$Enums.ResourceInstanceStatus = {
-  STATUS_GOOD: 'STATUS_GOOD',
-  STATUS_POOR: 'STATUS_POOR',
-  STATUS_DAMAGED: 'STATUS_DAMAGED',
-  STATUS_LOST: 'STATUS_LOST',
-  STATUS_ARCHIVED: 'STATUS_ARCHIVED'
+  GOOD: 'GOOD',
+  POOR: 'POOR',
+  DAMAGED: 'DAMAGED',
+  LOST: 'LOST',
+  ARCHIVED: 'ARCHIVED'
 };
 
 exports.ResourcesTypes = exports.$Enums.ResourcesTypes = {
@@ -258,6 +273,7 @@ exports.Prisma.ModelName = {
   UserRole: 'UserRole',
   Loan: 'Loan',
   Resource: 'Resource',
+  ResourceDetail: 'ResourceDetail',
   ResourceInstance: 'ResourceInstance',
   ResourceType: 'ResourceType',
   Publisher: 'Publisher',
