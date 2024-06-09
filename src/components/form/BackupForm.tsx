@@ -1,12 +1,15 @@
 "use client";
 
 import resourceInstanceCreateSchema from "@/common/schemas/ResourceInstance.schema";
+import { selectResources } from "@/config/redux/reducers/resources.reducer";
 import {
   SeverityLevel,
   setGlobalAlert,
 } from "@/config/redux/reducers/user-interface.reducer";
 import { useAppDispatch } from "@/config/redux/store.config";
 import { useForm } from "@/hooks/use-form";
+import { usePublisher } from "@/hooks/use-publisher";
+import { useResourceCategory } from "@/hooks/use-resource-category";
 import {
   InstanceLang,
   InstanceStatus,
@@ -14,7 +17,10 @@ import {
 } from "@/interfaces/instance/Instance";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 import { createResourceInstancesMiddleware } from "@/middleware/resources-instances.middleware";
-import React, { Fragment } from "react";
+import { fetchResourceDetailMiddleware } from "@/middleware/resources.middleware";
+import Image from "next/image";
+import React, { Fragment, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import * as Yup from "yup";
 
 export type CreateResourceInstanceFormProps = {
@@ -39,6 +45,10 @@ const CreateResourceInstancesForm = ({
 }: CreateResourceInstanceFormProps) => {
   const dispatch = useAppDispatch();
 
+  const { records: allCategories } = useResourceCategory();
+  const { records: resources } = useSelector(selectResources);
+  const { records: allPublishers } = usePublisher({ page: 0, size: -1 });
+  const [imageSrc, setImageSrc] = useState("");
   const { formValues, handleInputChange, handleSelectChange, resetForm } =
     useForm<ResourceInstancesCreate>({
       ...initialFormValues,
@@ -84,7 +94,7 @@ const CreateResourceInstancesForm = ({
             {showHeader && (
               <div className="flex items-start bg-gray-900 justify-between p-5 dark:border-gray-700">
                 <h3 className="text-xl font-semibold dark:text-white">
-                  Add Resource Instances
+                  Add Resource
                 </h3>
                 <button
                   type="button"

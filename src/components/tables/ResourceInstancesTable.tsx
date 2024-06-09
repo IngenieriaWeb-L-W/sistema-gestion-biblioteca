@@ -6,6 +6,7 @@ import { ResourceInstance } from "@/interfaces/instance/Instance";
 import React, { Fragment, useState } from "react";
 import TableResourceInstancesFilter from "../filters/resources/TableResourcesInstancesFilter";
 import ResourceManagementTabs from "../tabs/ResourceManagementTabs";
+import CreateResourceInstancesForm from "../form/CreateResourceInstanceForm";
 
 type ResourceInstancesTableProps = {
   id: string;
@@ -13,14 +14,31 @@ type ResourceInstancesTableProps = {
 
 const ResourceInstancesTable = ({ id }: ResourceInstancesTableProps) => {
   const { records: instances } = useResourceInstances({ id });
+  const [showCreateForm, setShowCreateForm] = useState(false);
+
   if (instances.length === 0)
     return (
-      <p className="my-2 py-5 rounded-md w-full bg-gray-600 text-white text-center">
-        No instances found
-      </p>
+      <div>
+        <CreateResourceInstancesForm
+          open={showCreateForm}
+          setOpen={setShowCreateForm}
+          resourceId={id}
+        />
+
+        <p className="my-2 py-5 rounded-md w-full bg-gray-600 text-white text-center">
+          No instances found
+        </p>
+      </div>
     );
+
   return (
     <React.Fragment>
+      <CreateResourceInstancesForm
+        open={showCreateForm}
+        setOpen={setShowCreateForm}
+        resourceId={id}
+      />
+
       <TableResourceInstancesFilter />
 
       <div className="flex flex-col">

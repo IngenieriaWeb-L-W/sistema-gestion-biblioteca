@@ -12,6 +12,10 @@ import {
   setGlobalAlert,
   startGlobalLoading,
 } from "@/config/redux/reducers/user-interface.reducer";
+import {
+  ResourceInstance,
+  ResourceInstancesCreate,
+} from "@/interfaces/instance/Instance";
 
 export const fetchResourceInstancesMiddleware = (
   id: string,
@@ -63,6 +67,39 @@ export const removeResourceInstanceMiddleware = (instanceId: string) => {
         dispatch(
           setGlobalAlert({
             message: "Resource instance could not be deleted. ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return null;
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const createResourceInstancesMiddleware = (
+  id: string,
+  instances: ResourceInstancesCreate
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch(startGlobalLoading({ message: "Creating resource instances..." }));
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+
+    return axios
+      .post<ResourceInstance>(
+        `${location.protocol}//${location.host}/api/resources/${id}/instances`,
+        instances,
+        { headers }
+      )
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Resource instances could not be created. ⛔",
             timeout: 5000,
             severity: SeverityLevel.ERROR,
           })
