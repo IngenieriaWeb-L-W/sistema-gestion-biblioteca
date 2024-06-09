@@ -49,11 +49,6 @@ const navbarItems: NavbarLayout[] = [
         title: "Transactions",
         link: "/management/transactions",
       },
-      {
-        id: 8,
-        title: "Statistics",
-        link: "/management/statistics",
-      },
     ],
   },
   {

@@ -1,23 +1,21 @@
 "use client";
 
-import CategoriesManagement from "@/components/content/CategoriesManagement";
-import PublishersManagement from "@/components/content/PublishersManagement";
-import ResourcesManagement from "@/components/content/ResourcesManagement";
+import AllUsersStatistics from "@/components/content/AllUsersStatistics";
+import UserAdminStatistics from "@/components/content/UserAdminStatistics";
 import Link from "next/link";
 import { Fragment, useState } from "react";
 
-enum ManagementTab {
-  RESOURCES = "RESOURCES",
-  CATEGORIES = "CATEGORIES",
-  PUBLISHERS = "PUBLISHERS",
+enum StatisticsTab {
+  YOURS = "YOURS",
+  ALL_USERS = "ALL_USERS",
 }
 
-const ResourcesPage = () => {
-  const [activeTab, setActiveTab] = useState<ManagementTab>(
-    ManagementTab.RESOURCES
+const StatisticsPage = () => {
+  const [activeTab, setActiveTab] = useState<StatisticsTab>(
+    StatisticsTab.YOURS
   );
 
-  const handleSetActiveTab = (tab: ManagementTab) => {
+  const handleSetActiveTab = (tab: StatisticsTab) => {
     setActiveTab(tab);
   };
 
@@ -39,7 +37,7 @@ const ResourcesPage = () => {
                 >
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                 </svg>
-                Management
+                Admin
               </Link>
             </li>
             <li>
@@ -60,19 +58,19 @@ const ResourcesPage = () => {
                   className="ml-1 text-gray-400 md:ml-2 dark:text-gray-500"
                   aria-current="page"
                 >
-                  Resources
+                  Statistics
                 </span>
               </div>
             </li>
           </ol>
         </nav>
         <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-          Resources Management
+          Statistics
         </h1>
       </div>
       <div className="p-4">
         <h3 className="flex items-center mb-4 text-lg font-semibold text-gray-900 dark:text-white">
-          Full list of Publishers, Categories and Resources
+          Full list of useful statistics about all users or a specific user.
         </h3>
 
         <ul
@@ -82,46 +80,32 @@ const ResourcesPage = () => {
           <li className="w-full">
             <button
               type="button"
-              className={`inline-block w-full p-4 rounded-tl-lg focus:outline-none ${activeTab === ManagementTab.RESOURCES ? "bg-gray-500" : "bg-gray-700"} hover:bg-gray-900`}
-              onClick={() => handleSetActiveTab(ManagementTab.RESOURCES)}
+              className={`inline-block w-full p-4 rounded-tl-lg focus:outline-none ${activeTab === StatisticsTab.YOURS ? "bg-gray-500" : "bg-gray-700"} hover:bg-gray-900`}
+              onClick={() => handleSetActiveTab(StatisticsTab.YOURS)}
             >
-              Resources
+              A Specific User
             </button>
           </li>
           <li className="w-full">
             <button
               type="button"
-              className={`inline-block w-full p-4  focus:outline-none ${activeTab === ManagementTab.CATEGORIES ? "bg-gray-500" : "bg-gray-700"} hover:bg-gray-900`}
-              onClick={() => handleSetActiveTab(ManagementTab.CATEGORIES)}
+              className={`inline-block w-full p-4 rounded-tr-lg focus:outline-none ${activeTab === StatisticsTab.ALL_USERS ? "bg-gray-500" : "bg-gray-700"} hover:bg-gray-900`}
+              onClick={() => handleSetActiveTab(StatisticsTab.ALL_USERS)}
             >
-              Categories
-            </button>
-          </li>
-          <li className="w-full">
-            <button
-              type="button"
-              className={`inline-block w-full p-4 rounded-tr-lg focus:outline-none ${activeTab === ManagementTab.PUBLISHERS ? "bg-gray-500" : "bg-gray-700"} hover:bg-gray-900`}
-              onClick={() => handleSetActiveTab(ManagementTab.PUBLISHERS)}
-            >
-              Publishers
+              All Users
             </button>
           </li>
         </ul>
         <div className="border-t border-gray-200 dark:border-gray-600">
           <div className="pt-4 text-white">
-            {activeTab === ManagementTab.RESOURCES && (
+            {activeTab === StatisticsTab.YOURS && (
               <Fragment>
-                <ResourcesManagement />
+                <UserAdminStatistics />
               </Fragment>
             )}
-            {activeTab === ManagementTab.CATEGORIES && (
+            {activeTab === StatisticsTab.ALL_USERS && (
               <Fragment>
-                <CategoriesManagement />
-              </Fragment>
-            )}
-            {activeTab === ManagementTab.PUBLISHERS && (
-              <Fragment>
-                <PublishersManagement />
+                <AllUsersStatistics />
               </Fragment>
             )}
           </div>
@@ -131,4 +115,4 @@ const ResourcesPage = () => {
   );
 };
 
-export default ResourcesPage;
+export default StatisticsPage;
