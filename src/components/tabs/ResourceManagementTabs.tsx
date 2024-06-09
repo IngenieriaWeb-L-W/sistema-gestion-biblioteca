@@ -25,7 +25,7 @@ const ResourceManagementTabs = ({ id }: ResourceManagementTabsProps) => {
   };
 
   return (
-    <div className="p-4">
+    <div className="py-4 px-10">
       <ul
         className="text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400"
         role="tablist"
@@ -58,6 +58,7 @@ const ResourceManagementTabs = ({ id }: ResourceManagementTabsProps) => {
           </button>
         </li>
       </ul>
+
       <div className="border-t border-gray-200 dark:border-gray-600">
         <div className="pt-4 text-white">
           {activeTab === ResourceManagementTab.DETAILS && (

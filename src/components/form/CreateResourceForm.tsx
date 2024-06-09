@@ -223,7 +223,7 @@ const CreateResourceForm = ({
 
   return (
     <Fragment>
-      <div className="items-center  justify-center" id="add-user-modal">
+      <div className="items-center justify-center" id="add-user-modal">
         <div className="relative w-full h-full md:h-auto">
           <div className="relative bg-white dark:bg-gray-800">
             {showHeader && (
@@ -268,7 +268,7 @@ const CreateResourceForm = ({
             )}
 
             {open && (
-              <div className="p-6 space-y-6">
+              <div className="space-y-6">
                 <form onSubmit={handleSubmit}>
                   <div className="grid grid-cols-12 my-4 gap-6">
                     <div className="col-span-6 sm:col-span-6">

@@ -281,21 +281,22 @@ const ResourceStatistics = () => {
   return (
     <Fragment>
       <section className="flex flex-row justify-evenly items-start">
-        <div className="w-1/4 mx-auto">
+        <div className="w-1/3 mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
             Resources by Status
           </h2>
           <Doughnut data={categoriesData} /* options={options}*/ />
         </div>
 
-        <div className="w-1/4  mx-auto">
+        <div className="w-1/3  mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
             Resources by Language
           </h2>
           <Doughnut data={resourcesTypesData} /* options={options}*/ />
         </div>
-
-        <div className="w-1/4  mx-auto">
+      </section>
+      <section className="flex mt-10 mb-5 flex-row justify-evenly items-start">
+        <div className="w-1/2  mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
             Testimonials (1,2,3,4,5)
           </h2>
@@ -306,7 +307,7 @@ const ResourceStatistics = () => {
       <section>
         <div className="p-20 mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-            Resource loans count per month
+            Resource loans count by period
           </h2>
           <Line data={loansPerMonthData} /*options={loansPerMonthOptions}*/ />
           <button

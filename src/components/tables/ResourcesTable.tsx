@@ -148,7 +148,7 @@ const ResourceRow = (resource: Resource) => {
             onClick={handleToggleEdit}
             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-blue-900"
           >
-            Edit
+            {showEditPanel ? "Close Edit" : "Open Edit"}
           </button>
           <button
             type="button"

@@ -13,6 +13,12 @@ type ResourceInstancesTableProps = {
 
 const ResourceInstancesTable = ({ id }: ResourceInstancesTableProps) => {
   const { records: instances } = useResourceInstances({ id });
+  if (instances.length === 0)
+    return (
+      <p className="my-2 py-5 rounded-md w-full bg-gray-600 text-white text-center">
+        No instances found
+      </p>
+    );
   return (
     <React.Fragment>
       <TableResourceInstancesFilter />
