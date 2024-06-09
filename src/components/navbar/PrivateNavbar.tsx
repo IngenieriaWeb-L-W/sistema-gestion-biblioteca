@@ -16,14 +16,16 @@ import { useAppDispatch } from "@/config/redux/store.config";
 import navbarItems, { NavbarLayout } from "@/data/navbar/navbar-items";
 import { useAuth } from "@/hooks/use-auth";
 import UserRole from "@/interfaces/user/Role";
+import BorrowedResourcesCart from "../cart/BorrowedResourcesCart";
 
 export const PrivateNavbar = () => {
   const { logout } = useAuth();
   const dispatch = useAppDispatch();
   const { email, imageUrl, firstName, lastName, activeRole, roles } =
     useSelector(selectAuthentication);
-  const { records } = useSelector(selectLoansCart);
+  const { records: cartItems } = useSelector(selectLoansCart);
 
+  const [showCart, setShowCart] = useState(false);
   const [activeNavbar, setActiveNavbar] = useState<NavbarLayout>(
     navbarItems.find((item) => item.role === activeRole) || navbarItems[0]
   );
@@ -49,7 +51,7 @@ export const PrivateNavbar = () => {
 
   return (
     <Fragment>
-      <nav className="fixed top-0 z-30 w-full border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+      <nav className="fixed top-0 z-50 w-full border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-2 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start">
@@ -114,8 +116,8 @@ export const PrivateNavbar = () => {
               <div className="flex items-center ml-3">
                 <div className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                   {activeRole === UserRole.ROLE_USER && (
-                    <Link
-                      href="/dashboard/cart"
+                    <button
+                      onClick={() => setShowCart(!showCart)}
                       className="bg-gray-700 relative rounded-sm mr-5 flex justify-center items-center"
                     >
                       <Image
@@ -127,11 +129,11 @@ export const PrivateNavbar = () => {
                         title="Basket icon"
                       />
                       <span
-                        className={`absolute px-2 py-0 rounded-lg ${records.length === 0 ? "bg-red-500" : "bg-green-500"} top-[-0px] right-[-15px]`}
+                        className={`absolute px-2 py-0 rounded-lg ${cartItems.length === 0 ? "bg-red-500" : "bg-green-500"} top-[-0px] right-[-15px]`}
                       >
-                        {records.length}
+                        {cartItems.length}
                       </span>
-                    </Link>
+                    </button>
                   )}
                   {email && (
                     <Fragment>
@@ -190,6 +192,10 @@ export const PrivateNavbar = () => {
           </div>
         </div>
       </nav>
+
+      {showCart && (
+        <BorrowedResourcesCart open={showCart} setOpen={setShowCart} />
+      )}
     </Fragment>
   );
 };

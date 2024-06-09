@@ -1663,7 +1663,7 @@ const DashboardPage = () => {
                     Since last month
                   </p>
                 </div>
-                <div className="w-full max-w-lg">
+                {/* <div className="w-full max-w-lg">
                   <div
                     date-rangepicker
                     className="grid items-center grid-cols-2 gap-4"
@@ -1717,7 +1717,7 @@ const DashboardPage = () => {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="w-full" id="sales-by-category"></div>
               <div className="flex items-center justify-between pt-3 mt-4 border-t border-gray-200 sm:pt-6 dark:border-gray-700">
