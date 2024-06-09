@@ -4,7 +4,7 @@ import {
   InstanceLang,
   InstanceStatus,
   ResourceInstance,
-} from "@/interfaces/resource/Instance";
+} from "@/interfaces/instance/Instance";
 
 import { RootState } from "../store.config";
 import { ResourceFilters } from "./resources.reducer";

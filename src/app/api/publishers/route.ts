@@ -33,16 +33,28 @@ const createPublisher = async (formData: FormData) => {
   } catch (error) {
     return NextResponse.error();
   }
-  const savedPublisher = await prisma.publisher.create({
-    data: {
-      publisher_name: data.name,
-      url: data.url,
-      image_url: data.imageUrl,
-      created_at: new Date(),
-      updated_at: new Date(),
-    },
-  });
-  return NextResponse.json(savedPublisher);
+
+  return prisma.publisher
+    .create({
+      data: {
+        publisher_name: data.name,
+        url: data.url,
+        image_url: data.imageUrl,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    })
+    .then((savedPublisher) => ({
+      id: savedPublisher.id,
+      name: savedPublisher.publisher_name,
+      url: savedPublisher.url,
+      imageUrl: savedPublisher.image_url,
+      createdAt: savedPublisher.created_at,
+      resources: savedPublisher.updated_at,
+    }))
+    .catch(() => {
+      return NextResponse.error();
+    });
 };
 
 const GET = async (req: NextRequest) => {

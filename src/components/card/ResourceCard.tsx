@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Resource } from "@/interfaces/resource/Resource";
+import { wordToHexColor } from "@/common/utils/color-generator";
 
 type BookCardProps = {
   resource: Resource;
@@ -11,15 +12,6 @@ type BookCardProps = {
 };
 
 export const ResourceCard = ({ resource, typeRibbon }: BookCardProps) => {
-  const wordToHexColor = (word: string) => {
-    let hash = 0;
-    for (let i = 0; i < word.length; i++) {
-      hash = word.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const color = (hash & 0x00ffffff).toString(16).toUpperCase();
-    return "#" + "0".repeat(6 - color.length) + color;
-  };
-
   return (
     <Fragment>
       <Link className="block relative" href={`books/${resource.id}`}>

@@ -69,8 +69,8 @@ model Loan {
 
 model Resource {
   id                String             @id @default(cuid())
-  resource_name     String             @default("Unknown")
-  slug_name         String?             @unique @default(cuid())
+  resource_name     String
+  slug_name         String?            @unique @default(cuid())
   image_url         String?
   author            String
   short_description String?
@@ -85,35 +85,38 @@ model Resource {
   ResourceCategory  ResourceCategory[]
   publisher         Publisher          @relation(fields: [publisher_id], references: [id])
   publisher_id      Int
-  detail            ResourceDetail?     @relation(fields: [detail_id], references: [id])  
-  detail_id         Int?                @unique  
+  detail            ResourceDetail?    @relation(fields: [detail_id], references: [id])
+  detail_id         Int?               @unique
 }
 
 model ResourceDetail {
-  id          Int          @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   pub_year    Int
+  isbn        String?
+  description Json
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  // Relations
   resource    Resource?
-  description String
-  created_at  DateTime     @default(now())
-  updated_at  DateTime     @updatedAt
 }
+
 model ResourceInstance {
-  id          String                 @id @default(cuid())
-  instance_name       String            @default("Unknown")
-  resource    Resource               @relation(fields: [resource_id], references: [id])
-  resource_id String
-  lang        ResourceLang           @default(LANG_EN)
+  id            String                 @id @default(cuid())
+  instance_name String                 @default("Unknown")
+  resource      Resource               @relation(fields: [resource_id], references: [id])
+  resource_id   String
+  lang          ResourceLang           @default(LANG_EN)
   // loan Loan[]
-  status      ResourceInstanceStatus @default(GOOD)
-  created_at  DateTime               @default(now())
-  updated_at  DateTime               @updatedAt
+  status        ResourceInstanceStatus @default(GOOD)
+  created_at    DateTime               @default(now())
+  updated_at    DateTime               @updatedAt
 }
 
 model ResourceType {
-  id                 Int            @id @default(autoincrement())
-  resource_type_name ResourceTypes  @unique @default(BOOK)
-  max_loan_days      Int            @default(7)
-  max_units_per_loan Int            @default(3)
+  id                 Int           @id @default(autoincrement())
+  resource_type_name ResourceTypes @unique @default(BOOK)
+  max_loan_days      Int           @default(7)
+  max_units_per_loan Int           @default(3)
   Resource           Resource[]
 }
 
@@ -141,7 +144,7 @@ enum ResourceInstanceStatus {
 // --------------------------------------------------------------
 
 model Publisher {
-  id             Int        @id @default(autoincrement())
+  id             Int     @id @default(autoincrement())
   publisher_name String     @unique
   resources      Resource[]
   image_url      String?

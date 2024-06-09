@@ -7,6 +7,7 @@ import React, { Fragment, useState } from "react";
 import TableResourcesFilter from "../filters/resources/TableResourcesFilter";
 import { Resource } from "@/interfaces/resource/Resource";
 import ResourceManagementTabs from "../tabs/ResourceManagementTabs";
+import { wordToHexColor } from "@/common/utils/color-generator";
 
 const ResourcesTable = () => {
   const { records: resources } = useResource();
@@ -113,7 +114,12 @@ const ResourceRow = (resource: Resource) => {
           </div>
         </td>
         <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-          {resource.type}
+          <span
+            className={`text-white opacity-[0.8] px-3 py-2 rounded-lg`}
+            style={{ backgroundColor: `${wordToHexColor(resource.type)}` }}
+          >
+            {resource.type}
+          </span>
         </td>
         <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
           {resource.edition}

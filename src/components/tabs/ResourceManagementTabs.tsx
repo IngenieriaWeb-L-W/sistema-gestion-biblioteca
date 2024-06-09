@@ -1,7 +1,6 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import AllUsersStatistics from "../content/AllUsersStatistics";
 import ResourceStatistics from "../content/ResourceStatistics";
 import CreateResourceForm from "../form/CreateResourceForm";
 import ResourceInstancesTable from "../tables/ResourceInstancesTable";
@@ -52,8 +51,8 @@ const ResourceManagementTabs = ({ id }: ResourceManagementTabsProps) => {
         <li className="w-full">
           <button
             type="button"
-            className={`inline-block w-full p-4 rounded-tr-lg focus:outline-none ${activeTab === ResourceManagementTab.ITEMS ? "bg-gray-500" : "bg-gray-700"} hover:bg-gray-900`}
-            onClick={() => handleSetActiveTab(ResourceManagementTab.ITEMS)}
+            className={`inline-block w-full p-4 rounded-tr-lg focus:outline-none ${activeTab === ResourceManagementTab.STATS ? "bg-gray-500" : "bg-gray-700"} hover:bg-gray-900`}
+            onClick={() => handleSetActiveTab(ResourceManagementTab.STATS)}
           >
             Stats
           </button>
@@ -79,7 +78,7 @@ const ResourceManagementTabs = ({ id }: ResourceManagementTabsProps) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between pt-3 mt-5 border-t border-gray-200 sm:pt-6 dark:border-gray-700">
+      {/* <div className="flex items-center justify-between pt-3 mt-5 border-t border-gray-200 sm:pt-6 dark:border-gray-700">
         <div>
           <button
             className="inline-flex bg-blue-800 items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
@@ -88,7 +87,7 @@ const ResourceManagementTabs = ({ id }: ResourceManagementTabsProps) => {
             Change period
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

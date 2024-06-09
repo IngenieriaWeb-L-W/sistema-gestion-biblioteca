@@ -281,16 +281,23 @@ const ResourceStatistics = () => {
   return (
     <Fragment>
       <section className="flex flex-row justify-evenly items-start">
-        <div className="w-1/3 mx-auto">
+        <div className="w-1/4 mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-            Users&apos; favorite categories
+            Resources by Status
           </h2>
           <Doughnut data={categoriesData} /* options={options}*/ />
         </div>
 
-        <div className="w-1/3  mx-auto">
+        <div className="w-1/4  mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-            Users&apos; favorite resources types
+            Resources by Language
+          </h2>
+          <Doughnut data={resourcesTypesData} /* options={options}*/ />
+        </div>
+
+        <div className="w-1/4  mx-auto">
+          <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
+            Testimonials (1,2,3,4,5)
           </h2>
           <Doughnut data={resourcesTypesData} /* options={options}*/ />
         </div>
@@ -299,32 +306,15 @@ const ResourceStatistics = () => {
       <section>
         <div className="p-20 mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-            Number of resources borrowed per month
+            Resource loans count per month
           </h2>
           <Line data={loansPerMonthData} /*options={loansPerMonthOptions}*/ />
-        </div>
-      </section>
-
-      <section>
-        <div className="p-20 mx-auto">
-          {/* <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-            Number of resources borrowed per month
-          </h2> */}
-          {Object.keys(ResourceTypes)
-            .filter((type) => type !== ResourceTypes.ALL)
-            .map((type) => (
-              <Fragment key={type}>
-                <h2 className="mt-20 text-2xl text-center mb-2">
-                  Most borrowed resources type: {type}
-                </h2>
-                <Bar
-                  data={barChartData(
-                    barChartExampleData[type]?.labels || [],
-                    barChartExampleData[type]?.values || []
-                  )} /*options={loansPerMonthOptions}*/
-                />
-              </Fragment>
-            ))}
+          <button
+            className="inline-flex mt-5 ml-3 bg-blue-800 items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+            type="button"
+          >
+            Change period
+          </button>
         </div>
       </section>
     </Fragment>

@@ -1,9 +1,8 @@
 /* eslint-disable indent */
 import cloudinary from "@/config/cloudinary/cloudinary.config";
 import DBClient from "@/config/prisma/prisma.config";
-import { ResourceTypes } from "@/interfaces/resource/Type";
-import { ResourceType, ResourcesTypes } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import { $Enums, ResourceTypes } from "../../../../prisma/generated/client";
 
 const { prisma } = DBClient.getInstance();
 
@@ -87,7 +86,7 @@ const getFilteredResources = (filters: Filters) => {
             : undefined,
         type: filters.type
           ? {
-              resource_type_name: filters.type as ResourcesTypes,
+              resource_type_name: filters.type as $Enums.ResourceTypes,
             }
           : undefined,
       },
@@ -137,7 +136,7 @@ const countFilteredResources = (filters: Filters) => {
             : undefined,
         type: filters.type
           ? {
-              resource_type_name: filters.type as ResourcesTypes,
+              resource_type_name: filters.type as $Enums.ResourceTypes,
             }
           : undefined,
       },
@@ -171,10 +170,10 @@ const createResource = async (formData: FormData) => {
   return prisma.resource
     .create({
       data: {
-        isbn: data.isbn,
+        // isbn: data.isbn, // Detalle
         author: data.author,
         resource_name: data.name,
-        pub_year: data.publicationYear,
+        // pub_year: data.publicationYear, // Detalle
         edition: data.edition,
         categories: {
           connect: data.categories.map((id) => ({ id })),
@@ -190,6 +189,23 @@ const createResource = async (formData: FormData) => {
           },
         },
       },
+    })
+    .then((savedResource) => {
+      // Save the resource detail
+      return prisma.resourceDetail.create({
+        data: {
+          resource: {
+            connect: {
+              id: savedResource.id,
+            },
+          },
+          isbn: data.isbn,
+          pub_year: data.publicationYear,
+          description: data.paragraphs,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      });
     })
     .then(() => NextResponse.json({ message: "Resource created successfully" }))
     .catch(() => NextResponse.error());

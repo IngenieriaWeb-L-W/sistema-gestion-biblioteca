@@ -28,3 +28,10 @@ export enum InstanceLang {
   LANG_AR = "LANG_AR", // Arabic
   LANG_OTHER = "LANG_OTHER", // Other
 }
+
+export interface ResourceInstancesCreate {
+  name: string;
+  lang: InstanceLang;
+  status: InstanceStatus;
+  count: number;
+}

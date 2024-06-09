@@ -69,7 +69,7 @@ model Loan {
 
 model Resource {
   id                String             @id @default(cuid())
-  resource_name     String             @default("Unknown")
+  resource_name     String
   slug_name         String?            @unique @default(cuid())
   image_url         String?
   author            String
@@ -92,10 +92,12 @@ model Resource {
 model ResourceDetail {
   id          Int       @id @default(autoincrement())
   pub_year    Int
-  resource    Resource?
-  description String
+  isbn        String?
+  description Json
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
+  // Relations
+  resource    Resource?
 }
 
 model ResourceInstance {
