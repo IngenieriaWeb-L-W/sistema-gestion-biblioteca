@@ -50,6 +50,34 @@ export const fetchResourceInstancesMiddleware = (
   };
 };
 
+export const fetchAvailableInstancesMiddleware = (id: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+
+    return axios
+      .get<{ available: number }>(
+        `${location.protocol}//${location.host}/api/resources/${id}/instances/available`,
+        { headers }
+      )
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Available instances could not be fetched. ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return null;
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
 export const removeResourceInstanceMiddleware = (instanceId: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(startGlobalLoading({ message: "Deleting resource instance..." }));

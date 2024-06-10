@@ -3,15 +3,15 @@
 import { Fragment } from "react";
 
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 
 import { BookDetail } from "@/components/content/BookDetail";
 import { BookDetailHero } from "@/components/hero/book/BookDetail";
 import { useResourceDetail } from "@/hooks/use-resource-detail";
 
-const Index = () => {
-  const router = useRouter();
-  const { id } = router.query;
+const ResourceDetailPage = () => {
+  const params = useParams();
+  const { id } = params;
   const { resource } = useResourceDetail(id as string);
 
   if (!resource?.detail) return <></>;
@@ -30,4 +30,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default ResourceDetailPage;

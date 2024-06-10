@@ -8,7 +8,7 @@ import { FullPagination } from "@/components/pagination/FullPagination";
 import { useResource } from "@/hooks/use-resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 
-const Index = () => {
+const ResourcesPage = () => {
   const { records } = useResource();
 
   return (
@@ -28,4 +28,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default ResourcesPage;

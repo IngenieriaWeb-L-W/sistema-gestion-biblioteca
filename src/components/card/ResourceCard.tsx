@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { Resource } from "@/interfaces/resource/Resource";
 import { wordToHexColor } from "@/common/utils/color-generator";
+import { useAvailableInstances } from "@/hooks/use-available-instances";
 
 type BookCardProps = {
   resource: Resource;
@@ -12,9 +13,13 @@ type BookCardProps = {
 };
 
 export const ResourceCard = ({ resource, typeRibbon }: BookCardProps) => {
+  const { availableInstances } = useAvailableInstances({
+    resourceId: resource.id,
+  });
+
   return (
     <Fragment>
-      <Link className="block relative" href={`books/${resource.id}`}>
+      <Link className="block relative" href={`resources/${resource.id}`}>
         <div>
           <Image
             className="object-cover w-full h-full rounded-ss-lg rounded-se-lg"
@@ -56,10 +61,17 @@ export const ResourceCard = ({ resource, typeRibbon }: BookCardProps) => {
 
           <div className="mt-1 grid grid-cols-12 items-end gap-2 text-white">
             <span className="col-span-8 text-start">{resource.edition}</span>
-            <div className="col-span-4 w-full text-end">
-              <h2 className="text-2xl">5</h2>
-              <p>Available</p>
-            </div>
+            {availableInstances === -1 ? (
+              <div className="col-span-4 w-full text-end">
+                <h2 className="text-2xl">Loading</h2>
+                <p>Available items</p>
+              </div>
+            ) : (
+              <div className="col-span-4 w-full text-end">
+                <h2 className="text-2xl">{availableInstances}</h2>
+                <p>Available</p>
+              </div>
+            )}
           </div>
         </div>
       </Link>
