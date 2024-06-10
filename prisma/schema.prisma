@@ -78,8 +78,8 @@ model Resource {
   ResourceCategory  ResourceCategory[]
   publisher         Publisher             @relation(fields: [publisher_id], references: [id])
   publisher_id      Int
-  detail            ResourceDetail?       @relation(fields: [detail_id], references: [id])
-  detail_id         Int?                  @unique
+  detail            ResourceDetail       @relation(fields: [detail_id], references: [id])
+  detail_id         Int                  @unique
 }
 
 model ResourceDetail {

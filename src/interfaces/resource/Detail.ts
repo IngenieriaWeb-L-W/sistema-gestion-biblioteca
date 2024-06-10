@@ -1,7 +1,7 @@
 import { LoanTestimonial } from "../loan/Testimonial";
 
 export interface ResourceDetail {
-  id: string;
+  id: number;
   isbn?: string;
   paragraphs: string[];
   author: string;

@@ -26,8 +26,8 @@ export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
 
             <hr className="mt-3" />
             <p className="mt-3 text-lg text-gray-800 dark:text-neutral-400">
-              {detail.authors.length > 1 ? "Authors" : "Author"}:{" "}
-              {detail.authors.map((author) => author).join(", ")}
+              {detail.author.split(",").length > 1 ? "Authors" : "Author"}:{" "}
+              {detail.author}
             </p>
 
             <div className="mt-4 text-white flex items-center flex-wrap gap-2">

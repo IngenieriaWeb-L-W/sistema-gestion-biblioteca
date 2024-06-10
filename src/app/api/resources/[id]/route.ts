@@ -1,5 +1,4 @@
 import DBClient from "@/config/prisma/prisma.config";
-import { ResourceDetail } from "@/interfaces/resource/Detail";
 import { Resource } from "@/interfaces/resource/Resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 import { NextRequest, NextResponse } from "next/server";
@@ -15,15 +14,53 @@ const GET = async (
   return NextResponse.json(resourceDetail);
 };
 
-const getResourceDetail = (id: string) => {
-  return prisma.resourceDetail.findUnique({
-    where: {
-      resource_id: id,
-    },
-    include: {
-      resource: true,
-    },
-  });
+const getResourceDetail = (id: string): Promise<Resource | null> => {
+  return prisma.resource
+    .findUnique({
+      where: {
+        id,
+      },
+      include: {
+        detail: true,
+        categories: true,
+        publisher: true,
+        type: true,
+        testimonials: true,
+      },
+    })
+    .then((resource) => {
+      if (!resource) return null;
+      return {
+        id: resource.id,
+        name: resource.resource_name,
+        shortDescription: resource.short_description || "",
+        imageUrl: resource.image_url || "",
+        edition: resource.edition,
+        categories: resource.categories.map((category) => ({
+          id: category.id,
+          name: category.category_name,
+        })),
+        detail: {
+          id: resource.detail.id,
+          isbn: resource.detail.isbn || undefined,
+          paragraphs: resource.detail.description as string[],
+          author: resource.author,
+          publicationYear: resource.detail.pub_year,
+          testimonials: resource.testimonials.map((testimonial) => ({
+            id: testimonial.id,
+            userId: testimonial.userId,
+            resourceId: testimonial.resourceId,
+            rating: testimonial.rating,
+            title: testimonial.title,
+            testimonial: testimonial.testimonial || undefined,
+            createdAt: testimonial.created_at,
+          })),
+        },
+        type: resource.type.resource_type_name as ResourceTypes,
+        createdAt: resource.created_at,
+        updatedAt: resource.updated_at,
+      };
+    });
 };
 
 export { GET };

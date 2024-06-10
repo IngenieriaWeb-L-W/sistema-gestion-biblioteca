@@ -5460,7 +5460,7 @@ export namespace Prisma {
     updated_at: Date
     type_id: number
     publisher_id: number
-    detail_id: number | null
+    detail_id: number
     _count: ResourceCountAggregateOutputType | null
     _avg: ResourceAvgAggregateOutputType | null
     _sum: ResourceSumAggregateOutputType | null
@@ -5501,7 +5501,7 @@ export namespace Prisma {
     categories?: boolean | Resource$categoriesArgs<ExtArgs>
     ResourceCategory?: boolean | Resource$ResourceCategoryArgs<ExtArgs>
     publisher?: boolean | PublisherDefaultArgs<ExtArgs>
-    detail?: boolean | Resource$detailArgs<ExtArgs>
+    detail?: boolean | ResourceDetailDefaultArgs<ExtArgs>
     _count?: boolean | ResourceCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resource"]>
 
@@ -5528,7 +5528,7 @@ export namespace Prisma {
     categories?: boolean | Resource$categoriesArgs<ExtArgs>
     ResourceCategory?: boolean | Resource$ResourceCategoryArgs<ExtArgs>
     publisher?: boolean | PublisherDefaultArgs<ExtArgs>
-    detail?: boolean | Resource$detailArgs<ExtArgs>
+    detail?: boolean | ResourceDetailDefaultArgs<ExtArgs>
     _count?: boolean | ResourceCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5542,7 +5542,7 @@ export namespace Prisma {
       categories: Prisma.$CategoryPayload<ExtArgs>[]
       ResourceCategory: Prisma.$ResourceCategoryPayload<ExtArgs>[]
       publisher: Prisma.$PublisherPayload<ExtArgs>
-      detail: Prisma.$ResourceDetailPayload<ExtArgs> | null
+      detail: Prisma.$ResourceDetailPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5556,7 +5556,7 @@ export namespace Prisma {
       updated_at: Date
       type_id: number
       publisher_id: number
-      detail_id: number | null
+      detail_id: number
     }, ExtArgs["result"]["resource"]>
     composites: {}
   }
@@ -5960,7 +5960,7 @@ export namespace Prisma {
 
     publisher<T extends PublisherDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PublisherDefaultArgs<ExtArgs>>): Prisma__PublisherClient<$Result.GetResult<Prisma.$PublisherPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    detail<T extends Resource$detailArgs<ExtArgs> = {}>(args?: Subset<T, Resource$detailArgs<ExtArgs>>): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+    detail<T extends ResourceDetailDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResourceDetailDefaultArgs<ExtArgs>>): Prisma__ResourceDetailClient<$Result.GetResult<Prisma.$ResourceDetailPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6397,21 +6397,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ResourceCategoryScalarFieldEnum | ResourceCategoryScalarFieldEnum[]
-  }
-
-  /**
-   * Resource.detail
-   */
-  export type Resource$detailArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ResourceDetail
-     */
-    select?: ResourceDetailSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ResourceDetailInclude<ExtArgs> | null
-    where?: ResourceDetailWhereInput
   }
 
   /**
@@ -14954,14 +14939,14 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Resource"> | Date | string
     type_id?: IntFilter<"Resource"> | number
     publisher_id?: IntFilter<"Resource"> | number
-    detail_id?: IntNullableFilter<"Resource"> | number | null
+    detail_id?: IntFilter<"Resource"> | number
     type?: XOR<ResourceTypeRelationFilter, ResourceTypeWhereInput>
     instances?: ResourceInstanceListRelationFilter
     testimonials?: ResourceTestimonialListRelationFilter
     categories?: CategoryListRelationFilter
     ResourceCategory?: ResourceCategoryListRelationFilter
     publisher?: XOR<PublisherRelationFilter, PublisherWhereInput>
-    detail?: XOR<ResourceDetailNullableRelationFilter, ResourceDetailWhereInput> | null
+    detail?: XOR<ResourceDetailRelationFilter, ResourceDetailWhereInput>
   }
 
   export type ResourceOrderByWithRelationInput = {
@@ -14976,7 +14961,7 @@ export namespace Prisma {
     updated_at?: SortOrder
     type_id?: SortOrder
     publisher_id?: SortOrder
-    detail_id?: SortOrderInput | SortOrder
+    detail_id?: SortOrder
     type?: ResourceTypeOrderByWithRelationInput
     instances?: ResourceInstanceOrderByRelationAggregateInput
     testimonials?: ResourceTestimonialOrderByRelationAggregateInput
@@ -15008,7 +14993,7 @@ export namespace Prisma {
     categories?: CategoryListRelationFilter
     ResourceCategory?: ResourceCategoryListRelationFilter
     publisher?: XOR<PublisherRelationFilter, PublisherWhereInput>
-    detail?: XOR<ResourceDetailNullableRelationFilter, ResourceDetailWhereInput> | null
+    detail?: XOR<ResourceDetailRelationFilter, ResourceDetailWhereInput>
   }, "id" | "slug_name" | "detail_id">
 
   export type ResourceOrderByWithAggregationInput = {
@@ -15023,7 +15008,7 @@ export namespace Prisma {
     updated_at?: SortOrder
     type_id?: SortOrder
     publisher_id?: SortOrder
-    detail_id?: SortOrderInput | SortOrder
+    detail_id?: SortOrder
     _count?: ResourceCountOrderByAggregateInput
     _avg?: ResourceAvgOrderByAggregateInput
     _max?: ResourceMaxOrderByAggregateInput
@@ -15046,7 +15031,7 @@ export namespace Prisma {
     updated_at?: DateTimeWithAggregatesFilter<"Resource"> | Date | string
     type_id?: IntWithAggregatesFilter<"Resource"> | number
     publisher_id?: IntWithAggregatesFilter<"Resource"> | number
-    detail_id?: IntNullableWithAggregatesFilter<"Resource"> | number | null
+    detail_id?: IntWithAggregatesFilter<"Resource"> | number
   }
 
   export type ResourceDetailWhereInput = {
@@ -15738,7 +15723,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
-    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
+    detail: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateInput = {
@@ -15753,7 +15738,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type_id: number
     publisher_id: number
-    detail_id?: number | null
+    detail_id: number
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
@@ -15776,7 +15761,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
-    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
+    detail?: ResourceDetailUpdateOneRequiredWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateInput = {
@@ -15791,7 +15776,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
@@ -15810,7 +15795,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type_id: number
     publisher_id: number
-    detail_id?: number | null
+    detail_id: number
   }
 
   export type ResourceUpdateManyMutationInput = {
@@ -15837,7 +15822,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type ResourceDetailCreateInput = {
@@ -16617,17 +16602,6 @@ export namespace Prisma {
     role_id?: SortOrder
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type ResourceTypeRelationFilter = {
     is?: ResourceTypeWhereInput
     isNot?: ResourceTypeWhereInput
@@ -16656,9 +16630,9 @@ export namespace Prisma {
     isNot?: PublisherWhereInput
   }
 
-  export type ResourceDetailNullableRelationFilter = {
-    is?: ResourceDetailWhereInput | null
-    isNot?: ResourceDetailWhereInput | null
+  export type ResourceDetailRelationFilter = {
+    is?: ResourceDetailWhereInput
+    isNot?: ResourceDetailWhereInput
   }
 
   export type ResourceInstanceOrderByRelationAggregateInput = {
@@ -16728,22 +16702,6 @@ export namespace Prisma {
     type_id?: SortOrder
     publisher_id?: SortOrder
     detail_id?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -17577,22 +17535,12 @@ export namespace Prisma {
     update?: XOR<XOR<PublisherUpdateToOneWithWhereWithoutResourcesInput, PublisherUpdateWithoutResourcesInput>, PublisherUncheckedUpdateWithoutResourcesInput>
   }
 
-  export type ResourceDetailUpdateOneWithoutResourceNestedInput = {
+  export type ResourceDetailUpdateOneRequiredWithoutResourceNestedInput = {
     create?: XOR<ResourceDetailCreateWithoutResourceInput, ResourceDetailUncheckedCreateWithoutResourceInput>
     connectOrCreate?: ResourceDetailCreateOrConnectWithoutResourceInput
     upsert?: ResourceDetailUpsertWithoutResourceInput
-    disconnect?: ResourceDetailWhereInput | boolean
-    delete?: ResourceDetailWhereInput | boolean
     connect?: ResourceDetailWhereUniqueInput
     update?: XOR<XOR<ResourceDetailUpdateToOneWithWhereWithoutResourceInput, ResourceDetailUpdateWithoutResourceInput>, ResourceDetailUncheckedUpdateWithoutResourceInput>
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput = {
@@ -18154,33 +18102,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleEnumFilter<$PrismaModel>
     _max?: NestedEnumRoleEnumFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
   export type NestedJsonFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -19120,7 +19041,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
-    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
+    detail: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutInstancesInput = {
@@ -19135,7 +19056,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type_id: number
     publisher_id: number
-    detail_id?: number | null
+    detail_id: number
     testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
@@ -19193,7 +19114,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
-    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
+    detail?: ResourceDetailUpdateOneRequiredWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutInstancesInput = {
@@ -19208,7 +19129,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
     testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
@@ -19429,7 +19350,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
-    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
+    detail: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutTestimonialsInput = {
@@ -19444,7 +19365,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type_id: number
     publisher_id: number
-    detail_id?: number | null
+    detail_id: number
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
@@ -19524,7 +19445,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
-    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
+    detail?: ResourceDetailUpdateOneRequiredWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutTestimonialsInput = {
@@ -19539,7 +19460,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
@@ -19560,7 +19481,7 @@ export namespace Prisma {
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
-    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
+    detail: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutTypeInput = {
@@ -19574,7 +19495,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     publisher_id: number
-    detail_id?: number | null
+    detail_id: number
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
@@ -19622,7 +19543,7 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"Resource"> | Date | string
     type_id?: IntFilter<"Resource"> | number
     publisher_id?: IntFilter<"Resource"> | number
-    detail_id?: IntNullableFilter<"Resource"> | number | null
+    detail_id?: IntFilter<"Resource"> | number
   }
 
   export type ResourceCreateWithoutPublisherInput = {
@@ -19640,7 +19561,7 @@ export namespace Prisma {
     testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
-    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
+    detail: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutPublisherInput = {
@@ -19654,7 +19575,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     type_id: number
-    detail_id?: number | null
+    detail_id: number
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
@@ -19702,7 +19623,7 @@ export namespace Prisma {
     testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
-    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
+    detail: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutCategoriesInput = {
@@ -19717,7 +19638,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type_id: number
     publisher_id: number
-    detail_id?: number | null
+    detail_id: number
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
@@ -19793,7 +19714,7 @@ export namespace Prisma {
     testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
-    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
+    detail: ResourceDetailCreateNestedOneWithoutResourceInput
   }
 
   export type ResourceUncheckedCreateWithoutResourceCategoryInput = {
@@ -19808,7 +19729,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type_id: number
     publisher_id: number
-    detail_id?: number | null
+    detail_id: number
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
     testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
@@ -19865,7 +19786,7 @@ export namespace Prisma {
     testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
-    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
+    detail?: ResourceDetailUpdateOneRequiredWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutResourceCategoryInput = {
@@ -19880,7 +19801,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
@@ -20202,7 +20123,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     publisher_id: number
-    detail_id?: number | null
+    detail_id: number
   }
 
   export type ResourceUpdateWithoutTypeInput = {
@@ -20220,7 +20141,7 @@ export namespace Prisma {
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
-    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
+    detail?: ResourceDetailUpdateOneRequiredWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutTypeInput = {
@@ -20234,7 +20155,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
@@ -20252,7 +20173,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type ResourceCreateManyPublisherInput = {
@@ -20266,7 +20187,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     type_id: number
-    detail_id?: number | null
+    detail_id: number
   }
 
   export type ResourceUpdateWithoutPublisherInput = {
@@ -20284,7 +20205,7 @@ export namespace Prisma {
     testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
-    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
+    detail?: ResourceDetailUpdateOneRequiredWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutPublisherInput = {
@@ -20298,7 +20219,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
@@ -20316,7 +20237,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type ResourceCategoryCreateManyCategoryInput = {
@@ -20338,7 +20259,7 @@ export namespace Prisma {
     testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
-    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
+    detail?: ResourceDetailUpdateOneRequiredWithoutResourceNestedInput
   }
 
   export type ResourceUncheckedUpdateWithoutCategoriesInput = {
@@ -20353,7 +20274,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
@@ -20371,7 +20292,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
-    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    detail_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type ResourceCategoryUpdateWithoutCategoryInput = {
