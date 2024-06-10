@@ -9,7 +9,6 @@ import {
   Pagination,
   ResourceFilters,
   addResource,
-  setResourceDetail,
 } from "@/config/redux/reducers/resources.reducer";
 import {
   SeverityLevel,
@@ -19,7 +18,11 @@ import {
 } from "@/config/redux/reducers/user-interface.reducer";
 import { Category } from "@/interfaces/resource/Category";
 import { ResourceDetail } from "@/interfaces/resource/Detail";
-import { Resource, ResourceCreate } from "@/interfaces/resource/Resource";
+import {
+  Resource,
+  ResourceCreate,
+  ResourcePreview,
+} from "@/interfaces/resource/Resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 
 export interface ResourcesResponse {
@@ -115,6 +118,29 @@ export const fetchResourceDetailMiddleware = (slug: string) => {
           dispatch(finishGlobalLoading());
         })
     );
+  };
+};
+
+export const fetchResourcePreviewMiddleware = (id: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    return axios
+      .get<ResourcePreview>(
+        `${location.protocol}//${location.host}/api/resources/${id}/preview`
+      )
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Resource preview could not be fetched ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return null;
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
   };
 };
 

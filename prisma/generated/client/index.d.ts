@@ -8559,7 +8559,7 @@ export namespace Prisma {
     id: string
     userId: string
     until: Date
-    instanceId: string | null
+    instanceId: string
     created_at: Date
     updated_at: Date
     _count: ResourceLoanCountAggregateOutputType | null
@@ -8589,7 +8589,7 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    instace?: boolean | ResourceLoan$instaceArgs<ExtArgs>
+    instance?: boolean | ResourceInstanceDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["resourceLoan"]>
 
   export type ResourceLoanSelectScalar = {
@@ -8604,7 +8604,7 @@ export namespace Prisma {
 
   export type ResourceLoanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    instace?: boolean | ResourceLoan$instaceArgs<ExtArgs>
+    instance?: boolean | ResourceInstanceDefaultArgs<ExtArgs>
   }
 
 
@@ -8612,13 +8612,13 @@ export namespace Prisma {
     name: "ResourceLoan"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      instace: Prisma.$ResourceInstancePayload<ExtArgs> | null
+      instance: Prisma.$ResourceInstancePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
       until: Date
-      instanceId: string | null
+      instanceId: string
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["resourceLoan"]>
@@ -9014,7 +9014,7 @@ export namespace Prisma {
 
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
-    instace<T extends ResourceLoan$instaceArgs<ExtArgs> = {}>(args?: Subset<T, ResourceLoan$instaceArgs<ExtArgs>>): Prisma__ResourceInstanceClient<$Result.GetResult<Prisma.$ResourceInstancePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+    instance<T extends ResourceInstanceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResourceInstanceDefaultArgs<ExtArgs>>): Prisma__ResourceInstanceClient<$Result.GetResult<Prisma.$ResourceInstancePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9365,21 +9365,6 @@ export namespace Prisma {
      * Filter which ResourceLoans to delete
      */
     where?: ResourceLoanWhereInput
-  }
-
-  /**
-   * ResourceLoan.instace
-   */
-  export type ResourceLoan$instaceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ResourceInstance
-     */
-    select?: ResourceInstanceSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ResourceInstanceInclude<ExtArgs> | null
-    where?: ResourceInstanceWhereInput
   }
 
   /**
@@ -15171,22 +15156,22 @@ export namespace Prisma {
     id?: StringFilter<"ResourceLoan"> | string
     userId?: StringFilter<"ResourceLoan"> | string
     until?: DateTimeFilter<"ResourceLoan"> | Date | string
-    instanceId?: StringNullableFilter<"ResourceLoan"> | string | null
+    instanceId?: StringFilter<"ResourceLoan"> | string
     created_at?: DateTimeFilter<"ResourceLoan"> | Date | string
     updated_at?: DateTimeFilter<"ResourceLoan"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
-    instace?: XOR<ResourceInstanceNullableRelationFilter, ResourceInstanceWhereInput> | null
+    instance?: XOR<ResourceInstanceRelationFilter, ResourceInstanceWhereInput>
   }
 
   export type ResourceLoanOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
     until?: SortOrder
-    instanceId?: SortOrderInput | SortOrder
+    instanceId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     user?: UserOrderByWithRelationInput
-    instace?: ResourceInstanceOrderByWithRelationInput
+    instance?: ResourceInstanceOrderByWithRelationInput
   }
 
   export type ResourceLoanWhereUniqueInput = Prisma.AtLeast<{
@@ -15200,14 +15185,14 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"ResourceLoan"> | Date | string
     updated_at?: DateTimeFilter<"ResourceLoan"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
-    instace?: XOR<ResourceInstanceNullableRelationFilter, ResourceInstanceWhereInput> | null
+    instance?: XOR<ResourceInstanceRelationFilter, ResourceInstanceWhereInput>
   }, "id" | "instanceId">
 
   export type ResourceLoanOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
     until?: SortOrder
-    instanceId?: SortOrderInput | SortOrder
+    instanceId?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: ResourceLoanCountOrderByAggregateInput
@@ -15222,7 +15207,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"ResourceLoan"> | string
     userId?: StringWithAggregatesFilter<"ResourceLoan"> | string
     until?: DateTimeWithAggregatesFilter<"ResourceLoan"> | Date | string
-    instanceId?: StringNullableWithAggregatesFilter<"ResourceLoan"> | string | null
+    instanceId?: StringWithAggregatesFilter<"ResourceLoan"> | string
     created_at?: DateTimeWithAggregatesFilter<"ResourceLoan"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"ResourceLoan"> | Date | string
   }
@@ -15897,7 +15882,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     resource: ResourceCreateNestedOneWithoutInstancesInput
-    loan?: ResourceLoanCreateNestedOneWithoutInstaceInput
+    loan?: ResourceLoanCreateNestedOneWithoutInstanceInput
   }
 
   export type ResourceInstanceUncheckedCreateInput = {
@@ -15908,7 +15893,7 @@ export namespace Prisma {
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
     updated_at?: Date | string
-    loan?: ResourceLoanUncheckedCreateNestedOneWithoutInstaceInput
+    loan?: ResourceLoanUncheckedCreateNestedOneWithoutInstanceInput
   }
 
   export type ResourceInstanceUpdateInput = {
@@ -15919,7 +15904,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     resource?: ResourceUpdateOneRequiredWithoutInstancesNestedInput
-    loan?: ResourceLoanUpdateOneWithoutInstaceNestedInput
+    loan?: ResourceLoanUpdateOneWithoutInstanceNestedInput
   }
 
   export type ResourceInstanceUncheckedUpdateInput = {
@@ -15930,7 +15915,7 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    loan?: ResourceLoanUncheckedUpdateOneWithoutInstaceNestedInput
+    loan?: ResourceLoanUncheckedUpdateOneWithoutInstanceNestedInput
   }
 
   export type ResourceInstanceCreateManyInput = {
@@ -15968,14 +15953,14 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     user: UserCreateNestedOneWithoutLoansInput
-    instace?: ResourceInstanceCreateNestedOneWithoutLoanInput
+    instance: ResourceInstanceCreateNestedOneWithoutLoanInput
   }
 
   export type ResourceLoanUncheckedCreateInput = {
     id?: string
     userId: string
     until: Date | string
-    instanceId?: string | null
+    instanceId: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -15986,14 +15971,14 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutLoansNestedInput
-    instace?: ResourceInstanceUpdateOneWithoutLoanNestedInput
+    instance?: ResourceInstanceUpdateOneRequiredWithoutLoanNestedInput
   }
 
   export type ResourceLoanUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     until?: DateTimeFieldUpdateOperationsInput | Date | string
-    instanceId?: NullableStringFieldUpdateOperationsInput | string | null
+    instanceId?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16002,7 +15987,7 @@ export namespace Prisma {
     id?: string
     userId: string
     until: Date | string
-    instanceId?: string | null
+    instanceId: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -16018,7 +16003,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     until?: DateTimeFieldUpdateOperationsInput | Date | string
-    instanceId?: NullableStringFieldUpdateOperationsInput | string | null
+    instanceId?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16865,9 +16850,9 @@ export namespace Prisma {
     _max?: NestedEnumResourceInstanceStatusFilter<$PrismaModel>
   }
 
-  export type ResourceInstanceNullableRelationFilter = {
-    is?: ResourceInstanceWhereInput | null
-    isNot?: ResourceInstanceWhereInput | null
+  export type ResourceInstanceRelationFilter = {
+    is?: ResourceInstanceWhereInput
+    isNot?: ResourceInstanceWhereInput
   }
 
   export type ResourceLoanCountOrderByAggregateInput = {
@@ -17636,15 +17621,15 @@ export namespace Prisma {
     connect?: ResourceWhereUniqueInput
   }
 
-  export type ResourceLoanCreateNestedOneWithoutInstaceInput = {
-    create?: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
-    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstaceInput
+  export type ResourceLoanCreateNestedOneWithoutInstanceInput = {
+    create?: XOR<ResourceLoanCreateWithoutInstanceInput, ResourceLoanUncheckedCreateWithoutInstanceInput>
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstanceInput
     connect?: ResourceLoanWhereUniqueInput
   }
 
-  export type ResourceLoanUncheckedCreateNestedOneWithoutInstaceInput = {
-    create?: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
-    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstaceInput
+  export type ResourceLoanUncheckedCreateNestedOneWithoutInstanceInput = {
+    create?: XOR<ResourceLoanCreateWithoutInstanceInput, ResourceLoanUncheckedCreateWithoutInstanceInput>
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstanceInput
     connect?: ResourceLoanWhereUniqueInput
   }
 
@@ -17664,24 +17649,24 @@ export namespace Prisma {
     update?: XOR<XOR<ResourceUpdateToOneWithWhereWithoutInstancesInput, ResourceUpdateWithoutInstancesInput>, ResourceUncheckedUpdateWithoutInstancesInput>
   }
 
-  export type ResourceLoanUpdateOneWithoutInstaceNestedInput = {
-    create?: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
-    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstaceInput
-    upsert?: ResourceLoanUpsertWithoutInstaceInput
+  export type ResourceLoanUpdateOneWithoutInstanceNestedInput = {
+    create?: XOR<ResourceLoanCreateWithoutInstanceInput, ResourceLoanUncheckedCreateWithoutInstanceInput>
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstanceInput
+    upsert?: ResourceLoanUpsertWithoutInstanceInput
     disconnect?: ResourceLoanWhereInput | boolean
     delete?: ResourceLoanWhereInput | boolean
     connect?: ResourceLoanWhereUniqueInput
-    update?: XOR<XOR<ResourceLoanUpdateToOneWithWhereWithoutInstaceInput, ResourceLoanUpdateWithoutInstaceInput>, ResourceLoanUncheckedUpdateWithoutInstaceInput>
+    update?: XOR<XOR<ResourceLoanUpdateToOneWithWhereWithoutInstanceInput, ResourceLoanUpdateWithoutInstanceInput>, ResourceLoanUncheckedUpdateWithoutInstanceInput>
   }
 
-  export type ResourceLoanUncheckedUpdateOneWithoutInstaceNestedInput = {
-    create?: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
-    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstaceInput
-    upsert?: ResourceLoanUpsertWithoutInstaceInput
+  export type ResourceLoanUncheckedUpdateOneWithoutInstanceNestedInput = {
+    create?: XOR<ResourceLoanCreateWithoutInstanceInput, ResourceLoanUncheckedCreateWithoutInstanceInput>
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstanceInput
+    upsert?: ResourceLoanUpsertWithoutInstanceInput
     disconnect?: ResourceLoanWhereInput | boolean
     delete?: ResourceLoanWhereInput | boolean
     connect?: ResourceLoanWhereUniqueInput
-    update?: XOR<XOR<ResourceLoanUpdateToOneWithWhereWithoutInstaceInput, ResourceLoanUpdateWithoutInstaceInput>, ResourceLoanUncheckedUpdateWithoutInstaceInput>
+    update?: XOR<XOR<ResourceLoanUpdateToOneWithWhereWithoutInstanceInput, ResourceLoanUpdateWithoutInstanceInput>, ResourceLoanUncheckedUpdateWithoutInstanceInput>
   }
 
   export type UserCreateNestedOneWithoutLoansInput = {
@@ -17704,12 +17689,10 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLoansInput, UserUpdateWithoutLoansInput>, UserUncheckedUpdateWithoutLoansInput>
   }
 
-  export type ResourceInstanceUpdateOneWithoutLoanNestedInput = {
+  export type ResourceInstanceUpdateOneRequiredWithoutLoanNestedInput = {
     create?: XOR<ResourceInstanceCreateWithoutLoanInput, ResourceInstanceUncheckedCreateWithoutLoanInput>
     connectOrCreate?: ResourceInstanceCreateOrConnectWithoutLoanInput
     upsert?: ResourceInstanceUpsertWithoutLoanInput
-    disconnect?: ResourceInstanceWhereInput | boolean
-    delete?: ResourceInstanceWhereInput | boolean
     connect?: ResourceInstanceWhereUniqueInput
     update?: XOR<XOR<ResourceInstanceUpdateToOneWithWhereWithoutLoanInput, ResourceInstanceUpdateWithoutLoanInput>, ResourceInstanceUncheckedUpdateWithoutLoanInput>
   }
@@ -18220,13 +18203,13 @@ export namespace Prisma {
     until: Date | string
     created_at?: Date | string
     updated_at?: Date | string
-    instace?: ResourceInstanceCreateNestedOneWithoutLoanInput
+    instance: ResourceInstanceCreateNestedOneWithoutLoanInput
   }
 
   export type ResourceLoanUncheckedCreateWithoutUserInput = {
     id?: string
     until: Date | string
-    instanceId?: string | null
+    instanceId: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -18342,7 +18325,7 @@ export namespace Prisma {
     id?: StringFilter<"ResourceLoan"> | string
     userId?: StringFilter<"ResourceLoan"> | string
     until?: DateTimeFilter<"ResourceLoan"> | Date | string
-    instanceId?: StringNullableFilter<"ResourceLoan"> | string | null
+    instanceId?: StringFilter<"ResourceLoan"> | string
     created_at?: DateTimeFilter<"ResourceLoan"> | Date | string
     updated_at?: DateTimeFilter<"ResourceLoan"> | Date | string
   }
@@ -18630,7 +18613,7 @@ export namespace Prisma {
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
     updated_at?: Date | string
-    loan?: ResourceLoanCreateNestedOneWithoutInstaceInput
+    loan?: ResourceLoanCreateNestedOneWithoutInstanceInput
   }
 
   export type ResourceInstanceUncheckedCreateWithoutResourceInput = {
@@ -18640,7 +18623,7 @@ export namespace Prisma {
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
     updated_at?: Date | string
-    loan?: ResourceLoanUncheckedCreateNestedOneWithoutInstaceInput
+    loan?: ResourceLoanUncheckedCreateNestedOneWithoutInstanceInput
   }
 
   export type ResourceInstanceCreateOrConnectWithoutResourceInput = {
@@ -19067,7 +19050,7 @@ export namespace Prisma {
     create: XOR<ResourceCreateWithoutInstancesInput, ResourceUncheckedCreateWithoutInstancesInput>
   }
 
-  export type ResourceLoanCreateWithoutInstaceInput = {
+  export type ResourceLoanCreateWithoutInstanceInput = {
     id?: string
     until: Date | string
     created_at?: Date | string
@@ -19075,7 +19058,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutLoansInput
   }
 
-  export type ResourceLoanUncheckedCreateWithoutInstaceInput = {
+  export type ResourceLoanUncheckedCreateWithoutInstanceInput = {
     id?: string
     userId: string
     until: Date | string
@@ -19083,9 +19066,9 @@ export namespace Prisma {
     updated_at?: Date | string
   }
 
-  export type ResourceLoanCreateOrConnectWithoutInstaceInput = {
+  export type ResourceLoanCreateOrConnectWithoutInstanceInput = {
     where: ResourceLoanWhereUniqueInput
-    create: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
+    create: XOR<ResourceLoanCreateWithoutInstanceInput, ResourceLoanUncheckedCreateWithoutInstanceInput>
   }
 
   export type ResourceUpsertWithoutInstancesInput = {
@@ -19135,18 +19118,18 @@ export namespace Prisma {
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
 
-  export type ResourceLoanUpsertWithoutInstaceInput = {
-    update: XOR<ResourceLoanUpdateWithoutInstaceInput, ResourceLoanUncheckedUpdateWithoutInstaceInput>
-    create: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
+  export type ResourceLoanUpsertWithoutInstanceInput = {
+    update: XOR<ResourceLoanUpdateWithoutInstanceInput, ResourceLoanUncheckedUpdateWithoutInstanceInput>
+    create: XOR<ResourceLoanCreateWithoutInstanceInput, ResourceLoanUncheckedCreateWithoutInstanceInput>
     where?: ResourceLoanWhereInput
   }
 
-  export type ResourceLoanUpdateToOneWithWhereWithoutInstaceInput = {
+  export type ResourceLoanUpdateToOneWithWhereWithoutInstanceInput = {
     where?: ResourceLoanWhereInput
-    data: XOR<ResourceLoanUpdateWithoutInstaceInput, ResourceLoanUncheckedUpdateWithoutInstaceInput>
+    data: XOR<ResourceLoanUpdateWithoutInstanceInput, ResourceLoanUncheckedUpdateWithoutInstanceInput>
   }
 
-  export type ResourceLoanUpdateWithoutInstaceInput = {
+  export type ResourceLoanUpdateWithoutInstanceInput = {
     id?: StringFieldUpdateOperationsInput | string
     until?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19154,7 +19137,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutLoansNestedInput
   }
 
-  export type ResourceLoanUncheckedUpdateWithoutInstaceInput = {
+  export type ResourceLoanUncheckedUpdateWithoutInstanceInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     until?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19840,7 +19823,7 @@ export namespace Prisma {
   export type ResourceLoanCreateManyUserInput = {
     id?: string
     until: Date | string
-    instanceId?: string | null
+    instanceId: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -19893,13 +19876,13 @@ export namespace Prisma {
     until?: DateTimeFieldUpdateOperationsInput | Date | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    instace?: ResourceInstanceUpdateOneWithoutLoanNestedInput
+    instance?: ResourceInstanceUpdateOneRequiredWithoutLoanNestedInput
   }
 
   export type ResourceLoanUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     until?: DateTimeFieldUpdateOperationsInput | Date | string
-    instanceId?: NullableStringFieldUpdateOperationsInput | string | null
+    instanceId?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19907,7 +19890,7 @@ export namespace Prisma {
   export type ResourceLoanUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     until?: DateTimeFieldUpdateOperationsInput | Date | string
-    instanceId?: NullableStringFieldUpdateOperationsInput | string | null
+    instanceId?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20029,7 +20012,7 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    loan?: ResourceLoanUpdateOneWithoutInstaceNestedInput
+    loan?: ResourceLoanUpdateOneWithoutInstanceNestedInput
   }
 
   export type ResourceInstanceUncheckedUpdateWithoutResourceInput = {
@@ -20039,7 +20022,7 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    loan?: ResourceLoanUncheckedUpdateOneWithoutInstaceNestedInput
+    loan?: ResourceLoanUncheckedUpdateOneWithoutInstanceNestedInput
   }
 
   export type ResourceInstanceUncheckedUpdateManyWithoutResourceInput = {

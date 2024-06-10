@@ -3,15 +3,8 @@
 import { Pagination } from "@/config/redux/reducers/loan-transactions.reducer";
 import { useAppDispatch } from "@/config/redux/store.config";
 import { InstanceLoan } from "@/interfaces/loan/Loan";
-import { User } from "@/interfaces/user/User";
-import { fetchUsersMiddleware } from "@/middleware/users.middleware";
+import { fetchOwnedLoansMiddleware } from "@/middleware/loans.middleware";
 import { useEffect, useState } from "react";
-
-export enum Election {
-  BOTH = "all",
-  ACTIVE = "active",
-  INACTIVE = "inactive",
-}
 
 export interface LoansFilter {
   search: string;
@@ -23,7 +16,7 @@ export interface LoansResponse {
   records: InstanceLoan[];
 }
 
-const useLoansTable = (usersFilter: LoansFilter) => {
+export const useOwnedLoansTable = (usersFilter: LoansFilter) => {
   const dispatch = useAppDispatch();
 
   const [records, setRecords] = useState<LoansResponse>({
@@ -32,12 +25,11 @@ const useLoansTable = (usersFilter: LoansFilter) => {
   });
 
   useEffect(() => {
-    dispatch(fetchUsersMiddleware(usersFilter)).then((response) => {
+    dispatch(fetchOwnedLoansMiddleware(usersFilter)).then((response) => {
+      if (!response) return;
       setRecords(response);
     });
   }, [usersFilter, dispatch]);
 
   return records;
 };
-
-export default useLoansTable;

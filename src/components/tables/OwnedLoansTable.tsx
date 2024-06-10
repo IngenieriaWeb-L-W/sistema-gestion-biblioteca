@@ -4,18 +4,18 @@ import { Fragment, useState } from "react";
 
 import Image from "next/image";
 
-import useLoansTable, { LoansFilter } from "@/hooks/use-loans-table";
-import UserTablePagination from "../pagination/UserTablePagination";
+import  { LoansFilter, useOwnedLoansTable } from "@/hooks/use-owned-loans-table";
+import { useResource } from "@/hooks/use-resource";
 import { InstanceLoan } from "@/interfaces/loan/Loan";
-import { useResources } from "@/hooks/use-resources";
+import UserTablePagination from "../pagination/UserTablePagination";
 
-const LoansTable = () => {
-  const [usersFilter /*, setUsersFilter */] = useState<LoansFilter>({
+const OwnedLoansTable = () => {
+  const [loansFilter /*, setUsersFilter */] = useState<LoansFilter>({
     search: "",
     pagination: { page: 0, limit: 25 },
   });
 
-  const { records /*, total */ } = useLoansTable(usersFilter);
+  const { records /*, total */ } = useOwnedLoansTable(loansFilter);
 
   return (
     <Fragment>
@@ -85,7 +85,6 @@ type LoanRowProps = {
 };
 
 export const LoanRow = ({ loan }: LoanRowProps) => {
-  const {} = useResources(loan.);
   return (
     <tr key={loan.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
       <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
@@ -145,4 +144,4 @@ export const LoanRow = ({ loan }: LoanRowProps) => {
   );
 };
 
-export default LoansTable;
+export default OwnedLoansTable;

@@ -1,4 +1,6 @@
 import DBClient from "@/config/prisma/prisma.config";
+import { ResourcePreview } from "@/interfaces/resource/Resource";
+import { ResourceTypes } from "@/interfaces/resource/Type";
 import { NextRequest, NextResponse } from "next/server";
 
 const { prisma } = DBClient.getInstance();
@@ -12,16 +14,20 @@ const GET = async (
   return NextResponse.json(resourceBasicInfo);
 };
 
-const getResourceBasicInfo = (id: string) => {
+const getResourceBasicInfo = (id: string): Promise<ResourcePreview | null> => {
   return prisma.resource
     .findUnique({
       where: {
         id,
       },
+      include: {
+        type: true,
+      },
     })
     .then((instance) => {
       if (!instance) return null;
       return {
+        type: instance.type.resource_type_name as ResourceTypes,
         id: instance.id,
         name: instance.resource_name,
         lang: instance.slug_name || "",
@@ -30,20 +36,6 @@ const getResourceBasicInfo = (id: string) => {
         author: instance.author || "",
       };
     });
-};
-
-const countResourceInstances = (id: string, filter: Filters) => {
-  const { lang, status } = filter;
-
-  return prisma.resourceInstance
-    .count({
-      where: {
-        resource_id: id,
-        lang,
-        status,
-      },
-    })
-    .then((total) => total);
 };
 
 export { GET };

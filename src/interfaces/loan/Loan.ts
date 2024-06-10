@@ -3,7 +3,7 @@ import { User } from "../user/User";
 
 export interface InstanceLoan {
   id: string;
-  userId: User;
+  user?: User;
   instance: ResourceInstance;
   until: Date;
   createdAt: Date;
