@@ -19,7 +19,7 @@ export const ResourceCard = ({ resource, typeRibbon }: BookCardProps) => {
 
   return (
     <Fragment>
-      <Link className="block relative" href={`resources/${resource.id}`}>
+      <Link className="block relative" href={`resources/${resource.slug}`}>
         <div>
           <Image
             className="object-cover w-full h-full rounded-ss-lg rounded-se-lg"

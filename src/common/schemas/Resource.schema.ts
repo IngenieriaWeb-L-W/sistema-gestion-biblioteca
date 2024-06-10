@@ -2,7 +2,14 @@ import { ResourceTypes } from "@/interfaces/resource/Type";
 import * as Yup from "yup";
 
 const resourceCreateSchema = Yup.object().shape({
-  name: Yup.string().required().min(3).max(50),
+  name: Yup.string()
+    .required()
+    .matches(
+      new RegExp("^[a-zA-Z0-9 ]*$"),
+      "Only letters and numbers are allowed"
+    )
+    .min(3)
+    .max(50),
   shortDescription: Yup.string().required().min(3).max(500),
   image: Yup.mixed<File>()
     .required()

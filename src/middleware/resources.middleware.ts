@@ -61,14 +61,14 @@ export interface ResourcesResponse {
 //   };
 // };
 
-export const fetchFullResourceMiddleware = (id: string) => {
+export const fetchFullResourceMiddleware = (slug: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(
       startGlobalLoading({ message: "Fetching resource information..." })
     );
     return axios
       .get<Resource>(
-        `${location.protocol}//${location.host}/api/resources/${id}`
+        `${location.protocol}//${location.host}/api/resources/${slug}`
       )
       .then(({ data }) => data)
       .then((resource) => {
@@ -89,13 +89,13 @@ export const fetchFullResourceMiddleware = (id: string) => {
   };
 };
 
-export const fetchResourceDetailMiddleware = (id: string) => {
+export const fetchResourceDetailMiddleware = (slug: string) => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(startGlobalLoading({ message: "Fetching resource detail..." }));
     return (
       axios
         .get<ResourceDetail>(
-          `${location.protocol}//${location.host}/api/resources/${id}/detail`
+          `${location.protocol}//${location.host}/api/resources/${slug}/detail`
         )
         .then(({ data }) => data)
         // .then((detail) => {

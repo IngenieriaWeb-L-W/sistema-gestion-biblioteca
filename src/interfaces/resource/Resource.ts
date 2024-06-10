@@ -7,6 +7,7 @@ export interface Resource {
   name: string;
   shortDescription: string;
   imageUrl: string;
+  slug: string;
   edition: string;
   categories: Category[];
   detail?: ResourceDetail;

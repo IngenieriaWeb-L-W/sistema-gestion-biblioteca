@@ -1,8 +1,10 @@
-export interface Loan {
+import { ResourceInstance } from "../instance/Instance";
+import { User } from "../user/User";
+
+export interface InstanceLoan {
   id: string;
-  userId: number;
-  resourceId: string;
-  startDate: string;
-  endDate: string;
-  createdAt: string;
+  userId: User;
+  instance: ResourceInstance;
+  until: Date;
+  createdAt: Date;
 }

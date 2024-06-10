@@ -11,8 +11,8 @@ import { useResourceDetail } from "@/hooks/use-resource-detail";
 
 const ResourceDetailPage = () => {
   const params = useParams();
-  const { id } = params;
-  const { resource } = useResourceDetail(id as string);
+  const { slug } = params;
+  const { resource } = useResourceDetail(slug as string);
 
   if (!resource?.detail) return <></>;
 

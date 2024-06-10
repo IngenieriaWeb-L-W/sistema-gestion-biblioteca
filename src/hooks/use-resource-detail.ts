@@ -12,28 +12,28 @@ import {
   fetchResourceDetailMiddleware,
 } from "@/middleware/resources.middleware";
 
-export const useResourceDetail = (id: string) => {
+export const useResourceDetail = (slug: string) => {
   const { records } = useSelector(selectResources);
   const dispatch = useAppDispatch();
   const [resource, setResource] = useState<Resource>();
 
   useEffect(() => {
     if (!records) return;
-    const currentResource = records.find((record) => record.id === id);
+    const currentResource = records.find((record) => record.slug === slug);
     if (!currentResource) {
-      dispatch(fetchFullResourceMiddleware(id));
+      dispatch(fetchFullResourceMiddleware(slug));
     } else {
-      dispatch(fetchResourceDetailMiddleware(id));
+      dispatch(fetchResourceDetailMiddleware(slug));
     }
-  }, [id, records, dispatch]);
+  }, [slug, records, dispatch]);
 
   useEffect(() => {
     if (!records) return;
-    const currentResource = records.find((record) => record.id === id);
+    const currentResource = records.find((record) => record.id === slug);
     if (!currentResource) return;
     if (!currentResource.detail) return;
     setResource(currentResource);
-  }, [id, records]);
+  }, [slug, records]);
 
   return { resource };
 };

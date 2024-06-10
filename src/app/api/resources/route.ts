@@ -102,6 +102,7 @@ const getFilteredResources = (filters: Filters) => {
         id: resource.id,
         name: resource.resource_name,
         imageUrl: resource.image_url,
+        slug: resource.slug_name,
         createdAt: resource.created_at,
         shortDescription: resource.short_description,
         updatedAt: resource.updated_at,
@@ -170,10 +171,9 @@ const createResource = async (formData: FormData) => {
   return prisma.resource
     .create({
       data: {
-        // isbn: data.isbn, // Detalle
+        slug_name: data.name.toLowerCase().replaceAll(/\s/g, "-").trim(),
         author: data.author,
         resource_name: data.name,
-        // pub_year: data.publicationYear, // Detalle
         edition: data.edition,
         categories: {
           connect: data.categories.map((id) => ({ id })),
@@ -183,6 +183,15 @@ const createResource = async (formData: FormData) => {
             id: resourceTypes.find((type) => type.name === data.type)!.id,
           },
         },
+        detail: {
+          create: {
+            isbn: data.isbn,
+            pub_year: data.publicationYear,
+            description: data.paragraphs,
+            created_at: new Date(),
+            updated_at: new Date(),
+          },
+        },
         publisher: {
           connect: {
             id: data.publisher,
@@ -190,23 +199,7 @@ const createResource = async (formData: FormData) => {
         },
       },
     })
-    .then((savedResource) => {
-      // Save the resource detail
-      return prisma.resourceDetail.create({
-        data: {
-          resource: {
-            connect: {
-              id: savedResource.id,
-            },
-          },
-          isbn: data.isbn,
-          pub_year: data.publicationYear,
-          description: data.paragraphs,
-          created_at: new Date(),
-          updated_at: new Date(),
-        },
-      });
-    })
+
     .then(() => NextResponse.json({ message: "Resource created successfully" }))
     .catch(() => NextResponse.error());
 };
