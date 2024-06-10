@@ -17,6 +17,7 @@ type Filters = {
 };
 
 const GET = async (req: NextRequest) => {
+  if (req.method !== "GET") return NextResponse.error();
   try {
     const accessToken = req.headers.get("authorization");
     if (!accessToken) return NextResponse.error();

@@ -10,7 +10,7 @@ import UserTablePagination from "../pagination/UserTablePagination";
 export const OwnedLoansTable = () => {
   const [loansFilter /*, setUsersFilter */] = useState<LoansFilter>({
     search: "",
-    pagination: { page: 0, limit: 25 },
+    pagination: { page: 1, limit: 25 },
   });
 
   const { records /*, total */ } = useOwnedLoansTable(loansFilter);
@@ -87,7 +87,7 @@ const OwnedLoanRow = ({ loan }: LoanRowProps) => {
   const [loanLeftTime, setLoanLeftTime] = useState<string>("");
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const interval = setInterval(() => {
       const now = new Date();
       const until = new Date(loan.until);
       const diff = until.getTime() - now.getTime();
@@ -100,14 +100,14 @@ const OwnedLoanRow = ({ loan }: LoanRowProps) => {
       setLoanLeftTime(`${days}d ${hours}h ${minutes}m ${seconds}s`);
     }, 1000);
 
-    return () => clearTimeout(timeout);
+    return () => clearInterval(interval);
   }, [loan.until]);
 
   useEffect(() => {
-    const loanPassed = new Date(loan.until) < new Date();
-    if (loanPassed) {
-      setIsLoanPassed(true);
-    }
+    const timeout = setInterval(() => {
+      setIsLoanPassed(new Date() > new Date(loan.until));
+    }, 1000);
+    return () => clearInterval(timeout);
   }, [loan.until]);
 
   return (
@@ -129,11 +129,11 @@ const OwnedLoanRow = ({ loan }: LoanRowProps) => {
       </td>
       <td className="p-4 space-x-2 whitespace-nowrap">
         {isLoanPassed ? (
-          <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+          <span className="inline-flex items-center  text-sm font-medium text-center px-3 py-2 bg-red-500 rounded-md text-white focus:ring-4 focus:ring-red-300">
             Loan Passed
           </span>
         ) : (
-          <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+          <span className="inline-flex items-center text-sm font-medium text-center text-white">
             Return in {loanLeftTime}
           </span>
         )}

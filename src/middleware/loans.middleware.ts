@@ -17,15 +17,16 @@ export const fetchOwnedLoansMiddleware = (filter: LoansFilter) => {
   const headers = {
     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
   };
-
+  const params = {
+    search: filter.search,
+    page: filter.pagination.page,
+    limit: filter.pagination.limit,
+  };
   return async (dispatch: Dispatch<Action>) => {
     return axios
       .get<LoansResponse>(
         `${location.protocol}//${location.host}/api/loans/owned`,
-        {
-          headers,
-          params: { ...filter },
-        }
+        { headers, params }
       )
       .then(({ data }) => data)
       .catch((/* error */) => {
