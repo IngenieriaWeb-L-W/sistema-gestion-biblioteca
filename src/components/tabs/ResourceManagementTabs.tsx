@@ -73,7 +73,7 @@ const ResourceManagementTabs = ({ id }: ResourceManagementTabsProps) => {
           )}
           {activeTab === ResourceManagementTab.STATS && (
             <Fragment>
-              <ResourceStatistics />
+              <ResourceStatistics id={id} />
             </Fragment>
           )}
         </div>

@@ -29,11 +29,6 @@ export type Role = $Result.DefaultSelection<Prisma.$RolePayload>
  */
 export type UserRole = $Result.DefaultSelection<Prisma.$UserRolePayload>
 /**
- * Model Loan
- * 
- */
-export type Loan = $Result.DefaultSelection<Prisma.$LoanPayload>
-/**
  * Model Resource
  * 
  */
@@ -48,6 +43,16 @@ export type ResourceDetail = $Result.DefaultSelection<Prisma.$ResourceDetailPayl
  * 
  */
 export type ResourceInstance = $Result.DefaultSelection<Prisma.$ResourceInstancePayload>
+/**
+ * Model ResourceLoan
+ * 
+ */
+export type ResourceLoan = $Result.DefaultSelection<Prisma.$ResourceLoanPayload>
+/**
+ * Model ResourceTestimonial
+ * 
+ */
+export type ResourceTestimonial = $Result.DefaultSelection<Prisma.$ResourceTestimonialPayload>
 /**
  * Model ResourceType
  * 
@@ -296,16 +301,6 @@ export class PrismaClient<
   get userRole(): Prisma.UserRoleDelegate<ExtArgs>;
 
   /**
-   * `prisma.loan`: Exposes CRUD operations for the **Loan** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Loans
-    * const loans = await prisma.loan.findMany()
-    * ```
-    */
-  get loan(): Prisma.LoanDelegate<ExtArgs>;
-
-  /**
    * `prisma.resource`: Exposes CRUD operations for the **Resource** model.
     * Example usage:
     * ```ts
@@ -334,6 +329,26 @@ export class PrismaClient<
     * ```
     */
   get resourceInstance(): Prisma.ResourceInstanceDelegate<ExtArgs>;
+
+  /**
+   * `prisma.resourceLoan`: Exposes CRUD operations for the **ResourceLoan** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ResourceLoans
+    * const resourceLoans = await prisma.resourceLoan.findMany()
+    * ```
+    */
+  get resourceLoan(): Prisma.ResourceLoanDelegate<ExtArgs>;
+
+  /**
+   * `prisma.resourceTestimonial`: Exposes CRUD operations for the **ResourceTestimonial** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ResourceTestimonials
+    * const resourceTestimonials = await prisma.resourceTestimonial.findMany()
+    * ```
+    */
+  get resourceTestimonial(): Prisma.ResourceTestimonialDelegate<ExtArgs>;
 
   /**
    * `prisma.resourceType`: Exposes CRUD operations for the **ResourceType** model.
@@ -854,10 +869,11 @@ export namespace Prisma {
     User: 'User',
     Role: 'Role',
     UserRole: 'UserRole',
-    Loan: 'Loan',
     Resource: 'Resource',
     ResourceDetail: 'ResourceDetail',
     ResourceInstance: 'ResourceInstance',
+    ResourceLoan: 'ResourceLoan',
+    ResourceTestimonial: 'ResourceTestimonial',
     ResourceType: 'ResourceType',
     Publisher: 'Publisher',
     Category: 'Category',
@@ -878,7 +894,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'role' | 'userRole' | 'loan' | 'resource' | 'resourceDetail' | 'resourceInstance' | 'resourceType' | 'publisher' | 'category' | 'resourceCategory'
+      modelProps: 'user' | 'role' | 'userRole' | 'resource' | 'resourceDetail' | 'resourceInstance' | 'resourceLoan' | 'resourceTestimonial' | 'resourceType' | 'publisher' | 'category' | 'resourceCategory'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1092,76 +1108,6 @@ export namespace Prisma {
           }
         }
       }
-      Loan: {
-        payload: Prisma.$LoanPayload<ExtArgs>
-        fields: Prisma.LoanFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.LoanFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.LoanFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload>
-          }
-          findFirst: {
-            args: Prisma.LoanFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.LoanFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload>
-          }
-          findMany: {
-            args: Prisma.LoanFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload>[]
-          }
-          create: {
-            args: Prisma.LoanCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload>
-          }
-          createMany: {
-            args: Prisma.LoanCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.LoanCreateManyAndReturnArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload>[]
-          }
-          delete: {
-            args: Prisma.LoanDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload>
-          }
-          update: {
-            args: Prisma.LoanUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload>
-          }
-          deleteMany: {
-            args: Prisma.LoanDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.LoanUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.LoanUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$LoanPayload>
-          }
-          aggregate: {
-            args: Prisma.LoanAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateLoan>
-          }
-          groupBy: {
-            args: Prisma.LoanGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<LoanGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.LoanCountArgs<ExtArgs>,
-            result: $Utils.Optional<LoanCountAggregateOutputType> | number
-          }
-        }
-      }
       Resource: {
         payload: Prisma.$ResourcePayload<ExtArgs>
         fields: Prisma.ResourceFieldRefs
@@ -1369,6 +1315,146 @@ export namespace Prisma {
           count: {
             args: Prisma.ResourceInstanceCountArgs<ExtArgs>,
             result: $Utils.Optional<ResourceInstanceCountAggregateOutputType> | number
+          }
+        }
+      }
+      ResourceLoan: {
+        payload: Prisma.$ResourceLoanPayload<ExtArgs>
+        fields: Prisma.ResourceLoanFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResourceLoanFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResourceLoanFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload>
+          }
+          findFirst: {
+            args: Prisma.ResourceLoanFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResourceLoanFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload>
+          }
+          findMany: {
+            args: Prisma.ResourceLoanFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload>[]
+          }
+          create: {
+            args: Prisma.ResourceLoanCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload>
+          }
+          createMany: {
+            args: Prisma.ResourceLoanCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ResourceLoanCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload>[]
+          }
+          delete: {
+            args: Prisma.ResourceLoanDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload>
+          }
+          update: {
+            args: Prisma.ResourceLoanUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload>
+          }
+          deleteMany: {
+            args: Prisma.ResourceLoanDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResourceLoanUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ResourceLoanUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceLoanPayload>
+          }
+          aggregate: {
+            args: Prisma.ResourceLoanAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateResourceLoan>
+          }
+          groupBy: {
+            args: Prisma.ResourceLoanGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ResourceLoanGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ResourceLoanCountArgs<ExtArgs>,
+            result: $Utils.Optional<ResourceLoanCountAggregateOutputType> | number
+          }
+        }
+      }
+      ResourceTestimonial: {
+        payload: Prisma.$ResourceTestimonialPayload<ExtArgs>
+        fields: Prisma.ResourceTestimonialFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResourceTestimonialFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResourceTestimonialFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload>
+          }
+          findFirst: {
+            args: Prisma.ResourceTestimonialFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResourceTestimonialFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload>
+          }
+          findMany: {
+            args: Prisma.ResourceTestimonialFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload>[]
+          }
+          create: {
+            args: Prisma.ResourceTestimonialCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload>
+          }
+          createMany: {
+            args: Prisma.ResourceTestimonialCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ResourceTestimonialCreateManyAndReturnArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload>[]
+          }
+          delete: {
+            args: Prisma.ResourceTestimonialDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload>
+          }
+          update: {
+            args: Prisma.ResourceTestimonialUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload>
+          }
+          deleteMany: {
+            args: Prisma.ResourceTestimonialDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResourceTestimonialUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ResourceTestimonialUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ResourceTestimonialPayload>
+          }
+          aggregate: {
+            args: Prisma.ResourceTestimonialAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateResourceTestimonial>
+          }
+          groupBy: {
+            args: Prisma.ResourceTestimonialGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ResourceTestimonialGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ResourceTestimonialCountArgs<ExtArgs>,
+            result: $Utils.Optional<ResourceTestimonialCountAggregateOutputType> | number
           }
         }
       }
@@ -1814,13 +1900,15 @@ export namespace Prisma {
   export type UserCountOutputType = {
     roles: number
     UserRole: number
-    Loan: number
+    loans: number
+    testimonials: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     roles?: boolean | UserCountOutputTypeCountRolesArgs
     UserRole?: boolean | UserCountOutputTypeCountUserRoleArgs
-    Loan?: boolean | UserCountOutputTypeCountLoanArgs
+    loans?: boolean | UserCountOutputTypeCountLoansArgs
+    testimonials?: boolean | UserCountOutputTypeCountTestimonialsArgs
   }
 
   // Custom InputTypes
@@ -1851,8 +1939,15 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountLoanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LoanWhereInput
+  export type UserCountOutputTypeCountLoansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResourceLoanWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTestimonialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResourceTestimonialWhereInput
   }
 
 
@@ -1902,12 +1997,14 @@ export namespace Prisma {
 
   export type ResourceCountOutputType = {
     instances: number
+    testimonials: number
     categories: number
     ResourceCategory: number
   }
 
   export type ResourceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     instances?: boolean | ResourceCountOutputTypeCountInstancesArgs
+    testimonials?: boolean | ResourceCountOutputTypeCountTestimonialsArgs
     categories?: boolean | ResourceCountOutputTypeCountCategoriesArgs
     ResourceCategory?: boolean | ResourceCountOutputTypeCountResourceCategoryArgs
   }
@@ -1928,6 +2025,13 @@ export namespace Prisma {
    */
   export type ResourceCountOutputTypeCountInstancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ResourceInstanceWhereInput
+  }
+
+  /**
+   * ResourceCountOutputType without action
+   */
+  export type ResourceCountOutputTypeCountTestimonialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResourceTestimonialWhereInput
   }
 
   /**
@@ -2257,7 +2361,8 @@ export namespace Prisma {
     updated_at?: boolean
     roles?: boolean | User$rolesArgs<ExtArgs>
     UserRole?: boolean | User$UserRoleArgs<ExtArgs>
-    Loan?: boolean | User$LoanArgs<ExtArgs>
+    loans?: boolean | User$loansArgs<ExtArgs>
+    testimonials?: boolean | User$testimonialsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2278,7 +2383,8 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     roles?: boolean | User$rolesArgs<ExtArgs>
     UserRole?: boolean | User$UserRoleArgs<ExtArgs>
-    Loan?: boolean | User$LoanArgs<ExtArgs>
+    loans?: boolean | User$loansArgs<ExtArgs>
+    testimonials?: boolean | User$testimonialsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2288,7 +2394,8 @@ export namespace Prisma {
     objects: {
       roles: Prisma.$RolePayload<ExtArgs>[]
       UserRole: Prisma.$UserRolePayload<ExtArgs>[]
-      Loan: Prisma.$LoanPayload<ExtArgs>[]
+      loans: Prisma.$ResourceLoanPayload<ExtArgs>[]
+      testimonials: Prisma.$ResourceTestimonialPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2696,7 +2803,9 @@ export namespace Prisma {
 
     UserRole<T extends User$UserRoleArgs<ExtArgs> = {}>(args?: Subset<T, User$UserRoleArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserRolePayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    Loan<T extends User$LoanArgs<ExtArgs> = {}>(args?: Subset<T, User$LoanArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'findMany'> | Null>;
+    loans<T extends User$loansArgs<ExtArgs> = {}>(args?: Subset<T, User$loansArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    testimonials<T extends User$testimonialsArgs<ExtArgs> = {}>(args?: Subset<T, User$testimonialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3094,23 +3203,43 @@ export namespace Prisma {
   }
 
   /**
-   * User.Loan
+   * User.loans
    */
-  export type User$LoanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$loansArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Loan
+     * Select specific fields to fetch from the ResourceLoan
      */
-    select?: LoanSelect<ExtArgs> | null
+    select?: ResourceLoanSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: LoanInclude<ExtArgs> | null
-    where?: LoanWhereInput
-    orderBy?: LoanOrderByWithRelationInput | LoanOrderByWithRelationInput[]
-    cursor?: LoanWhereUniqueInput
+    include?: ResourceLoanInclude<ExtArgs> | null
+    where?: ResourceLoanWhereInput
+    orderBy?: ResourceLoanOrderByWithRelationInput | ResourceLoanOrderByWithRelationInput[]
+    cursor?: ResourceLoanWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: LoanScalarFieldEnum | LoanScalarFieldEnum[]
+    distinct?: ResourceLoanScalarFieldEnum | ResourceLoanScalarFieldEnum[]
+  }
+
+  /**
+   * User.testimonials
+   */
+  export type User$testimonialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    where?: ResourceTestimonialWhereInput
+    orderBy?: ResourceTestimonialOrderByWithRelationInput | ResourceTestimonialOrderByWithRelationInput[]
+    cursor?: ResourceTestimonialWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResourceTestimonialScalarFieldEnum | ResourceTestimonialScalarFieldEnum[]
   }
 
   /**
@@ -5105,945 +5234,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Loan
-   */
-
-  export type AggregateLoan = {
-    _count: LoanCountAggregateOutputType | null
-    _min: LoanMinAggregateOutputType | null
-    _max: LoanMaxAggregateOutputType | null
-  }
-
-  export type LoanMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type LoanMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type LoanCountAggregateOutputType = {
-    id: number
-    userId: number
-    created_at: number
-    updated_at: number
-    _all: number
-  }
-
-
-  export type LoanMinAggregateInputType = {
-    id?: true
-    userId?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type LoanMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type LoanCountAggregateInputType = {
-    id?: true
-    userId?: true
-    created_at?: true
-    updated_at?: true
-    _all?: true
-  }
-
-  export type LoanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Loan to aggregate.
-     */
-    where?: LoanWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Loans to fetch.
-     */
-    orderBy?: LoanOrderByWithRelationInput | LoanOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: LoanWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Loans from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Loans.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Loans
-    **/
-    _count?: true | LoanCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: LoanMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: LoanMaxAggregateInputType
-  }
-
-  export type GetLoanAggregateType<T extends LoanAggregateArgs> = {
-        [P in keyof T & keyof AggregateLoan]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateLoan[P]>
-      : GetScalarType<T[P], AggregateLoan[P]>
-  }
-
-
-
-
-  export type LoanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LoanWhereInput
-    orderBy?: LoanOrderByWithAggregationInput | LoanOrderByWithAggregationInput[]
-    by: LoanScalarFieldEnum[] | LoanScalarFieldEnum
-    having?: LoanScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: LoanCountAggregateInputType | true
-    _min?: LoanMinAggregateInputType
-    _max?: LoanMaxAggregateInputType
-  }
-
-  export type LoanGroupByOutputType = {
-    id: string
-    userId: string
-    created_at: Date
-    updated_at: Date
-    _count: LoanCountAggregateOutputType | null
-    _min: LoanMinAggregateOutputType | null
-    _max: LoanMaxAggregateOutputType | null
-  }
-
-  type GetLoanGroupByPayload<T extends LoanGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<LoanGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof LoanGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], LoanGroupByOutputType[P]>
-            : GetScalarType<T[P], LoanGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type LoanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["loan"]>
-
-  export type LoanSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }
-
-
-  export type LoanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-
-  export type $LoanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Loan"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      created_at: Date
-      updated_at: Date
-    }, ExtArgs["result"]["loan"]>
-    composites: {}
-  }
-
-
-  type LoanGetPayload<S extends boolean | null | undefined | LoanDefaultArgs> = $Result.GetResult<Prisma.$LoanPayload, S>
-
-  type LoanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<LoanFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: LoanCountAggregateInputType | true
-    }
-
-  export interface LoanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Loan'], meta: { name: 'Loan' } }
-    /**
-     * Find zero or one Loan that matches the filter.
-     * @param {LoanFindUniqueArgs} args - Arguments to find a Loan
-     * @example
-     * // Get one Loan
-     * const loan = await prisma.loan.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends LoanFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, LoanFindUniqueArgs<ExtArgs>>
-    ): Prisma__LoanClient<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one Loan that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {LoanFindUniqueOrThrowArgs} args - Arguments to find a Loan
-     * @example
-     * // Get one Loan
-     * const loan = await prisma.loan.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends LoanFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, LoanFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__LoanClient<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first Loan that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LoanFindFirstArgs} args - Arguments to find a Loan
-     * @example
-     * // Get one Loan
-     * const loan = await prisma.loan.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends LoanFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, LoanFindFirstArgs<ExtArgs>>
-    ): Prisma__LoanClient<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first Loan that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LoanFindFirstOrThrowArgs} args - Arguments to find a Loan
-     * @example
-     * // Get one Loan
-     * const loan = await prisma.loan.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends LoanFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, LoanFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__LoanClient<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more Loans that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LoanFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Loans
-     * const loans = await prisma.loan.findMany()
-     * 
-     * // Get first 10 Loans
-     * const loans = await prisma.loan.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const loanWithIdOnly = await prisma.loan.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends LoanFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LoanFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a Loan.
-     * @param {LoanCreateArgs} args - Arguments to create a Loan.
-     * @example
-     * // Create one Loan
-     * const Loan = await prisma.loan.create({
-     *   data: {
-     *     // ... data to create a Loan
-     *   }
-     * })
-     * 
-    **/
-    create<T extends LoanCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, LoanCreateArgs<ExtArgs>>
-    ): Prisma__LoanClient<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many Loans.
-     * @param {LoanCreateManyArgs} args - Arguments to create many Loans.
-     * @example
-     * // Create many Loans
-     * const loan = await prisma.loan.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-    **/
-    createMany<T extends LoanCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LoanCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Loans and returns the data saved in the database.
-     * @param {LoanCreateManyAndReturnArgs} args - Arguments to create many Loans.
-     * @example
-     * // Create many Loans
-     * const loan = await prisma.loan.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Loans and only return the `id`
-     * const loanWithIdOnly = await prisma.loan.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-    **/
-    createManyAndReturn<T extends LoanCreateManyAndReturnArgs<ExtArgs>>(
-      args?: SelectSubset<T, LoanCreateManyAndReturnArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'createManyAndReturn'>>
-
-    /**
-     * Delete a Loan.
-     * @param {LoanDeleteArgs} args - Arguments to delete one Loan.
-     * @example
-     * // Delete one Loan
-     * const Loan = await prisma.loan.delete({
-     *   where: {
-     *     // ... filter to delete one Loan
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends LoanDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, LoanDeleteArgs<ExtArgs>>
-    ): Prisma__LoanClient<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one Loan.
-     * @param {LoanUpdateArgs} args - Arguments to update one Loan.
-     * @example
-     * // Update one Loan
-     * const loan = await prisma.loan.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends LoanUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, LoanUpdateArgs<ExtArgs>>
-    ): Prisma__LoanClient<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more Loans.
-     * @param {LoanDeleteManyArgs} args - Arguments to filter Loans to delete.
-     * @example
-     * // Delete a few Loans
-     * const { count } = await prisma.loan.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends LoanDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, LoanDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Loans.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LoanUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Loans
-     * const loan = await prisma.loan.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends LoanUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, LoanUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Loan.
-     * @param {LoanUpsertArgs} args - Arguments to update or create a Loan.
-     * @example
-     * // Update or create a Loan
-     * const loan = await prisma.loan.upsert({
-     *   create: {
-     *     // ... data to create a Loan
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Loan we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends LoanUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, LoanUpsertArgs<ExtArgs>>
-    ): Prisma__LoanClient<$Result.GetResult<Prisma.$LoanPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of Loans.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LoanCountArgs} args - Arguments to filter Loans to count.
-     * @example
-     * // Count the number of Loans
-     * const count = await prisma.loan.count({
-     *   where: {
-     *     // ... the filter for the Loans we want to count
-     *   }
-     * })
-    **/
-    count<T extends LoanCountArgs>(
-      args?: Subset<T, LoanCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], LoanCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Loan.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LoanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends LoanAggregateArgs>(args: Subset<T, LoanAggregateArgs>): Prisma.PrismaPromise<GetLoanAggregateType<T>>
-
-    /**
-     * Group by Loan.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {LoanGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends LoanGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: LoanGroupByArgs['orderBy'] }
-        : { orderBy?: LoanGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, LoanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLoanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Loan model
-   */
-  readonly fields: LoanFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Loan.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__LoanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the Loan model
-   */ 
-  interface LoanFieldRefs {
-    readonly id: FieldRef<"Loan", 'String'>
-    readonly userId: FieldRef<"Loan", 'String'>
-    readonly created_at: FieldRef<"Loan", 'DateTime'>
-    readonly updated_at: FieldRef<"Loan", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Loan findUnique
-   */
-  export type LoanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * Filter, which Loan to fetch.
-     */
-    where: LoanWhereUniqueInput
-  }
-
-  /**
-   * Loan findUniqueOrThrow
-   */
-  export type LoanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * Filter, which Loan to fetch.
-     */
-    where: LoanWhereUniqueInput
-  }
-
-  /**
-   * Loan findFirst
-   */
-  export type LoanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * Filter, which Loan to fetch.
-     */
-    where?: LoanWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Loans to fetch.
-     */
-    orderBy?: LoanOrderByWithRelationInput | LoanOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Loans.
-     */
-    cursor?: LoanWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Loans from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Loans.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Loans.
-     */
-    distinct?: LoanScalarFieldEnum | LoanScalarFieldEnum[]
-  }
-
-  /**
-   * Loan findFirstOrThrow
-   */
-  export type LoanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * Filter, which Loan to fetch.
-     */
-    where?: LoanWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Loans to fetch.
-     */
-    orderBy?: LoanOrderByWithRelationInput | LoanOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Loans.
-     */
-    cursor?: LoanWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Loans from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Loans.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Loans.
-     */
-    distinct?: LoanScalarFieldEnum | LoanScalarFieldEnum[]
-  }
-
-  /**
-   * Loan findMany
-   */
-  export type LoanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * Filter, which Loans to fetch.
-     */
-    where?: LoanWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Loans to fetch.
-     */
-    orderBy?: LoanOrderByWithRelationInput | LoanOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Loans.
-     */
-    cursor?: LoanWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Loans from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Loans.
-     */
-    skip?: number
-    distinct?: LoanScalarFieldEnum | LoanScalarFieldEnum[]
-  }
-
-  /**
-   * Loan create
-   */
-  export type LoanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Loan.
-     */
-    data: XOR<LoanCreateInput, LoanUncheckedCreateInput>
-  }
-
-  /**
-   * Loan createMany
-   */
-  export type LoanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Loans.
-     */
-    data: LoanCreateManyInput | LoanCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Loan createManyAndReturn
-   */
-  export type LoanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * The data used to create many Loans.
-     */
-    data: LoanCreateManyInput | LoanCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Loan update
-   */
-  export type LoanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Loan.
-     */
-    data: XOR<LoanUpdateInput, LoanUncheckedUpdateInput>
-    /**
-     * Choose, which Loan to update.
-     */
-    where: LoanWhereUniqueInput
-  }
-
-  /**
-   * Loan updateMany
-   */
-  export type LoanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Loans.
-     */
-    data: XOR<LoanUpdateManyMutationInput, LoanUncheckedUpdateManyInput>
-    /**
-     * Filter which Loans to update
-     */
-    where?: LoanWhereInput
-  }
-
-  /**
-   * Loan upsert
-   */
-  export type LoanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Loan to update in case it exists.
-     */
-    where: LoanWhereUniqueInput
-    /**
-     * In case the Loan found by the `where` argument doesn't exist, create a new Loan with this data.
-     */
-    create: XOR<LoanCreateInput, LoanUncheckedCreateInput>
-    /**
-     * In case the Loan was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<LoanUpdateInput, LoanUncheckedUpdateInput>
-  }
-
-  /**
-   * Loan delete
-   */
-  export type LoanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-    /**
-     * Filter which Loan to delete.
-     */
-    where: LoanWhereUniqueInput
-  }
-
-  /**
-   * Loan deleteMany
-   */
-  export type LoanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Loans to delete
-     */
-    where?: LoanWhereInput
-  }
-
-  /**
-   * Loan without action
-   */
-  export type LoanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Loan
-     */
-    select?: LoanSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LoanInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Resource
    */
 
@@ -6307,6 +5497,7 @@ export namespace Prisma {
     detail_id?: boolean
     type?: boolean | ResourceTypeDefaultArgs<ExtArgs>
     instances?: boolean | Resource$instancesArgs<ExtArgs>
+    testimonials?: boolean | Resource$testimonialsArgs<ExtArgs>
     categories?: boolean | Resource$categoriesArgs<ExtArgs>
     ResourceCategory?: boolean | Resource$ResourceCategoryArgs<ExtArgs>
     publisher?: boolean | PublisherDefaultArgs<ExtArgs>
@@ -6333,6 +5524,7 @@ export namespace Prisma {
   export type ResourceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     type?: boolean | ResourceTypeDefaultArgs<ExtArgs>
     instances?: boolean | Resource$instancesArgs<ExtArgs>
+    testimonials?: boolean | Resource$testimonialsArgs<ExtArgs>
     categories?: boolean | Resource$categoriesArgs<ExtArgs>
     ResourceCategory?: boolean | Resource$ResourceCategoryArgs<ExtArgs>
     publisher?: boolean | PublisherDefaultArgs<ExtArgs>
@@ -6346,6 +5538,7 @@ export namespace Prisma {
     objects: {
       type: Prisma.$ResourceTypePayload<ExtArgs>
       instances: Prisma.$ResourceInstancePayload<ExtArgs>[]
+      testimonials: Prisma.$ResourceTestimonialPayload<ExtArgs>[]
       categories: Prisma.$CategoryPayload<ExtArgs>[]
       ResourceCategory: Prisma.$ResourceCategoryPayload<ExtArgs>[]
       publisher: Prisma.$PublisherPayload<ExtArgs>
@@ -6759,6 +5952,8 @@ export namespace Prisma {
 
     instances<T extends Resource$instancesArgs<ExtArgs> = {}>(args?: Subset<T, Resource$instancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceInstancePayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    testimonials<T extends Resource$testimonialsArgs<ExtArgs> = {}>(args?: Subset<T, Resource$testimonialsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     categories<T extends Resource$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Resource$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     ResourceCategory<T extends Resource$ResourceCategoryArgs<ExtArgs> = {}>(args?: Subset<T, Resource$ResourceCategoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceCategoryPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -7142,6 +6337,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ResourceInstanceScalarFieldEnum | ResourceInstanceScalarFieldEnum[]
+  }
+
+  /**
+   * Resource.testimonials
+   */
+  export type Resource$testimonialsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    where?: ResourceTestimonialWhereInput
+    orderBy?: ResourceTestimonialOrderByWithRelationInput | ResourceTestimonialOrderByWithRelationInput[]
+    cursor?: ResourceTestimonialWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResourceTestimonialScalarFieldEnum | ResourceTestimonialScalarFieldEnum[]
   }
 
   /**
@@ -8405,6 +7620,7 @@ export namespace Prisma {
     created_at?: boolean
     updated_at?: boolean
     resource?: boolean | ResourceDefaultArgs<ExtArgs>
+    loan?: boolean | ResourceInstance$loanArgs<ExtArgs>
   }, ExtArgs["result"]["resourceInstance"]>
 
   export type ResourceInstanceSelectScalar = {
@@ -8420,6 +7636,7 @@ export namespace Prisma {
 
   export type ResourceInstanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     resource?: boolean | ResourceDefaultArgs<ExtArgs>
+    loan?: boolean | ResourceInstance$loanArgs<ExtArgs>
   }
 
 
@@ -8427,6 +7644,7 @@ export namespace Prisma {
     name: "ResourceInstance"
     objects: {
       resource: Prisma.$ResourcePayload<ExtArgs>
+      loan: Prisma.$ResourceLoanPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8829,6 +8047,8 @@ export namespace Prisma {
 
     resource<T extends ResourceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResourceDefaultArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
+    loan<T extends ResourceInstance$loanArgs<ExtArgs> = {}>(args?: Subset<T, ResourceInstance$loanArgs<ExtArgs>>): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9182,6 +8402,21 @@ export namespace Prisma {
   }
 
   /**
+   * ResourceInstance.loan
+   */
+  export type ResourceInstance$loanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    where?: ResourceLoanWhereInput
+  }
+
+  /**
    * ResourceInstance without action
    */
   export type ResourceInstanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9193,6 +8428,1998 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ResourceInstanceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ResourceLoan
+   */
+
+  export type AggregateResourceLoan = {
+    _count: ResourceLoanCountAggregateOutputType | null
+    _min: ResourceLoanMinAggregateOutputType | null
+    _max: ResourceLoanMaxAggregateOutputType | null
+  }
+
+  export type ResourceLoanMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    until: Date | null
+    instanceId: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type ResourceLoanMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    until: Date | null
+    instanceId: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type ResourceLoanCountAggregateOutputType = {
+    id: number
+    userId: number
+    until: number
+    instanceId: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type ResourceLoanMinAggregateInputType = {
+    id?: true
+    userId?: true
+    until?: true
+    instanceId?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type ResourceLoanMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    until?: true
+    instanceId?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type ResourceLoanCountAggregateInputType = {
+    id?: true
+    userId?: true
+    until?: true
+    instanceId?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type ResourceLoanAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResourceLoan to aggregate.
+     */
+    where?: ResourceLoanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceLoans to fetch.
+     */
+    orderBy?: ResourceLoanOrderByWithRelationInput | ResourceLoanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResourceLoanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceLoans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceLoans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ResourceLoans
+    **/
+    _count?: true | ResourceLoanCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResourceLoanMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResourceLoanMaxAggregateInputType
+  }
+
+  export type GetResourceLoanAggregateType<T extends ResourceLoanAggregateArgs> = {
+        [P in keyof T & keyof AggregateResourceLoan]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResourceLoan[P]>
+      : GetScalarType<T[P], AggregateResourceLoan[P]>
+  }
+
+
+
+
+  export type ResourceLoanGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResourceLoanWhereInput
+    orderBy?: ResourceLoanOrderByWithAggregationInput | ResourceLoanOrderByWithAggregationInput[]
+    by: ResourceLoanScalarFieldEnum[] | ResourceLoanScalarFieldEnum
+    having?: ResourceLoanScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResourceLoanCountAggregateInputType | true
+    _min?: ResourceLoanMinAggregateInputType
+    _max?: ResourceLoanMaxAggregateInputType
+  }
+
+  export type ResourceLoanGroupByOutputType = {
+    id: string
+    userId: string
+    until: Date
+    instanceId: string | null
+    created_at: Date
+    updated_at: Date
+    _count: ResourceLoanCountAggregateOutputType | null
+    _min: ResourceLoanMinAggregateOutputType | null
+    _max: ResourceLoanMaxAggregateOutputType | null
+  }
+
+  type GetResourceLoanGroupByPayload<T extends ResourceLoanGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResourceLoanGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResourceLoanGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResourceLoanGroupByOutputType[P]>
+            : GetScalarType<T[P], ResourceLoanGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResourceLoanSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    until?: boolean
+    instanceId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    instace?: boolean | ResourceLoan$instaceArgs<ExtArgs>
+  }, ExtArgs["result"]["resourceLoan"]>
+
+  export type ResourceLoanSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    until?: boolean
+    instanceId?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+
+  export type ResourceLoanInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    instace?: boolean | ResourceLoan$instaceArgs<ExtArgs>
+  }
+
+
+  export type $ResourceLoanPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ResourceLoan"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      instace: Prisma.$ResourceInstancePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      until: Date
+      instanceId: string | null
+      created_at: Date
+      updated_at: Date
+    }, ExtArgs["result"]["resourceLoan"]>
+    composites: {}
+  }
+
+
+  type ResourceLoanGetPayload<S extends boolean | null | undefined | ResourceLoanDefaultArgs> = $Result.GetResult<Prisma.$ResourceLoanPayload, S>
+
+  type ResourceLoanCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ResourceLoanFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ResourceLoanCountAggregateInputType | true
+    }
+
+  export interface ResourceLoanDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ResourceLoan'], meta: { name: 'ResourceLoan' } }
+    /**
+     * Find zero or one ResourceLoan that matches the filter.
+     * @param {ResourceLoanFindUniqueArgs} args - Arguments to find a ResourceLoan
+     * @example
+     * // Get one ResourceLoan
+     * const resourceLoan = await prisma.resourceLoan.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ResourceLoanFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceLoanFindUniqueArgs<ExtArgs>>
+    ): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one ResourceLoan that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ResourceLoanFindUniqueOrThrowArgs} args - Arguments to find a ResourceLoan
+     * @example
+     * // Get one ResourceLoan
+     * const resourceLoan = await prisma.resourceLoan.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ResourceLoanFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceLoanFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first ResourceLoan that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceLoanFindFirstArgs} args - Arguments to find a ResourceLoan
+     * @example
+     * // Get one ResourceLoan
+     * const resourceLoan = await prisma.resourceLoan.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ResourceLoanFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceLoanFindFirstArgs<ExtArgs>>
+    ): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first ResourceLoan that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceLoanFindFirstOrThrowArgs} args - Arguments to find a ResourceLoan
+     * @example
+     * // Get one ResourceLoan
+     * const resourceLoan = await prisma.resourceLoan.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ResourceLoanFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceLoanFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more ResourceLoans that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceLoanFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ResourceLoans
+     * const resourceLoans = await prisma.resourceLoan.findMany()
+     * 
+     * // Get first 10 ResourceLoans
+     * const resourceLoans = await prisma.resourceLoan.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const resourceLoanWithIdOnly = await prisma.resourceLoan.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ResourceLoanFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceLoanFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a ResourceLoan.
+     * @param {ResourceLoanCreateArgs} args - Arguments to create a ResourceLoan.
+     * @example
+     * // Create one ResourceLoan
+     * const ResourceLoan = await prisma.resourceLoan.create({
+     *   data: {
+     *     // ... data to create a ResourceLoan
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ResourceLoanCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceLoanCreateArgs<ExtArgs>>
+    ): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many ResourceLoans.
+     * @param {ResourceLoanCreateManyArgs} args - Arguments to create many ResourceLoans.
+     * @example
+     * // Create many ResourceLoans
+     * const resourceLoan = await prisma.resourceLoan.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends ResourceLoanCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceLoanCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ResourceLoans and returns the data saved in the database.
+     * @param {ResourceLoanCreateManyAndReturnArgs} args - Arguments to create many ResourceLoans.
+     * @example
+     * // Create many ResourceLoans
+     * const resourceLoan = await prisma.resourceLoan.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ResourceLoans and only return the `id`
+     * const resourceLoanWithIdOnly = await prisma.resourceLoan.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends ResourceLoanCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceLoanCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'createManyAndReturn'>>
+
+    /**
+     * Delete a ResourceLoan.
+     * @param {ResourceLoanDeleteArgs} args - Arguments to delete one ResourceLoan.
+     * @example
+     * // Delete one ResourceLoan
+     * const ResourceLoan = await prisma.resourceLoan.delete({
+     *   where: {
+     *     // ... filter to delete one ResourceLoan
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ResourceLoanDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceLoanDeleteArgs<ExtArgs>>
+    ): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one ResourceLoan.
+     * @param {ResourceLoanUpdateArgs} args - Arguments to update one ResourceLoan.
+     * @example
+     * // Update one ResourceLoan
+     * const resourceLoan = await prisma.resourceLoan.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ResourceLoanUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceLoanUpdateArgs<ExtArgs>>
+    ): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ResourceLoans.
+     * @param {ResourceLoanDeleteManyArgs} args - Arguments to filter ResourceLoans to delete.
+     * @example
+     * // Delete a few ResourceLoans
+     * const { count } = await prisma.resourceLoan.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ResourceLoanDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceLoanDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResourceLoans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceLoanUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ResourceLoans
+     * const resourceLoan = await prisma.resourceLoan.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ResourceLoanUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceLoanUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ResourceLoan.
+     * @param {ResourceLoanUpsertArgs} args - Arguments to update or create a ResourceLoan.
+     * @example
+     * // Update or create a ResourceLoan
+     * const resourceLoan = await prisma.resourceLoan.upsert({
+     *   create: {
+     *     // ... data to create a ResourceLoan
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ResourceLoan we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ResourceLoanUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceLoanUpsertArgs<ExtArgs>>
+    ): Prisma__ResourceLoanClient<$Result.GetResult<Prisma.$ResourceLoanPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of ResourceLoans.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceLoanCountArgs} args - Arguments to filter ResourceLoans to count.
+     * @example
+     * // Count the number of ResourceLoans
+     * const count = await prisma.resourceLoan.count({
+     *   where: {
+     *     // ... the filter for the ResourceLoans we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResourceLoanCountArgs>(
+      args?: Subset<T, ResourceLoanCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResourceLoanCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ResourceLoan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceLoanAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResourceLoanAggregateArgs>(args: Subset<T, ResourceLoanAggregateArgs>): Prisma.PrismaPromise<GetResourceLoanAggregateType<T>>
+
+    /**
+     * Group by ResourceLoan.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceLoanGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResourceLoanGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResourceLoanGroupByArgs['orderBy'] }
+        : { orderBy?: ResourceLoanGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResourceLoanGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResourceLoanGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ResourceLoan model
+   */
+  readonly fields: ResourceLoanFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ResourceLoan.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResourceLoanClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    instace<T extends ResourceLoan$instaceArgs<ExtArgs> = {}>(args?: Subset<T, ResourceLoan$instaceArgs<ExtArgs>>): Prisma__ResourceInstanceClient<$Result.GetResult<Prisma.$ResourceInstancePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the ResourceLoan model
+   */ 
+  interface ResourceLoanFieldRefs {
+    readonly id: FieldRef<"ResourceLoan", 'String'>
+    readonly userId: FieldRef<"ResourceLoan", 'String'>
+    readonly until: FieldRef<"ResourceLoan", 'DateTime'>
+    readonly instanceId: FieldRef<"ResourceLoan", 'String'>
+    readonly created_at: FieldRef<"ResourceLoan", 'DateTime'>
+    readonly updated_at: FieldRef<"ResourceLoan", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ResourceLoan findUnique
+   */
+  export type ResourceLoanFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceLoan to fetch.
+     */
+    where: ResourceLoanWhereUniqueInput
+  }
+
+  /**
+   * ResourceLoan findUniqueOrThrow
+   */
+  export type ResourceLoanFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceLoan to fetch.
+     */
+    where: ResourceLoanWhereUniqueInput
+  }
+
+  /**
+   * ResourceLoan findFirst
+   */
+  export type ResourceLoanFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceLoan to fetch.
+     */
+    where?: ResourceLoanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceLoans to fetch.
+     */
+    orderBy?: ResourceLoanOrderByWithRelationInput | ResourceLoanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResourceLoans.
+     */
+    cursor?: ResourceLoanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceLoans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceLoans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResourceLoans.
+     */
+    distinct?: ResourceLoanScalarFieldEnum | ResourceLoanScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceLoan findFirstOrThrow
+   */
+  export type ResourceLoanFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceLoan to fetch.
+     */
+    where?: ResourceLoanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceLoans to fetch.
+     */
+    orderBy?: ResourceLoanOrderByWithRelationInput | ResourceLoanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResourceLoans.
+     */
+    cursor?: ResourceLoanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceLoans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceLoans.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResourceLoans.
+     */
+    distinct?: ResourceLoanScalarFieldEnum | ResourceLoanScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceLoan findMany
+   */
+  export type ResourceLoanFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceLoans to fetch.
+     */
+    where?: ResourceLoanWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceLoans to fetch.
+     */
+    orderBy?: ResourceLoanOrderByWithRelationInput | ResourceLoanOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ResourceLoans.
+     */
+    cursor?: ResourceLoanWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceLoans from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceLoans.
+     */
+    skip?: number
+    distinct?: ResourceLoanScalarFieldEnum | ResourceLoanScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceLoan create
+   */
+  export type ResourceLoanCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ResourceLoan.
+     */
+    data: XOR<ResourceLoanCreateInput, ResourceLoanUncheckedCreateInput>
+  }
+
+  /**
+   * ResourceLoan createMany
+   */
+  export type ResourceLoanCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ResourceLoans.
+     */
+    data: ResourceLoanCreateManyInput | ResourceLoanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResourceLoan createManyAndReturn
+   */
+  export type ResourceLoanCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * The data used to create many ResourceLoans.
+     */
+    data: ResourceLoanCreateManyInput | ResourceLoanCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResourceLoan update
+   */
+  export type ResourceLoanUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ResourceLoan.
+     */
+    data: XOR<ResourceLoanUpdateInput, ResourceLoanUncheckedUpdateInput>
+    /**
+     * Choose, which ResourceLoan to update.
+     */
+    where: ResourceLoanWhereUniqueInput
+  }
+
+  /**
+   * ResourceLoan updateMany
+   */
+  export type ResourceLoanUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ResourceLoans.
+     */
+    data: XOR<ResourceLoanUpdateManyMutationInput, ResourceLoanUncheckedUpdateManyInput>
+    /**
+     * Filter which ResourceLoans to update
+     */
+    where?: ResourceLoanWhereInput
+  }
+
+  /**
+   * ResourceLoan upsert
+   */
+  export type ResourceLoanUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ResourceLoan to update in case it exists.
+     */
+    where: ResourceLoanWhereUniqueInput
+    /**
+     * In case the ResourceLoan found by the `where` argument doesn't exist, create a new ResourceLoan with this data.
+     */
+    create: XOR<ResourceLoanCreateInput, ResourceLoanUncheckedCreateInput>
+    /**
+     * In case the ResourceLoan was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResourceLoanUpdateInput, ResourceLoanUncheckedUpdateInput>
+  }
+
+  /**
+   * ResourceLoan delete
+   */
+  export type ResourceLoanDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+    /**
+     * Filter which ResourceLoan to delete.
+     */
+    where: ResourceLoanWhereUniqueInput
+  }
+
+  /**
+   * ResourceLoan deleteMany
+   */
+  export type ResourceLoanDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResourceLoans to delete
+     */
+    where?: ResourceLoanWhereInput
+  }
+
+  /**
+   * ResourceLoan.instace
+   */
+  export type ResourceLoan$instaceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceInstance
+     */
+    select?: ResourceInstanceSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceInstanceInclude<ExtArgs> | null
+    where?: ResourceInstanceWhereInput
+  }
+
+  /**
+   * ResourceLoan without action
+   */
+  export type ResourceLoanDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceLoan
+     */
+    select?: ResourceLoanSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceLoanInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ResourceTestimonial
+   */
+
+  export type AggregateResourceTestimonial = {
+    _count: ResourceTestimonialCountAggregateOutputType | null
+    _avg: ResourceTestimonialAvgAggregateOutputType | null
+    _sum: ResourceTestimonialSumAggregateOutputType | null
+    _min: ResourceTestimonialMinAggregateOutputType | null
+    _max: ResourceTestimonialMaxAggregateOutputType | null
+  }
+
+  export type ResourceTestimonialAvgAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type ResourceTestimonialSumAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type ResourceTestimonialMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    resourceId: string | null
+    rating: number | null
+    title: string | null
+    testimonial: string | null
+    created_at: Date | null
+  }
+
+  export type ResourceTestimonialMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    resourceId: string | null
+    rating: number | null
+    title: string | null
+    testimonial: string | null
+    created_at: Date | null
+  }
+
+  export type ResourceTestimonialCountAggregateOutputType = {
+    id: number
+    userId: number
+    resourceId: number
+    rating: number
+    title: number
+    testimonial: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type ResourceTestimonialAvgAggregateInputType = {
+    rating?: true
+  }
+
+  export type ResourceTestimonialSumAggregateInputType = {
+    rating?: true
+  }
+
+  export type ResourceTestimonialMinAggregateInputType = {
+    id?: true
+    userId?: true
+    resourceId?: true
+    rating?: true
+    title?: true
+    testimonial?: true
+    created_at?: true
+  }
+
+  export type ResourceTestimonialMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    resourceId?: true
+    rating?: true
+    title?: true
+    testimonial?: true
+    created_at?: true
+  }
+
+  export type ResourceTestimonialCountAggregateInputType = {
+    id?: true
+    userId?: true
+    resourceId?: true
+    rating?: true
+    title?: true
+    testimonial?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type ResourceTestimonialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResourceTestimonial to aggregate.
+     */
+    where?: ResourceTestimonialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceTestimonials to fetch.
+     */
+    orderBy?: ResourceTestimonialOrderByWithRelationInput | ResourceTestimonialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResourceTestimonialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceTestimonials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceTestimonials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ResourceTestimonials
+    **/
+    _count?: true | ResourceTestimonialCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ResourceTestimonialAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ResourceTestimonialSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResourceTestimonialMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResourceTestimonialMaxAggregateInputType
+  }
+
+  export type GetResourceTestimonialAggregateType<T extends ResourceTestimonialAggregateArgs> = {
+        [P in keyof T & keyof AggregateResourceTestimonial]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResourceTestimonial[P]>
+      : GetScalarType<T[P], AggregateResourceTestimonial[P]>
+  }
+
+
+
+
+  export type ResourceTestimonialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResourceTestimonialWhereInput
+    orderBy?: ResourceTestimonialOrderByWithAggregationInput | ResourceTestimonialOrderByWithAggregationInput[]
+    by: ResourceTestimonialScalarFieldEnum[] | ResourceTestimonialScalarFieldEnum
+    having?: ResourceTestimonialScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResourceTestimonialCountAggregateInputType | true
+    _avg?: ResourceTestimonialAvgAggregateInputType
+    _sum?: ResourceTestimonialSumAggregateInputType
+    _min?: ResourceTestimonialMinAggregateInputType
+    _max?: ResourceTestimonialMaxAggregateInputType
+  }
+
+  export type ResourceTestimonialGroupByOutputType = {
+    id: string
+    userId: string
+    resourceId: string
+    rating: number
+    title: string
+    testimonial: string | null
+    created_at: Date
+    _count: ResourceTestimonialCountAggregateOutputType | null
+    _avg: ResourceTestimonialAvgAggregateOutputType | null
+    _sum: ResourceTestimonialSumAggregateOutputType | null
+    _min: ResourceTestimonialMinAggregateOutputType | null
+    _max: ResourceTestimonialMaxAggregateOutputType | null
+  }
+
+  type GetResourceTestimonialGroupByPayload<T extends ResourceTestimonialGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResourceTestimonialGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResourceTestimonialGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResourceTestimonialGroupByOutputType[P]>
+            : GetScalarType<T[P], ResourceTestimonialGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResourceTestimonialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    resourceId?: boolean
+    rating?: boolean
+    title?: boolean
+    testimonial?: boolean
+    created_at?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    resource?: boolean | ResourceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["resourceTestimonial"]>
+
+  export type ResourceTestimonialSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    resourceId?: boolean
+    rating?: boolean
+    title?: boolean
+    testimonial?: boolean
+    created_at?: boolean
+  }
+
+
+  export type ResourceTestimonialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    resource?: boolean | ResourceDefaultArgs<ExtArgs>
+  }
+
+
+  export type $ResourceTestimonialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ResourceTestimonial"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      resource: Prisma.$ResourcePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      resourceId: string
+      rating: number
+      title: string
+      testimonial: string | null
+      created_at: Date
+    }, ExtArgs["result"]["resourceTestimonial"]>
+    composites: {}
+  }
+
+
+  type ResourceTestimonialGetPayload<S extends boolean | null | undefined | ResourceTestimonialDefaultArgs> = $Result.GetResult<Prisma.$ResourceTestimonialPayload, S>
+
+  type ResourceTestimonialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ResourceTestimonialFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ResourceTestimonialCountAggregateInputType | true
+    }
+
+  export interface ResourceTestimonialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ResourceTestimonial'], meta: { name: 'ResourceTestimonial' } }
+    /**
+     * Find zero or one ResourceTestimonial that matches the filter.
+     * @param {ResourceTestimonialFindUniqueArgs} args - Arguments to find a ResourceTestimonial
+     * @example
+     * // Get one ResourceTestimonial
+     * const resourceTestimonial = await prisma.resourceTestimonial.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ResourceTestimonialFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceTestimonialFindUniqueArgs<ExtArgs>>
+    ): Prisma__ResourceTestimonialClient<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one ResourceTestimonial that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ResourceTestimonialFindUniqueOrThrowArgs} args - Arguments to find a ResourceTestimonial
+     * @example
+     * // Get one ResourceTestimonial
+     * const resourceTestimonial = await prisma.resourceTestimonial.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ResourceTestimonialFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceTestimonialFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ResourceTestimonialClient<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first ResourceTestimonial that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceTestimonialFindFirstArgs} args - Arguments to find a ResourceTestimonial
+     * @example
+     * // Get one ResourceTestimonial
+     * const resourceTestimonial = await prisma.resourceTestimonial.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ResourceTestimonialFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceTestimonialFindFirstArgs<ExtArgs>>
+    ): Prisma__ResourceTestimonialClient<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first ResourceTestimonial that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceTestimonialFindFirstOrThrowArgs} args - Arguments to find a ResourceTestimonial
+     * @example
+     * // Get one ResourceTestimonial
+     * const resourceTestimonial = await prisma.resourceTestimonial.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ResourceTestimonialFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceTestimonialFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ResourceTestimonialClient<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more ResourceTestimonials that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceTestimonialFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ResourceTestimonials
+     * const resourceTestimonials = await prisma.resourceTestimonial.findMany()
+     * 
+     * // Get first 10 ResourceTestimonials
+     * const resourceTestimonials = await prisma.resourceTestimonial.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const resourceTestimonialWithIdOnly = await prisma.resourceTestimonial.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ResourceTestimonialFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceTestimonialFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a ResourceTestimonial.
+     * @param {ResourceTestimonialCreateArgs} args - Arguments to create a ResourceTestimonial.
+     * @example
+     * // Create one ResourceTestimonial
+     * const ResourceTestimonial = await prisma.resourceTestimonial.create({
+     *   data: {
+     *     // ... data to create a ResourceTestimonial
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ResourceTestimonialCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceTestimonialCreateArgs<ExtArgs>>
+    ): Prisma__ResourceTestimonialClient<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many ResourceTestimonials.
+     * @param {ResourceTestimonialCreateManyArgs} args - Arguments to create many ResourceTestimonials.
+     * @example
+     * // Create many ResourceTestimonials
+     * const resourceTestimonial = await prisma.resourceTestimonial.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+    **/
+    createMany<T extends ResourceTestimonialCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceTestimonialCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ResourceTestimonials and returns the data saved in the database.
+     * @param {ResourceTestimonialCreateManyAndReturnArgs} args - Arguments to create many ResourceTestimonials.
+     * @example
+     * // Create many ResourceTestimonials
+     * const resourceTestimonial = await prisma.resourceTestimonial.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ResourceTestimonials and only return the `id`
+     * const resourceTestimonialWithIdOnly = await prisma.resourceTestimonial.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+    **/
+    createManyAndReturn<T extends ResourceTestimonialCreateManyAndReturnArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceTestimonialCreateManyAndReturnArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'createManyAndReturn'>>
+
+    /**
+     * Delete a ResourceTestimonial.
+     * @param {ResourceTestimonialDeleteArgs} args - Arguments to delete one ResourceTestimonial.
+     * @example
+     * // Delete one ResourceTestimonial
+     * const ResourceTestimonial = await prisma.resourceTestimonial.delete({
+     *   where: {
+     *     // ... filter to delete one ResourceTestimonial
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ResourceTestimonialDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceTestimonialDeleteArgs<ExtArgs>>
+    ): Prisma__ResourceTestimonialClient<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one ResourceTestimonial.
+     * @param {ResourceTestimonialUpdateArgs} args - Arguments to update one ResourceTestimonial.
+     * @example
+     * // Update one ResourceTestimonial
+     * const resourceTestimonial = await prisma.resourceTestimonial.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ResourceTestimonialUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceTestimonialUpdateArgs<ExtArgs>>
+    ): Prisma__ResourceTestimonialClient<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ResourceTestimonials.
+     * @param {ResourceTestimonialDeleteManyArgs} args - Arguments to filter ResourceTestimonials to delete.
+     * @example
+     * // Delete a few ResourceTestimonials
+     * const { count } = await prisma.resourceTestimonial.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ResourceTestimonialDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ResourceTestimonialDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResourceTestimonials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceTestimonialUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ResourceTestimonials
+     * const resourceTestimonial = await prisma.resourceTestimonial.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ResourceTestimonialUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceTestimonialUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ResourceTestimonial.
+     * @param {ResourceTestimonialUpsertArgs} args - Arguments to update or create a ResourceTestimonial.
+     * @example
+     * // Update or create a ResourceTestimonial
+     * const resourceTestimonial = await prisma.resourceTestimonial.upsert({
+     *   create: {
+     *     // ... data to create a ResourceTestimonial
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ResourceTestimonial we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ResourceTestimonialUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ResourceTestimonialUpsertArgs<ExtArgs>>
+    ): Prisma__ResourceTestimonialClient<$Result.GetResult<Prisma.$ResourceTestimonialPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of ResourceTestimonials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceTestimonialCountArgs} args - Arguments to filter ResourceTestimonials to count.
+     * @example
+     * // Count the number of ResourceTestimonials
+     * const count = await prisma.resourceTestimonial.count({
+     *   where: {
+     *     // ... the filter for the ResourceTestimonials we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResourceTestimonialCountArgs>(
+      args?: Subset<T, ResourceTestimonialCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResourceTestimonialCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ResourceTestimonial.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceTestimonialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResourceTestimonialAggregateArgs>(args: Subset<T, ResourceTestimonialAggregateArgs>): Prisma.PrismaPromise<GetResourceTestimonialAggregateType<T>>
+
+    /**
+     * Group by ResourceTestimonial.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResourceTestimonialGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResourceTestimonialGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResourceTestimonialGroupByArgs['orderBy'] }
+        : { orderBy?: ResourceTestimonialGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResourceTestimonialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResourceTestimonialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ResourceTestimonial model
+   */
+  readonly fields: ResourceTestimonialFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ResourceTestimonial.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResourceTestimonialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    resource<T extends ResourceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResourceDefaultArgs<ExtArgs>>): Prisma__ResourceClient<$Result.GetResult<Prisma.$ResourcePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the ResourceTestimonial model
+   */ 
+  interface ResourceTestimonialFieldRefs {
+    readonly id: FieldRef<"ResourceTestimonial", 'String'>
+    readonly userId: FieldRef<"ResourceTestimonial", 'String'>
+    readonly resourceId: FieldRef<"ResourceTestimonial", 'String'>
+    readonly rating: FieldRef<"ResourceTestimonial", 'Int'>
+    readonly title: FieldRef<"ResourceTestimonial", 'String'>
+    readonly testimonial: FieldRef<"ResourceTestimonial", 'String'>
+    readonly created_at: FieldRef<"ResourceTestimonial", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ResourceTestimonial findUnique
+   */
+  export type ResourceTestimonialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceTestimonial to fetch.
+     */
+    where: ResourceTestimonialWhereUniqueInput
+  }
+
+  /**
+   * ResourceTestimonial findUniqueOrThrow
+   */
+  export type ResourceTestimonialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceTestimonial to fetch.
+     */
+    where: ResourceTestimonialWhereUniqueInput
+  }
+
+  /**
+   * ResourceTestimonial findFirst
+   */
+  export type ResourceTestimonialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceTestimonial to fetch.
+     */
+    where?: ResourceTestimonialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceTestimonials to fetch.
+     */
+    orderBy?: ResourceTestimonialOrderByWithRelationInput | ResourceTestimonialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResourceTestimonials.
+     */
+    cursor?: ResourceTestimonialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceTestimonials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceTestimonials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResourceTestimonials.
+     */
+    distinct?: ResourceTestimonialScalarFieldEnum | ResourceTestimonialScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceTestimonial findFirstOrThrow
+   */
+  export type ResourceTestimonialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceTestimonial to fetch.
+     */
+    where?: ResourceTestimonialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceTestimonials to fetch.
+     */
+    orderBy?: ResourceTestimonialOrderByWithRelationInput | ResourceTestimonialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResourceTestimonials.
+     */
+    cursor?: ResourceTestimonialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceTestimonials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceTestimonials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResourceTestimonials.
+     */
+    distinct?: ResourceTestimonialScalarFieldEnum | ResourceTestimonialScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceTestimonial findMany
+   */
+  export type ResourceTestimonialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * Filter, which ResourceTestimonials to fetch.
+     */
+    where?: ResourceTestimonialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResourceTestimonials to fetch.
+     */
+    orderBy?: ResourceTestimonialOrderByWithRelationInput | ResourceTestimonialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ResourceTestimonials.
+     */
+    cursor?: ResourceTestimonialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResourceTestimonials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResourceTestimonials.
+     */
+    skip?: number
+    distinct?: ResourceTestimonialScalarFieldEnum | ResourceTestimonialScalarFieldEnum[]
+  }
+
+  /**
+   * ResourceTestimonial create
+   */
+  export type ResourceTestimonialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ResourceTestimonial.
+     */
+    data: XOR<ResourceTestimonialCreateInput, ResourceTestimonialUncheckedCreateInput>
+  }
+
+  /**
+   * ResourceTestimonial createMany
+   */
+  export type ResourceTestimonialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ResourceTestimonials.
+     */
+    data: ResourceTestimonialCreateManyInput | ResourceTestimonialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResourceTestimonial createManyAndReturn
+   */
+  export type ResourceTestimonialCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * The data used to create many ResourceTestimonials.
+     */
+    data: ResourceTestimonialCreateManyInput | ResourceTestimonialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResourceTestimonial update
+   */
+  export type ResourceTestimonialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ResourceTestimonial.
+     */
+    data: XOR<ResourceTestimonialUpdateInput, ResourceTestimonialUncheckedUpdateInput>
+    /**
+     * Choose, which ResourceTestimonial to update.
+     */
+    where: ResourceTestimonialWhereUniqueInput
+  }
+
+  /**
+   * ResourceTestimonial updateMany
+   */
+  export type ResourceTestimonialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ResourceTestimonials.
+     */
+    data: XOR<ResourceTestimonialUpdateManyMutationInput, ResourceTestimonialUncheckedUpdateManyInput>
+    /**
+     * Filter which ResourceTestimonials to update
+     */
+    where?: ResourceTestimonialWhereInput
+  }
+
+  /**
+   * ResourceTestimonial upsert
+   */
+  export type ResourceTestimonialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ResourceTestimonial to update in case it exists.
+     */
+    where: ResourceTestimonialWhereUniqueInput
+    /**
+     * In case the ResourceTestimonial found by the `where` argument doesn't exist, create a new ResourceTestimonial with this data.
+     */
+    create: XOR<ResourceTestimonialCreateInput, ResourceTestimonialUncheckedCreateInput>
+    /**
+     * In case the ResourceTestimonial was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResourceTestimonialUpdateInput, ResourceTestimonialUncheckedUpdateInput>
+  }
+
+  /**
+   * ResourceTestimonial delete
+   */
+  export type ResourceTestimonialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
+    /**
+     * Filter which ResourceTestimonial to delete.
+     */
+    where: ResourceTestimonialWhereUniqueInput
+  }
+
+  /**
+   * ResourceTestimonial deleteMany
+   */
+  export type ResourceTestimonialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResourceTestimonials to delete
+     */
+    where?: ResourceTestimonialWhereInput
+  }
+
+  /**
+   * ResourceTestimonial without action
+   */
+  export type ResourceTestimonialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResourceTestimonial
+     */
+    select?: ResourceTestimonialSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResourceTestimonialInclude<ExtArgs> | null
   }
 
 
@@ -13240,16 +14467,6 @@ export namespace Prisma {
   export type UserRoleScalarFieldEnum = (typeof UserRoleScalarFieldEnum)[keyof typeof UserRoleScalarFieldEnum]
 
 
-  export const LoanScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
-  };
-
-  export type LoanScalarFieldEnum = (typeof LoanScalarFieldEnum)[keyof typeof LoanScalarFieldEnum]
-
-
   export const ResourceScalarFieldEnum: {
     id: 'id',
     resource_name: 'resource_name',
@@ -13291,6 +14508,31 @@ export namespace Prisma {
   };
 
   export type ResourceInstanceScalarFieldEnum = (typeof ResourceInstanceScalarFieldEnum)[keyof typeof ResourceInstanceScalarFieldEnum]
+
+
+  export const ResourceLoanScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    until: 'until',
+    instanceId: 'instanceId',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type ResourceLoanScalarFieldEnum = (typeof ResourceLoanScalarFieldEnum)[keyof typeof ResourceLoanScalarFieldEnum]
+
+
+  export const ResourceTestimonialScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    resourceId: 'resourceId',
+    rating: 'rating',
+    title: 'title',
+    testimonial: 'testimonial',
+    created_at: 'created_at'
+  };
+
+  export type ResourceTestimonialScalarFieldEnum = (typeof ResourceTestimonialScalarFieldEnum)[keyof typeof ResourceTestimonialScalarFieldEnum]
 
 
   export const ResourceTypeScalarFieldEnum: {
@@ -13523,7 +14765,8 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"User"> | Date | string
     roles?: RoleListRelationFilter
     UserRole?: UserRoleListRelationFilter
-    Loan?: LoanListRelationFilter
+    loans?: ResourceLoanListRelationFilter
+    testimonials?: ResourceTestimonialListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -13539,7 +14782,8 @@ export namespace Prisma {
     updated_at?: SortOrder
     roles?: RoleOrderByRelationAggregateInput
     UserRole?: UserRoleOrderByRelationAggregateInput
-    Loan?: LoanOrderByRelationAggregateInput
+    loans?: ResourceLoanOrderByRelationAggregateInput
+    testimonials?: ResourceTestimonialOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -13558,7 +14802,8 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"User"> | Date | string
     roles?: RoleListRelationFilter
     UserRole?: UserRoleListRelationFilter
-    Loan?: LoanListRelationFilter
+    loans?: ResourceLoanListRelationFilter
+    testimonials?: ResourceTestimonialListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -13694,56 +14939,6 @@ export namespace Prisma {
     role_id?: IntWithAggregatesFilter<"UserRole"> | number
   }
 
-  export type LoanWhereInput = {
-    AND?: LoanWhereInput | LoanWhereInput[]
-    OR?: LoanWhereInput[]
-    NOT?: LoanWhereInput | LoanWhereInput[]
-    id?: StringFilter<"Loan"> | string
-    userId?: StringFilter<"Loan"> | string
-    created_at?: DateTimeFilter<"Loan"> | Date | string
-    updated_at?: DateTimeFilter<"Loan"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
-  }
-
-  export type LoanOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type LoanWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: LoanWhereInput | LoanWhereInput[]
-    OR?: LoanWhereInput[]
-    NOT?: LoanWhereInput | LoanWhereInput[]
-    userId?: StringFilter<"Loan"> | string
-    created_at?: DateTimeFilter<"Loan"> | Date | string
-    updated_at?: DateTimeFilter<"Loan"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type LoanOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    _count?: LoanCountOrderByAggregateInput
-    _max?: LoanMaxOrderByAggregateInput
-    _min?: LoanMinOrderByAggregateInput
-  }
-
-  export type LoanScalarWhereWithAggregatesInput = {
-    AND?: LoanScalarWhereWithAggregatesInput | LoanScalarWhereWithAggregatesInput[]
-    OR?: LoanScalarWhereWithAggregatesInput[]
-    NOT?: LoanScalarWhereWithAggregatesInput | LoanScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Loan"> | string
-    userId?: StringWithAggregatesFilter<"Loan"> | string
-    created_at?: DateTimeWithAggregatesFilter<"Loan"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Loan"> | Date | string
-  }
-
   export type ResourceWhereInput = {
     AND?: ResourceWhereInput | ResourceWhereInput[]
     OR?: ResourceWhereInput[]
@@ -13762,6 +14957,7 @@ export namespace Prisma {
     detail_id?: IntNullableFilter<"Resource"> | number | null
     type?: XOR<ResourceTypeRelationFilter, ResourceTypeWhereInput>
     instances?: ResourceInstanceListRelationFilter
+    testimonials?: ResourceTestimonialListRelationFilter
     categories?: CategoryListRelationFilter
     ResourceCategory?: ResourceCategoryListRelationFilter
     publisher?: XOR<PublisherRelationFilter, PublisherWhereInput>
@@ -13783,6 +14979,7 @@ export namespace Prisma {
     detail_id?: SortOrderInput | SortOrder
     type?: ResourceTypeOrderByWithRelationInput
     instances?: ResourceInstanceOrderByRelationAggregateInput
+    testimonials?: ResourceTestimonialOrderByRelationAggregateInput
     categories?: CategoryOrderByRelationAggregateInput
     ResourceCategory?: ResourceCategoryOrderByRelationAggregateInput
     publisher?: PublisherOrderByWithRelationInput
@@ -13807,6 +15004,7 @@ export namespace Prisma {
     publisher_id?: IntFilter<"Resource"> | number
     type?: XOR<ResourceTypeRelationFilter, ResourceTypeWhereInput>
     instances?: ResourceInstanceListRelationFilter
+    testimonials?: ResourceTestimonialListRelationFilter
     categories?: CategoryListRelationFilter
     ResourceCategory?: ResourceCategoryListRelationFilter
     publisher?: XOR<PublisherRelationFilter, PublisherWhereInput>
@@ -13925,6 +15123,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"ResourceInstance"> | Date | string
     updated_at?: DateTimeFilter<"ResourceInstance"> | Date | string
     resource?: XOR<ResourceRelationFilter, ResourceWhereInput>
+    loan?: XOR<ResourceLoanNullableRelationFilter, ResourceLoanWhereInput> | null
   }
 
   export type ResourceInstanceOrderByWithRelationInput = {
@@ -13936,6 +15135,7 @@ export namespace Prisma {
     created_at?: SortOrder
     updated_at?: SortOrder
     resource?: ResourceOrderByWithRelationInput
+    loan?: ResourceLoanOrderByWithRelationInput
   }
 
   export type ResourceInstanceWhereUniqueInput = Prisma.AtLeast<{
@@ -13950,6 +15150,7 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"ResourceInstance"> | Date | string
     updated_at?: DateTimeFilter<"ResourceInstance"> | Date | string
     resource?: XOR<ResourceRelationFilter, ResourceWhereInput>
+    loan?: XOR<ResourceLoanNullableRelationFilter, ResourceLoanWhereInput> | null
   }, "id">
 
   export type ResourceInstanceOrderByWithAggregationInput = {
@@ -13976,6 +15177,139 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusWithAggregatesFilter<"ResourceInstance"> | $Enums.ResourceInstanceStatus
     created_at?: DateTimeWithAggregatesFilter<"ResourceInstance"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"ResourceInstance"> | Date | string
+  }
+
+  export type ResourceLoanWhereInput = {
+    AND?: ResourceLoanWhereInput | ResourceLoanWhereInput[]
+    OR?: ResourceLoanWhereInput[]
+    NOT?: ResourceLoanWhereInput | ResourceLoanWhereInput[]
+    id?: StringFilter<"ResourceLoan"> | string
+    userId?: StringFilter<"ResourceLoan"> | string
+    until?: DateTimeFilter<"ResourceLoan"> | Date | string
+    instanceId?: StringNullableFilter<"ResourceLoan"> | string | null
+    created_at?: DateTimeFilter<"ResourceLoan"> | Date | string
+    updated_at?: DateTimeFilter<"ResourceLoan"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    instace?: XOR<ResourceInstanceNullableRelationFilter, ResourceInstanceWhereInput> | null
+  }
+
+  export type ResourceLoanOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    until?: SortOrder
+    instanceId?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    user?: UserOrderByWithRelationInput
+    instace?: ResourceInstanceOrderByWithRelationInput
+  }
+
+  export type ResourceLoanWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    instanceId?: string
+    AND?: ResourceLoanWhereInput | ResourceLoanWhereInput[]
+    OR?: ResourceLoanWhereInput[]
+    NOT?: ResourceLoanWhereInput | ResourceLoanWhereInput[]
+    userId?: StringFilter<"ResourceLoan"> | string
+    until?: DateTimeFilter<"ResourceLoan"> | Date | string
+    created_at?: DateTimeFilter<"ResourceLoan"> | Date | string
+    updated_at?: DateTimeFilter<"ResourceLoan"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    instace?: XOR<ResourceInstanceNullableRelationFilter, ResourceInstanceWhereInput> | null
+  }, "id" | "instanceId">
+
+  export type ResourceLoanOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    until?: SortOrder
+    instanceId?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+    _count?: ResourceLoanCountOrderByAggregateInput
+    _max?: ResourceLoanMaxOrderByAggregateInput
+    _min?: ResourceLoanMinOrderByAggregateInput
+  }
+
+  export type ResourceLoanScalarWhereWithAggregatesInput = {
+    AND?: ResourceLoanScalarWhereWithAggregatesInput | ResourceLoanScalarWhereWithAggregatesInput[]
+    OR?: ResourceLoanScalarWhereWithAggregatesInput[]
+    NOT?: ResourceLoanScalarWhereWithAggregatesInput | ResourceLoanScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ResourceLoan"> | string
+    userId?: StringWithAggregatesFilter<"ResourceLoan"> | string
+    until?: DateTimeWithAggregatesFilter<"ResourceLoan"> | Date | string
+    instanceId?: StringNullableWithAggregatesFilter<"ResourceLoan"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"ResourceLoan"> | Date | string
+    updated_at?: DateTimeWithAggregatesFilter<"ResourceLoan"> | Date | string
+  }
+
+  export type ResourceTestimonialWhereInput = {
+    AND?: ResourceTestimonialWhereInput | ResourceTestimonialWhereInput[]
+    OR?: ResourceTestimonialWhereInput[]
+    NOT?: ResourceTestimonialWhereInput | ResourceTestimonialWhereInput[]
+    id?: StringFilter<"ResourceTestimonial"> | string
+    userId?: StringFilter<"ResourceTestimonial"> | string
+    resourceId?: StringFilter<"ResourceTestimonial"> | string
+    rating?: IntFilter<"ResourceTestimonial"> | number
+    title?: StringFilter<"ResourceTestimonial"> | string
+    testimonial?: StringNullableFilter<"ResourceTestimonial"> | string | null
+    created_at?: DateTimeFilter<"ResourceTestimonial"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    resource?: XOR<ResourceRelationFilter, ResourceWhereInput>
+  }
+
+  export type ResourceTestimonialOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    resourceId?: SortOrder
+    rating?: SortOrder
+    title?: SortOrder
+    testimonial?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    user?: UserOrderByWithRelationInput
+    resource?: ResourceOrderByWithRelationInput
+  }
+
+  export type ResourceTestimonialWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ResourceTestimonialWhereInput | ResourceTestimonialWhereInput[]
+    OR?: ResourceTestimonialWhereInput[]
+    NOT?: ResourceTestimonialWhereInput | ResourceTestimonialWhereInput[]
+    userId?: StringFilter<"ResourceTestimonial"> | string
+    resourceId?: StringFilter<"ResourceTestimonial"> | string
+    rating?: IntFilter<"ResourceTestimonial"> | number
+    title?: StringFilter<"ResourceTestimonial"> | string
+    testimonial?: StringNullableFilter<"ResourceTestimonial"> | string | null
+    created_at?: DateTimeFilter<"ResourceTestimonial"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    resource?: XOR<ResourceRelationFilter, ResourceWhereInput>
+  }, "id">
+
+  export type ResourceTestimonialOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    resourceId?: SortOrder
+    rating?: SortOrder
+    title?: SortOrder
+    testimonial?: SortOrderInput | SortOrder
+    created_at?: SortOrder
+    _count?: ResourceTestimonialCountOrderByAggregateInput
+    _avg?: ResourceTestimonialAvgOrderByAggregateInput
+    _max?: ResourceTestimonialMaxOrderByAggregateInput
+    _min?: ResourceTestimonialMinOrderByAggregateInput
+    _sum?: ResourceTestimonialSumOrderByAggregateInput
+  }
+
+  export type ResourceTestimonialScalarWhereWithAggregatesInput = {
+    AND?: ResourceTestimonialScalarWhereWithAggregatesInput | ResourceTestimonialScalarWhereWithAggregatesInput[]
+    OR?: ResourceTestimonialScalarWhereWithAggregatesInput[]
+    NOT?: ResourceTestimonialScalarWhereWithAggregatesInput | ResourceTestimonialScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ResourceTestimonial"> | string
+    userId?: StringWithAggregatesFilter<"ResourceTestimonial"> | string
+    resourceId?: StringWithAggregatesFilter<"ResourceTestimonial"> | string
+    rating?: IntWithAggregatesFilter<"ResourceTestimonial"> | number
+    title?: StringWithAggregatesFilter<"ResourceTestimonial"> | string
+    testimonial?: StringNullableWithAggregatesFilter<"ResourceTestimonial"> | string | null
+    created_at?: DateTimeWithAggregatesFilter<"ResourceTestimonial"> | Date | string
   }
 
   export type ResourceTypeWhereInput = {
@@ -14206,7 +15540,8 @@ export namespace Prisma {
     updated_at?: Date | string
     roles?: RoleCreateNestedManyWithoutUsersInput
     UserRole?: UserRoleCreateNestedManyWithoutUserInput
-    Loan?: LoanCreateNestedManyWithoutUserInput
+    loans?: ResourceLoanCreateNestedManyWithoutUserInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -14222,7 +15557,8 @@ export namespace Prisma {
     updated_at?: Date | string
     roles?: RoleUncheckedCreateNestedManyWithoutUsersInput
     UserRole?: UserRoleUncheckedCreateNestedManyWithoutUserInput
-    Loan?: LoanUncheckedCreateNestedManyWithoutUserInput
+    loans?: ResourceLoanUncheckedCreateNestedManyWithoutUserInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -14238,7 +15574,8 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     roles?: RoleUpdateManyWithoutUsersNestedInput
     UserRole?: UserRoleUpdateManyWithoutUserNestedInput
-    Loan?: LoanUpdateManyWithoutUserNestedInput
+    loans?: ResourceLoanUpdateManyWithoutUserNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -14254,7 +15591,8 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     roles?: RoleUncheckedUpdateManyWithoutUsersNestedInput
     UserRole?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
-    Loan?: LoanUncheckedUpdateManyWithoutUserNestedInput
+    loans?: ResourceLoanUncheckedUpdateManyWithoutUserNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -14384,54 +15722,6 @@ export namespace Prisma {
     role_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type LoanCreateInput = {
-    id?: string
-    created_at?: Date | string
-    updated_at?: Date | string
-    user: UserCreateNestedOneWithoutLoanInput
-  }
-
-  export type LoanUncheckedCreateInput = {
-    id?: string
-    userId: string
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type LoanUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutLoanNestedInput
-  }
-
-  export type LoanUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LoanCreateManyInput = {
-    id?: string
-    userId: string
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type LoanUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LoanUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type ResourceCreateInput = {
     id?: string
     resource_name: string
@@ -14444,6 +15734,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
@@ -14464,6 +15755,7 @@ export namespace Prisma {
     publisher_id: number
     detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
   }
@@ -14480,6 +15772,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
@@ -14500,6 +15793,7 @@ export namespace Prisma {
     publisher_id?: IntFieldUpdateOperationsInput | number
     detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
@@ -14618,6 +15912,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     resource: ResourceCreateNestedOneWithoutInstancesInput
+    loan?: ResourceLoanCreateNestedOneWithoutInstaceInput
   }
 
   export type ResourceInstanceUncheckedCreateInput = {
@@ -14628,6 +15923,7 @@ export namespace Prisma {
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
     updated_at?: Date | string
+    loan?: ResourceLoanUncheckedCreateNestedOneWithoutInstaceInput
   }
 
   export type ResourceInstanceUpdateInput = {
@@ -14638,6 +15934,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     resource?: ResourceUpdateOneRequiredWithoutInstancesNestedInput
+    loan?: ResourceLoanUpdateOneWithoutInstaceNestedInput
   }
 
   export type ResourceInstanceUncheckedUpdateInput = {
@@ -14648,6 +15945,7 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    loan?: ResourceLoanUncheckedUpdateOneWithoutInstaceNestedInput
   }
 
   export type ResourceInstanceCreateManyInput = {
@@ -14677,6 +15975,135 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceLoanCreateInput = {
+    id?: string
+    until: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
+    user: UserCreateNestedOneWithoutLoansInput
+    instace?: ResourceInstanceCreateNestedOneWithoutLoanInput
+  }
+
+  export type ResourceLoanUncheckedCreateInput = {
+    id?: string
+    userId: string
+    until: Date | string
+    instanceId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ResourceLoanUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutLoansNestedInput
+    instace?: ResourceInstanceUpdateOneWithoutLoanNestedInput
+  }
+
+  export type ResourceLoanUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    instanceId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceLoanCreateManyInput = {
+    id?: string
+    userId: string
+    until: Date | string
+    instanceId?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ResourceLoanUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceLoanUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    instanceId?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceTestimonialCreateInput = {
+    id?: string
+    rating?: number
+    title: string
+    testimonial?: string | null
+    created_at?: Date | string
+    user: UserCreateNestedOneWithoutTestimonialsInput
+    resource: ResourceCreateNestedOneWithoutTestimonialsInput
+  }
+
+  export type ResourceTestimonialUncheckedCreateInput = {
+    id?: string
+    userId: string
+    resourceId: string
+    rating?: number
+    title: string
+    testimonial?: string | null
+    created_at?: Date | string
+  }
+
+  export type ResourceTestimonialUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTestimonialsNestedInput
+    resource?: ResourceUpdateOneRequiredWithoutTestimonialsNestedInput
+  }
+
+  export type ResourceTestimonialUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    resourceId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceTestimonialCreateManyInput = {
+    id?: string
+    userId: string
+    resourceId: string
+    rating?: number
+    title: string
+    testimonial?: string | null
+    created_at?: Date | string
+  }
+
+  export type ResourceTestimonialUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceTestimonialUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    resourceId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ResourceTypeCreateInput = {
@@ -14939,10 +16366,16 @@ export namespace Prisma {
     none?: UserRoleWhereInput
   }
 
-  export type LoanListRelationFilter = {
-    every?: LoanWhereInput
-    some?: LoanWhereInput
-    none?: LoanWhereInput
+  export type ResourceLoanListRelationFilter = {
+    every?: ResourceLoanWhereInput
+    some?: ResourceLoanWhereInput
+    none?: ResourceLoanWhereInput
+  }
+
+  export type ResourceTestimonialListRelationFilter = {
+    every?: ResourceTestimonialWhereInput
+    some?: ResourceTestimonialWhereInput
+    none?: ResourceTestimonialWhereInput
   }
 
   export type SortOrderInput = {
@@ -14958,7 +16391,11 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type LoanOrderByRelationAggregateInput = {
+  export type ResourceLoanOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResourceTestimonialOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -15178,27 +16615,6 @@ export namespace Prisma {
 
   export type UserRoleSumOrderByAggregateInput = {
     role_id?: SortOrder
-  }
-
-  export type LoanCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type LoanMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type LoanMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -15436,6 +16852,11 @@ export namespace Prisma {
     isNot?: ResourceWhereInput
   }
 
+  export type ResourceLoanNullableRelationFilter = {
+    is?: ResourceLoanWhereInput | null
+    isNot?: ResourceLoanWhereInput | null
+  }
+
   export type ResourceInstanceCountOrderByAggregateInput = {
     id?: SortOrder
     instance_name?: SortOrder
@@ -15484,6 +16905,76 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumResourceInstanceStatusFilter<$PrismaModel>
     _max?: NestedEnumResourceInstanceStatusFilter<$PrismaModel>
+  }
+
+  export type ResourceInstanceNullableRelationFilter = {
+    is?: ResourceInstanceWhereInput | null
+    isNot?: ResourceInstanceWhereInput | null
+  }
+
+  export type ResourceLoanCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    until?: SortOrder
+    instanceId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ResourceLoanMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    until?: SortOrder
+    instanceId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ResourceLoanMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    until?: SortOrder
+    instanceId?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type ResourceTestimonialCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    resourceId?: SortOrder
+    rating?: SortOrder
+    title?: SortOrder
+    testimonial?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type ResourceTestimonialAvgOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type ResourceTestimonialMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    resourceId?: SortOrder
+    rating?: SortOrder
+    title?: SortOrder
+    testimonial?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type ResourceTestimonialMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    resourceId?: SortOrder
+    rating?: SortOrder
+    title?: SortOrder
+    testimonial?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type ResourceTestimonialSumOrderByAggregateInput = {
+    rating?: SortOrder
   }
 
   export type EnumResourceTypesFilter<$PrismaModel = never> = {
@@ -15656,11 +17147,18 @@ export namespace Prisma {
     connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
   }
 
-  export type LoanCreateNestedManyWithoutUserInput = {
-    create?: XOR<LoanCreateWithoutUserInput, LoanUncheckedCreateWithoutUserInput> | LoanCreateWithoutUserInput[] | LoanUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LoanCreateOrConnectWithoutUserInput | LoanCreateOrConnectWithoutUserInput[]
-    createMany?: LoanCreateManyUserInputEnvelope
-    connect?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
+  export type ResourceLoanCreateNestedManyWithoutUserInput = {
+    create?: XOR<ResourceLoanCreateWithoutUserInput, ResourceLoanUncheckedCreateWithoutUserInput> | ResourceLoanCreateWithoutUserInput[] | ResourceLoanUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutUserInput | ResourceLoanCreateOrConnectWithoutUserInput[]
+    createMany?: ResourceLoanCreateManyUserInputEnvelope
+    connect?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+  }
+
+  export type ResourceTestimonialCreateNestedManyWithoutUserInput = {
+    create?: XOR<ResourceTestimonialCreateWithoutUserInput, ResourceTestimonialUncheckedCreateWithoutUserInput> | ResourceTestimonialCreateWithoutUserInput[] | ResourceTestimonialUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResourceTestimonialCreateOrConnectWithoutUserInput | ResourceTestimonialCreateOrConnectWithoutUserInput[]
+    createMany?: ResourceTestimonialCreateManyUserInputEnvelope
+    connect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
   }
 
   export type RoleUncheckedCreateNestedManyWithoutUsersInput = {
@@ -15676,11 +17174,18 @@ export namespace Prisma {
     connect?: UserRoleWhereUniqueInput | UserRoleWhereUniqueInput[]
   }
 
-  export type LoanUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<LoanCreateWithoutUserInput, LoanUncheckedCreateWithoutUserInput> | LoanCreateWithoutUserInput[] | LoanUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LoanCreateOrConnectWithoutUserInput | LoanCreateOrConnectWithoutUserInput[]
-    createMany?: LoanCreateManyUserInputEnvelope
-    connect?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
+  export type ResourceLoanUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ResourceLoanCreateWithoutUserInput, ResourceLoanUncheckedCreateWithoutUserInput> | ResourceLoanCreateWithoutUserInput[] | ResourceLoanUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutUserInput | ResourceLoanCreateOrConnectWithoutUserInput[]
+    createMany?: ResourceLoanCreateManyUserInputEnvelope
+    connect?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+  }
+
+  export type ResourceTestimonialUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ResourceTestimonialCreateWithoutUserInput, ResourceTestimonialUncheckedCreateWithoutUserInput> | ResourceTestimonialCreateWithoutUserInput[] | ResourceTestimonialUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResourceTestimonialCreateOrConnectWithoutUserInput | ResourceTestimonialCreateOrConnectWithoutUserInput[]
+    createMany?: ResourceTestimonialCreateManyUserInputEnvelope
+    connect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -15726,18 +17231,32 @@ export namespace Prisma {
     deleteMany?: UserRoleScalarWhereInput | UserRoleScalarWhereInput[]
   }
 
-  export type LoanUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LoanCreateWithoutUserInput, LoanUncheckedCreateWithoutUserInput> | LoanCreateWithoutUserInput[] | LoanUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LoanCreateOrConnectWithoutUserInput | LoanCreateOrConnectWithoutUserInput[]
-    upsert?: LoanUpsertWithWhereUniqueWithoutUserInput | LoanUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LoanCreateManyUserInputEnvelope
-    set?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
-    disconnect?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
-    delete?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
-    connect?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
-    update?: LoanUpdateWithWhereUniqueWithoutUserInput | LoanUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LoanUpdateManyWithWhereWithoutUserInput | LoanUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LoanScalarWhereInput | LoanScalarWhereInput[]
+  export type ResourceLoanUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ResourceLoanCreateWithoutUserInput, ResourceLoanUncheckedCreateWithoutUserInput> | ResourceLoanCreateWithoutUserInput[] | ResourceLoanUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutUserInput | ResourceLoanCreateOrConnectWithoutUserInput[]
+    upsert?: ResourceLoanUpsertWithWhereUniqueWithoutUserInput | ResourceLoanUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ResourceLoanCreateManyUserInputEnvelope
+    set?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+    disconnect?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+    delete?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+    connect?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+    update?: ResourceLoanUpdateWithWhereUniqueWithoutUserInput | ResourceLoanUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ResourceLoanUpdateManyWithWhereWithoutUserInput | ResourceLoanUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ResourceLoanScalarWhereInput | ResourceLoanScalarWhereInput[]
+  }
+
+  export type ResourceTestimonialUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ResourceTestimonialCreateWithoutUserInput, ResourceTestimonialUncheckedCreateWithoutUserInput> | ResourceTestimonialCreateWithoutUserInput[] | ResourceTestimonialUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResourceTestimonialCreateOrConnectWithoutUserInput | ResourceTestimonialCreateOrConnectWithoutUserInput[]
+    upsert?: ResourceTestimonialUpsertWithWhereUniqueWithoutUserInput | ResourceTestimonialUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ResourceTestimonialCreateManyUserInputEnvelope
+    set?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    disconnect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    delete?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    connect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    update?: ResourceTestimonialUpdateWithWhereUniqueWithoutUserInput | ResourceTestimonialUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ResourceTestimonialUpdateManyWithWhereWithoutUserInput | ResourceTestimonialUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ResourceTestimonialScalarWhereInput | ResourceTestimonialScalarWhereInput[]
   }
 
   export type RoleUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -15767,18 +17286,32 @@ export namespace Prisma {
     deleteMany?: UserRoleScalarWhereInput | UserRoleScalarWhereInput[]
   }
 
-  export type LoanUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<LoanCreateWithoutUserInput, LoanUncheckedCreateWithoutUserInput> | LoanCreateWithoutUserInput[] | LoanUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: LoanCreateOrConnectWithoutUserInput | LoanCreateOrConnectWithoutUserInput[]
-    upsert?: LoanUpsertWithWhereUniqueWithoutUserInput | LoanUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: LoanCreateManyUserInputEnvelope
-    set?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
-    disconnect?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
-    delete?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
-    connect?: LoanWhereUniqueInput | LoanWhereUniqueInput[]
-    update?: LoanUpdateWithWhereUniqueWithoutUserInput | LoanUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: LoanUpdateManyWithWhereWithoutUserInput | LoanUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: LoanScalarWhereInput | LoanScalarWhereInput[]
+  export type ResourceLoanUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ResourceLoanCreateWithoutUserInput, ResourceLoanUncheckedCreateWithoutUserInput> | ResourceLoanCreateWithoutUserInput[] | ResourceLoanUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutUserInput | ResourceLoanCreateOrConnectWithoutUserInput[]
+    upsert?: ResourceLoanUpsertWithWhereUniqueWithoutUserInput | ResourceLoanUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ResourceLoanCreateManyUserInputEnvelope
+    set?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+    disconnect?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+    delete?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+    connect?: ResourceLoanWhereUniqueInput | ResourceLoanWhereUniqueInput[]
+    update?: ResourceLoanUpdateWithWhereUniqueWithoutUserInput | ResourceLoanUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ResourceLoanUpdateManyWithWhereWithoutUserInput | ResourceLoanUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ResourceLoanScalarWhereInput | ResourceLoanScalarWhereInput[]
+  }
+
+  export type ResourceTestimonialUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ResourceTestimonialCreateWithoutUserInput, ResourceTestimonialUncheckedCreateWithoutUserInput> | ResourceTestimonialCreateWithoutUserInput[] | ResourceTestimonialUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ResourceTestimonialCreateOrConnectWithoutUserInput | ResourceTestimonialCreateOrConnectWithoutUserInput[]
+    upsert?: ResourceTestimonialUpsertWithWhereUniqueWithoutUserInput | ResourceTestimonialUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ResourceTestimonialCreateManyUserInputEnvelope
+    set?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    disconnect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    delete?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    connect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    update?: ResourceTestimonialUpdateWithWhereUniqueWithoutUserInput | ResourceTestimonialUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ResourceTestimonialUpdateManyWithWhereWithoutUserInput | ResourceTestimonialUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ResourceTestimonialScalarWhereInput | ResourceTestimonialScalarWhereInput[]
   }
 
   export type UserCreateNestedManyWithoutRolesInput = {
@@ -15901,20 +17434,6 @@ export namespace Prisma {
     update?: XOR<XOR<RoleUpdateToOneWithWhereWithoutUserRoleInput, RoleUpdateWithoutUserRoleInput>, RoleUncheckedUpdateWithoutUserRoleInput>
   }
 
-  export type UserCreateNestedOneWithoutLoanInput = {
-    create?: XOR<UserCreateWithoutLoanInput, UserUncheckedCreateWithoutLoanInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLoanInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutLoanNestedInput = {
-    create?: XOR<UserCreateWithoutLoanInput, UserUncheckedCreateWithoutLoanInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLoanInput
-    upsert?: UserUpsertWithoutLoanInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLoanInput, UserUpdateWithoutLoanInput>, UserUncheckedUpdateWithoutLoanInput>
-  }
-
   export type ResourceTypeCreateNestedOneWithoutResourceInput = {
     create?: XOR<ResourceTypeCreateWithoutResourceInput, ResourceTypeUncheckedCreateWithoutResourceInput>
     connectOrCreate?: ResourceTypeCreateOrConnectWithoutResourceInput
@@ -15926,6 +17445,13 @@ export namespace Prisma {
     connectOrCreate?: ResourceInstanceCreateOrConnectWithoutResourceInput | ResourceInstanceCreateOrConnectWithoutResourceInput[]
     createMany?: ResourceInstanceCreateManyResourceInputEnvelope
     connect?: ResourceInstanceWhereUniqueInput | ResourceInstanceWhereUniqueInput[]
+  }
+
+  export type ResourceTestimonialCreateNestedManyWithoutResourceInput = {
+    create?: XOR<ResourceTestimonialCreateWithoutResourceInput, ResourceTestimonialUncheckedCreateWithoutResourceInput> | ResourceTestimonialCreateWithoutResourceInput[] | ResourceTestimonialUncheckedCreateWithoutResourceInput[]
+    connectOrCreate?: ResourceTestimonialCreateOrConnectWithoutResourceInput | ResourceTestimonialCreateOrConnectWithoutResourceInput[]
+    createMany?: ResourceTestimonialCreateManyResourceInputEnvelope
+    connect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
   }
 
   export type CategoryCreateNestedManyWithoutResourcesInput = {
@@ -15958,6 +17484,13 @@ export namespace Prisma {
     connectOrCreate?: ResourceInstanceCreateOrConnectWithoutResourceInput | ResourceInstanceCreateOrConnectWithoutResourceInput[]
     createMany?: ResourceInstanceCreateManyResourceInputEnvelope
     connect?: ResourceInstanceWhereUniqueInput | ResourceInstanceWhereUniqueInput[]
+  }
+
+  export type ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput = {
+    create?: XOR<ResourceTestimonialCreateWithoutResourceInput, ResourceTestimonialUncheckedCreateWithoutResourceInput> | ResourceTestimonialCreateWithoutResourceInput[] | ResourceTestimonialUncheckedCreateWithoutResourceInput[]
+    connectOrCreate?: ResourceTestimonialCreateOrConnectWithoutResourceInput | ResourceTestimonialCreateOrConnectWithoutResourceInput[]
+    createMany?: ResourceTestimonialCreateManyResourceInputEnvelope
+    connect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
   }
 
   export type CategoryUncheckedCreateNestedManyWithoutResourcesInput = {
@@ -15993,6 +17526,20 @@ export namespace Prisma {
     update?: ResourceInstanceUpdateWithWhereUniqueWithoutResourceInput | ResourceInstanceUpdateWithWhereUniqueWithoutResourceInput[]
     updateMany?: ResourceInstanceUpdateManyWithWhereWithoutResourceInput | ResourceInstanceUpdateManyWithWhereWithoutResourceInput[]
     deleteMany?: ResourceInstanceScalarWhereInput | ResourceInstanceScalarWhereInput[]
+  }
+
+  export type ResourceTestimonialUpdateManyWithoutResourceNestedInput = {
+    create?: XOR<ResourceTestimonialCreateWithoutResourceInput, ResourceTestimonialUncheckedCreateWithoutResourceInput> | ResourceTestimonialCreateWithoutResourceInput[] | ResourceTestimonialUncheckedCreateWithoutResourceInput[]
+    connectOrCreate?: ResourceTestimonialCreateOrConnectWithoutResourceInput | ResourceTestimonialCreateOrConnectWithoutResourceInput[]
+    upsert?: ResourceTestimonialUpsertWithWhereUniqueWithoutResourceInput | ResourceTestimonialUpsertWithWhereUniqueWithoutResourceInput[]
+    createMany?: ResourceTestimonialCreateManyResourceInputEnvelope
+    set?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    disconnect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    delete?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    connect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    update?: ResourceTestimonialUpdateWithWhereUniqueWithoutResourceInput | ResourceTestimonialUpdateWithWhereUniqueWithoutResourceInput[]
+    updateMany?: ResourceTestimonialUpdateManyWithWhereWithoutResourceInput | ResourceTestimonialUpdateManyWithWhereWithoutResourceInput[]
+    deleteMany?: ResourceTestimonialScalarWhereInput | ResourceTestimonialScalarWhereInput[]
   }
 
   export type CategoryUpdateManyWithoutResourcesNestedInput = {
@@ -16062,6 +17609,20 @@ export namespace Prisma {
     deleteMany?: ResourceInstanceScalarWhereInput | ResourceInstanceScalarWhereInput[]
   }
 
+  export type ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput = {
+    create?: XOR<ResourceTestimonialCreateWithoutResourceInput, ResourceTestimonialUncheckedCreateWithoutResourceInput> | ResourceTestimonialCreateWithoutResourceInput[] | ResourceTestimonialUncheckedCreateWithoutResourceInput[]
+    connectOrCreate?: ResourceTestimonialCreateOrConnectWithoutResourceInput | ResourceTestimonialCreateOrConnectWithoutResourceInput[]
+    upsert?: ResourceTestimonialUpsertWithWhereUniqueWithoutResourceInput | ResourceTestimonialUpsertWithWhereUniqueWithoutResourceInput[]
+    createMany?: ResourceTestimonialCreateManyResourceInputEnvelope
+    set?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    disconnect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    delete?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    connect?: ResourceTestimonialWhereUniqueInput | ResourceTestimonialWhereUniqueInput[]
+    update?: ResourceTestimonialUpdateWithWhereUniqueWithoutResourceInput | ResourceTestimonialUpdateWithWhereUniqueWithoutResourceInput[]
+    updateMany?: ResourceTestimonialUpdateManyWithWhereWithoutResourceInput | ResourceTestimonialUpdateManyWithWhereWithoutResourceInput[]
+    deleteMany?: ResourceTestimonialScalarWhereInput | ResourceTestimonialScalarWhereInput[]
+  }
+
   export type CategoryUncheckedUpdateManyWithoutResourcesNestedInput = {
     create?: XOR<CategoryCreateWithoutResourcesInput, CategoryUncheckedCreateWithoutResourcesInput> | CategoryCreateWithoutResourcesInput[] | CategoryUncheckedCreateWithoutResourcesInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutResourcesInput | CategoryCreateOrConnectWithoutResourcesInput[]
@@ -16127,6 +17688,18 @@ export namespace Prisma {
     connect?: ResourceWhereUniqueInput
   }
 
+  export type ResourceLoanCreateNestedOneWithoutInstaceInput = {
+    create?: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstaceInput
+    connect?: ResourceLoanWhereUniqueInput
+  }
+
+  export type ResourceLoanUncheckedCreateNestedOneWithoutInstaceInput = {
+    create?: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstaceInput
+    connect?: ResourceLoanWhereUniqueInput
+  }
+
   export type EnumResourceLangFieldUpdateOperationsInput = {
     set?: $Enums.ResourceLang
   }
@@ -16141,6 +17714,84 @@ export namespace Prisma {
     upsert?: ResourceUpsertWithoutInstancesInput
     connect?: ResourceWhereUniqueInput
     update?: XOR<XOR<ResourceUpdateToOneWithWhereWithoutInstancesInput, ResourceUpdateWithoutInstancesInput>, ResourceUncheckedUpdateWithoutInstancesInput>
+  }
+
+  export type ResourceLoanUpdateOneWithoutInstaceNestedInput = {
+    create?: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstaceInput
+    upsert?: ResourceLoanUpsertWithoutInstaceInput
+    disconnect?: ResourceLoanWhereInput | boolean
+    delete?: ResourceLoanWhereInput | boolean
+    connect?: ResourceLoanWhereUniqueInput
+    update?: XOR<XOR<ResourceLoanUpdateToOneWithWhereWithoutInstaceInput, ResourceLoanUpdateWithoutInstaceInput>, ResourceLoanUncheckedUpdateWithoutInstaceInput>
+  }
+
+  export type ResourceLoanUncheckedUpdateOneWithoutInstaceNestedInput = {
+    create?: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
+    connectOrCreate?: ResourceLoanCreateOrConnectWithoutInstaceInput
+    upsert?: ResourceLoanUpsertWithoutInstaceInput
+    disconnect?: ResourceLoanWhereInput | boolean
+    delete?: ResourceLoanWhereInput | boolean
+    connect?: ResourceLoanWhereUniqueInput
+    update?: XOR<XOR<ResourceLoanUpdateToOneWithWhereWithoutInstaceInput, ResourceLoanUpdateWithoutInstaceInput>, ResourceLoanUncheckedUpdateWithoutInstaceInput>
+  }
+
+  export type UserCreateNestedOneWithoutLoansInput = {
+    create?: XOR<UserCreateWithoutLoansInput, UserUncheckedCreateWithoutLoansInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLoansInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ResourceInstanceCreateNestedOneWithoutLoanInput = {
+    create?: XOR<ResourceInstanceCreateWithoutLoanInput, ResourceInstanceUncheckedCreateWithoutLoanInput>
+    connectOrCreate?: ResourceInstanceCreateOrConnectWithoutLoanInput
+    connect?: ResourceInstanceWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutLoansNestedInput = {
+    create?: XOR<UserCreateWithoutLoansInput, UserUncheckedCreateWithoutLoansInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLoansInput
+    upsert?: UserUpsertWithoutLoansInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLoansInput, UserUpdateWithoutLoansInput>, UserUncheckedUpdateWithoutLoansInput>
+  }
+
+  export type ResourceInstanceUpdateOneWithoutLoanNestedInput = {
+    create?: XOR<ResourceInstanceCreateWithoutLoanInput, ResourceInstanceUncheckedCreateWithoutLoanInput>
+    connectOrCreate?: ResourceInstanceCreateOrConnectWithoutLoanInput
+    upsert?: ResourceInstanceUpsertWithoutLoanInput
+    disconnect?: ResourceInstanceWhereInput | boolean
+    delete?: ResourceInstanceWhereInput | boolean
+    connect?: ResourceInstanceWhereUniqueInput
+    update?: XOR<XOR<ResourceInstanceUpdateToOneWithWhereWithoutLoanInput, ResourceInstanceUpdateWithoutLoanInput>, ResourceInstanceUncheckedUpdateWithoutLoanInput>
+  }
+
+  export type UserCreateNestedOneWithoutTestimonialsInput = {
+    create?: XOR<UserCreateWithoutTestimonialsInput, UserUncheckedCreateWithoutTestimonialsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTestimonialsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ResourceCreateNestedOneWithoutTestimonialsInput = {
+    create?: XOR<ResourceCreateWithoutTestimonialsInput, ResourceUncheckedCreateWithoutTestimonialsInput>
+    connectOrCreate?: ResourceCreateOrConnectWithoutTestimonialsInput
+    connect?: ResourceWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTestimonialsNestedInput = {
+    create?: XOR<UserCreateWithoutTestimonialsInput, UserUncheckedCreateWithoutTestimonialsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTestimonialsInput
+    upsert?: UserUpsertWithoutTestimonialsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTestimonialsInput, UserUpdateWithoutTestimonialsInput>, UserUncheckedUpdateWithoutTestimonialsInput>
+  }
+
+  export type ResourceUpdateOneRequiredWithoutTestimonialsNestedInput = {
+    create?: XOR<ResourceCreateWithoutTestimonialsInput, ResourceUncheckedCreateWithoutTestimonialsInput>
+    connectOrCreate?: ResourceCreateOrConnectWithoutTestimonialsInput
+    upsert?: ResourceUpsertWithoutTestimonialsInput
+    connect?: ResourceWhereUniqueInput
+    update?: XOR<XOR<ResourceUpdateToOneWithWhereWithoutTestimonialsInput, ResourceUpdateWithoutTestimonialsInput>, ResourceUncheckedUpdateWithoutTestimonialsInput>
   }
 
   export type ResourceCreateNestedManyWithoutTypeInput = {
@@ -16643,25 +18294,57 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type LoanCreateWithoutUserInput = {
+  export type ResourceLoanCreateWithoutUserInput = {
     id?: string
+    until: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
+    instace?: ResourceInstanceCreateNestedOneWithoutLoanInput
+  }
+
+  export type ResourceLoanUncheckedCreateWithoutUserInput = {
+    id?: string
+    until: Date | string
+    instanceId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
   }
 
-  export type LoanUncheckedCreateWithoutUserInput = {
+  export type ResourceLoanCreateOrConnectWithoutUserInput = {
+    where: ResourceLoanWhereUniqueInput
+    create: XOR<ResourceLoanCreateWithoutUserInput, ResourceLoanUncheckedCreateWithoutUserInput>
+  }
+
+  export type ResourceLoanCreateManyUserInputEnvelope = {
+    data: ResourceLoanCreateManyUserInput | ResourceLoanCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ResourceTestimonialCreateWithoutUserInput = {
     id?: string
+    rating?: number
+    title: string
+    testimonial?: string | null
     created_at?: Date | string
-    updated_at?: Date | string
+    resource: ResourceCreateNestedOneWithoutTestimonialsInput
   }
 
-  export type LoanCreateOrConnectWithoutUserInput = {
-    where: LoanWhereUniqueInput
-    create: XOR<LoanCreateWithoutUserInput, LoanUncheckedCreateWithoutUserInput>
+  export type ResourceTestimonialUncheckedCreateWithoutUserInput = {
+    id?: string
+    resourceId: string
+    rating?: number
+    title: string
+    testimonial?: string | null
+    created_at?: Date | string
   }
 
-  export type LoanCreateManyUserInputEnvelope = {
-    data: LoanCreateManyUserInput | LoanCreateManyUserInput[]
+  export type ResourceTestimonialCreateOrConnectWithoutUserInput = {
+    where: ResourceTestimonialWhereUniqueInput
+    create: XOR<ResourceTestimonialCreateWithoutUserInput, ResourceTestimonialUncheckedCreateWithoutUserInput>
+  }
+
+  export type ResourceTestimonialCreateManyUserInputEnvelope = {
+    data: ResourceTestimonialCreateManyUserInput | ResourceTestimonialCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -16715,30 +18398,61 @@ export namespace Prisma {
     role_id?: IntFilter<"UserRole"> | number
   }
 
-  export type LoanUpsertWithWhereUniqueWithoutUserInput = {
-    where: LoanWhereUniqueInput
-    update: XOR<LoanUpdateWithoutUserInput, LoanUncheckedUpdateWithoutUserInput>
-    create: XOR<LoanCreateWithoutUserInput, LoanUncheckedCreateWithoutUserInput>
+  export type ResourceLoanUpsertWithWhereUniqueWithoutUserInput = {
+    where: ResourceLoanWhereUniqueInput
+    update: XOR<ResourceLoanUpdateWithoutUserInput, ResourceLoanUncheckedUpdateWithoutUserInput>
+    create: XOR<ResourceLoanCreateWithoutUserInput, ResourceLoanUncheckedCreateWithoutUserInput>
   }
 
-  export type LoanUpdateWithWhereUniqueWithoutUserInput = {
-    where: LoanWhereUniqueInput
-    data: XOR<LoanUpdateWithoutUserInput, LoanUncheckedUpdateWithoutUserInput>
+  export type ResourceLoanUpdateWithWhereUniqueWithoutUserInput = {
+    where: ResourceLoanWhereUniqueInput
+    data: XOR<ResourceLoanUpdateWithoutUserInput, ResourceLoanUncheckedUpdateWithoutUserInput>
   }
 
-  export type LoanUpdateManyWithWhereWithoutUserInput = {
-    where: LoanScalarWhereInput
-    data: XOR<LoanUpdateManyMutationInput, LoanUncheckedUpdateManyWithoutUserInput>
+  export type ResourceLoanUpdateManyWithWhereWithoutUserInput = {
+    where: ResourceLoanScalarWhereInput
+    data: XOR<ResourceLoanUpdateManyMutationInput, ResourceLoanUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type LoanScalarWhereInput = {
-    AND?: LoanScalarWhereInput | LoanScalarWhereInput[]
-    OR?: LoanScalarWhereInput[]
-    NOT?: LoanScalarWhereInput | LoanScalarWhereInput[]
-    id?: StringFilter<"Loan"> | string
-    userId?: StringFilter<"Loan"> | string
-    created_at?: DateTimeFilter<"Loan"> | Date | string
-    updated_at?: DateTimeFilter<"Loan"> | Date | string
+  export type ResourceLoanScalarWhereInput = {
+    AND?: ResourceLoanScalarWhereInput | ResourceLoanScalarWhereInput[]
+    OR?: ResourceLoanScalarWhereInput[]
+    NOT?: ResourceLoanScalarWhereInput | ResourceLoanScalarWhereInput[]
+    id?: StringFilter<"ResourceLoan"> | string
+    userId?: StringFilter<"ResourceLoan"> | string
+    until?: DateTimeFilter<"ResourceLoan"> | Date | string
+    instanceId?: StringNullableFilter<"ResourceLoan"> | string | null
+    created_at?: DateTimeFilter<"ResourceLoan"> | Date | string
+    updated_at?: DateTimeFilter<"ResourceLoan"> | Date | string
+  }
+
+  export type ResourceTestimonialUpsertWithWhereUniqueWithoutUserInput = {
+    where: ResourceTestimonialWhereUniqueInput
+    update: XOR<ResourceTestimonialUpdateWithoutUserInput, ResourceTestimonialUncheckedUpdateWithoutUserInput>
+    create: XOR<ResourceTestimonialCreateWithoutUserInput, ResourceTestimonialUncheckedCreateWithoutUserInput>
+  }
+
+  export type ResourceTestimonialUpdateWithWhereUniqueWithoutUserInput = {
+    where: ResourceTestimonialWhereUniqueInput
+    data: XOR<ResourceTestimonialUpdateWithoutUserInput, ResourceTestimonialUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ResourceTestimonialUpdateManyWithWhereWithoutUserInput = {
+    where: ResourceTestimonialScalarWhereInput
+    data: XOR<ResourceTestimonialUpdateManyMutationInput, ResourceTestimonialUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ResourceTestimonialScalarWhereInput = {
+    AND?: ResourceTestimonialScalarWhereInput | ResourceTestimonialScalarWhereInput[]
+    OR?: ResourceTestimonialScalarWhereInput[]
+    NOT?: ResourceTestimonialScalarWhereInput | ResourceTestimonialScalarWhereInput[]
+    id?: StringFilter<"ResourceTestimonial"> | string
+    userId?: StringFilter<"ResourceTestimonial"> | string
+    resourceId?: StringFilter<"ResourceTestimonial"> | string
+    rating?: IntFilter<"ResourceTestimonial"> | number
+    title?: StringFilter<"ResourceTestimonial"> | string
+    testimonial?: StringNullableFilter<"ResourceTestimonial"> | string | null
+    created_at?: DateTimeFilter<"ResourceTestimonial"> | Date | string
   }
 
   export type UserCreateWithoutRolesInput = {
@@ -16753,7 +18467,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     UserRole?: UserRoleCreateNestedManyWithoutUserInput
-    Loan?: LoanCreateNestedManyWithoutUserInput
+    loans?: ResourceLoanCreateNestedManyWithoutUserInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRolesInput = {
@@ -16768,7 +18483,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     UserRole?: UserRoleUncheckedCreateNestedManyWithoutUserInput
-    Loan?: LoanUncheckedCreateNestedManyWithoutUserInput
+    loans?: ResourceLoanUncheckedCreateNestedManyWithoutUserInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRolesInput = {
@@ -16854,7 +18570,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     roles?: RoleCreateNestedManyWithoutUsersInput
-    Loan?: LoanCreateNestedManyWithoutUserInput
+    loans?: ResourceLoanCreateNestedManyWithoutUserInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUserRoleInput = {
@@ -16869,7 +18586,8 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     roles?: RoleUncheckedCreateNestedManyWithoutUsersInput
-    Loan?: LoanUncheckedCreateNestedManyWithoutUserInput
+    loans?: ResourceLoanUncheckedCreateNestedManyWithoutUserInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUserRoleInput = {
@@ -16920,7 +18638,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     roles?: RoleUpdateManyWithoutUsersNestedInput
-    Loan?: LoanUpdateManyWithoutUserNestedInput
+    loans?: ResourceLoanUpdateManyWithoutUserNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUserRoleInput = {
@@ -16935,7 +18654,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     roles?: RoleUncheckedUpdateManyWithoutUsersNestedInput
-    Loan?: LoanUncheckedUpdateManyWithoutUserNestedInput
+    loans?: ResourceLoanUncheckedUpdateManyWithoutUserNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type RoleUpsertWithoutUserRoleInput = {
@@ -16964,82 +18684,6 @@ export namespace Prisma {
     users?: UserUncheckedUpdateManyWithoutRolesNestedInput
   }
 
-  export type UserCreateWithoutLoanInput = {
-    id?: string
-    email: string
-    first_name: string
-    image_url?: string | null
-    last_name: string
-    address?: string | null
-    active?: boolean
-    phone?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    roles?: RoleCreateNestedManyWithoutUsersInput
-    UserRole?: UserRoleCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutLoanInput = {
-    id?: string
-    email: string
-    first_name: string
-    image_url?: string | null
-    last_name: string
-    address?: string | null
-    active?: boolean
-    phone?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    roles?: RoleUncheckedCreateNestedManyWithoutUsersInput
-    UserRole?: UserRoleUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutLoanInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLoanInput, UserUncheckedCreateWithoutLoanInput>
-  }
-
-  export type UserUpsertWithoutLoanInput = {
-    update: XOR<UserUpdateWithoutLoanInput, UserUncheckedUpdateWithoutLoanInput>
-    create: XOR<UserCreateWithoutLoanInput, UserUncheckedCreateWithoutLoanInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutLoanInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLoanInput, UserUncheckedUpdateWithoutLoanInput>
-  }
-
-  export type UserUpdateWithoutLoanInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    roles?: RoleUpdateManyWithoutUsersNestedInput
-    UserRole?: UserRoleUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutLoanInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    address?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: BoolFieldUpdateOperationsInput | boolean
-    phone?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    roles?: RoleUncheckedUpdateManyWithoutUsersNestedInput
-    UserRole?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
-  }
-
   export type ResourceTypeCreateWithoutResourceInput = {
     resource_type_name?: $Enums.ResourceTypes
     max_loan_days?: number
@@ -17065,6 +18709,7 @@ export namespace Prisma {
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
     updated_at?: Date | string
+    loan?: ResourceLoanCreateNestedOneWithoutInstaceInput
   }
 
   export type ResourceInstanceUncheckedCreateWithoutResourceInput = {
@@ -17074,6 +18719,7 @@ export namespace Prisma {
     status?: $Enums.ResourceInstanceStatus
     created_at?: Date | string
     updated_at?: Date | string
+    loan?: ResourceLoanUncheckedCreateNestedOneWithoutInstaceInput
   }
 
   export type ResourceInstanceCreateOrConnectWithoutResourceInput = {
@@ -17083,6 +18729,34 @@ export namespace Prisma {
 
   export type ResourceInstanceCreateManyResourceInputEnvelope = {
     data: ResourceInstanceCreateManyResourceInput | ResourceInstanceCreateManyResourceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ResourceTestimonialCreateWithoutResourceInput = {
+    id?: string
+    rating?: number
+    title: string
+    testimonial?: string | null
+    created_at?: Date | string
+    user: UserCreateNestedOneWithoutTestimonialsInput
+  }
+
+  export type ResourceTestimonialUncheckedCreateWithoutResourceInput = {
+    id?: string
+    userId: string
+    rating?: number
+    title: string
+    testimonial?: string | null
+    created_at?: Date | string
+  }
+
+  export type ResourceTestimonialCreateOrConnectWithoutResourceInput = {
+    where: ResourceTestimonialWhereUniqueInput
+    create: XOR<ResourceTestimonialCreateWithoutResourceInput, ResourceTestimonialUncheckedCreateWithoutResourceInput>
+  }
+
+  export type ResourceTestimonialCreateManyResourceInputEnvelope = {
+    data: ResourceTestimonialCreateManyResourceInput | ResourceTestimonialCreateManyResourceInput[]
     skipDuplicates?: boolean
   }
 
@@ -17221,6 +18895,22 @@ export namespace Prisma {
     updated_at?: DateTimeFilter<"ResourceInstance"> | Date | string
   }
 
+  export type ResourceTestimonialUpsertWithWhereUniqueWithoutResourceInput = {
+    where: ResourceTestimonialWhereUniqueInput
+    update: XOR<ResourceTestimonialUpdateWithoutResourceInput, ResourceTestimonialUncheckedUpdateWithoutResourceInput>
+    create: XOR<ResourceTestimonialCreateWithoutResourceInput, ResourceTestimonialUncheckedCreateWithoutResourceInput>
+  }
+
+  export type ResourceTestimonialUpdateWithWhereUniqueWithoutResourceInput = {
+    where: ResourceTestimonialWhereUniqueInput
+    data: XOR<ResourceTestimonialUpdateWithoutResourceInput, ResourceTestimonialUncheckedUpdateWithoutResourceInput>
+  }
+
+  export type ResourceTestimonialUpdateManyWithWhereWithoutResourceInput = {
+    where: ResourceTestimonialScalarWhereInput
+    data: XOR<ResourceTestimonialUpdateManyMutationInput, ResourceTestimonialUncheckedUpdateManyWithoutResourceInput>
+  }
+
   export type CategoryUpsertWithWhereUniqueWithoutResourcesInput = {
     where: CategoryWhereUniqueInput
     update: XOR<CategoryUpdateWithoutResourcesInput, CategoryUncheckedUpdateWithoutResourcesInput>
@@ -17339,6 +19029,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
@@ -17357,6 +19048,7 @@ export namespace Prisma {
     type_id: number
     publisher_id: number
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
   }
@@ -17389,6 +19081,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
@@ -17407,6 +19100,7 @@ export namespace Prisma {
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
@@ -17422,6 +19116,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     type: ResourceTypeCreateNestedOneWithoutResourceInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
@@ -17441,6 +19136,7 @@ export namespace Prisma {
     type_id: number
     publisher_id: number
     detail_id?: number | null
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
   }
@@ -17448,6 +19144,27 @@ export namespace Prisma {
   export type ResourceCreateOrConnectWithoutInstancesInput = {
     where: ResourceWhereUniqueInput
     create: XOR<ResourceCreateWithoutInstancesInput, ResourceUncheckedCreateWithoutInstancesInput>
+  }
+
+  export type ResourceLoanCreateWithoutInstaceInput = {
+    id?: string
+    until: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
+    user: UserCreateNestedOneWithoutLoansInput
+  }
+
+  export type ResourceLoanUncheckedCreateWithoutInstaceInput = {
+    id?: string
+    userId: string
+    until: Date | string
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ResourceLoanCreateOrConnectWithoutInstaceInput = {
+    where: ResourceLoanWhereUniqueInput
+    create: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
   }
 
   export type ResourceUpsertWithoutInstancesInput = {
@@ -17472,6 +19189,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
@@ -17491,6 +19209,338 @@ export namespace Prisma {
     type_id?: IntFieldUpdateOperationsInput | number
     publisher_id?: IntFieldUpdateOperationsInput | number
     detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
+    ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
+  }
+
+  export type ResourceLoanUpsertWithoutInstaceInput = {
+    update: XOR<ResourceLoanUpdateWithoutInstaceInput, ResourceLoanUncheckedUpdateWithoutInstaceInput>
+    create: XOR<ResourceLoanCreateWithoutInstaceInput, ResourceLoanUncheckedCreateWithoutInstaceInput>
+    where?: ResourceLoanWhereInput
+  }
+
+  export type ResourceLoanUpdateToOneWithWhereWithoutInstaceInput = {
+    where?: ResourceLoanWhereInput
+    data: XOR<ResourceLoanUpdateWithoutInstaceInput, ResourceLoanUncheckedUpdateWithoutInstaceInput>
+  }
+
+  export type ResourceLoanUpdateWithoutInstaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutLoansNestedInput
+  }
+
+  export type ResourceLoanUncheckedUpdateWithoutInstaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutLoansInput = {
+    id?: string
+    email: string
+    first_name: string
+    image_url?: string | null
+    last_name: string
+    address?: string | null
+    active?: boolean
+    phone?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    roles?: RoleCreateNestedManyWithoutUsersInput
+    UserRole?: UserRoleCreateNestedManyWithoutUserInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutLoansInput = {
+    id?: string
+    email: string
+    first_name: string
+    image_url?: string | null
+    last_name: string
+    address?: string | null
+    active?: boolean
+    phone?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    roles?: RoleUncheckedCreateNestedManyWithoutUsersInput
+    UserRole?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutLoansInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutLoansInput, UserUncheckedCreateWithoutLoansInput>
+  }
+
+  export type ResourceInstanceCreateWithoutLoanInput = {
+    id?: string
+    instance_name?: string
+    lang?: $Enums.ResourceLang
+    status?: $Enums.ResourceInstanceStatus
+    created_at?: Date | string
+    updated_at?: Date | string
+    resource: ResourceCreateNestedOneWithoutInstancesInput
+  }
+
+  export type ResourceInstanceUncheckedCreateWithoutLoanInput = {
+    id?: string
+    instance_name?: string
+    resource_id: string
+    lang?: $Enums.ResourceLang
+    status?: $Enums.ResourceInstanceStatus
+    created_at?: Date | string
+    updated_at?: Date | string
+  }
+
+  export type ResourceInstanceCreateOrConnectWithoutLoanInput = {
+    where: ResourceInstanceWhereUniqueInput
+    create: XOR<ResourceInstanceCreateWithoutLoanInput, ResourceInstanceUncheckedCreateWithoutLoanInput>
+  }
+
+  export type UserUpsertWithoutLoansInput = {
+    update: XOR<UserUpdateWithoutLoansInput, UserUncheckedUpdateWithoutLoansInput>
+    create: XOR<UserCreateWithoutLoansInput, UserUncheckedCreateWithoutLoansInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutLoansInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutLoansInput, UserUncheckedUpdateWithoutLoansInput>
+  }
+
+  export type UserUpdateWithoutLoansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    last_name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    roles?: RoleUpdateManyWithoutUsersNestedInput
+    UserRole?: UserRoleUpdateManyWithoutUserNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutLoansInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    last_name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    roles?: RoleUncheckedUpdateManyWithoutUsersNestedInput
+    UserRole?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ResourceInstanceUpsertWithoutLoanInput = {
+    update: XOR<ResourceInstanceUpdateWithoutLoanInput, ResourceInstanceUncheckedUpdateWithoutLoanInput>
+    create: XOR<ResourceInstanceCreateWithoutLoanInput, ResourceInstanceUncheckedCreateWithoutLoanInput>
+    where?: ResourceInstanceWhereInput
+  }
+
+  export type ResourceInstanceUpdateToOneWithWhereWithoutLoanInput = {
+    where?: ResourceInstanceWhereInput
+    data: XOR<ResourceInstanceUpdateWithoutLoanInput, ResourceInstanceUncheckedUpdateWithoutLoanInput>
+  }
+
+  export type ResourceInstanceUpdateWithoutLoanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
+    lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
+    status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    resource?: ResourceUpdateOneRequiredWithoutInstancesNestedInput
+  }
+
+  export type ResourceInstanceUncheckedUpdateWithoutLoanInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    instance_name?: StringFieldUpdateOperationsInput | string
+    resource_id?: StringFieldUpdateOperationsInput | string
+    lang?: EnumResourceLangFieldUpdateOperationsInput | $Enums.ResourceLang
+    status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateWithoutTestimonialsInput = {
+    id?: string
+    email: string
+    first_name: string
+    image_url?: string | null
+    last_name: string
+    address?: string | null
+    active?: boolean
+    phone?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    roles?: RoleCreateNestedManyWithoutUsersInput
+    UserRole?: UserRoleCreateNestedManyWithoutUserInput
+    loans?: ResourceLoanCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTestimonialsInput = {
+    id?: string
+    email: string
+    first_name: string
+    image_url?: string | null
+    last_name: string
+    address?: string | null
+    active?: boolean
+    phone?: string | null
+    created_at?: Date | string
+    updated_at?: Date | string
+    roles?: RoleUncheckedCreateNestedManyWithoutUsersInput
+    UserRole?: UserRoleUncheckedCreateNestedManyWithoutUserInput
+    loans?: ResourceLoanUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTestimonialsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTestimonialsInput, UserUncheckedCreateWithoutTestimonialsInput>
+  }
+
+  export type ResourceCreateWithoutTestimonialsInput = {
+    id?: string
+    resource_name: string
+    slug_name?: string | null
+    image_url?: string | null
+    author: string
+    short_description?: string | null
+    edition: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    type: ResourceTypeCreateNestedOneWithoutResourceInput
+    instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
+    categories?: CategoryCreateNestedManyWithoutResourcesInput
+    ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
+    publisher: PublisherCreateNestedOneWithoutResourcesInput
+    detail?: ResourceDetailCreateNestedOneWithoutResourceInput
+  }
+
+  export type ResourceUncheckedCreateWithoutTestimonialsInput = {
+    id?: string
+    resource_name: string
+    slug_name?: string | null
+    image_url?: string | null
+    author: string
+    short_description?: string | null
+    edition: string
+    created_at?: Date | string
+    updated_at?: Date | string
+    type_id: number
+    publisher_id: number
+    detail_id?: number | null
+    instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
+    ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
+  }
+
+  export type ResourceCreateOrConnectWithoutTestimonialsInput = {
+    where: ResourceWhereUniqueInput
+    create: XOR<ResourceCreateWithoutTestimonialsInput, ResourceUncheckedCreateWithoutTestimonialsInput>
+  }
+
+  export type UserUpsertWithoutTestimonialsInput = {
+    update: XOR<UserUpdateWithoutTestimonialsInput, UserUncheckedUpdateWithoutTestimonialsInput>
+    create: XOR<UserCreateWithoutTestimonialsInput, UserUncheckedCreateWithoutTestimonialsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTestimonialsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTestimonialsInput, UserUncheckedUpdateWithoutTestimonialsInput>
+  }
+
+  export type UserUpdateWithoutTestimonialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    last_name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    roles?: RoleUpdateManyWithoutUsersNestedInput
+    UserRole?: UserRoleUpdateManyWithoutUserNestedInput
+    loans?: ResourceLoanUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTestimonialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    first_name?: StringFieldUpdateOperationsInput | string
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    last_name?: StringFieldUpdateOperationsInput | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    roles?: RoleUncheckedUpdateManyWithoutUsersNestedInput
+    UserRole?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
+    loans?: ResourceLoanUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ResourceUpsertWithoutTestimonialsInput = {
+    update: XOR<ResourceUpdateWithoutTestimonialsInput, ResourceUncheckedUpdateWithoutTestimonialsInput>
+    create: XOR<ResourceCreateWithoutTestimonialsInput, ResourceUncheckedCreateWithoutTestimonialsInput>
+    where?: ResourceWhereInput
+  }
+
+  export type ResourceUpdateToOneWithWhereWithoutTestimonialsInput = {
+    where?: ResourceWhereInput
+    data: XOR<ResourceUpdateWithoutTestimonialsInput, ResourceUncheckedUpdateWithoutTestimonialsInput>
+  }
+
+  export type ResourceUpdateWithoutTestimonialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resource_name?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
+    edition?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
+    instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
+    categories?: CategoryUpdateManyWithoutResourcesNestedInput
+    ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
+    publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
+    detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
+  }
+
+  export type ResourceUncheckedUpdateWithoutTestimonialsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resource_name?: StringFieldUpdateOperationsInput | string
+    slug_name?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    author?: StringFieldUpdateOperationsInput | string
+    short_description?: NullableStringFieldUpdateOperationsInput | string | null
+    edition?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    type_id?: IntFieldUpdateOperationsInput | number
+    publisher_id?: IntFieldUpdateOperationsInput | number
+    detail_id?: NullableIntFieldUpdateOperationsInput | number | null
+    instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
@@ -17506,6 +19556,7 @@ export namespace Prisma {
     created_at?: Date | string
     updated_at?: Date | string
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
@@ -17525,6 +19576,7 @@ export namespace Prisma {
     publisher_id: number
     detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
   }
@@ -17585,6 +19637,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     detail?: ResourceDetailCreateNestedOneWithoutResourceInput
@@ -17603,6 +19656,7 @@ export namespace Prisma {
     type_id: number
     detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
   }
@@ -17645,6 +19699,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     ResourceCategory?: ResourceCategoryCreateNestedManyWithoutResourceInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
     detail?: ResourceDetailCreateNestedOneWithoutResourceInput
@@ -17664,6 +19719,7 @@ export namespace Prisma {
     publisher_id: number
     detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     ResourceCategory?: ResourceCategoryUncheckedCreateNestedManyWithoutResourceInput
   }
 
@@ -17734,6 +19790,7 @@ export namespace Prisma {
     updated_at?: Date | string
     type: ResourceTypeCreateNestedOneWithoutResourceInput
     instances?: ResourceInstanceCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialCreateNestedManyWithoutResourceInput
     categories?: CategoryCreateNestedManyWithoutResourcesInput
     publisher: PublisherCreateNestedOneWithoutResourcesInput
     detail?: ResourceDetailCreateNestedOneWithoutResourceInput
@@ -17753,6 +19810,7 @@ export namespace Prisma {
     publisher_id: number
     detail_id?: number | null
     instances?: ResourceInstanceUncheckedCreateNestedManyWithoutResourceInput
+    testimonials?: ResourceTestimonialUncheckedCreateNestedManyWithoutResourceInput
     categories?: CategoryUncheckedCreateNestedManyWithoutResourcesInput
   }
 
@@ -17804,6 +19862,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
     detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
@@ -17823,6 +19882,7 @@ export namespace Prisma {
     publisher_id?: IntFieldUpdateOperationsInput | number
     detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
   }
 
@@ -17856,10 +19916,21 @@ export namespace Prisma {
     role_id: number
   }
 
-  export type LoanCreateManyUserInput = {
+  export type ResourceLoanCreateManyUserInput = {
     id?: string
+    until: Date | string
+    instanceId?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+  }
+
+  export type ResourceTestimonialCreateManyUserInput = {
+    id?: string
+    resourceId: string
+    rating?: number
+    title: string
+    testimonial?: string | null
+    created_at?: Date | string
   }
 
   export type RoleUpdateWithoutUsersInput = {
@@ -17896,22 +19967,55 @@ export namespace Prisma {
     role_id?: IntFieldUpdateOperationsInput | number
   }
 
-  export type LoanUpdateWithoutUserInput = {
+  export type ResourceLoanUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    instace?: ResourceInstanceUpdateOneWithoutLoanNestedInput
+  }
+
+  export type ResourceLoanUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    instanceId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type LoanUncheckedUpdateWithoutUserInput = {
+  export type ResourceLoanUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    until?: DateTimeFieldUpdateOperationsInput | Date | string
+    instanceId?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type LoanUncheckedUpdateManyWithoutUserInput = {
+  export type ResourceTestimonialUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    resource?: ResourceUpdateOneRequiredWithoutTestimonialsNestedInput
+  }
+
+  export type ResourceTestimonialUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resourceId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceTestimonialUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    resourceId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserRoleCreateManyRoleInput = {
@@ -17930,7 +20034,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     UserRole?: UserRoleUpdateManyWithoutUserNestedInput
-    Loan?: LoanUpdateManyWithoutUserNestedInput
+    loans?: ResourceLoanUpdateManyWithoutUserNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRolesInput = {
@@ -17945,7 +20050,8 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     UserRole?: UserRoleUncheckedUpdateManyWithoutUserNestedInput
-    Loan?: LoanUncheckedUpdateManyWithoutUserNestedInput
+    loans?: ResourceLoanUncheckedUpdateManyWithoutUserNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutRolesInput = {
@@ -17982,6 +20088,15 @@ export namespace Prisma {
     updated_at?: Date | string
   }
 
+  export type ResourceTestimonialCreateManyResourceInput = {
+    id?: string
+    userId: string
+    rating?: number
+    title: string
+    testimonial?: string | null
+    created_at?: Date | string
+  }
+
   export type ResourceCategoryCreateManyResourceInput = {
     category_id: number
   }
@@ -17993,6 +20108,7 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    loan?: ResourceLoanUpdateOneWithoutInstaceNestedInput
   }
 
   export type ResourceInstanceUncheckedUpdateWithoutResourceInput = {
@@ -18002,6 +20118,7 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    loan?: ResourceLoanUncheckedUpdateOneWithoutInstaceNestedInput
   }
 
   export type ResourceInstanceUncheckedUpdateManyWithoutResourceInput = {
@@ -18011,6 +20128,33 @@ export namespace Prisma {
     status?: EnumResourceInstanceStatusFieldUpdateOperationsInput | $Enums.ResourceInstanceStatus
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceTestimonialUpdateWithoutResourceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTestimonialsNestedInput
+  }
+
+  export type ResourceTestimonialUncheckedUpdateWithoutResourceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResourceTestimonialUncheckedUpdateManyWithoutResourceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    testimonial?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CategoryUpdateWithoutResourcesInput = {
@@ -18072,6 +20216,7 @@ export namespace Prisma {
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
@@ -18091,6 +20236,7 @@ export namespace Prisma {
     publisher_id?: IntFieldUpdateOperationsInput | number
     detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
@@ -18135,6 +20281,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     categories?: CategoryUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
@@ -18153,6 +20300,7 @@ export namespace Prisma {
     type_id?: IntFieldUpdateOperationsInput | number
     detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     categories?: CategoryUncheckedUpdateManyWithoutResourcesNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
@@ -18187,6 +20335,7 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     type?: ResourceTypeUpdateOneRequiredWithoutResourceNestedInput
     instances?: ResourceInstanceUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUpdateManyWithoutResourceNestedInput
     ResourceCategory?: ResourceCategoryUpdateManyWithoutResourceNestedInput
     publisher?: PublisherUpdateOneRequiredWithoutResourcesNestedInput
     detail?: ResourceDetailUpdateOneWithoutResourceNestedInput
@@ -18206,6 +20355,7 @@ export namespace Prisma {
     publisher_id?: IntFieldUpdateOperationsInput | number
     detail_id?: NullableIntFieldUpdateOperationsInput | number | null
     instances?: ResourceInstanceUncheckedUpdateManyWithoutResourceNestedInput
+    testimonials?: ResourceTestimonialUncheckedUpdateManyWithoutResourceNestedInput
     ResourceCategory?: ResourceCategoryUncheckedUpdateManyWithoutResourceNestedInput
   }
 
@@ -18278,10 +20428,6 @@ export namespace Prisma {
      */
     export type UserRoleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserRoleDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use LoanDefaultArgs instead
-     */
-    export type LoanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LoanDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use ResourceDefaultArgs instead
      */
     export type ResourceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ResourceDefaultArgs<ExtArgs>
@@ -18293,6 +20439,14 @@ export namespace Prisma {
      * @deprecated Use ResourceInstanceDefaultArgs instead
      */
     export type ResourceInstanceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ResourceInstanceDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ResourceLoanDefaultArgs instead
+     */
+    export type ResourceLoanArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ResourceLoanDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ResourceTestimonialDefaultArgs instead
+     */
+    export type ResourceTestimonialArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ResourceTestimonialDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ResourceTypeDefaultArgs instead
      */

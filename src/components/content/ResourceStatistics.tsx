@@ -1,9 +1,9 @@
 import { Fragment } from "react";
-import { Bar, Line } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
-import { ResourceTypes } from "@/interfaces/resource/Type";
 import {
   ArcElement,
+  BarElement,
   CategoryScale,
   ChartData,
   Chart as ChartJS,
@@ -11,11 +11,13 @@ import {
   LineElement,
   LinearScale,
   PointElement,
-  BarElement,
   Title,
   Tooltip,
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import ResourcesByLangChart from "../charts/ResourcesByLangChart";
+import ResourcesByStatusChart from "../charts/ResourcesByStatusChart";
+import ResourcesByTestimonialsChart from "../charts/ResourcesByLangTestimonialsChart";
 
 ChartJS.register(
   CategoryScale,
@@ -39,57 +41,11 @@ ChartJS.register(
   Legend
 );
 
-const ResourceStatistics = () => {
-  const categoriesData: ChartData<"doughnut", number[], string> = {
-    xLabels: [
-      "Categoría 1",
-      "Categoría 2",
-      "Categoría 3",
-      "Categoría 4",
-      "Categoría 5",
-      "Categoría 6",
-    ],
-    yLabels: [
-      "Categoría 1",
-      "Categoría 2",
-      "Categoría 3",
-      "Categoría 4",
-      "Categoría 5",
-      "Categoría 6",
-    ],
-    labels: [
-      "Categoría 1",
-      "Categoría 2",
-      "Categoría 3",
-      "Categoría 4",
-      "Categoría 5",
-      "Categoría 6",
-    ],
-    datasets: [
-      {
-        label: "# of resources",
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
+type ResourceStatistics = {
+  id: string;
+};
 
+const ResourceStatistics = ({ id }: ResourceStatistics) => {
   const resourcesTypesData: ChartData<"doughnut", number[], string> = {
     xLabels: [
       "Resource Type 1",
@@ -285,22 +241,22 @@ const ResourceStatistics = () => {
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
             Resources by Status
           </h2>
-          <Doughnut data={categoriesData} /* options={options}*/ />
+          <ResourcesByStatusChart resourceId={id} />
         </div>
 
         <div className="w-1/3  mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
             Resources by Language
           </h2>
-          <Doughnut data={resourcesTypesData} /* options={options}*/ />
+          <ResourcesByLangChart resourceId={id} />
         </div>
       </section>
       <section className="flex mt-10 mb-5 flex-row justify-evenly items-start">
         <div className="w-1/2  mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
-            Testimonials (1,2,3,4,5)
+            Testimonials
           </h2>
-          <Doughnut data={resourcesTypesData} /* options={options}*/ />
+          <ResourcesByTestimonialsChart resourceId={id} />
         </div>
       </section>
 

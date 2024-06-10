@@ -144,13 +144,6 @@ exports.Prisma.UserRoleScalarFieldEnum = {
   role_id: 'role_id'
 };
 
-exports.Prisma.LoanScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
 exports.Prisma.ResourceScalarFieldEnum = {
   id: 'id',
   resource_name: 'resource_name',
@@ -183,6 +176,25 @@ exports.Prisma.ResourceInstanceScalarFieldEnum = {
   status: 'status',
   created_at: 'created_at',
   updated_at: 'updated_at'
+};
+
+exports.Prisma.ResourceLoanScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  until: 'until',
+  instanceId: 'instanceId',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.ResourceTestimonialScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  resourceId: 'resourceId',
+  rating: 'rating',
+  title: 'title',
+  testimonial: 'testimonial',
+  created_at: 'created_at'
 };
 
 exports.Prisma.ResourceTypeScalarFieldEnum = {
@@ -282,10 +294,11 @@ exports.Prisma.ModelName = {
   User: 'User',
   Role: 'Role',
   UserRole: 'UserRole',
-  Loan: 'Loan',
   Resource: 'Resource',
   ResourceDetail: 'ResourceDetail',
   ResourceInstance: 'ResourceInstance',
+  ResourceLoan: 'ResourceLoan',
+  ResourceTestimonial: 'ResourceTestimonial',
   ResourceType: 'ResourceType',
   Publisher: 'Publisher',
   Category: 'Category',
