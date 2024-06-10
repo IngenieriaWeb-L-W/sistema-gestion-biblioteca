@@ -8,9 +8,12 @@ const GET = async (
   req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
-  const resourceBasicInfo = await getResourceTestimonials(params.id);
+  const [records, total] = await Promise.all([
+    getResourceTestimonials(params.id),
+    countResourceTestimonials(params.id),
+  ]);
 
-  return NextResponse.json(resourceBasicInfo);
+  return NextResponse.json({ records, total });
 };
 
 const getResourceTestimonials = (
@@ -27,7 +30,6 @@ const getResourceTestimonials = (
     })
     .then((testimonials) => {
       return testimonials.map((testimonial) => ({
-        id: testimonial.id,
         user: {
           id: testimonial.user.id,
           firstName: testimonial.user.first_name,
@@ -40,6 +42,16 @@ const getResourceTestimonials = (
         createdAt: testimonial.created_at,
       }));
     });
+};
+
+const countResourceTestimonials = (resourceId: string): Promise<number> => {
+  return prisma.resourceTestimonial
+    .count({
+      where: {
+        resourceId,
+      },
+    })
+    .then((count) => count);
 };
 
 export { GET };

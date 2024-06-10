@@ -42,8 +42,15 @@ export const authenticationSlice = createSlice({
         state.activeRole = action.payload;
       }
     },
-    logoutUser: () => {
-      return initialState;
+    logoutUser: (state) => {
+      state.id = "";
+      state.firstName = "";
+      state.lastName = "";
+      state.email = "";
+      state.imageUrl = "";
+      state.active = false;
+      state.roles = [];
+      state.createdAt = new Date();
     },
   },
 });

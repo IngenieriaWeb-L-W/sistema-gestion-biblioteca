@@ -9403,7 +9403,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialMinAggregateOutputType = {
-    id: string | null
     userId: string | null
     resourceId: string | null
     rating: number | null
@@ -9413,7 +9412,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialMaxAggregateOutputType = {
-    id: string | null
     userId: string | null
     resourceId: string | null
     rating: number | null
@@ -9423,7 +9421,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialCountAggregateOutputType = {
-    id: number
     userId: number
     resourceId: number
     rating: number
@@ -9443,7 +9440,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialMinAggregateInputType = {
-    id?: true
     userId?: true
     resourceId?: true
     rating?: true
@@ -9453,7 +9449,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialMaxAggregateInputType = {
-    id?: true
     userId?: true
     resourceId?: true
     rating?: true
@@ -9463,7 +9458,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialCountAggregateInputType = {
-    id?: true
     userId?: true
     resourceId?: true
     rating?: true
@@ -9560,7 +9554,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialGroupByOutputType = {
-    id: string
     userId: string
     resourceId: string
     rating: number
@@ -9589,7 +9582,6 @@ export namespace Prisma {
 
 
   export type ResourceTestimonialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     userId?: boolean
     resourceId?: boolean
     rating?: boolean
@@ -9601,7 +9593,6 @@ export namespace Prisma {
   }, ExtArgs["result"]["resourceTestimonial"]>
 
   export type ResourceTestimonialSelectScalar = {
-    id?: boolean
     userId?: boolean
     resourceId?: boolean
     rating?: boolean
@@ -9624,7 +9615,6 @@ export namespace Prisma {
       resource: Prisma.$ResourcePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: string
       userId: string
       resourceId: string
       rating: number
@@ -9723,8 +9713,8 @@ export namespace Prisma {
      * // Get first 10 ResourceTestimonials
      * const resourceTestimonials = await prisma.resourceTestimonial.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const resourceTestimonialWithIdOnly = await prisma.resourceTestimonial.findMany({ select: { id: true } })
+     * // Only select the `userId`
+     * const resourceTestimonialWithUserIdOnly = await prisma.resourceTestimonial.findMany({ select: { userId: true } })
      * 
     **/
     findMany<T extends ResourceTestimonialFindManyArgs<ExtArgs>>(
@@ -9774,9 +9764,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many ResourceTestimonials and only return the `id`
-     * const resourceTestimonialWithIdOnly = await prisma.resourceTestimonial.createManyAndReturn({ 
-     *   select: { id: true },
+     * // Create many ResourceTestimonials and only return the `userId`
+     * const resourceTestimonialWithUserIdOnly = await prisma.resourceTestimonial.createManyAndReturn({ 
+     *   select: { userId: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -10054,7 +10044,6 @@ export namespace Prisma {
    * Fields of the ResourceTestimonial model
    */ 
   interface ResourceTestimonialFieldRefs {
-    readonly id: FieldRef<"ResourceTestimonial", 'String'>
     readonly userId: FieldRef<"ResourceTestimonial", 'String'>
     readonly resourceId: FieldRef<"ResourceTestimonial", 'String'>
     readonly rating: FieldRef<"ResourceTestimonial", 'Int'>
@@ -14493,7 +14482,6 @@ export namespace Prisma {
 
 
   export const ResourceTestimonialScalarFieldEnum: {
-    id: 'id',
     userId: 'userId',
     resourceId: 'resourceId',
     rating: 'rating',
@@ -15216,7 +15204,6 @@ export namespace Prisma {
     AND?: ResourceTestimonialWhereInput | ResourceTestimonialWhereInput[]
     OR?: ResourceTestimonialWhereInput[]
     NOT?: ResourceTestimonialWhereInput | ResourceTestimonialWhereInput[]
-    id?: StringFilter<"ResourceTestimonial"> | string
     userId?: StringFilter<"ResourceTestimonial"> | string
     resourceId?: StringFilter<"ResourceTestimonial"> | string
     rating?: IntFilter<"ResourceTestimonial"> | number
@@ -15228,7 +15215,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialOrderByWithRelationInput = {
-    id?: SortOrder
     userId?: SortOrder
     resourceId?: SortOrder
     rating?: SortOrder
@@ -15240,7 +15226,7 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    userId_resourceId?: ResourceTestimonialUserIdResourceIdCompoundUniqueInput
     AND?: ResourceTestimonialWhereInput | ResourceTestimonialWhereInput[]
     OR?: ResourceTestimonialWhereInput[]
     NOT?: ResourceTestimonialWhereInput | ResourceTestimonialWhereInput[]
@@ -15252,10 +15238,9 @@ export namespace Prisma {
     created_at?: DateTimeFilter<"ResourceTestimonial"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
     resource?: XOR<ResourceRelationFilter, ResourceWhereInput>
-  }, "id">
+  }, "userId_resourceId">
 
   export type ResourceTestimonialOrderByWithAggregationInput = {
-    id?: SortOrder
     userId?: SortOrder
     resourceId?: SortOrder
     rating?: SortOrder
@@ -15273,7 +15258,6 @@ export namespace Prisma {
     AND?: ResourceTestimonialScalarWhereWithAggregatesInput | ResourceTestimonialScalarWhereWithAggregatesInput[]
     OR?: ResourceTestimonialScalarWhereWithAggregatesInput[]
     NOT?: ResourceTestimonialScalarWhereWithAggregatesInput | ResourceTestimonialScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"ResourceTestimonial"> | string
     userId?: StringWithAggregatesFilter<"ResourceTestimonial"> | string
     resourceId?: StringWithAggregatesFilter<"ResourceTestimonial"> | string
     rating?: IntWithAggregatesFilter<"ResourceTestimonial"> | number
@@ -16009,7 +15993,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialCreateInput = {
-    id?: string
     rating?: number
     title: string
     testimonial?: string | null
@@ -16019,7 +16002,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedCreateInput = {
-    id?: string
     userId: string
     resourceId: string
     rating?: number
@@ -16029,7 +16011,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     testimonial?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16039,7 +16020,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     resourceId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
@@ -16049,7 +16029,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialCreateManyInput = {
-    id?: string
     userId: string
     resourceId: string
     rating?: number
@@ -16059,7 +16038,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     testimonial?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16067,7 +16045,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     resourceId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
@@ -16882,8 +16859,12 @@ export namespace Prisma {
     updated_at?: SortOrder
   }
 
+  export type ResourceTestimonialUserIdResourceIdCompoundUniqueInput = {
+    userId: string
+    resourceId: string
+  }
+
   export type ResourceTestimonialCountOrderByAggregateInput = {
-    id?: SortOrder
     userId?: SortOrder
     resourceId?: SortOrder
     rating?: SortOrder
@@ -16897,7 +16878,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialMaxOrderByAggregateInput = {
-    id?: SortOrder
     userId?: SortOrder
     resourceId?: SortOrder
     rating?: SortOrder
@@ -16907,7 +16887,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialMinOrderByAggregateInput = {
-    id?: SortOrder
     userId?: SortOrder
     resourceId?: SortOrder
     rating?: SortOrder
@@ -18225,7 +18204,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialCreateWithoutUserInput = {
-    id?: string
     rating?: number
     title: string
     testimonial?: string | null
@@ -18234,7 +18212,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedCreateWithoutUserInput = {
-    id?: string
     resourceId: string
     rating?: number
     title: string
@@ -18350,7 +18327,6 @@ export namespace Prisma {
     AND?: ResourceTestimonialScalarWhereInput | ResourceTestimonialScalarWhereInput[]
     OR?: ResourceTestimonialScalarWhereInput[]
     NOT?: ResourceTestimonialScalarWhereInput | ResourceTestimonialScalarWhereInput[]
-    id?: StringFilter<"ResourceTestimonial"> | string
     userId?: StringFilter<"ResourceTestimonial"> | string
     resourceId?: StringFilter<"ResourceTestimonial"> | string
     rating?: IntFilter<"ResourceTestimonial"> | number
@@ -18637,7 +18613,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialCreateWithoutResourceInput = {
-    id?: string
     rating?: number
     title: string
     testimonial?: string | null
@@ -18646,7 +18621,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedCreateWithoutResourceInput = {
-    id?: string
     userId: string
     rating?: number
     title: string
@@ -19829,7 +19803,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialCreateManyUserInput = {
-    id?: string
     resourceId: string
     rating?: number
     title: string
@@ -19896,7 +19869,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     testimonial?: NullableStringFieldUpdateOperationsInput | string | null
@@ -19905,7 +19877,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
     resourceId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
@@ -19914,7 +19885,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
     resourceId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
@@ -19993,7 +19963,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialCreateManyResourceInput = {
-    id?: string
     userId: string
     rating?: number
     title: string
@@ -20035,7 +20004,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUpdateWithoutResourceInput = {
-    id?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     testimonial?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20044,7 +20012,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedUpdateWithoutResourceInput = {
-    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
@@ -20053,7 +20020,6 @@ export namespace Prisma {
   }
 
   export type ResourceTestimonialUncheckedUpdateManyWithoutResourceInput = {
-    id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string

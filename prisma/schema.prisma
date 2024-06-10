@@ -116,7 +116,7 @@ model ResourceLoan {
 }
 
 model ResourceTestimonial {
-  id          String   @id @default(cuid())
+  @@id([userId, resourceId])
   user        User     @relation(fields: [userId], references: [id])
   userId      String
   resource    Resource @relation(fields: [resourceId], references: [id])

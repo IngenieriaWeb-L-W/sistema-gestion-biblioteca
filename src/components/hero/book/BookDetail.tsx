@@ -4,14 +4,27 @@ import Image from "next/image";
 
 import { Resource } from "@/interfaces/resource/Resource";
 import Link from "next/link";
+import { useAuth } from "@/hooks/use-auth";
 
 type BookDetailHeroProps = {
   resource: Resource;
 };
 
 export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
-  if (!resource.detail) return <></>;
+  const { email, login } = useAuth();
+
   const { detail } = resource;
+
+  const handleBorrowResource = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    if (!email) {
+      login("google", true, `/dashboard/resources/${resource.slug}`);
+    }
+  };
+
+  if (!detail) return <></>;
 
   return (
     <Fragment>
@@ -27,10 +40,19 @@ export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
             </p>
 
             <hr className="mt-5" />
-            <p className="mt-3 text-lg items-end gap-x-2 flex text-white">
-              {detail.author.split(",").length > 1 ? "Authors" : "Author"}:{" "}
-              <span className="text-3xl">{detail.author}</span>
-            </p>
+            <div className="flex flex-row justify-between">
+              <p className="mt-3 text-lg items-end gap-x-2 flex text-white">
+                {detail.author.split(",").length > 1 ? "Authors" : "Author"}:{" "}
+                <span className="text-3xl">{detail.author}</span>
+              </p>
+              <button
+                onClick={handleBorrowResource}
+                type="button"
+                className="px-5 rounded-sm mt-3 py-2 bg-blue-500 text-white"
+              >
+                Borrow Now
+              </button>
+            </div>
 
             <div className="mt-5 text-white flex items-center flex-wrap gap-2">
               {resource.categories.length > 1 ? "Categories" : "Category"}:{" "}
@@ -46,23 +68,30 @@ export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
 
             <div className="mt-5">
               <p className="mt-3 text-lg items-end gap-x-2 flex text-white">
-                Published by: <span className="text-3xl">{detail.author}</span>
+                Published by:{" "}
+                <span className="text-3xl">
+                  <Link
+                    target="_blank"
+                    className="w-auto"
+                    href={resource.publisher.url}
+                  >
+                    {detail.author}
+                  </Link>
+                </span>
               </p>
 
               <div className="mt-2">
-                <Link target="_blank" href={resource.publisher.url}>
-                  <Image
-                    className="rounded-sm"
-                    src={resource.publisher.imageUrl}
-                    alt="Publisher"
-                    width={200}
-                    height={100}
-                  />
-                </Link>
+                <Image
+                  className="rounded-sm"
+                  src={resource.publisher.imageUrl}
+                  alt="Publisher"
+                  width={200}
+                  height={100}
+                />
               </div>
             </div>
 
-            <div className="mt-6 lg:mt-12">
+            <div className="mt-6">
               <span className="text-xs mb-2 font-medium text-gray-800 uppercase dark:text-neutral-200">
                 Additional info:
               </span>

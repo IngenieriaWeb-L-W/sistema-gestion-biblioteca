@@ -188,7 +188,6 @@ exports.Prisma.ResourceLoanScalarFieldEnum = {
 };
 
 exports.Prisma.ResourceTestimonialScalarFieldEnum = {
-  id: 'id',
   userId: 'userId',
   resourceId: 'resourceId',
   rating: 'rating',

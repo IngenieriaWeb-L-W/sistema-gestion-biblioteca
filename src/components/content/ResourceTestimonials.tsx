@@ -24,10 +24,19 @@ const ResourceTestimonials = ({ resourceId }: ResourceTestimonialsProps) => {
     <section>
       <div className="py-20">
         <div className="mx-auto px-6 max-w-6xl text-gray-500">
+          <div className="text-center">
+            <h2 className="text-3xl text-gray-950 dark:text-white font-semibold">
+              Testimonials
+            </h2>
+            <p className="mt-6 mb-2 text-gray-700 dark:text-gray-300">
+              What our users say about this resource
+            </p>
+          </div>
+
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             <div className="space-y-3">
               {testimonials.map((testimonial, index) => (
-                <Fragment key={testimonial.id}>
+                <Fragment key={testimonial.user.id}>
                   {index % 3 === 0 && (
                     <TestimonialCard testimonial={testimonial} />
                   )}
@@ -37,7 +46,7 @@ const ResourceTestimonials = ({ resourceId }: ResourceTestimonialsProps) => {
 
             <div className="space-y-3">
               {testimonials.map((testimonial, index) => (
-                <Fragment key={testimonial.id}>
+                <Fragment key={testimonial.user.id}>
                   {index % 3 === 1 && (
                     <TestimonialCard testimonial={testimonial} />
                   )}
@@ -47,7 +56,7 @@ const ResourceTestimonials = ({ resourceId }: ResourceTestimonialsProps) => {
 
             <div className="space-y-3">
               {testimonials.map((testimonial, index) => (
-                <Fragment key={testimonial.id}>
+                <Fragment key={testimonial.user.id}>
                   {index % 3 === 2 && (
                     <TestimonialCard testimonial={testimonial} />
                   )}
@@ -57,11 +66,11 @@ const ResourceTestimonials = ({ resourceId }: ResourceTestimonialsProps) => {
           </div>
         </div>
       </div>
-      {records.length > 0 && (
-        <div className="flex justify-center">
-          <button className="bg-blue-700 p-3 rounded-md">Load more...</button>
-        </div>
-      )}
+      <div className="flex justify-center">
+        <button className="bg-blue-700 p-3 mb-10 text-white rounded-md">
+          Load more...
+        </button>
+      </div>
     </section>
   );
 };
