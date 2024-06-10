@@ -23,7 +23,7 @@ const ResourceDetailPage = () => {
       </Head> */}
       <BookDetailHero resource={resource} />
 
-      <BookDetail detail={resource.detail} />
+      <BookDetail resourceId={resource.id} detail={resource.detail} />
     </Fragment>
   );
 };

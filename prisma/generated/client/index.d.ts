@@ -2322,7 +2322,7 @@ export namespace Prisma {
     id: string
     email: string
     first_name: string
-    image_url: string | null
+    image_url: string
     last_name: string
     address: string | null
     active: boolean
@@ -2401,7 +2401,7 @@ export namespace Prisma {
       id: string
       email: string
       first_name: string
-      image_url: string | null
+      image_url: string
       last_name: string
       address: string | null
       active: boolean
@@ -14726,7 +14726,7 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     first_name?: StringFilter<"User"> | string
-    image_url?: StringNullableFilter<"User"> | string | null
+    image_url?: StringFilter<"User"> | string
     last_name?: StringFilter<"User"> | string
     address?: StringNullableFilter<"User"> | string | null
     active?: BoolFilter<"User"> | boolean
@@ -14743,7 +14743,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     first_name?: SortOrder
-    image_url?: SortOrderInput | SortOrder
+    image_url?: SortOrder
     last_name?: SortOrder
     address?: SortOrderInput | SortOrder
     active?: SortOrder
@@ -14763,7 +14763,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     first_name?: StringFilter<"User"> | string
-    image_url?: StringNullableFilter<"User"> | string | null
+    image_url?: StringFilter<"User"> | string
     last_name?: StringFilter<"User"> | string
     address?: StringNullableFilter<"User"> | string | null
     active?: BoolFilter<"User"> | boolean
@@ -14780,7 +14780,7 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     first_name?: SortOrder
-    image_url?: SortOrderInput | SortOrder
+    image_url?: SortOrder
     last_name?: SortOrder
     address?: SortOrderInput | SortOrder
     active?: SortOrder
@@ -14799,7 +14799,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     first_name?: StringWithAggregatesFilter<"User"> | string
-    image_url?: StringNullableWithAggregatesFilter<"User"> | string | null
+    image_url?: StringWithAggregatesFilter<"User"> | string
     last_name?: StringWithAggregatesFilter<"User"> | string
     address?: StringNullableWithAggregatesFilter<"User"> | string | null
     active?: BoolWithAggregatesFilter<"User"> | boolean
@@ -15501,7 +15501,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -15518,7 +15518,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -15535,7 +15535,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -15552,7 +15552,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -15569,7 +15569,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -15582,7 +15582,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -15595,7 +15595,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -18363,7 +18363,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -18379,7 +18379,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -18437,7 +18437,7 @@ export namespace Prisma {
     id?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     first_name?: StringFilter<"User"> | string
-    image_url?: StringNullableFilter<"User"> | string | null
+    image_url?: StringFilter<"User"> | string
     last_name?: StringFilter<"User"> | string
     address?: StringNullableFilter<"User"> | string | null
     active?: BoolFilter<"User"> | boolean
@@ -18466,7 +18466,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -18482,7 +18482,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -18534,7 +18534,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -18550,7 +18550,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -19149,7 +19149,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -19165,7 +19165,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -19222,7 +19222,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -19238,7 +19238,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -19285,7 +19285,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -19301,7 +19301,7 @@ export namespace Prisma {
     id?: string
     email: string
     first_name: string
-    image_url?: string | null
+    image_url: string
     last_name: string
     address?: string | null
     active?: boolean
@@ -19374,7 +19374,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -19390,7 +19390,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -19930,7 +19930,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -19946,7 +19946,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean
@@ -19962,7 +19962,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
     last_name?: StringFieldUpdateOperationsInput | string
     address?: NullableStringFieldUpdateOperationsInput | string | null
     active?: BoolFieldUpdateOperationsInput | boolean

@@ -8,8 +8,6 @@ import {
 import {
   Pagination,
   ResourceFilters,
-  addResource,
-  setResourceDetail,
 } from "@/config/redux/reducers/resources.reducer";
 import {
   SeverityLevel,
@@ -65,7 +63,6 @@ export interface ResourcesResponse {
 // };
 
 export const fetchResourceDetailMiddleware = (slug: string) => {
-  window.alert(slug);
   return async (dispatch: Dispatch<Action>) => {
     dispatch(startGlobalLoading({ message: "Fetching resource detail..." }));
     return axios

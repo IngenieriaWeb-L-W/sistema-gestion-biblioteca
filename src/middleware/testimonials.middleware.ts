@@ -5,6 +5,7 @@ import {
   startGlobalLoading,
 } from "@/config/redux/reducers/user-interface.reducer";
 import {
+  TestimonialsFilter,
   TestimonialsResponse,
   TestimonialsSort,
 } from "@/hooks/use-testimonials";
@@ -23,6 +24,44 @@ export const fetchTestimonialsMiddleware = (
     return axios
       .get<TestimonialsResponse>(
         `${location.protocol}//${location.host}/api/testimonials`,
+        {
+          params: {
+            page,
+            size,
+            sortBy,
+          },
+        }
+      )
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Testimonials could not be fetched ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return {
+          records: [] as LoanTestimonial[],
+          total: 0,
+        } as TestimonialsResponse;
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const fetchResourceTestimonialsMiddleware = (
+  resourceId: string,
+  filter: TestimonialsFilter
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch(startGlobalLoading({ message: "Fetching testimonials..." }));
+    const { page, size, sortBy } = filter;
+    return axios
+      .get<TestimonialsResponse>(
+        `${location.protocol}//${location.host}/api/resources/${resourceId}/testimonials`,
         {
           params: {
             page,
