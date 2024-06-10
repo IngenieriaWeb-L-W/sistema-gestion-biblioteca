@@ -1,4 +1,4 @@
-import OwnedLoansTable from "@/components/tables/OwnedLoansTable";
+import { OwnedLoansTable } from "@/components/tables/OwnedLoansTable";
 import React from "react";
 
 const LoansPage = () => {

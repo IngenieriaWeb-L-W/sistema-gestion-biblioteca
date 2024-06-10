@@ -1,15 +1,13 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
-import Image from "next/image";
-
-import  { LoansFilter, useOwnedLoansTable } from "@/hooks/use-owned-loans-table";
-import { useResource } from "@/hooks/use-resource";
+import { formatDate } from "@/common/utils/date-transformers";
+import { LoansFilter, useOwnedLoansTable } from "@/hooks/use-owned-loans-table";
 import { InstanceLoan } from "@/interfaces/loan/Loan";
 import UserTablePagination from "../pagination/UserTablePagination";
 
-const OwnedLoansTable = () => {
+export const OwnedLoansTable = () => {
   const [loansFilter /*, setUsersFilter */] = useState<LoansFilter>({
     search: "",
     pagination: { page: 0, limit: 25 },
@@ -36,19 +34,7 @@ const OwnedLoansTable = () => {
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                     >
-                      Email
-                    </th>
-                    <th
-                      scope="col"
-                      className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
-                    >
-                      Address
-                    </th>
-                    <th
-                      scope="col"
-                      className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
-                    >
-                      Phone number
+                      Lang
                     </th>
                     <th
                       scope="col"
@@ -60,13 +46,25 @@ const OwnedLoansTable = () => {
                       scope="col"
                       className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
                     >
-                      Actions
+                      Borrowed at
+                    </th>
+                    <th
+                      scope="col"
+                      className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
+                    >
+                      Loaned until
+                    </th>
+                    <th
+                      scope="col"
+                      className="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400"
+                    >
+                      Status
                     </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                   {records.map((loan) => (
-                    <LoanRow key={loan.id} loan={loan} />
+                    <OwnedLoanRow key={loan.id} loan={loan} />
                   ))}
                 </tbody>
               </table>
@@ -84,64 +82,62 @@ type LoanRowProps = {
   loan: InstanceLoan;
 };
 
-export const LoanRow = ({ loan }: LoanRowProps) => {
+const OwnedLoanRow = ({ loan }: LoanRowProps) => {
+  const [isLoanPassed, setIsLoanPassed] = useState(false);
+  const [loanLeftTime, setLoanLeftTime] = useState<string>("");
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      const now = new Date();
+      const until = new Date(loan.until);
+      const diff = until.getTime() - now.getTime();
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      setLoanLeftTime(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [loan.until]);
+
+  useEffect(() => {
+    const loanPassed = new Date(loan.until) < new Date();
+    if (loanPassed) {
+      setIsLoanPassed(true);
+    }
+  }, [loan.until]);
+
   return (
-    <tr key={loan.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
-      <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
-        <Image
-          width={40}
-          height={40}
-          className="w-10 h-10 rounded-full"
-          src={loan.}
-          alt={"User avatar"}
-        />
-        <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
-          <div className="text-base font-semibold text-gray-900 dark:text-white">
-            {loan.firstName} {loan.lastName}
-          </div>
-        </div>
+    <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
+      <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
+        {loan.instance.name}
       </td>
       <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-        {loan.email}
+        {loan.instance.lang}
       </td>
       <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        {loan.address}
+        {loan.instance.status}
       </td>
       <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        {loan.phone}
+        {formatDate(loan.createdAt, true)}
       </td>
-      <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
-        <div className="flex items-center">
-          {loan.active ? (
-            <span className="inline-flex items-center justify-center h-6 px-2 text-xs font-semibold text-white bg-green-500 rounded-full">
-              Active
-            </span>
-          ) : (
-            <span className="inline-flex items-center justify-center h-6 px-2 text-xs font-semibold text-white bg-red-500 rounded-full">
-              Inactive
-            </span>
-          )}
-        </div>
+      <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        {formatDate(loan.until, true)}
       </td>
       <td className="p-4 space-x-2 whitespace-nowrap">
-        {loan.active ? (
-          <button
-            type="button"
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
-          >
-            Delete user
-          </button>
+        {isLoanPassed ? (
+          <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+            Loan Passed
+          </span>
         ) : (
-          <button
-            type="button"
-            className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
-          >
-            Restore User
-          </button>
+          <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+            Return in {loanLeftTime}
+          </span>
         )}
       </td>
     </tr>
   );
 };
-
-export default OwnedLoansTable;
