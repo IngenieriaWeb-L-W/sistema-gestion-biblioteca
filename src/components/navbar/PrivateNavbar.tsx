@@ -11,10 +11,10 @@ import {
   changeActiveRole,
   selectAuthentication,
 } from "@/config/redux/reducers/authentication.reducer";
-import { selectLoansCart } from "@/config/redux/reducers/loans-cart.reducer";
 import { useAppDispatch } from "@/config/redux/store.config";
 import navbarItems, { NavbarLayout } from "@/data/navbar/navbar-items";
 import { useAuth } from "@/hooks/use-auth";
+import { useCart } from "@/hooks/use-cart";
 import UserRole from "@/interfaces/user/Role";
 import BorrowedResourcesCart from "../cart/BorrowedResourcesCart";
 
@@ -23,9 +23,8 @@ export const PrivateNavbar = () => {
   const dispatch = useAppDispatch();
   const { email, imageUrl, firstName, lastName, activeRole, roles } =
     useSelector(selectAuthentication);
-  const { records: cartItems } = useSelector(selectLoansCart);
+  const { items: cartItems, showCart, hideCart, open: cartIsOpen } = useCart();
 
-  const [showCart, setShowCart] = useState(false);
   const [activeNavbar, setActiveNavbar] = useState<NavbarLayout>(
     navbarItems.find((item) => item.role === activeRole) || navbarItems[0]
   );
@@ -47,6 +46,17 @@ export const PrivateNavbar = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ): void => {
     dispatch(changeActiveRole(event.target.value as UserRole));
+  };
+
+  const handleToggleCart = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    if (open) {
+      hideCart();
+    } else {
+      showCart();
+    }
   };
 
   return (
@@ -117,7 +127,7 @@ export const PrivateNavbar = () => {
                 <div className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                   {activeRole === UserRole.ROLE_USER && (
                     <button
-                      onClick={() => setShowCart(!showCart)}
+                      onClick={handleToggleCart}
                       className="bg-gray-700 relative rounded-sm mr-5 flex justify-center items-center"
                     >
                       <Image
@@ -193,9 +203,7 @@ export const PrivateNavbar = () => {
         </div>
       </nav>
 
-      {showCart && (
-        <BorrowedResourcesCart open={showCart} setOpen={setShowCart} />
-      )}
+      {cartIsOpen && <BorrowedResourcesCart />}
     </Fragment>
   );
 };

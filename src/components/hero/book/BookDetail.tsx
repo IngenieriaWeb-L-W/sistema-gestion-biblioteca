@@ -1,10 +1,15 @@
-import { Fragment } from "react";
+"use client";
+
+import { Fragment, useState } from "react";
 
 import Image from "next/image";
 
 import { Resource } from "@/interfaces/resource/Resource";
 import Link from "next/link";
 import { useAuth } from "@/hooks/use-auth";
+import { ResourceInstanceLangs } from "@/interfaces/instance/ResourceInstanceLang";
+import { useCart } from "@/hooks/use-cart";
+import { InstanceLang } from "@/interfaces/instance/Instance";
 
 type BookDetailHeroProps = {
   resource: Resource;
@@ -12,19 +17,42 @@ type BookDetailHeroProps = {
 
 export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
   const { email, login } = useAuth();
-
+  const [borrowingResource, setBorrowingResource] = useState(false);
   const { detail } = resource;
+  const { addItemToCart, removeItemFromCart, isItemOnCart, showCart } =
+    useCart();
 
   const handleBorrowResource = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     event.preventDefault();
+    if (borrowingResource) {
+      setBorrowingResource(false);
+      return;
+    }
     if (!email) {
       login("google", true, `/dashboard/resources/${resource.slug}`);
     }
+    setBorrowingResource(true);
   };
 
   if (!detail) return <></>;
+
+  const handleConfirm = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    addItemToCart(resource, InstanceLang.LANG_EN);
+    showCart();
+    setBorrowingResource(false);
+  };
+
+  const handleRemoveResourceFromCart = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    removeItemFromCart(resource);
+  };
 
   return (
     <Fragment>
@@ -45,13 +73,53 @@ export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
                 {detail.author.split(",").length > 1 ? "Authors" : "Author"}:{" "}
                 <span className="text-3xl">{detail.author}</span>
               </p>
-              <button
-                onClick={handleBorrowResource}
-                type="button"
-                className="px-5 rounded-sm mt-3 py-2 bg-blue-500 text-white"
-              >
-                Borrow Now
-              </button>
+              <div className="flex flex-col relative gap-y-3">
+                {!isItemOnCart(resource) ? (
+                  <button
+                    onClick={handleBorrowResource}
+                    type="button"
+                    className="px-5 rounded-sm mt-3 py-2 bg-blue-500 text-white"
+                  >
+                    {borrowingResource ? "Cancel loan" : "Borrow Now!"}
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleRemoveResourceFromCart}
+                    type="button"
+                    className="px-5 rounded-sm mt-3 py-2 bg-red-500 text-white"
+                  >
+                    Remove Item from Cart
+                  </button>
+                )}
+
+                {borrowingResource && (
+                  <div className="absolute top-16 w-full">
+                    <select
+                      name="status"
+                      id="users-status"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                    >
+                      {Object.keys(ResourceInstanceLangs)
+                        .filter(
+                          (lang) => lang !== ResourceInstanceLangs.LANG_OTHER
+                        )
+                        .map((lang) => (
+                          <option key={lang} value={lang}>
+                            {lang.replace("LANG_", "").trim()}
+                          </option>
+                        ))}
+                    </select>
+
+                    <button
+                      onClick={handleConfirm}
+                      type="button"
+                      className="px-5 w-full rounded-sm mt-3 py-2 bg-green-800 text-white"
+                    >
+                      Confirm
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="mt-5 text-white flex items-center flex-wrap gap-2">

@@ -1,12 +1,17 @@
+import { useCart } from "@/hooks/use-cart";
 import Image from "next/image";
 import React from "react";
 
-type BorrowedResourcesCartProps = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+const BorrowedResourcesCart = () => {
+  const { hideCart } = useCart();
 
-const BorrowedResourcesCart = ({ setOpen }: BorrowedResourcesCartProps) => {
+  const handleCloseCart = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    hideCart();
+  };
+
   return (
     <div className="w-full h-full bg-black bg-opacity-90 top-0 overflow-y-auto overflow-x-hidden z-40 fixed sticky-0">
       <div
@@ -169,7 +174,7 @@ const BorrowedResourcesCart = ({ setOpen }: BorrowedResourcesCartProps) => {
                     Summary
                   </p>
                   <button
-                    onClick={() => setOpen(false)}
+                    onClick={handleCloseCart}
                     className="bg-red-500 px-3 py-2 rounded-md text-"
                   >
                     <Image
