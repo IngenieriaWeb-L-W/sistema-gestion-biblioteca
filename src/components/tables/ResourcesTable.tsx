@@ -1,7 +1,7 @@
 "use client";
 
 import { formatDate } from "@/common/utils/date-transformers";
-import { useResource } from "@/hooks/use-resource";
+import { useResources } from "@/hooks/use-resources";
 import Image from "next/image";
 import React, { Fragment, useState } from "react";
 import TableResourcesFilter from "../filters/resources/TableResourcesFilter";
@@ -10,7 +10,7 @@ import ResourceManagementTabs from "../tabs/ResourceManagementTabs";
 import { wordToHexColor } from "@/common/utils/color-generator";
 
 const ResourcesTable = () => {
-  const { records: resources } = useResource();
+  const { records: resources } = useResources();
   return (
     <React.Fragment>
       <TableResourcesFilter />

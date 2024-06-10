@@ -6,11 +6,11 @@ import { ResourceCard } from "@/components/card/ResourceCard";
 import { ResourcesFilter } from "@/components/filters/resources/ResourcesFilter";
 import { FullPagination } from "@/components/pagination/FullPagination";
 import ResourcesSkeleton from "@/components/skeleton/ResourcesSkeleton";
-import { useResource } from "@/hooks/use-resource";
+import { useResources } from "@/hooks/use-resources";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 
 const ResourcesPage = () => {
-  const { records } = useResource();
+  const { records } = useResources();
 
   return (
     <Fragment>

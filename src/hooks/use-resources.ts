@@ -12,7 +12,7 @@ import {
 import { useAppDispatch } from "@/config/redux/store.config";
 import { fetchResourcesMiddleware } from "@/middleware/resources.middleware";
 
-export const useResource = () => {
+export const useResources = () => {
   const { filters, pagination, records, total } = useSelector(selectResources);
   const dispatch = useAppDispatch();
 

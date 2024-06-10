@@ -7,6 +7,7 @@ import Image from "next/image";
 import useLoansTable, { LoansFilter } from "@/hooks/use-loans-table";
 import UserTablePagination from "../pagination/UserTablePagination";
 import { InstanceLoan } from "@/interfaces/loan/Loan";
+import { useResources } from "@/hooks/use-resources";
 
 const LoansTable = () => {
   const [usersFilter /*, setUsersFilter */] = useState<LoansFilter>({
@@ -84,34 +85,35 @@ type LoanRowProps = {
 };
 
 export const LoanRow = ({ loan }: LoanRowProps) => {
+  const {} = useResources(loan.);
   return (
-    <tr key={user.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+    <tr key={loan.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
       <td className="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
         <Image
           width={40}
           height={40}
           className="w-10 h-10 rounded-full"
-          src={user.imageUrl}
+          src={loan.}
           alt={"User avatar"}
         />
         <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
           <div className="text-base font-semibold text-gray-900 dark:text-white">
-            {user.firstName} {user.lastName}
+            {loan.firstName} {loan.lastName}
           </div>
         </div>
       </td>
       <td className="max-w-sm p-4 overflow-hidden text-base font-normal text-gray-500 truncate xl:max-w-xs dark:text-gray-400">
-        {user.email}
+        {loan.email}
       </td>
       <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        {user.address}
+        {loan.address}
       </td>
       <td className="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-        {user.phone}
+        {loan.phone}
       </td>
       <td className="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
         <div className="flex items-center">
-          {user.active ? (
+          {loan.active ? (
             <span className="inline-flex items-center justify-center h-6 px-2 text-xs font-semibold text-white bg-green-500 rounded-full">
               Active
             </span>
@@ -123,7 +125,7 @@ export const LoanRow = ({ loan }: LoanRowProps) => {
         </div>
       </td>
       <td className="p-4 space-x-2 whitespace-nowrap">
-        {user.active ? (
+        {loan.active ? (
           <button
             type="button"
             className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900"
