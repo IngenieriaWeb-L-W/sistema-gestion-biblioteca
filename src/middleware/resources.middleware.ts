@@ -9,6 +9,7 @@ import {
   Pagination,
   ResourceFilters,
   addResource,
+  setResourceDetail,
 } from "@/config/redux/reducers/resources.reducer";
 import {
   SeverityLevel,
@@ -17,7 +18,6 @@ import {
   startGlobalLoading,
 } from "@/config/redux/reducers/user-interface.reducer";
 import { Category } from "@/interfaces/resource/Category";
-import { ResourceDetail } from "@/interfaces/resource/Detail";
 import {
   Resource,
   ResourceCreate,
@@ -64,60 +64,28 @@ export interface ResourcesResponse {
 //   };
 // };
 
-export const fetchFullResourceMiddleware = (slug: string) => {
+export const fetchResourceDetailMiddleware = (slug: string) => {
+  window.alert(slug);
   return async (dispatch: Dispatch<Action>) => {
-    dispatch(
-      startGlobalLoading({ message: "Fetching resource information..." })
-    );
+    dispatch(startGlobalLoading({ message: "Fetching resource detail..." }));
     return axios
       .get<Resource>(
-        `${location.protocol}//${location.host}/api/resources/${slug}`
+        `${location.protocol}//${location.host}/api/resources/slug/${slug}`
       )
       .then(({ data }) => data)
-      .then((resource) => {
-        dispatch(addResource(resource));
-      })
       .catch((/* error */) => {
         dispatch(
           setGlobalAlert({
-            message: "Resource could not be fetched ⛔",
+            message: "Resource detail could not be fetched ⛔",
             timeout: 5000,
             severity: SeverityLevel.ERROR,
           })
         );
+        return null;
       })
       .finally(() => {
         dispatch(finishGlobalLoading());
       });
-  };
-};
-
-export const fetchResourceDetailMiddleware = (slug: string) => {
-  return async (dispatch: Dispatch<Action>) => {
-    dispatch(startGlobalLoading({ message: "Fetching resource detail..." }));
-    return (
-      axios
-        .get<ResourceDetail>(
-          `${location.protocol}//${location.host}/api/resources/${slug}/detail`
-        )
-        .then(({ data }) => data)
-        // .then((detail) => {
-        //   dispatch(setResourceDetail({ id, detail }));
-        // })
-        .catch((/* error */) => {
-          dispatch(
-            setGlobalAlert({
-              message: "Resource detail could not be fetched ⛔",
-              timeout: 5000,
-              severity: SeverityLevel.ERROR,
-            })
-          );
-          return null;
-        })
-        .finally(() => {
-          dispatch(finishGlobalLoading());
-        })
-    );
   };
 };
 

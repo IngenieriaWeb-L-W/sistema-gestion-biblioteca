@@ -163,8 +163,8 @@ model Publisher {
   id             Int        @id @default(autoincrement())
   publisher_name String     @unique
   resources      Resource[]
-  image_url      String?
-  url            String?
+  image_url      String
+  url            String
   created_at     DateTime   @default(now())
   updated_at     DateTime   @updatedAt
 }

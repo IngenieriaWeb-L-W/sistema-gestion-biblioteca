@@ -70,10 +70,10 @@ export const resourcesSlice = createSlice({
     },
     setResourceDetail: (
       state,
-      action: PayloadAction<{ id: string; detail: ResourceDetail }>
+      action: PayloadAction<{ slug: string; detail: ResourceDetail }>
     ) => {
       state.records = state.records.map((resource) =>
-        resource.id === action.payload.id
+        resource.slug === action.payload.slug
           ? { ...resource, detail: action.payload.detail }
           : resource
       );

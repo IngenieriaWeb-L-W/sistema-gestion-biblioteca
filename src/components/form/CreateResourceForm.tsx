@@ -1,7 +1,6 @@
 "use client";
 
 import resourceCreateSchema from "@/common/schemas/Resource.schema";
-import { selectResources } from "@/config/redux/reducers/resources.reducer";
 import {
   SeverityLevel,
   setGlobalAlert,
@@ -18,7 +17,6 @@ import {
 } from "@/middleware/resources.middleware";
 import Image from "next/image";
 import React, { Fragment, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import * as Yup from "yup";
 
 export type CreateResourceFormProps = {
@@ -51,7 +49,6 @@ const CreateResourceForm = ({
   const dispatch = useAppDispatch();
 
   const { records: allCategories } = useResourceCategory();
-  const { records: resources } = useSelector(selectResources);
   const { records: allPublishers } = usePublisher({ page: 0, size: -1 });
   const [imageSrc, setImageSrc] = useState("");
   const { formValues, handleInputChange, handleSelectChange, resetForm } =
@@ -200,26 +197,24 @@ const CreateResourceForm = ({
 
   useEffect(() => {
     if (!editId) return;
-    const resourceToEdit = resources.find((resource) => resource.id === editId);
-    if (!resourceToEdit) return;
-    dispatch(fetchResourceDetailMiddleware(editId)).then((detail) => {
-      if (!detail) return;
+    dispatch(fetchResourceDetailMiddleware(editId)).then((resource) => {
+      if (!resource) return;
       resetForm({
-        name: resourceToEdit.name,
-        shortDescription: resourceToEdit.shortDescription,
+        name: resource.name,
+        shortDescription: resource.shortDescription,
         image: null,
-        edition: resourceToEdit.edition,
-        categories: resourceToEdit.categories.map((category) => category.id),
-        author: detail.author,
-        // publisher: resource.publisher.id,
+        edition: resource.edition,
+        categories: resource.categories.map((category) => category.id),
+        author: resource.detail!.author,
         publisher: 1,
-        paragraphs: detail.paragraphs,
-        isbn: detail.isbn,
-        publicationYear: detail.publicationYear,
-        type: resourceToEdit.type,
+        paragraphs: resource.detail?.paragraphs || [],
+        isbn: resource.detail?.isbn,
+        publicationYear:
+          resource.detail?.publicationYear || new Date().getFullYear(),
+        type: resource.type,
       });
     });
-  }, [dispatch, editId, resources, resetForm]);
+  }, [dispatch, editId, resetForm]);
 
   return (
     <Fragment>

@@ -7,18 +7,18 @@ const { prisma } = DBClient.getInstance();
 
 const GET = async (
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { slug: string } }
 ) => {
-  const resourceDetail = await getResourceDetail(params.id); // Fetch 12 elements
+  const resourceDetail = await getResourceDetail(params.slug); // Fetch 12 elements
 
   return NextResponse.json(resourceDetail);
 };
 
-const getResourceDetail = (id: string): Promise<Resource | null> => {
+const getResourceDetail = (slug: string): Promise<Resource | null> => {
   return prisma.resource
     .findUnique({
       where: {
-        id,
+        slug_name: slug,
       },
       include: {
         detail: true,

@@ -2,7 +2,6 @@
 
 import { Fragment } from "react";
 
-import Head from "next/head";
 import { useParams } from "next/navigation";
 
 import { BookDetail } from "@/components/content/BookDetail";
@@ -14,15 +13,14 @@ const ResourceDetailPage = () => {
   const { slug } = params;
   const { resource } = useResourceDetail(slug as string);
 
-  if (!resource?.detail) return <Fragment></Fragment>;
+  if (!resource?.detail) return <></>;
 
   return (
     <Fragment>
-      <Head>
+      {/* <Head>
         <title>Book Detail Page</title>
         <meta name="description" content="" />
-      </Head>
-
+      </Head> */}
       <BookDetailHero resource={resource} />
 
       <BookDetail detail={resource.detail} />

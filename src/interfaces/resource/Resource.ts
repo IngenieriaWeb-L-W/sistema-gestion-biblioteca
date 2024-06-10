@@ -1,5 +1,6 @@
 import { Category } from "./Category";
 import { ResourceDetail } from "./Detail";
+import { Publisher } from "./Publisher";
 import { ResourceTypes } from "./Type";
 
 export interface Resource {
@@ -11,6 +12,7 @@ export interface Resource {
   edition: string;
   categories: Category[];
   detail?: ResourceDetail;
+  publisher: Publisher;
   type: ResourceTypes;
   createdAt: Date;
   updatedAt: Date;

@@ -19,7 +19,11 @@ const ResourcesPage = () => {
 
       <div className="py-5 grid lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 px-3 gap-1 sm:gap-2 md:gap-2 lg:gap-3">
         {records.map((resource) => (
-          <ResourceCard key={resource.id} resource={resource} />
+          <ResourceCard
+            key={resource.id}
+            baseRoute="dashboard"
+            resource={resource}
+          />
         ))}
       </div>
 

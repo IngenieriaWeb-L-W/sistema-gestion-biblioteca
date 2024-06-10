@@ -11570,8 +11570,8 @@ export namespace Prisma {
   export type PublisherGroupByOutputType = {
     id: number
     publisher_name: string
-    image_url: string | null
-    url: string | null
+    image_url: string
+    url: string
     created_at: Date
     updated_at: Date
     _count: PublisherCountAggregateOutputType | null
@@ -11630,8 +11630,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       publisher_name: string
-      image_url: string | null
-      url: string | null
+      image_url: string
+      url: string
       created_at: Date
       updated_at: Date
     }, ExtArgs["result"]["publisher"]>
@@ -15340,8 +15340,8 @@ export namespace Prisma {
     NOT?: PublisherWhereInput | PublisherWhereInput[]
     id?: IntFilter<"Publisher"> | number
     publisher_name?: StringFilter<"Publisher"> | string
-    image_url?: StringNullableFilter<"Publisher"> | string | null
-    url?: StringNullableFilter<"Publisher"> | string | null
+    image_url?: StringFilter<"Publisher"> | string
+    url?: StringFilter<"Publisher"> | string
     created_at?: DateTimeFilter<"Publisher"> | Date | string
     updated_at?: DateTimeFilter<"Publisher"> | Date | string
     resources?: ResourceListRelationFilter
@@ -15350,8 +15350,8 @@ export namespace Prisma {
   export type PublisherOrderByWithRelationInput = {
     id?: SortOrder
     publisher_name?: SortOrder
-    image_url?: SortOrderInput | SortOrder
-    url?: SortOrderInput | SortOrder
+    image_url?: SortOrder
+    url?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     resources?: ResourceOrderByRelationAggregateInput
@@ -15363,8 +15363,8 @@ export namespace Prisma {
     AND?: PublisherWhereInput | PublisherWhereInput[]
     OR?: PublisherWhereInput[]
     NOT?: PublisherWhereInput | PublisherWhereInput[]
-    image_url?: StringNullableFilter<"Publisher"> | string | null
-    url?: StringNullableFilter<"Publisher"> | string | null
+    image_url?: StringFilter<"Publisher"> | string
+    url?: StringFilter<"Publisher"> | string
     created_at?: DateTimeFilter<"Publisher"> | Date | string
     updated_at?: DateTimeFilter<"Publisher"> | Date | string
     resources?: ResourceListRelationFilter
@@ -15373,8 +15373,8 @@ export namespace Prisma {
   export type PublisherOrderByWithAggregationInput = {
     id?: SortOrder
     publisher_name?: SortOrder
-    image_url?: SortOrderInput | SortOrder
-    url?: SortOrderInput | SortOrder
+    image_url?: SortOrder
+    url?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     _count?: PublisherCountOrderByAggregateInput
@@ -15390,8 +15390,8 @@ export namespace Prisma {
     NOT?: PublisherScalarWhereWithAggregatesInput | PublisherScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Publisher"> | number
     publisher_name?: StringWithAggregatesFilter<"Publisher"> | string
-    image_url?: StringNullableWithAggregatesFilter<"Publisher"> | string | null
-    url?: StringNullableWithAggregatesFilter<"Publisher"> | string | null
+    image_url?: StringWithAggregatesFilter<"Publisher"> | string
+    url?: StringWithAggregatesFilter<"Publisher"> | string
     created_at?: DateTimeWithAggregatesFilter<"Publisher"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"Publisher"> | Date | string
   }
@@ -16128,8 +16128,8 @@ export namespace Prisma {
 
   export type PublisherCreateInput = {
     publisher_name: string
-    image_url?: string | null
-    url?: string | null
+    image_url: string
+    url: string
     created_at?: Date | string
     updated_at?: Date | string
     resources?: ResourceCreateNestedManyWithoutPublisherInput
@@ -16138,8 +16138,8 @@ export namespace Prisma {
   export type PublisherUncheckedCreateInput = {
     id?: number
     publisher_name: string
-    image_url?: string | null
-    url?: string | null
+    image_url: string
+    url: string
     created_at?: Date | string
     updated_at?: Date | string
     resources?: ResourceUncheckedCreateNestedManyWithoutPublisherInput
@@ -16147,8 +16147,8 @@ export namespace Prisma {
 
   export type PublisherUpdateInput = {
     publisher_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     resources?: ResourceUpdateManyWithoutPublisherNestedInput
@@ -16157,8 +16157,8 @@ export namespace Prisma {
   export type PublisherUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     publisher_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     resources?: ResourceUncheckedUpdateManyWithoutPublisherNestedInput
@@ -16167,16 +16167,16 @@ export namespace Prisma {
   export type PublisherCreateManyInput = {
     id?: number
     publisher_name: string
-    image_url?: string | null
-    url?: string | null
+    image_url: string
+    url: string
     created_at?: Date | string
     updated_at?: Date | string
   }
 
   export type PublisherUpdateManyMutationInput = {
     publisher_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16184,8 +16184,8 @@ export namespace Prisma {
   export type PublisherUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     publisher_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18704,8 +18704,8 @@ export namespace Prisma {
 
   export type PublisherCreateWithoutResourcesInput = {
     publisher_name: string
-    image_url?: string | null
-    url?: string | null
+    image_url: string
+    url: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -18713,8 +18713,8 @@ export namespace Prisma {
   export type PublisherUncheckedCreateWithoutResourcesInput = {
     id?: number
     publisher_name: string
-    image_url?: string | null
-    url?: string | null
+    image_url: string
+    url: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -18878,8 +18878,8 @@ export namespace Prisma {
 
   export type PublisherUpdateWithoutResourcesInput = {
     publisher_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18887,8 +18887,8 @@ export namespace Prisma {
   export type PublisherUncheckedUpdateWithoutResourcesInput = {
     id?: IntFieldUpdateOperationsInput | number
     publisher_name?: StringFieldUpdateOperationsInput | string
-    image_url?: NullableStringFieldUpdateOperationsInput | string | null
-    url?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }

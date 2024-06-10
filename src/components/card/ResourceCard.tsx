@@ -10,16 +10,24 @@ import { useAvailableInstances } from "@/hooks/use-available-instances";
 type BookCardProps = {
   resource: Resource;
   typeRibbon?: boolean;
+  baseRoute: "dashboard" | "landing";
 };
 
-export const ResourceCard = ({ resource, typeRibbon }: BookCardProps) => {
+export const ResourceCard = ({
+  resource,
+  typeRibbon,
+  baseRoute,
+}: BookCardProps) => {
   const { availableInstances } = useAvailableInstances({
     resourceId: resource.id,
   });
 
   return (
     <Fragment>
-      <Link className="block relative" href={`resources/${resource.slug}`}>
+      <Link
+        className="block relative"
+        href={`/${baseRoute}/resources/${resource.slug}`}
+      >
         <div>
           <Image
             className="object-cover w-full h-full rounded-ss-lg rounded-se-lg"

@@ -6,7 +6,7 @@ export interface Publisher {
   name: string;
   url: string;
   createdAt?: string;
-  resources: Resource[];
+  resources?: Resource[];
 }
 
 export interface PublisherCreate {
