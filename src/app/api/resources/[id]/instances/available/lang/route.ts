@@ -9,7 +9,7 @@ const GET = async (
   { params }: { params: { id: string } }
 ) => {
   const available = await countResourceCountsByLang(params.id);
-  return NextResponse.json({ available });
+  return NextResponse.json(available);
 };
 
 const countResourceCountsByLang = (resourceId: string) => {

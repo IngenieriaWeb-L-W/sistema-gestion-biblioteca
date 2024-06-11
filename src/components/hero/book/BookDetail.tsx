@@ -4,14 +4,13 @@ import { Fragment, useState } from "react";
 
 import Image from "next/image";
 
-import { Resource } from "@/interfaces/resource/Resource";
-import Link from "next/link";
 import { useAuth } from "@/hooks/use-auth";
-import { ResourceInstanceLangs } from "@/interfaces/instance/ResourceInstanceLang";
 import { useCart } from "@/hooks/use-cart";
-import { InstanceLang } from "@/interfaces/instance/Instance";
 import { useForm } from "@/hooks/use-form";
 import useInstanceAvailabilityByLang from "@/hooks/use-instance-availability-by-lang";
+import { InstanceLang } from "@/interfaces/instance/Instance";
+import { Resource } from "@/interfaces/resource/Resource";
+import Link from "next/link";
 
 type BookDetailHeroProps = {
   resource: Resource;

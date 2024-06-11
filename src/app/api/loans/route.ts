@@ -73,6 +73,10 @@ const POST = async (req: NextRequest) => {
         createLoanTransaction(tokenPayload.id, instanceId)
       );
   }
+  return NextResponse.json({
+    status: 200,
+    message: "Loans created successfully",
+  });
 };
 
 const searchItemsToLoan = async (resourceId: string, lang: InstanceLang) => {

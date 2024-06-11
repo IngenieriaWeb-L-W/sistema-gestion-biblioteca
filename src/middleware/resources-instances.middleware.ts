@@ -80,15 +80,15 @@ export const fetchAvailableInstancesMiddleware = (id: string) => {
   };
 };
 
-export const fetchInstanceAvailableItemsByLang = (instanceId: string) => {
+export const fetchInstanceAvailableItemsByLang = (resourceId: string) => {
   return async (dispatch: Dispatch<Action>) => {
     const headers = {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     };
 
     return axios
-      .get<{ lang: InstanceLang; count: number }>(
-        `${location.protocol}//${location.host}/api/instances/${instanceId}/available/lang`,
+      .get<{ lang: InstanceLang; count: number }[]>(
+        `${location.protocol}//${location.host}/api/resources/${resourceId}/instances/available/lang`,
         { headers }
       )
       .then(({ data }) => data)
