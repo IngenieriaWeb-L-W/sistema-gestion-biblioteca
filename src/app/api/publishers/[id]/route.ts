@@ -15,7 +15,7 @@ const DELETE = async (
 
   const result = await prisma.publisher.delete({
     where: {
-      id,
+      id: +id,
     },
   });
 

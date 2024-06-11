@@ -1,5 +1,5 @@
 "use client";
-import TestimonialCard from "@/components/card/TestimonialCard";
+import { TestimonialCard } from "@/components/card/TestimonialCard";
 import { TestimonialsFilter, useTestimonials } from "@/hooks/use-testimonials";
 import { Fragment, useState } from "react";
 
@@ -54,7 +54,7 @@ const TestimonialsPage = () => {
           <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
             <div className="space-y-3">
               {records.map((testimonial, index) => (
-                <Fragment key={testimonial.id}>
+                <Fragment key={testimonial.user.id}>
                   {index % 3 === 0 && (
                     <TestimonialCard testimonial={testimonial} />
                   )}
@@ -64,7 +64,7 @@ const TestimonialsPage = () => {
 
             <div className="space-y-3">
               {records.map((testimonial, index) => (
-                <Fragment key={testimonial.id}>
+                <Fragment key={testimonial.user.id}>
                   {index % 3 === 1 && (
                     <TestimonialCard testimonial={testimonial} />
                   )}
@@ -74,7 +74,7 @@ const TestimonialsPage = () => {
 
             <div className="space-y-3">
               {records.map((testimonial, index) => (
-                <Fragment key={testimonial.id}>
+                <Fragment key={testimonial.user.id}>
                   {index % 3 === 2 && (
                     <TestimonialCard testimonial={testimonial} />
                   )}

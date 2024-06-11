@@ -28,7 +28,7 @@ export const fetchOwnedLoansMiddleware = (filter: LoansFilter) => {
   const params = {
     search: filter.search,
     page: filter.pagination.page,
-    limit: filter.pagination.limit,
+    limit: filter.pagination.size,
   };
   return async (dispatch: Dispatch<Action>) => {
     return axios

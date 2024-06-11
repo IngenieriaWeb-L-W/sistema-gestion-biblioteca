@@ -1,7 +1,6 @@
 import DBClient from "@/config/prisma/prisma.config";
 import { Resource } from "@/interfaces/resource/Resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
-import { JsonValue } from "@prisma/client/runtime/library";
 import { NextRequest, NextResponse } from "next/server";
 
 const { prisma } = DBClient.getInstance();
@@ -69,11 +68,6 @@ const getResourceDetail = (id: string): Promise<Resource | null> => {
         updatedAt: resource.updated_at,
       };
     });
-};
-
-const getResourceDetailParagraphs = (description: JsonValue): string[] => {
-  // Remove the first and last character
-  return (description as string).slice(1, -1).split('\\",\\"');
 };
 
 export { GET };

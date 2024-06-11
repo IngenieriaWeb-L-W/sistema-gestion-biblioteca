@@ -76,7 +76,7 @@ export const fetchUsersMiddleware = (filters: UsersFilter) => {
       role: filters.role,
       status: filters.status,
       page: filters.pagination.page,
-      limit: filters.pagination.limit,
+      limit: filters.pagination.size,
     };
     return axios
       .get<UsersResponse>(`${location.protocol}//${location.host}/api/users`, {

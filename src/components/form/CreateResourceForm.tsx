@@ -14,7 +14,6 @@ import { ResourceTypes } from "@/interfaces/resource/Type";
 import {
   createResourceMiddleware,
   fetchResourceDetailByIdMiddleware,
-  fetchResourceDetailMiddleware,
 } from "@/middleware/resources.middleware";
 import Image from "next/image";
 import React, { Fragment, useEffect, useState } from "react";

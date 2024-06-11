@@ -44,14 +44,16 @@ const createPublisher = async (formData: FormData) => {
         updated_at: new Date(),
       },
     })
-    .then((savedPublisher) => ({
-      id: savedPublisher.id,
-      name: savedPublisher.publisher_name,
-      url: savedPublisher.url,
-      imageUrl: savedPublisher.image_url,
-      createdAt: savedPublisher.created_at,
-      resources: savedPublisher.updated_at,
-    }))
+    .then((savedPublisher) => {
+      return NextResponse.json({
+        id: savedPublisher.id,
+        name: savedPublisher.publisher_name,
+        url: savedPublisher.url,
+        imageUrl: savedPublisher.image_url,
+        createdAt: savedPublisher.created_at,
+        resources: savedPublisher.updated_at,
+      });
+    })
     .catch(() => {
       return NextResponse.error();
     });

@@ -1,11 +1,8 @@
-import { useResourceCategory } from "@/hooks/use-resource-category";
 import { ResourceInstanceLangs } from "@/interfaces/instance/ResourceInstanceLang";
 import { ResourceInstanceStatus } from "@/interfaces/instance/ResourceInstanceStatus";
 import Link from "next/link";
 
 const TableResourceInstancesFilter = () => {
-  const { records } = useResourceCategory();
-
   return (
     <div className="py-3 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
       <div className="w-full mb-1">

@@ -25,7 +25,6 @@ export interface FormValue<T> {
   formValues: T;
   handleInputChange: <T>(event: SimpleInputChangeEvent<T>) => void;
   handleSelectChange: <T>(event: SimpleSelectChangeEvent<T>) => void;
-  handleCheckedChange: (event: SimpleCheckboxChangeEvent) => void;
   resetForm: (state: T) => void;
 }
 

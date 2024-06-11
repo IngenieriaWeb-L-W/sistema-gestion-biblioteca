@@ -11,7 +11,7 @@ export interface LoanTransactionFilters {
 
 export interface Pagination {
   page: number;
-  limit: number;
+  size: number;
 }
 
 export interface LoanTransactionsState {
@@ -27,7 +27,7 @@ const initialState: LoanTransactionsState = {
   filters: {},
   pagination: {
     page: 1,
-    limit: 10,
+    size: 10,
   },
 };
 

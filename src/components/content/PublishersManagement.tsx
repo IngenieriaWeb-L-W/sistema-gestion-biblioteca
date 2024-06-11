@@ -7,7 +7,7 @@ import { PublisherCard } from "../card/PublisherCard";
 import CreatePublisherForm from "../form/CreatePublisherForm";
 
 const PublishersManagement = () => {
-  const [pagination, setPagination] = useState({
+  const [pagination] = useState({
     page: 0,
     size: 10,
   });
@@ -19,7 +19,7 @@ const PublishersManagement = () => {
     addPublisher(publisher);
   };
 
-  const handleDeletePublisher = (id: string) => {
+  const handleDeletePublisher = (id: number) => {
     removePublisher(id);
   };
 

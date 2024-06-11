@@ -10,7 +10,7 @@ type ResourceTestimonialsProps = {
 };
 
 const ResourceTestimonials = ({ resourceId }: ResourceTestimonialsProps) => {
-  const [filters, setFilters] = useState<TestimonialsFilter>({
+  const [filters] = useState<TestimonialsFilter>({
     page: 1,
     size: 9,
     sortBy: "RATING",

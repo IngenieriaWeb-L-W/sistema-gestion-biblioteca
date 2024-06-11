@@ -9,7 +9,7 @@ export interface ResourceCategoryFilters {
 
 export interface Pagination {
   page: number;
-  limit: number;
+  size: number;
 }
 
 export interface ResourceCategoriesState {
@@ -29,7 +29,7 @@ const initialState: ResourceCategoriesState = {
   },
   pagination: {
     page: 1,
-    limit: 10,
+    size: 10,
   },
 };
 

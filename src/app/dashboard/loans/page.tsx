@@ -1,7 +1,6 @@
 import { OwnedLoansTable } from "@/components/tables/OwnedLoansTable";
-import UserRole from "@/interfaces/user/Role";
 import Link from "next/link";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
 const LoansPage = () => {
   return (

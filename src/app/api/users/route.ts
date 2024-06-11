@@ -16,7 +16,7 @@ const GET = async (req: NextRequest) => {
     status: (query.get("status") as Election) || Election.BOTH,
     pagination: {
       page: parseInt(query.get("page") || "0"),
-      limit: parseInt(query.get("limit") || "25"),
+      size: parseInt(query.get("limit") || "25"),
     },
   };
   const [records, total] = await Promise.all([

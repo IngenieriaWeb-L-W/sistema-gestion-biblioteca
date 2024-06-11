@@ -10,7 +10,7 @@ const UsersTable = () => {
     role: "",
     search: "",
     status: Election.BOTH,
-    pagination: { page: 0, limit: 25 },
+    pagination: { page: 0, size: 25 },
   });
 
   const { records /*, total */ } = useUsersTable(usersFilter);

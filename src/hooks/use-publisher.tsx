@@ -31,7 +31,7 @@ export const usePublisher = ({ page, size }: UsePublisherProps) => {
     });
   };
 
-  const removePublisher = (id: string) => {
+  const removePublisher = (id: number) => {
     setPublishers({
       records: records.filter((p) => p.id !== id),
       total: total - 1,

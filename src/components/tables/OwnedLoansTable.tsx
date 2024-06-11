@@ -10,7 +10,7 @@ import UserTablePagination from "../pagination/UserTablePagination";
 export const OwnedLoansTable = () => {
   const [loansFilter /*, setUsersFilter */] = useState<LoansFilter>({
     search: "",
-    pagination: { page: 1, limit: 25 },
+    pagination: { page: 1, size: 25 },
   });
 
   const { records /*, total */ } = useOwnedLoansTable(loansFilter);
