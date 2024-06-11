@@ -21,6 +21,7 @@ import BorrowedResourcesCart from "../cart/BorrowedResourcesCart";
 export const PrivateNavbar = () => {
   const { logout } = useAuth();
   const dispatch = useAppDispatch();
+  const { syncCartItems } = useCart();
   const { email, imageUrl, firstName, lastName, activeRole, roles } =
     useSelector(selectAuthentication);
   const { items: cartItems, showCart, hideCart, open: cartIsOpen } = useCart();
@@ -58,6 +59,10 @@ export const PrivateNavbar = () => {
       showCart();
     }
   };
+
+  useEffect(() => {
+    syncCartItems();
+  }, []);
 
   return (
     <Fragment>

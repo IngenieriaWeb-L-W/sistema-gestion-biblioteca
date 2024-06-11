@@ -95,7 +95,7 @@ const ResourcesByTestimonialsChart = ({
         <Doughnut data={chartData} /* options={options}*/ />
       ) : (
         <div>
-          <p>Loading chart info...</p>
+          <p className="w-full text-center my-5">Loading chart info...</p>
         </div>
       )}
     </div>

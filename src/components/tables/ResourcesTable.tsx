@@ -8,6 +8,7 @@ import TableResourcesFilter from "../filters/resources/TableResourcesFilter";
 import { Resource } from "@/interfaces/resource/Resource";
 import ResourceManagementTabs from "../tabs/ResourceManagementTabs";
 import { wordToHexColor } from "@/common/utils/color-generator";
+import Link from "next/link";
 
 const ResourcesTable = () => {
   const { records: resources } = useResources();
@@ -98,15 +99,18 @@ const ResourceRow = (resource: Resource) => {
         className="hover:bg-gray-100 dark:hover:bg-gray-700"
       >
         <td className="flex items-center p-2 mr-12 space-x-6 whitespace-nowrap">
-          <Image
-            width={500}
-            height={800}
-            className="w-32 h-52"
-            src={
-              resource.imageUrl || "/images/default/default-resource-img.png"
-            }
-            alt={"User avatar"}
-          />
+          <Link href={`/dashboard/resources/${resource.slug}`} target="_blank">
+            <Image
+              width={500}
+              height={800}
+              className="w-32 h-52"
+              src={
+                resource.imageUrl || "/images/default/default-resource-img.png"
+              }
+              alt={"User avatar"}
+            />
+          </Link>
+
           <div className="text-sm font-normal text-gray-500 dark:text-gray-400">
             <div className="text-base font-semibold text-gray-900 dark:text-white">
               {resource.name}

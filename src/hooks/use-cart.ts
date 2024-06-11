@@ -9,6 +9,7 @@ import {
 import { useAppDispatch } from "@/config/redux/store.config";
 import { InstanceLang } from "@/interfaces/instance/Instance";
 import { Resource } from "@/interfaces/resource/Resource";
+import { confirmBorrowAllItemsMiddleware } from "@/middleware/loans.middleware";
 import { useSelector } from "react-redux";
 
 export const useCart = () => {
@@ -39,11 +40,23 @@ export const useCart = () => {
     dispatch(syncCart());
   };
 
+  const confirmAllItems = () => {
+    dispatch(
+      confirmBorrowAllItemsMiddleware(
+        items.map((item) => ({
+          resourceId: item.resource.id,
+          lang: item.lang,
+        }))
+      )
+    );
+  };
+
   return {
     open,
     items,
     addItemToCart,
     removeItemFromCart,
+    confirmAllItems,
     isItemOnCart,
     showCart,
     hideCart,

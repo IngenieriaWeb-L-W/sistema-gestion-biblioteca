@@ -7,6 +7,7 @@ import DBClient from "@/config/prisma/prisma.config";
 import { GoogleTokenPayload } from "@/interfaces/auth/GoogleTokenPayload";
 import UserRole from "@/interfaces/user/Role";
 import { User } from "@/interfaces/user/User";
+import { TransactionType } from "@/interfaces/loan/Transaction";
 
 const { prisma } = DBClient.getInstance();
 
@@ -34,16 +35,27 @@ const POST = async (req: NextRequest) => {
       return NextResponse.error();
     }
     const user = await authenticateUser(verifiedTokenPayload);
-    if (!user) {
-      throw new Error("Error asserting user in DB");
+    if (!user || !user.active) {
+      return NextResponse.error();
     }
     const accessToken = sign({ id: user.id }, process.env.JWT_SECRET!, {
       expiresIn: "1d",
     });
+    saveLoginTransaction(user);
     return NextResponse.json({ user, accessToken });
   } catch (err) {
     return NextResponse.error();
   }
+};
+
+const saveLoginTransaction = (user: User) => {
+  prisma.transaction.create({
+    data: {
+      userId: user.id!,
+      created_at: new Date(),
+      type: TransactionType.TRANSACTION_LOGIN,
+    },
+  });
 };
 
 /**

@@ -1,18 +1,15 @@
 import { ResourcePreview } from "../resource/Resource";
+import { User } from "../user/User";
 
 export enum TransactionType {
-  // USER_REGISTRATION = "USER_REGISTRATION",
-  // BOOK_REGISTRATION = "BOOK_REGISTRATION",
-  ALL = "ALL",
-  RESOURCE_LOAN = "RESOURCE_LOAN",
-  RESOURCE_RETURN = "RESOURCE_RETURN",
-  ISSUE_REPORT = "ISSUE_REPORT",
-  DAMAGE_REPORT = "DAMAGE_REPORT",
-  LOSS_REPORT = "LOSS_REPORT",
+  TRANSACTION_LOAN = "TRANSACTION_LOAN",
+  TRANSACTION_RETURN = "TRANSACTION_RETURN",
+  TRANSACTION_LOGIN = "TRANSACTION_LOGIN",
 }
 
 export interface LoanTransaction {
   id: string;
+  user?: User;
   type: TransactionType;
   resource: ResourcePreview;
   createdAt: Date;

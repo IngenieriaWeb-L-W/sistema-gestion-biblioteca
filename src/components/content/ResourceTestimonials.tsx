@@ -66,6 +66,7 @@ const ResourceTestimonials = ({ resourceId }: ResourceTestimonialsProps) => {
           </div>
         </div>
       </div>
+
       <div className="flex justify-center">
         <button className="bg-blue-700 p-3 mb-10 text-white rounded-md">
           Load more...

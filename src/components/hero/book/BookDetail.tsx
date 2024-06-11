@@ -10,6 +10,8 @@ import { useAuth } from "@/hooks/use-auth";
 import { ResourceInstanceLangs } from "@/interfaces/instance/ResourceInstanceLang";
 import { useCart } from "@/hooks/use-cart";
 import { InstanceLang } from "@/interfaces/instance/Instance";
+import { useForm } from "@/hooks/use-form";
+import useInstanceAvailabilityByLang from "@/hooks/use-instance-availability-by-lang";
 
 type BookDetailHeroProps = {
   resource: Resource;
@@ -18,9 +20,14 @@ type BookDetailHeroProps = {
 export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
   const { email, login } = useAuth();
   const [borrowingResource, setBorrowingResource] = useState(false);
+  const { itemsByLang } = useInstanceAvailabilityByLang(resource.id);
   const { detail } = resource;
   const { addItemToCart, removeItemFromCart, isItemOnCart, showCart } =
     useCart();
+
+  const { formValues, handleSelectChange } = useForm<{ lang: InstanceLang }>({
+    lang: InstanceLang.LANG_EN,
+  });
 
   const handleBorrowResource = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -42,7 +49,7 @@ export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     event.preventDefault();
-    addItemToCart(resource, InstanceLang.LANG_EN);
+    addItemToCart(resource, formValues.lang);
     showCart();
     setBorrowingResource(false);
   };
@@ -95,17 +102,17 @@ export const BookDetailHero = ({ resource }: BookDetailHeroProps) => {
                 {borrowingResource && (
                   <div className="absolute top-16 w-full">
                     <select
-                      name="status"
-                      id="users-status"
+                      name="lang"
+                      value={formValues.lang}
+                      onChange={handleSelectChange}
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                     >
-                      {Object.keys(ResourceInstanceLangs)
-                        .filter(
-                          (lang) => lang !== ResourceInstanceLangs.LANG_OTHER
-                        )
-                        .map((lang) => (
+                      {itemsByLang
+                        .filter(({ count }) => count > 0)
+                        .map(({ lang, count }) => (
                           <option key={lang} value={lang}>
-                            {lang.replace("LANG_", "").trim()}
+                            {lang.replace("LANG_", "").trim()} [{count}{" "}
+                            Available]
                           </option>
                         ))}
                     </select>

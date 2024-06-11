@@ -8,7 +8,7 @@ import { v4 as uuidV4 } from "uuid";
 export const transactions: LoanTransaction[] = [
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -19,7 +19,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -52,7 +52,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -63,7 +63,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -74,7 +74,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -107,7 +107,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -118,7 +118,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -129,7 +129,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -162,7 +162,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -173,7 +173,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -184,7 +184,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -217,7 +217,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -228,7 +228,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -239,7 +239,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -272,7 +272,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -283,7 +283,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -294,7 +294,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -327,7 +327,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -338,7 +338,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -349,7 +349,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -382,7 +382,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -393,7 +393,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -404,7 +404,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -437,7 +437,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -448,7 +448,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -459,7 +459,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -492,7 +492,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -503,7 +503,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_LOAN,
+    type: TransactionType.TRANSACTION_LOAN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -514,7 +514,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.RESOURCE_RETURN,
+    type: TransactionType.TRANSACTION_RETURN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",
@@ -547,7 +547,7 @@ export const transactions: LoanTransaction[] = [
   },
   {
     id: uuidV4(),
-    type: TransactionType.LOSS_REPORT,
+    type: TransactionType.TRANSACTION_LOGIN,
     resource: {
       id: uuidV4(),
       name: "Resource 1",

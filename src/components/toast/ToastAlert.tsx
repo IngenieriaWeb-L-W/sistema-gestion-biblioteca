@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import {
+  SeverityLevel,
   removeGlobalAlert,
   selectUserInterface,
 } from "@/config/redux/reducers/user-interface.reducer";
@@ -36,14 +37,15 @@ export const ToastAlert = () => {
 
   return (
     <React.Fragment>
-      <div className="flex items-center fixed bottom-0 right-0 w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800">
+      <div className="flex items-center fixed bottom-0 right-0 z-50 w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800">
         <div className="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
           {
             <Image
               src={`/icons/${severity}.svg`}
               width={100}
+              alt="Alert icon"
               height={100}
-              alt="success"
+              className={`${severity === SeverityLevel.ERROR ? "bg-red-500" : ""} ${severity === SeverityLevel.WARNING ? "bg-yellow-500" : ""} ${severity === SeverityLevel.INFO ? "bg-blue-500" : ""} ${severity === SeverityLevel.SUCCESS ? "bg-green-500" : ""} rounded-md`}
             />
           }
           <span className="sr-only">Check icon</span>

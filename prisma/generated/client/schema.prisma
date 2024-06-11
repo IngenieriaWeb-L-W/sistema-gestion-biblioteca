@@ -29,6 +29,7 @@ model User {
   UserRole     UserRole[]
   loans        ResourceLoan[]
   testimonials ResourceTestimonial[]
+  transactions Transaction[]
 }
 
 model Role {
@@ -102,6 +103,7 @@ model ResourceInstance {
   created_at    DateTime               @default(now())
   updated_at    DateTime               @updatedAt
   loan          ResourceLoan?
+  transactions  Transaction[]
 }
 
 model ResourceLoan {
@@ -200,4 +202,22 @@ enum ResourceLang {
   LANG_PT // Portuguese
   LANG_AR // Arabic
   LANG_OTHER // Other
+}
+
+// --------------------------------------------------------------
+
+model Transaction {
+  id         String            @id @default(cuid())
+  user       User              @relation(fields: [userId], references: [id])
+  userId     String
+  instance   ResourceInstance? @relation(fields: [instanceId], references: [id])
+  instanceId String?
+  type       TransactionType   @default(TRANSACTION_LOAN)
+  created_at DateTime          @default(now())
+}
+
+enum TransactionType {
+  TRANSACTION_LOAN
+  TRANSACTION_RETURN
+  TRANSACTION_LOGIN
 }

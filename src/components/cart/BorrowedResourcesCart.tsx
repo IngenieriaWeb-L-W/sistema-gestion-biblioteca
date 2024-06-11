@@ -2,12 +2,13 @@
 
 import { useCart } from "@/hooks/use-cart";
 import { Resource } from "@/interfaces/resource/Resource";
+import { ResourceTypes } from "@/interfaces/resource/Type";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 
 const BorrowedResourcesCart = () => {
-  const { hideCart, syncCartItems, items, removeItemFromCart } = useCart();
+  const { hideCart, items, removeItemFromCart, confirmAllItems } = useCart();
 
   const handleCloseCart = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -16,12 +17,15 @@ const BorrowedResourcesCart = () => {
     hideCart();
   };
 
-  useEffect(() => {
-    syncCartItems();
-  }, []);
-
   const handleRemoveItem = (resource: Resource): void => {
     removeItemFromCart(resource);
+  };
+
+  const handleConfirmAll = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    confirmAllItems();
   };
 
   return (
@@ -129,28 +133,49 @@ const BorrowedResourcesCart = () => {
                     />
                   </button>
                 </div>
-                <div className="flex items-center justify-between pt-16">
-                  <p className="text-base leading-none text-white">Subtotal</p>
-                  <p className="text-base leading-none text-white">$9,000</p>
-                </div>
-                <div className="flex items-center justify-between pt-5">
-                  <p className="text-base leading-none text-white">Shipping</p>
-                  <p className="text-base leading-none text-white">$30</p>
-                </div>
-                <div className="flex items-center justify-between pt-5">
-                  <p className="text-base leading-none text-white">Tax</p>
-                  <p className="text-base leading-none text-white">$35</p>
-                </div>
+                {Object.keys(ResourceTypes)
+                  .filter((type) => type !== ResourceTypes.ALL)
+                  .map((type) => (
+                    <section className="mt-1" key={type}>
+                      <div className="flex items-center justify-between pt-3">
+                        <h4 className="text-base leading-none text-white">
+                          {type}
+                        </h4>
+                        <h4 className="text-base leading-none text-white">
+                          {
+                            items.filter(
+                              ({ resource }) => resource.type === type
+                            ).length
+                          }{" "}
+                          Item(s)
+                        </h4>
+                      </div>
+
+                      {items
+                        .filter(({ resource }) => resource.type === type)
+                        .map(({ resource, lang }) => (
+                          <div key={resource.id} className="pl-2 pt-3">
+                            <p className="text-base leading-none text-gray-300">
+                              {resource.name} [{lang.split("_")[1]}]
+                            </p>
+                          </div>
+                        ))}
+                    </section>
+                  ))}
               </div>
               <div>
                 <div className="flex items-center pb-6 justify-between lg:pt-5 pt-20">
                   <p className="text-2xl leading-normal text-white">Total</p>
-                  <p className="text-2xl font-bold leading-normal text-right text-white">
-                    $10,240
+                  <p className="text-2xl font-bold leading-normal text-right text-green-500">
+                    FREE
                   </p>
                 </div>
-                <button className="text-base leading-none w-full py-5 bg-blue-500 rounded-md border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white">
-                  Checkout
+                <button
+                  type="button"
+                  onClick={handleConfirmAll}
+                  className="text-base leading-none w-full py-5 bg-blue-500 rounded-md border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white"
+                >
+                  Confirm All ({items.length})
                 </button>
               </div>
             </div>

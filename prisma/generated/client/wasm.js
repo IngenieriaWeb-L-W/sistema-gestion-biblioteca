@@ -224,6 +224,14 @@ exports.Prisma.ResourceCategoryScalarFieldEnum = {
   category_id: 'category_id'
 };
 
+exports.Prisma.TransactionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  instanceId: 'instanceId',
+  type: 'type',
+  created_at: 'created_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -289,6 +297,12 @@ exports.ResourceTypes = exports.$Enums.ResourceTypes = {
   EDUCATIONAL: 'EDUCATIONAL'
 };
 
+exports.TransactionType = exports.$Enums.TransactionType = {
+  TRANSACTION_LOAN: 'TRANSACTION_LOAN',
+  TRANSACTION_RETURN: 'TRANSACTION_RETURN',
+  TRANSACTION_LOGIN: 'TRANSACTION_LOGIN'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Role: 'Role',
@@ -301,7 +315,8 @@ exports.Prisma.ModelName = {
   ResourceType: 'ResourceType',
   Publisher: 'Publisher',
   Category: 'Category',
-  ResourceCategory: 'ResourceCategory'
+  ResourceCategory: 'ResourceCategory',
+  Transaction: 'Transaction'
 };
 
 /**

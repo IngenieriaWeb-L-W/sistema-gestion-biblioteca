@@ -1,7 +1,10 @@
+import { Resource } from "../resource/Resource";
+
 export interface ResourceInstance {
   id: string;
   name: string;
   status: InstanceStatus;
+  resource?: Resource;
   lang: InstanceLang;
   createdAt: Date;
   updatedAt: Date;

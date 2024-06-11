@@ -29,6 +29,7 @@ model User {
   UserRole     UserRole[]
   loans        ResourceLoan[]
   testimonials ResourceTestimonial[]
+  transactions Transaction[]
 }
 
 model Role {
@@ -102,21 +103,21 @@ model ResourceInstance {
   created_at    DateTime               @default(now())
   updated_at    DateTime               @updatedAt
   loan          ResourceLoan?
+  transactions  Transaction[]
 }
 
 model ResourceLoan {
-  id         String            @id @default(cuid())
-  user       User              @relation(fields: [userId], references: [id])
+  id         String           @id @default(cuid())
+  user       User             @relation(fields: [userId], references: [id])
   userId     String
   until      DateTime
   instance   ResourceInstance @relation(fields: [instanceId], references: [id])
   instanceId String           @unique
-  created_at DateTime          @default(now())
-  updated_at DateTime          @updatedAt
+  created_at DateTime         @default(now())
+  updated_at DateTime         @updatedAt
 }
 
 model ResourceTestimonial {
-  @@id([userId, resourceId])
   user        User     @relation(fields: [userId], references: [id])
   userId      String
   resource    Resource @relation(fields: [resourceId], references: [id])
@@ -126,6 +127,8 @@ model ResourceTestimonial {
   title       String
   testimonial String?
   created_at  DateTime @default(now())
+
+  @@id([userId, resourceId])
 }
 
 model ResourceType {
@@ -199,4 +202,22 @@ enum ResourceLang {
   LANG_PT // Portuguese
   LANG_AR // Arabic
   LANG_OTHER // Other
+}
+
+// --------------------------------------------------------------
+
+model Transaction {
+  id         String            @id @default(cuid())
+  user       User              @relation(fields: [userId], references: [id])
+  userId     String
+  instance   ResourceInstance? @relation(fields: [instanceId], references: [id])
+  instanceId String?
+  type       TransactionType   @default(TRANSACTION_LOAN)
+  created_at DateTime          @default(now())
+}
+
+enum TransactionType {
+  TRANSACTION_LOAN
+  TRANSACTION_RETURN
+  TRANSACTION_LOGIN
 }

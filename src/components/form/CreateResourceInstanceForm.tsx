@@ -12,7 +12,6 @@ import {
   InstanceStatus,
   ResourceInstancesCreate,
 } from "@/interfaces/instance/Instance";
-import { ResourceTypes } from "@/interfaces/resource/Type";
 import { createResourceInstancesMiddleware } from "@/middleware/resources-instances.middleware";
 import React, { Fragment } from "react";
 import * as Yup from "yup";
