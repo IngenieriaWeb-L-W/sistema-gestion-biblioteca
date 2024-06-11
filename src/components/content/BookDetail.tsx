@@ -1,6 +1,5 @@
-import { useResourceTestimonials } from "@/hooks/use-resource-testimonials";
 import { ResourceDetail } from "@/interfaces/resource/Detail";
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import ResourceTestimonials from "./ResourceTestimonials";
 
 type BookDetailProps = {

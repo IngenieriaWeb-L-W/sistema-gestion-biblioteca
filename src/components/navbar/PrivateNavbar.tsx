@@ -52,7 +52,7 @@ export const PrivateNavbar = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     event.preventDefault();
-    if (open) {
+    if (cartIsOpen) {
       hideCart();
     } else {
       showCart();

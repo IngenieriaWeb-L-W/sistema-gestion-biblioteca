@@ -13,6 +13,7 @@ import { ResourceCreate } from "@/interfaces/resource/Resource";
 import { ResourceTypes } from "@/interfaces/resource/Type";
 import {
   createResourceMiddleware,
+  fetchResourceDetailByIdMiddleware,
   fetchResourceDetailMiddleware,
 } from "@/middleware/resources.middleware";
 import Image from "next/image";
@@ -197,7 +198,7 @@ const CreateResourceForm = ({
 
   useEffect(() => {
     if (!editId) return;
-    dispatch(fetchResourceDetailMiddleware(editId)).then((resource) => {
+    dispatch(fetchResourceDetailByIdMiddleware(editId)).then((resource) => {
       if (!resource) return;
       resetForm({
         name: resource.name,
@@ -213,6 +214,7 @@ const CreateResourceForm = ({
           resource.detail?.publicationYear || new Date().getFullYear(),
         type: resource.type,
       });
+      setImageSrc(resource.imageUrl);
     });
   }, [dispatch, editId, resetForm]);
 

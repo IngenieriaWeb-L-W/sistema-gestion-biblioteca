@@ -157,11 +157,11 @@ const CreateResourceInstancesForm = ({
                         value={lang}
                         onChange={handleSelectChange}
                       >
-                        {Object.values(ResourceTypes)
-                          .filter((type) => type !== ResourceTypes.ALL)
+                        {Object.values(InstanceLang)
+                          .filter((type) => type !== InstanceLang.LANG_OTHER)
                           .map((type) => (
                             <option key={type} value={type}>
-                              {type.replaceAll("_", " ")}
+                              {type.split("_")[1]}
                             </option>
                           ))}
                       </select>
@@ -182,13 +182,11 @@ const CreateResourceInstancesForm = ({
                         value={status}
                         onChange={handleSelectChange}
                       >
-                        {Object.values(ResourceTypes)
-                          .filter((type) => type !== ResourceTypes.ALL)
-                          .map((type) => (
-                            <option key={type} value={type}>
-                              {type.replaceAll("_", " ")}
-                            </option>
-                          ))}
+                        {Object.values(InstanceStatus).map((type) => (
+                          <option key={type} value={type}>
+                            {type.replaceAll("_", " ")}
+                          </option>
+                        ))}
                       </select>
                     </div>
 

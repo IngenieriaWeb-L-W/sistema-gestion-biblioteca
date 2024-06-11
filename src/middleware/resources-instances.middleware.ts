@@ -118,7 +118,7 @@ export const createResourceInstancesMiddleware = (
     };
 
     return axios
-      .post<ResourceInstance>(
+      .post<{ message: string }>(
         `${location.protocol}//${location.host}/api/resources/${id}/instances`,
         instances,
         { headers }

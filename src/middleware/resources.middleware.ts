@@ -86,6 +86,30 @@ export const fetchResourceDetailMiddleware = (slug: string) => {
   };
 };
 
+export const fetchResourceDetailByIdMiddleware = (id: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch(startGlobalLoading({ message: "Fetching resource detail..." }));
+    return axios
+      .get<Resource>(
+        `${location.protocol}//${location.host}/api/resources/${id}`
+      )
+      .then(({ data }) => data)
+      .catch((/* error */) => {
+        dispatch(
+          setGlobalAlert({
+            message: "Resource detail could not be fetched ⛔",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        return null;
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
 export const fetchResourcePreviewMiddleware = (id: string) => {
   return async (dispatch: Dispatch<Action>) => {
     return axios

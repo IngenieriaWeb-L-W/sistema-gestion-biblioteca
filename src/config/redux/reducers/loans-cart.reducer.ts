@@ -21,11 +21,18 @@ export const loansCartSlice = createSlice({
   name: "loansCart",
   initialState,
   reducers: {
+    syncCart: (state) => {
+      const cart = localStorage.getItem("cart");
+      if (cart) {
+        state.items = JSON.parse(cart);
+      }
+    },
     addResourceInstance: (
       state,
       action: PayloadAction<{ resource: Resource; lang: InstanceLang }>
     ) => {
       state.items.push(action.payload);
+      localStorage.setItem("cart", JSON.stringify(state.items));
     },
     openCart: (state) => {
       state.open = true;
@@ -37,10 +44,12 @@ export const loansCartSlice = createSlice({
       state.items = state.items.filter(
         (item) => item.resource.id !== action.payload
       );
+      localStorage.setItem("cart", JSON.stringify(state.items));
     },
     resetCart: (state) => {
       state.items = [];
       state.open = false;
+      localStorage.removeItem("cart");
     },
   },
 });
@@ -52,6 +61,7 @@ export const {
   removeResourceInstance,
   openCart,
   closeCart,
+  syncCart,
   resetCart,
 } = loansCartSlice.actions;
 

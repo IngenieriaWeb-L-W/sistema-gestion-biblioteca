@@ -260,12 +260,12 @@ const ResourceStatistics = ({ id }: ResourceStatistics) => {
         </div>
       </section>
 
-      <section>
+      {/* <section>
         <div className="p-20 mx-auto">
           <h2 className="text-center mt-5 mb-3 text-xl font-semibold text-gray-900 dark:text-white">
             Resource loans count by period
           </h2>
-          <Line data={loansPerMonthData} /*options={loansPerMonthOptions}*/ />
+          <Line data={loansPerMonthData} />
           <button
             className="inline-flex mt-5 ml-3 bg-blue-800 items-center p-2 text-sm font-medium text-center text-gray-500 rounded-lg hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
             type="button"
@@ -273,7 +273,7 @@ const ResourceStatistics = ({ id }: ResourceStatistics) => {
             Change period
           </button>
         </div>
-      </section>
+      </section> */}
     </Fragment>
   );
 };

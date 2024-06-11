@@ -1,4 +1,5 @@
 import DBClient from "@/config/prisma/prisma.config";
+import { InstanceLang, InstanceStatus } from "@/interfaces/instance/Instance";
 import { ResourceInstanceLangs } from "@/interfaces/instance/ResourceInstanceLang";
 import { ResourceInstanceStatus } from "@/interfaces/instance/ResourceInstanceStatus";
 import { NextRequest, NextResponse } from "next/server";
@@ -77,4 +78,41 @@ const countResourceInstances = (id: string, filter: Filters) => {
     .then((total) => total);
 };
 
-export { GET };
+type Data = {
+  name: string;
+  lang: InstanceLang;
+  status: InstanceStatus;
+  count: number;
+};
+
+const POST = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  if (req.method !== "POST") return NextResponse.error();
+
+  const body = await req.json();
+  const result = await createResourceInstances(params.id, body as Data);
+
+  return NextResponse.json({
+    message: result.count + " Resources instances created",
+  });
+};
+
+const createResourceInstances = async (resourceId: string, data: Data) => {
+  const { name, lang, status, count } = data;
+  const instances = Array.from({ length: count }).map(() => ({
+    instance_name: name,
+    lang,
+    status,
+    resource_id: resourceId,
+    created_at: new Date(),
+    updated_at: new Date(),
+  }));
+
+  return prisma.resourceInstance.createMany({
+    data: instances,
+  });
+};
+
+export { GET, POST };

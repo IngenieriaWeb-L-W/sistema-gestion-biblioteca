@@ -4,6 +4,7 @@ import {
   openCart,
   removeResourceInstance,
   selectLoansCart,
+  syncCart,
 } from "@/config/redux/reducers/loans-cart.reducer";
 import { useAppDispatch } from "@/config/redux/store.config";
 import { InstanceLang } from "@/interfaces/instance/Instance";
@@ -16,7 +17,6 @@ export const useCart = () => {
 
   const addItemToCart = (resource: Resource, lang: InstanceLang) => {
     dispatch(addResourceInstance({ resource, lang }));
-    localStorage.setItem("cart", JSON.stringify(items));
   };
 
   const removeItemFromCart = (resource: Resource) => {
@@ -35,6 +35,10 @@ export const useCart = () => {
     dispatch(closeCart());
   };
 
+  const syncCartItems = () => {
+    dispatch(syncCart());
+  };
+
   return {
     open,
     items,
@@ -43,5 +47,6 @@ export const useCart = () => {
     isItemOnCart,
     showCart,
     hideCart,
+    syncCartItems,
   };
 };

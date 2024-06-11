@@ -5,7 +5,6 @@ import useResourceInstances from "@/hooks/use-resource-instances";
 import { ResourceInstance } from "@/interfaces/instance/Instance";
 import React, { Fragment, useState } from "react";
 import TableResourceInstancesFilter from "../filters/resources/TableResourcesInstancesFilter";
-import ResourceManagementTabs from "../tabs/ResourceManagementTabs";
 import CreateResourceInstancesForm from "../form/CreateResourceInstanceForm";
 
 type ResourceInstancesTableProps = {
@@ -150,14 +149,6 @@ const ResourceInstanceRow = (instance: ResourceInstance) => {
           </button>
         </td>
       </tr>
-
-      {showEditPanel && (
-        <tr>
-          <td colSpan={7}>
-            <ResourceManagementTabs id={instance.id} />
-          </td>
-        </tr>
-      )}
     </Fragment>
   );
 };

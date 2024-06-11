@@ -8,7 +8,7 @@ type TestimonialCardProps = {
 
 export const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
   return (
-    <div className="p-2 rounded-sm border bg-white border-[--ui-light-border-color] dark:bg-[--card-dark-bg] dark:border-[--ui-dark-border-color] group">
+    <div className="p-2 rounded-md border border-gray-700 bg-transparent">
       <div className="flex gap-3">
         <span className="relative block rounded-[--avatar-border-radius] text-lg size-14">
           <Image
@@ -19,6 +19,7 @@ export const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
             height="120"
           />
         </span>
+
         <div className="w-[calc(100%-3.25rem)]">
           <h3 className="font-medium text-gray-950 dark:text-white">
             {testimonial.user.firstName}
@@ -27,10 +28,12 @@ export const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
             <StarRating rating={testimonial.rating} />
           </span>
           <blockquote className="mt-3">
-            <p className="text-gray-700 text-justify dark:text-gray-300">
-              {testimonial.testimonial}
-            </p>
+            <h6 className="text-justify text-white">{testimonial.title}</h6>
+            <div className="py-2 opacity-20">
+              <hr />
+            </div>
           </blockquote>
+          <small className="text-white">{testimonial.testimonial}</small>
         </div>
       </div>
     </div>
